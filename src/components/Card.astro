@@ -1,0 +1,32 @@
+---
+// src/components/Card.astro
+const { title, description, price } = Astro.props;
+---
+
+<div class="card">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    {price && <span class="price">{price} руб.</span>}
+</div>
+
+<style lang="scss" is:global>
+    .card {
+        padding: 1.5rem;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+
+        h2,
+        p,
+        .price {
+            pointer-events: none;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #4f46e5;
+        }
+    }
+</style>

@@ -1,0 +1,39 @@
+{
+  "name": "globus",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && js-beautify --replace --max-preserve-newlines 1 --indent-size 4 \"dist/**/*.html\" && node scripts/fix-scripts.js",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "astro": "^5.16.10",
+    "globby": "^16.1.0",
+    "gsap": "^3.14.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.9",
+    "astro-eslint-parser": "^1.2.2",
+    "autoprefixer": "^10.4.23",
+    "cssnano": "^7.1.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.5.0",
+    "globals": "^17.0.0",
+    "js-beautify": "^1.15.4",
+    "postcss": "^8.5.6",
+    "prettier": "^3.8.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "sass-embedded": "^1.97.2",
+    "typescript-eslint": "^8.53.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

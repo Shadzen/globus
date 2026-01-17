@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+---
+
+<Layout title="Главная">
+    <h1>Мои компоненты</h1>
+
+    <div class="grid">
+        <Card
+            title="Базовый тариф"
+            description="Отлично подходит для небольших лендингов"
+            price="5000"
+        />
+        <Card title="Продвинутый" description="Для корпоративных сайтов с блогом" price="15000" />
+    </div>
+</Layout>
+
+<style lang="scss" is:global>
+    h1 {
+        text-align: center;
+        color: #111827;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+</style>

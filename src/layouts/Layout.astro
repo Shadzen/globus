@@ -1,0 +1,58 @@
+---
+// src/layouts/Layout.astro
+import Footer from '../components/Footer.astro'
+const { title } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`.replace(/\/+/g, '/')} />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-content">
+                <a href={base}>Главная</a>
+                <a href={`${base}about`}>О нас</a>
+            </div>
+        </nav>
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style lang="scss" is:global>
+    body {
+        font-family: system-ui, sans-serif;
+        background: $color-bg;
+        margin: 0;
+    }
+    nav {
+        background: white;
+        border-bottom: 1px solid #eaeaea;
+        padding: 1rem 2rem;
+    }
+    .nav-content {
+        max-width: 800px;
+        margin: 0 auto;
+        @include flex-center;
+        gap: 2rem;
+        justify-content: flex-start; // Переопределяем миксин если нужно
+    }
+    nav a {
+        text-decoration: none;
+        color: $color-primary;
+        font-weight: 500;
+    }
+    main {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+    }
+</style>
