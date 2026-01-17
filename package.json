@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && js-beautify --replace --max-preserve-newlines 1 --indent-size 4 \"dist/**/*.html\" && node scripts/fix-scripts.js",
+    "build": "astro build && js-beautify --replace --max-preserve-newlines 1 --indent-size 4 'dist/**/*.html' && node scripts/fix-scripts.js",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint src"
