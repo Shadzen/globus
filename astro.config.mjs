@@ -36,9 +36,10 @@ export default defineConfig({
         ],
       },
     },
-        build: {
-            cssCodeSplit: false,
-            rollupOptions: {
+    build: {
+      emptyOutDir: true,
+      cssCodeSplit: false,
+      rollupOptions: {
                 output: {
                     // Настраиваем имена для итоговых файлов
                     entryFileNames: 'assets/[name].js',
