@@ -59,9 +59,6 @@ async function fix() {
 
         content = content.replace('</body>', cleanScripts)
 
-        // Убираем возможные дубликаты пустых строк
-        content = content.replace(/\n\s*\n/g, '\n')
-
         fs.writeFileSync(file, content)
     }
 

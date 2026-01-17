@@ -2,17 +2,22 @@
     "printWidth": 100,
     "tabWidth": 4,
     "useTabs": false,
-    "semi": true,
+    "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingComma": "all",
     "bracketSpacing": true,
-    "htmlWhitespaceSensitivity": "ignore",
     "plugins": ["prettier-plugin-astro"],
     "overrides": [
         {
             "files": "*.astro",
             "options": {
                 "parser": "astro"
+            }
+        },
+        {
+            "files": "*.html",
+            "options": {
+                "printWidth": 1000
             }
         }
     ]

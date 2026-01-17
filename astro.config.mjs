@@ -9,37 +9,37 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
-  compressHTML: false,
-  build: {
-    inlineStylesheets: 'never',
-  },
-  vite: {
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-      },
+    base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
+    compressHTML: false,
+    build: {
+        inlineStylesheets: 'never',
     },
-    css: {
-      devSourcemap: true,
-      preprocessorOptions: {
-        scss: {
-          additionalData: `
+    vite: {
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, './src'),
+            },
+        },
+        css: {
+            devSourcemap: true,
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `
             @use "@/styles/variables.scss" as *;
             @use "@/styles/mixins.scss" as *;
           `,
+                },
+            },
+            postcss: {
+                plugins: [
+                    ...(!isDev ? [autoprefixer(), cssnano()] : []),
+                ],
+            },
         },
-      },
-      postcss: {
-        plugins: [
-          ...(!isDev ? [autoprefixer(), cssnano()] : []),
-        ],
-      },
-    },
-    build: {
-      emptyOutDir: true,
-      cssCodeSplit: false,
-      rollupOptions: {
+        build: {
+            emptyOutDir: true,
+            cssCodeSplit: false,
+            rollupOptions: {
                 output: {
                     // Настраиваем имена для итоговых файлов
                     entryFileNames: 'assets/[name].js',
