@@ -51,7 +51,7 @@ async function fix() {
         )
 
         // Добавляем наши чистые ссылки перед закрывающим тегом body (в футер)
-        const base = process.env.NODE_ENV === 'production' ? '/globus/' : '/'
+        const base = (process.env.NODE_ENV === 'production' || process.env.GITHUB_ACTIONS) ? '/globus/' : '/'
         const cleanScripts = `
     <script type="module" src="${base}assets/gsap.js"></script>
     <script type="module" src="${base}assets/main.js"></script>
