@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
-  base: !isDev ? '/globus/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
   compressHTML: false,
   build: {
     inlineStylesheets: 'never',
