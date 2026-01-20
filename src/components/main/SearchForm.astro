@@ -1,0 +1,144 @@
+---
+// src/components/SearchForm.astro
+---
+
+<section class="search-form">
+    <div class="search-form-container">
+        <div class="form-field">
+            <label for="city" class="field-label">Город вылета</label>
+            <input
+                type="text"
+                id="city"
+                name="city"
+                class="field-input"
+                value="Новосибирск"
+                placeholder="Выберите город"
+            />
+        </div>
+
+        <div class="form-field">
+            <label for="country" class="field-label">Страна</label>
+            <input
+                type="text"
+                id="country"
+                name="country"
+                class="field-input"
+                value="ОАЭ"
+                placeholder="Выберите страну"
+            />
+        </div>
+
+        <div class="form-field">
+            <label for="dates" class="field-label">Дата вылета</label>
+            <input
+                type="text"
+                id="dates"
+                name="dates"
+                class="field-input"
+                value="16 сен - 25 сен"
+                placeholder="Выберите даты"
+            />
+        </div>
+
+        <div class="form-field">
+            <label for="nights" class="field-label">Ночей</label>
+            <input
+                type="text"
+                id="nights"
+                name="nights"
+                class="field-input"
+                value="6-14"
+                placeholder="Количество ночей"
+            />
+        </div>
+
+        <div class="form-field">
+            <label for="tourists" class="field-label">Туристы</label>
+            <input
+                type="text"
+                id="tourists"
+                name="tourists"
+                class="field-input"
+                value="2 взрослых"
+                placeholder="Количество туристов"
+            />
+        </div>
+
+        <button class="search-btn">Найти</button>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .search-form {
+        position: relative;
+        width: 100%;
+        background: $color-alternate;
+        @include adaptive(padding-top, 52, 30);
+        @include adaptive(padding-bottom, 52, 30);
+        @include side-paddings;
+    }
+
+    .search-form-container {
+        position: relative;
+        width: 100%;
+        @include flex-center-between;
+        @include adaptive(gap, 38, 44);
+        @include adaptive(padding-left, 70, 0);
+        @include adaptive(padding-right, 70, 0);
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    .form-field {
+        position: relative;
+        // flex: 1;
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 24, 24);
+        // min-width: 0;
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    .field-label {
+        @include font-circe-regular;
+        @include adaptive(font-size, 16, 18);
+        line-height: 1.2;
+        color: $color-main;
+        text-transform: uppercase;
+        opacity: 0.6;
+        @include adaptive(letter-spacing, 3, 3);
+    }
+
+    .field-input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba($color-accent, 0.2);
+        @include adaptive(padding-bottom, 10, 8);
+        @include font-circe-regular;
+        @include adaptive(font-size, 26, 16);
+        line-height: 1.2;
+        color: $color-main;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &::placeholder {
+            color: rgba($color-main, 0.3);
+        }
+
+        &:focus {
+            border-bottom-color: rgba($color-accent, 1);
+        }
+    }
+
+    .search-btn {
+        @include adaptive(width, 172, 172);
+        @include adaptive(height, 60, 60);
+        @include button-default;
+    }
+</style>

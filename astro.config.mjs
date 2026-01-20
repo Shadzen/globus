@@ -9,6 +9,9 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 // https://astro.build/config
 export default defineConfig({
+    devToolbar: {
+        enabled: false,
+    },
     base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
     compressHTML: false,
     build: {
@@ -25,9 +28,9 @@ export default defineConfig({
             preprocessorOptions: {
                 scss: {
                     additionalData: `
-            @use "@/styles/variables.scss" as *;
-            @use "@/styles/mixins.scss" as *;
-          `,
+                        @use "@/styles/variables.scss" as *;
+                        @use "@/styles/mixins.scss" as *;
+                    `,
                 },
             },
             postcss: {
@@ -44,13 +47,21 @@ export default defineConfig({
                     // Настраиваем имена для итоговых файлов
                     entryFileNames: 'assets/[name].js',
                     chunkFileNames: 'assets/[name].js',
-                    assetFileNames: 'assets/[name].[ext]',
+                    assetFileNames: (assetInfo) => {
+                        if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
+                            return `assets/media/[name].[ext]`
+                        }
+                        if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico|webp)(\?.*)?$/i.test(assetInfo.name)) {
+                            return `assets/images/[name].[ext]`
+                        }
+                        if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(assetInfo.name)) {
+                            return `assets/fonts/[name].[ext]`
+                        }
+                        return `assets/[name].[ext]`
+                    },
                     // Принудительно создаем чанки с нужными именами
                     manualChunks(id) {
-                        if (
-                            id.includes('node_modules/gsap') ||
-                            id.includes('src/scripts/gsap.ts')
-                        ) {
+                        if (id.includes('node_modules/gsap') || id.includes('src/scripts/gsap.ts')) {
                             return 'gsap'
                         }
                         if (id.includes('src/scripts/main.ts')) {

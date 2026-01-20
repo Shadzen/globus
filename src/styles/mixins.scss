@@ -1,6 +1,168 @@
 // src/styles/mixins.scss
+@use 'variables' as *;
+
+@function adaptive-value($size, $base, $is-wide: false) {
+    $vw: 100vw;
+
+    @if $is-wide {
+        $vw: 75vw;
+    }
+
+    @return calc(#{$vw} / (#{$base} / #{$size}));
+}
+
+@mixin adaptive($property, $desktop-size, $mobile-size, $important: false) {
+    $suffix: "";
+
+    @if $important {
+        $suffix: " !important";
+    }
+
+    #{$property}: adaptive-value($desktop-size, $default-width) #{$suffix};
+
+    @media (min-aspect-ratio: 21/9) {
+        #{$property}: adaptive-value($desktop-size, $default-width, true) #{$suffix};
+    }
+
+    @media screen and (max-width: #{$mobile-width}px) {
+        #{$property}: adaptive-value($mobile-size, $mobile-width) #{$suffix};
+
+        @media (min-aspect-ratio: 21/9) {
+            #{$property}: adaptive-value($mobile-size, $mobile-width, true) #{$suffix};
+        }
+    }
+}
+
+@mixin adaptiveBoxShadow($desktop-size, $mobile-size, $color) {
+    box-shadow: inset 0 0 adaptive-value($desktop-size, $default-width) $color;
+
+    @media (min-aspect-ratio: 21/9) {
+        box-shadow: inset 0 0 adaptive-value($desktop-size, $default-width, true) $color;
+    }
+
+    @media screen and (max-width: #{$mobile-width}px) {
+        box-shadow: inset 0 0 adaptive-value($mobile-size, $mobile-width) $color;
+
+        @media (min-aspect-ratio: 21/9) {
+            box-shadow: inset 0 0 adaptive-value($mobile-size, $mobile-width, true) $color;
+        }
+    }
+}
+
+@mixin adaptiveBlur($desktop-size, $mobile-size) {
+    filter: blur(adaptive-value($desktop-size, $default-width));
+
+    @media (min-aspect-ratio: 21/9) {
+        filter: blur(adaptive-value($desktop-size, $default-width, true));
+    }
+
+    @media screen and (max-width: #{$mobile-width}px) {
+        filter: blur(adaptive-value($mobile-size, $mobile-width));
+
+        @media (min-aspect-ratio: 21/9) {
+            filter: blur(adaptive-value($mobile-size, $mobile-width, true));
+        }
+    }
+}
+
+@mixin side-paddings {
+    @include adaptive(padding-left, 100, 12);
+    @include adaptive(padding-right, 100, 12);
+}
+
 @mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-center-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-start-between {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@mixin flex-center-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin abs-default {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin center-xy {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin center-y {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin font-circe-regular {
+    font-family: 'circe_regular', Arial, sans-serif;
+}
+
+@mixin font-kudry-classic {
+    font-family: 'kudry_classic-headline', Arial, sans-serif;
+}
+
+@mixin font-kudry-sans {
+    font-family: 'kudry_sans-headline', Arial, sans-serif;
+}
+
+@mixin button-default {
+    @include flex-center;
+    flex-shrink: 0;
+    @include font-circe-regular;
+    @include adaptive(font-size, 16, 18);
+    line-height: 1.2;
+    color: $color-main;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    @include adaptive(letter-spacing, 3, 3);
+    background: $color-accent;
+
+    border-style: solid;
+    border-color: $color-accent;
+    @include adaptive(border-width, 2, 2);
+    // @include adaptive(border-radius, 25, 25);
+    border-radius: 50px;
+
+    @include mobile {
+        width: 100%;
+        align-self: stretch;
+    }
+
+    &:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: #{$mobile-width}px) {
+        @content;
+    }
 }

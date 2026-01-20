@@ -1,0 +1,16 @@
+@mixin fontFace($fontName, $fontWeight: normal, $fontStyle: normal, $fontDisplay: swap) {
+    @font-face {
+        font-family: $fontName;
+        src:
+            url('/src/assets/fonts/#{$fontName}.woff2') format('woff2'),
+            url('/src/assets/fonts/#{$fontName}.ttf') format('truetype'),
+            url('/src/assets/fonts/#{$fontName}.otf') format('opentype');
+        font-weight: $fontWeight;
+        font-style: $fontStyle;
+        font-display: $fontDisplay;
+    }
+}
+
+@include fontFace('circe_regular');
+@include fontFace('kudry_classic-headline');
+@include fontFace('kudry_sans-headline');
