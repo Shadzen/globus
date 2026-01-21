@@ -24,9 +24,10 @@ import ContactForm from '@/components/main/ContactForm.astro'
     .hero-section {
         @include adaptive(height, 1044, 1044);
         background-image: url('@/assets/images/main/hero-1.jpg');
-        background-size: 100% auto;
+        background-size: contain;
         background-position: top center;
-        background-attachment: fixed;
+        background-repeat: no-repeat;
+        // background-attachment: fixed;
         padding-top: 20%;
         @include side-paddings;
 
