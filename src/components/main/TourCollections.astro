@@ -9,11 +9,11 @@ import collectionTour4 from '@/assets/images/main/collection-tour-4.jpg'
 import collectionTour5 from '@/assets/images/main/collection-tour-5.jpg'
 
 interface TourCard {
-    id: number,
-    title: string,
-    image: ImageMetadata,
-    position: 1 | 2 | 3 | 4,
-    font: 'circe' | 'kudry',
+    id: number
+    title: string
+    image: ImageMetadata
+    position: 1 | 2 | 3 | 4
+    font: 'circe' | 'kudry'
 }
 
 const cards: TourCard[] = [
@@ -67,182 +67,181 @@ const cards: TourCard[] = [
         </div>
 
         <div class="collections-grid">
-            {cards.map((card) => (
-                <a href="#" class={`tour-card _pos-${card.position}`}>
-                    <span class="card-image">
-                        <Image
-                            src={card.image}
-                            alt={card.title}
-                            loading="lazy"
-                            quality={100}
-                        />
-                        <span class="card-overlay"></span>
-                        <span class={`card-title _font-${card.font === 'circe' ? 'circle' : 'kudry'}`}>{card.title}</span>
-                    </span>
-                </a>
-            ))}
+            {
+                cards.map((card) => (
+                    <a href="#" class={`tour-card _pos-${card.position}`}>
+                        <span class="card-image">
+                            <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
+                            <span class="card-overlay" />
+                            <span
+                                class={`card-title _font-${card.font === 'circe' ? 'circle' : 'kudry'}`}
+                            >
+                                {card.title}
+                            </span>
+                        </span>
+                    </a>
+                ))
+            }
         </div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .tour-collections {
-        position: relative;
-        width: 100%;
         background: $color-main;
         @include adaptive(margin-top, 128, 40);
         // @include adaptive(padding-bottom, 88, 40);
         @include side-paddings;
-    }
 
-    .tour-collections-container {
-        position: relative;
-        width: 100%;
-        @include flex-center;
-        flex-direction: column;
-        @include adaptive(gap, 40, 40);
-    }
-
-    .collections-header {
-        position: relative;
-        width: 100%;
-        // @include flex-center-between;
-        // @include adaptive(gap, 40, 20);
-
-        // @include mobile {
-        //     flex-direction: column;
-        // }
-    }
-
-    // .collections-title {
-    //     @include font-kudry-sans;
-    //     @include adaptive(font-size, 60, 32);
-    //     font-weight: 300;
-    //     line-height: 1.21;
-    //     color: $color-alternate;
-    //     text-transform: uppercase;
-    //     text-align: center;
-    // }
-
-    .collections-nav {
-        @include center-y;
-        right: 0;
-        @include flex-center;
-        @include adaptive(gap, 16, 12);
-        flex-shrink: 0;
-    }
-
-    .nav-btn {
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        transition: all 0.3s;
-        @include adaptive(width, 81, 60);
-        @include adaptive(height, 81, 60);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        &:hover {
-            transform: scale(1.05);
+        .tour-collections-container {
+            position: relative;
+            width: 100%;
+            @include flex-center;
+            flex-direction: column;
+            @include adaptive(gap, 40, 40);
         }
 
-        &:active {
-            transform: scale(0.95);
+        .collections-header {
+            position: relative;
+            width: 100%;
+            // @include flex-center-between;
+            // @include adaptive(gap, 40, 20);
+
+            // @include mobile {
+            //     flex-direction: column;
+            // }
         }
 
-        &-prev {
-            background-image: url('@/assets/icons/prev-accent.svg');
-        }
-
-        &-next {
-            background-image: url('@/assets/icons/next-accent.svg');
-        }
-    }
-
-    .collections-grid {
-        position: relative;
-        width: 100%;
-        display: flex;
-        @include adaptive(gap, 31, 16);
-        align-items: flex-start;
-
-        // @include mobile {
-        //     flex-direction: column;
-        // }
-    }
-
-    .tour-card {
-        @include flex-center;
-        position: relative;
-        flex: 1;
-        @include adaptive(gap, 16, 12);
-        cursor: pointer;
-        // text-decoration: none;
-        transition: all 0.3s;
-
-        // @include mobile {
-        //     width: 100%;
+        // .collections-title {
+        //     @include font-kudry-sans;
+        //     @include adaptive(font-size, 60, 32);
+        //     font-weight: 300;
+        //     line-height: 1.21;
+        //     color: $color-alternate;
+        //     text-transform: uppercase;
+        //     text-align: center;
         // }
 
-        &:hover {
-            transform: translateY(-8px);
+        .collections-nav {
+            @include center-y;
+            right: 0;
+            @include flex-center;
+            @include adaptive(gap, 16, 12);
+            flex-shrink: 0;
+        }
 
-            .card-overlay {
-                background-color: rgba(0, 0, 0, 0.6) !important;
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            @include adaptive(width, 81, 60);
+            @include adaptive(height, 81, 60);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            &-prev {
+                background-image: url('@/assets/icons/prev-accent.svg');
+            }
+
+            &-next {
+                background-image: url('@/assets/icons/next-accent.svg');
             }
         }
 
-        &._pos-1 {
-            margin-top: 0;
-        }
-        &._pos-2 {
-            @include adaptive(margin-top, 30, 30);
-        }
-        &._pos-3 {
-            @include adaptive(margin-top, 100, 100);
-        }
-        &._pos-4 {
-            @include adaptive(margin-top, 130, 130);
-        }
-    }
+        .collections-grid {
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(gap, 31, 16);
+            align-items: flex-start;
 
-    .card-image {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        // border-radius: 8px;
-    }
-
-    .card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .card-overlay {
-        @include abs-default;
-        transition: background-color 0.3s;
-    }
-
-    .card-title {
-        @include center-xy;
-        line-height: 1.2;
-        color: #FFF;
-        text-transform: uppercase;
-        text-align: center;
-        &._font-circle {
-            @include font-circe-regular;
-            @include adaptive(font-size, 24, 18);
-            @include adaptive(letter-spacing, 2.4, 1.8);
-            font-weight: 400;
+            // @include mobile {
+            //     flex-direction: column;
+            // }
         }
-        &._font-kudry {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 24);
-            font-weight: 300;
+
+        .tour-card {
+            @include flex-center;
+            position: relative;
+            flex: 1;
+            @include adaptive(gap, 16, 12);
+            cursor: pointer;
+            // text-decoration: none;
+            transition: all 0.3s;
+
+            // @include mobile {
+            //     width: 100%;
+            // }
+
+            &:hover {
+                transform: translateY(-8px);
+
+                .card-overlay {
+                    background-color: rgba(0, 0, 0, 0.6) !important;
+                }
+            }
+
+            &._pos-1 {
+                margin-top: 0;
+            }
+            &._pos-2 {
+                @include adaptive(margin-top, 30, 30);
+            }
+            &._pos-3 {
+                @include adaptive(margin-top, 100, 100);
+            }
+            &._pos-4 {
+                @include adaptive(margin-top, 130, 130);
+            }
+        }
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            // border-radius: 8px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-overlay {
+            @include abs-default;
+            transition: background-color 0.3s;
+        }
+
+        .card-title {
+            @include center-xy;
+            line-height: 1.2;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            &._font-circle {
+                @include font-circe-regular;
+                @include adaptive(font-size, 24, 18);
+                @include adaptive(letter-spacing, 2.4, 1.8);
+                font-weight: 400;
+            }
+            &._font-kudry {
+                @include font-kudry-sans;
+                @include adaptive(font-size, 28, 24);
+                font-weight: 300;
+            }
         }
     }
 </style>

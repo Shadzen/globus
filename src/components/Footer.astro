@@ -1,10 +1,60 @@
 ---
 // src/components/Footer.astro
+import Logo from './Logo.astro'
 ---
 
 <footer>
-    <div class="footer-content">
-        <p>&copy; 2026 Globus. Все права защищены.</p>
+    <div class="footer-container">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3 class="footer-title">Глобус тур</h3>
+                <nav class="footer-nav">
+                    <a href="#">Глобус-News</a>
+                    <a href="#">О нас</a>
+                    <a href="#">Поиск туров</a>
+                    <a href="#">Авиабилеты</a>
+                </nav>
+                <a href="#" class="footer-link">Способы оплаты</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Путешествия</h3>
+                <nav class="footer-nav">
+                    <a href="#">Семейный отдых</a>
+                    <a href="#">Активный отдых</a>
+                    <a href="#">Мероприятия</a>
+                    <a href="#">Консьерж-сервис</a>
+                </nav>
+                <a href="#" class="footer-link">Политика конфиденциальности</a>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Полезное</h3>
+                <nav class="footer-nav">
+                    <a href="#">Визы</a>
+                    <a href="#">Страхование</a>
+                </nav>
+                <a href="#" class="footer-link">Пользовательское соглашение</a>
+            </div>
+
+            <div class="footer-column">
+                <Logo color="black" size="small" />
+                <button
+                    class="scroll-top-btn"
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                >
+                    <span class="scroll-icon"></span>
+                    <span>Наверх</span>
+                </button>
+                <div class="footer-legal">
+                    <p>©2025 ООО туристическое агентство "Глобус тур"</p>
+                    <p>
+                        Все предложения находящиеся на сайте не являются публичной офертой. Опубликовано
+                        в рекламных целях.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 
@@ -13,15 +63,127 @@
 
 <style lang="scss" is:global>
     footer {
-        padding: 2rem;
-        background: white;
-        border-top: 1px solid #eaeaea;
-        text-align: center;
-        color: #6b7280;
+        position: relative;
+        width: 100%;
+        background: $color-main;
+        @include adaptive(margin-top, 118, 40);
+        @include adaptive(padding-bottom, 30, 20);
+        @include side-paddings;
 
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .footer-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 80, 40);
+        }
+
+        .footer-columns {
+            display: flex;
+            @include adaptive(gap, 28, 24);
+            width: 100%;
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 18, 10);
+            width: 22%;
+            &:last-child {
+                flex: 1;
+            }
+        }
+
+        .footer-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 22, 18);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-accent;
+            text-transform: uppercase;
+            @include adaptive(margin-top, 20, 20);
+            margin-bottom: 0;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            @include adaptive(gap, 20, 16);
+            @include adaptive(margin-top, 24, 24);
+
+            a {
+                @include font-circe-regular;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1.6;
+                color: $color-alternate;
+                text-transform: uppercase;
+                @include adaptive(letter-spacing, 3.2, 2);
+                opacity: 0.4;
+                text-decoration: none;
+                transition: opacity 0.3s;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .scroll-top-btn {
+            @include button-default;
+            @include adaptive(width, 186, 192);
+            @include adaptive(height, 66, 64);
+        }
+
+        .scroll-icon {
+            @include adaptive(width, 40, 32);
+            @include adaptive(height, 40, 32);
+            background-image: url('@/assets/icons/up-white.svg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .footer-link {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            color: $color-accent;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 2);
+            transition: opacity 0.3s;
+            white-space: normal;
+            width: 50%;
+            @include adaptive(margin-top, 80, 40);
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            flex: 1;
+            // @include adaptive(gap, 16, 12);
+
+            p {
+                position: relative;
+                @include font-circe-regular;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1;
+                color: $color-alternate;
+                @include adaptive(letter-spacing, -0.32, -0.2);
+                opacity: 0.4;
+                &:last-child {
+                    @include adaptive(top, 20, 0);
+                }
+            }
         }
     }
 </style>

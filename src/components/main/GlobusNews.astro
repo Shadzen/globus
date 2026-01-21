@@ -1,0 +1,326 @@
+---
+// src/components/main/GlobusNews.astro
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import newsBig1 from '@/assets/images/news/news-big-1.jpg'
+import newsBig2 from '@/assets/images/news/news-big-2.jpg'
+import newsBig3 from '@/assets/images/news/news-big-3.jpg'
+import newsSmall1 from '@/assets/images/news/news-small-1.jpg'
+import newsSmall2 from '@/assets/images/news/news-small-2.jpg'
+import newsSmall3 from '@/assets/images/news/news-small-3.jpg'
+import newsSmall4 from '@/assets/images/news/news-small-4.jpg'
+
+interface NewsCard {
+    id: number
+    title: string
+    category: string
+    image: ImageMetadata
+}
+
+const topCards: NewsCard[] = [
+    {
+        id: 1,
+        title: 'Саудовская Аравия: Туры <br> на прямых рейсах из Москвы',
+        category: 'Туры',
+        image: newsBig1,
+    },
+    {
+        id: 2,
+        title: 'Турция приглашает <br> на бархатный сезон!',
+        category: 'Страны',
+        image: newsBig2,
+    },
+    {
+        id: 3,
+        title: 'Новый Год в Дубае – Концерт <br> легендарной группы Maroon 5!',
+        category: 'Концерты',
+        image: newsBig3,
+    },
+]
+
+const bottomCards: NewsCard[] = [
+    {
+        id: 4,
+        title: 'Авторские туры <br> в составе мини-группы',
+        category: 'Туры',
+        image: newsSmall1,
+    },
+    {
+        id: 5,
+        title: 'Вьетнам: <br> Топ-5 отелей Нячанга <br> на «Все включено»',
+        category: 'Отели',
+        image: newsSmall2,
+    },
+    {
+        id: 6,
+        title: 'Турция: Открыт новый отель Regnum The <br> Crown 5*!',
+        category: 'Отели',
+        image: newsSmall3,
+    },
+    {
+        id: 7,
+        title: 'Madinat Jumeirah - курорт для тех, кто выбирает только лучшее.',
+        category: 'Страны',
+        image: newsSmall4,
+    },
+]
+---
+
+<section class="globus-news">
+    <div class="globus-news-container">
+        <h2 class="news-title">Глобус-News</h2>
+
+        <div class="news-top-grid">
+            {
+                topCards.map((card) => (
+                    <a href="#" class="news-card news-card-top">
+                        <span class="card-image">
+                            <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
+                        </span>
+                        <span class="card-content">
+                            <span class="card-category">{card.category}</span>
+                            <h3 class="card-title" set:html={card.title}></h3>
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="news-dark-section">
+            <div class="news-dark-background">
+                <div class="news-nav">
+                    <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд"></button>
+                    <button class="nav-btn nav-btn-next" aria-label="Следующий слайд"></button>
+                </div>
+            </div>
+            <div class="news-bottom-grid">
+                {
+                    bottomCards.map((card) => (
+                        <a href="#" class="news-card news-card-bottom">
+                            <span class="card-image">
+                                <Image
+                                    src={card.image}
+                                    alt={card.title}
+                                    loading="lazy"
+                                    quality={100}
+                                />
+                            </span>
+                            <span class="card-content">
+                                <span class="card-category">{card.category}</span>
+                                <h3 class="card-title" set:html={card.title}></h3>
+                            </span>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+
+        <a href="#" class="news-button">Открыть глобус-news</a>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .globus-news {
+        background: $color-main;
+        @include adaptive(margin-top, 112, 40);
+        // @include adaptive(padding-bottom, 88, 40);
+
+        .globus-news-container {
+            position: relative;
+            width: 100%;
+            @include flex-center;
+            flex-direction: column;
+            @include adaptive(gap, 72, 40);
+        }
+
+        // .news-header {
+        //     position: relative;
+        //     width: 100%;
+        //     @include flex-center;
+        // }
+
+        .news-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 60, 32);
+            font-weight: 300;
+            line-height: 1.21;
+            color: $color-alternate;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .news-top-grid {
+            @include side-paddings;
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(column-gap, 84, 16);
+            // @include adaptive(row-gap, 31, 16);
+            flex-wrap: wrap;
+            align-items: flex-start;
+            z-index: 10;
+
+            .card-content {
+                @include adaptive(gap, 12, 8);
+            }
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .news-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 24, 16);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: normal;
+
+            &:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        .news-card-top {
+            &:nth-child(1) {
+                width: 54%;
+            }
+            &:nth-child(2) {
+                width: 41.11%;
+                @include adaptive(margin-top, 80, 16);
+            }
+            &:nth-child(3) {
+                width: 38.1%;
+                @include adaptive(margin-top, -48, -16);
+                @include adaptive(margin-left, 274, 16);
+                .card-category {
+                    color: $color-main;
+                }
+                .card-title {
+                    color: $color-main;
+                }
+            }
+            // @include mobile {
+            //     width: 100%;
+            // }
+        }
+
+        .news-card-bottom {
+            width: 24.245%;
+        }
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+        .card-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-category {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            color: #667c89;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 2);
+            font-weight: 400;
+        }
+
+        .card-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 20);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-alternate;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .news-dark-section {
+            position: relative;
+            width: 100%;
+            @include adaptive(margin-top, -376, -250);
+        }
+
+        .news-dark-background {
+            position: relative;
+            width: 100%;
+            @include adaptive(height, 630, 250);
+            background: $color-alternate;
+            @include side-paddings;
+            @include flex-center-end;
+        }
+
+        .news-bottom-grid {
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(gap, 17, 3);
+            flex-wrap: wrap;
+            @include side-paddings;
+            z-index: 10;
+            @include adaptive(margin-top, -218, -120);
+
+            .card-content {
+                @include adaptive(gap, 24, 8);
+            }
+        }
+
+        .news-nav {
+            @include flex-center;
+            @include adaptive(gap, 16, 12);
+            flex-shrink: 0;
+            z-index: 15;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            @include adaptive(width, 81, 60);
+            @include adaptive(height, 81, 60);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            &-prev {
+                background-image: url('@/assets/icons/prev-accent.svg');
+            }
+
+            &-next {
+                background-image: url('@/assets/icons/next-accent.svg');
+            }
+        }
+
+        .news-button {
+            @include adaptive(margin-top, -44, -24);
+            @include adaptive(width, 350, 280);
+            @include adaptive(height, 60, 60);
+            @include button-default;
+        }
+    }
+</style>

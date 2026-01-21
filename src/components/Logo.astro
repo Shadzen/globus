@@ -46,7 +46,8 @@ const base = import.meta.env.BASE_URL
         }
 
         &._small {
-            // оставляем для будущих размеров
+            @include adaptive(width, 227, 227);
+            @include adaptive(height, 64, 64);
         }
 
         &._large {

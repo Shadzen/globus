@@ -1,0 +1,251 @@
+---
+// src/components/main/AboutUs.astro
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import teamImage from '@/assets/images/main/team.jpg'
+import advantage1Icon from '@/assets/icons/advantage-1.svg'
+import advantage2Icon from '@/assets/icons/advantage-2.svg'
+import advantage3Icon from '@/assets/icons/advantage-3.svg'
+import advantage4Icon from '@/assets/icons/advantage-4.svg'
+
+interface Advantage {
+    id: number
+    title: string
+    description: string
+    icon: ImageMetadata
+}
+
+const advantages: Advantage[] = [
+    {
+        id: 1,
+        title: 'Индивидуальный подход',
+        description: 'подберём тур именно под ваши желания и бюджет',
+        icon: advantage1Icon,
+    },
+    {
+        id: 2,
+        title: 'VIP-сервис',
+        description: 'быстрое оформление, привилегии в аэропорту и особые условия по запросу',
+        icon: advantage2Icon,
+    },
+    {
+        id: 3,
+        title: 'Поддержка 24/7',
+        description: 'будьте спокойны: мы рядом на каждом этапе путешествия',
+        icon: advantage3Icon,
+    },
+    {
+        id: 4,
+        title: '100 000+ вариантов отдыха',
+        description: 'от пляжного релакса до ярких экскурсий по всему миру',
+        icon: advantage4Icon,
+    },
+]
+---
+
+<section class="about-us">
+    <div class="about-us-container">
+        <h2 class="about-title">
+            <span>ваш идеальный отдых</span>
+            <span>начинается здесь!</span>
+        </h2>
+
+        <div class="about-content">
+            <div class="about-item">
+                <h3 class="years-title">30 лет</h3>
+                <p class="about-text">
+                    мы создаём путешествия мечты, и дарим возможность открывать мир с комфортом и
+                    удовольствием
+                </p>
+                <br />
+                <p class="about-text">
+                    Как самый крупный туроператор Сибири, мы знаем, что важно для вас: безупречный
+                    сервис, внимание к деталям и полная уверенность в своём отдыхе
+                </p>
+            </div>
+
+            <div class="about-item">
+                <div class="about-image">
+                    <Image src={teamImage} alt="Команда Глобус Тур" loading="lazy" quality={100} />
+                </div>
+            </div>
+
+            <div class="about-item">
+                <h3 class="tourists-title">Более 500 000</h3>
+                <p class="about-text">
+                    счастливых туристов доверили нам свои впечатления – и мы сделали их путешествия
+                    по‑настоящему незабываемыми
+                </p>
+                <br />
+                <a href="#" class="about-button">Подробнее о нас</a>
+            </div>
+        </div>
+
+        <div class="advantages-grid">
+            {
+                advantages.map((advantage) => (
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <img src={advantage.icon.src} alt="" />
+                        </div>
+                        <h4 class="advantage-title">{advantage.title}</h4>
+                        <p class="advantage-description">{advantage.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .about-us {
+        background: $color-main;
+        @include adaptive(margin-top, 164, 40);
+        // @include adaptive(padding-bottom, 88, 40);
+        @include side-paddings;
+
+        .about-us-container {
+            position: relative;
+            width: 100%;
+            @include flex-center;
+            flex-direction: column;
+            @include adaptive(gap, 64, 40);
+        }
+
+        .about-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-content {
+            position: relative;
+            width: 100%;
+            @include flex-start-center;
+            @include adaptive(gap, 70, 24);
+            flex-flow: wrap;
+
+            > * {
+                flex: 30%;
+                max-width: 31%;
+            }
+
+            @include mobile {
+                flex-direction: column;
+                > * {
+                    flex: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .about-item {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 10, 10);
+        }
+
+        .years-title,
+        .tourists-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 60, 36);
+            font-weight: 300;
+            line-height: 1.21;
+            color: $color-accent;
+            text-transform: uppercase;
+            @include adaptive(margin-top, 48, 36);
+            margin-bottom: 0;
+        }
+
+        .about-text {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            color: $color-alternate;
+            font-weight: 400;
+            width: 90%;
+        }
+
+        .about-image {
+            align-self: center;
+            width: 100%;
+            @include adaptive(height, 359, 250);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-button {
+            @include adaptive(width, 300, 240);
+            @include adaptive(height, 60, 60);
+            @include button-default;
+        }
+
+        .advantages-grid {
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(gap, 40, 24);
+            flex-wrap: wrap;
+            @include adaptive(margin-top, 24, 12);
+
+            > * {
+                flex: 20%;
+                min-width: 20%;
+            }
+
+            @include mobile {
+                flex-direction: column;
+                > * {
+                    flex: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .advantage-item {
+            @include flex-center-start;
+            flex-direction: column;
+            text-align: center;
+            @include adaptive(gap, 24, 16);
+        }
+
+        .advantage-icon {
+            width: 100%;
+            @include adaptive(height, 80, 60);
+            @include flex-center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .advantage-title {
+            @include font-circe-regular;
+            @include adaptive(font-size, 24, 18);
+            line-height: 1.2;
+            color: $color-accent;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 1.8);
+            font-weight: 400;
+            margin: 0;
+            @include adaptive(min-height, 58, 43);
+            @include flex-center;
+        }
+
+        .advantage-description {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            color: #667c89;
+            font-weight: 400;
+            width: 70%;
+        }
+    }
+</style>

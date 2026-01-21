@@ -112,11 +112,15 @@ const base = import.meta.env.BASE_URL
         text-align: center;
         @include adaptive(font-size, 60, 32);
         line-height: 1.2;
-        flex: 1;
+        // flex: 1;
 
         @include mobile {
             flex: none;
             width: 100%;
         }
+    }
+
+    p {
+        margin: 0;
     }
 </style>

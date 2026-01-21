@@ -13,6 +13,7 @@
                 class="field-input"
                 value="Новосибирск"
                 placeholder="Выберите город"
+                autocomplete="off"
             />
         </div>
 
@@ -25,6 +26,7 @@
                 class="field-input"
                 value="ОАЭ"
                 placeholder="Выберите страну"
+                autocomplete="country"
             />
         </div>
 
@@ -37,6 +39,7 @@
                 class="field-input"
                 value="16 сен - 25 сен"
                 placeholder="Выберите даты"
+                autocomplete="off"
             />
         </div>
 
@@ -49,6 +52,7 @@
                 class="field-input"
                 value="6-14"
                 placeholder="Количество ночей"
+                autocomplete="off"
             />
         </div>
 
@@ -61,6 +65,7 @@
                 class="field-input"
                 value="2 взрослых"
                 placeholder="Количество туристов"
+                autocomplete="off"
             />
         </div>
 
@@ -70,8 +75,6 @@
 
 <style lang="scss" is:global>
     .search-form {
-        position: relative;
-        width: 100%;
         background: $color-alternate;
         @include adaptive(padding-top, 52, 30);
         @include adaptive(padding-bottom, 52, 30);

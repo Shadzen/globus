@@ -1,0 +1,384 @@
+---
+// src/components/main/ContactForm.astro
+---
+
+<section class="contact-form-section">
+    <div class="contact-form-container">
+        <div class="contact-left">
+            <h2 class="contact-title">Открываем мир</h2>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-label">Телефон</span>
+                    <div class="contact-separator"></div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon social-icon-telegram" aria-label="Telegram"></a>
+                        <a href="#" class="social-icon social-icon-whatsapp" aria-label="WhatsApp"></a>
+                    </div>
+                    <a href="tel:880020006578" class="contact-value">8 800 2000 6578</a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <div class="contact-separator"></div>
+                    <a href="mailto:info@globus-tour.ru" class="contact-value">info@globus-tour.ru</a>
+                </div>
+            </div>
+
+            <form class="newsletter-form">
+                <input
+                    type="email"
+                    id="newsletter-email"
+                    name="email"
+                    placeholder="Подпишись на новости"
+                    class="newsletter-input"
+                    aria-label="Email для подписки"
+                    autocomplete="email"
+                />
+                <button type="submit" class="newsletter-btn" aria-label="Подписаться">
+                    <svg
+                        width="39"
+                        height="32"
+                        viewBox="0 0 39 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
+                            stroke="white"
+                            stroke-width="2"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <div class="contact-right">
+            <form class="contact-form">
+                <h3 class="form-title">Напишите прямо сейчас</h3>
+
+                <div class="form-group">
+                    <label for="contact-name" class="form-label">Имя</label>
+                    <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        class="form-input"
+                        autocomplete="name"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone" class="form-label">Телефон</label>
+                    <input
+                        type="tel"
+                        id="contact-phone"
+                        name="phone"
+                        class="form-input"
+                        autocomplete="tel"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-comment" class="form-label">Комментарий</label>
+                    <input
+                        type="text"
+                        id="contact-comment"
+                        name="comment"
+                        class="form-input"
+                        autocomplete="off"
+                    />
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="contact-agree" name="agree" required />
+                    <label for="contact-agree">
+                        Я принимаю условия Пользовательского соглашения и подтверждаю согласие на
+                        обработку моих персональных данных.
+                    </label>
+                </div>
+
+                <button type="submit" class="form-submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .contact-form-section {
+        background: $color-alternate;
+        @include adaptive(margin-top, 164, 40);
+        @include adaptive(padding-top, 98, 40);
+        @include adaptive(padding-bottom, 98, 40);
+        @include side-paddings;
+
+        .contact-form-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(gap, 16, 16);
+
+            > * {
+                flex: 1;
+            }
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 93, 32);
+        }
+
+        .contact-title {
+            color: #fff;
+            text-align: left;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 36, 20);
+        }
+
+        .contact-item {
+            @include flex-center-start;
+            @include adaptive(gap, 36, 6);
+            width: 74%;
+        }
+
+        .contact-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            color: $color-main;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 2);
+            opacity: 0.4;
+        }
+
+        .contact-separator {
+            // width: 100%;
+            height: 1px;
+            flex: 1;
+            background: #CCA870;
+        }
+
+        .contact-value {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 20);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-main;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .social-icons {
+            display: flex;
+            @include adaptive(gap, 14, 12);
+            align-items: center;
+        }
+
+        .social-icon {
+            @include adaptive(width, 40, 32);
+            @include adaptive(height, 40, 32);
+            display: block;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            &-telegram {
+                background-image: url('@/assets/icons/telegram-accent.svg');
+            }
+
+            &-whatsapp {
+                background-image: url('@/assets/icons/whatsapp-accent.svg');
+            }
+        }
+
+        .newsletter-form {
+            position: relative;
+            display: flex;
+            align-items: center;
+            @include adaptive(width, 500, 500);
+            @include adaptive(height, 60, 50);
+            border: 1px solid $color-accent;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            border: none;
+            @include adaptive(padding-left, 45, 24);
+            @include adaptive(padding-right, 20, 16);
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            color: $color-main;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 2);
+            outline: none;
+
+            &::placeholder {
+                color: #969696;
+            }
+        }
+
+        .newsletter-btn {
+            @include adaptive(width, 60, 50);
+            @include adaptive(height, 60, 50);
+            background: $color-accent;
+            border: 1px solid $color-accent;
+            border-radius: 50%;
+            @include flex-center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+
+            svg {
+                @include adaptive(width, 39, 30);
+                @include adaptive(height, 32, 24);
+            }
+
+            &:hover {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+
+        .contact-right {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            // @include adaptive(gap, 28, 24);
+        }
+
+        .form-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 22);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-main;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin: 0;
+        }
+
+        .form-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            // @include adaptive(gap, 8, 6);
+            @include adaptive(margin-top, 32, 16);
+        }
+
+        .form-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            color: $color-main;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 2);
+            opacity: 0.4;
+        }
+
+        .form-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid $color-main;
+            // @include adaptive(padding-bottom, 10, 8);
+            @include font-kudry-sans;
+            @include adaptive(font-size, 20, 16);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-main;
+            outline: none;
+            transition: border-color 0.3s;
+
+            &::placeholder {
+                color: rgba($color-main, 0.3);
+            }
+
+            &:focus {
+                border-bottom-color: $color-accent;
+            }
+        }
+
+        // .form-textarea {
+        //     resize: vertical;
+        //     min-height: 40px;
+        // }
+
+        .form-checkbox {
+            display: flex;
+            @include adaptive(gap, 16, 8);
+            align-items: flex-start;
+            @include adaptive(margin-top, 16, 8);
+
+            input[type='checkbox'] {
+                @include adaptive(width, 15, 15);
+                @include adaptive(height, 15, 15);
+                flex-shrink: 0;
+                appearance: none;
+                border: 1px solid $color-accent;
+                @include adaptive(border-radius, 4, 4);
+                cursor: pointer;
+                transition: all 0.3s;
+                // @include adaptive(margin-top, 4, 2);
+                margin: 0;
+
+                &:checked {
+                    background: $color-accent;
+                    border-color: $color-accent;
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            label {
+                @include font-circe-regular;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1;
+                color: $color-main;
+                opacity: 0.4;
+                cursor: pointer;
+                @include adaptive(letter-spacing, -0.32, -0.2);
+            }
+        }
+
+        .form-submit {
+            @include adaptive(margin-top, 32, 16);
+            @include adaptive(width, 200, 180);
+            @include adaptive(height, 60, 60);
+            @include button-default;
+            align-self: flex-start;
+        }
+    }
+</style>
