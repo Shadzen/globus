@@ -66,8 +66,8 @@
 }
 
 @mixin side-paddings {
-    @include adaptive(padding-left, 100, 12);
-    @include adaptive(padding-right, 100, 12);
+    @include adaptive(padding-left, 100, 15);
+    @include adaptive(padding-right, 100, 15);
 }
 
 @mixin flex-center {

@@ -66,22 +66,29 @@ const cards: TourCard[] = [
             </div>
         </div>
 
-        <div class="collections-grid">
-            {
-                cards.map((card) => (
-                    <a href="#" class={`tour-card _pos-${card.position}`}>
-                        <span class="card-image">
-                            <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
-                            <span class="card-overlay" />
-                            <span
-                                class={`card-title _font-${card.font === 'circe' ? 'circle' : 'kudry'}`}
-                            >
-                                {card.title}
+        <div class="collections-grid-wrapper">
+            <div class="collections-grid">
+                {
+                    cards.map((card) => (
+                        <a href="#" class={`tour-card _pos-${card.position}`}>
+                            <span class="card-image">
+                                <Image
+                                    src={card.image}
+                                    alt={card.title}
+                                    loading="lazy"
+                                    quality={100}
+                                />
+                                <span class="card-overlay" />
+                                <span
+                                    class={`card-title _font-${card.font === 'circe' ? 'circle' : 'kudry'}`}
+                                >
+                                    {card.title}
+                                </span>
                             </span>
-                        </span>
-                    </a>
-                ))
-            }
+                        </a>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </section>
@@ -92,6 +99,10 @@ const cards: TourCard[] = [
         @include adaptive(margin-top, 128, 40);
         // @include adaptive(padding-bottom, 88, 40);
         @include side-paddings;
+        @include mobile {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
         .tour-collections-container {
             position: relative;
@@ -104,23 +115,7 @@ const cards: TourCard[] = [
         .collections-header {
             position: relative;
             width: 100%;
-            // @include flex-center-between;
-            // @include adaptive(gap, 40, 20);
-
-            // @include mobile {
-            //     flex-direction: column;
-            // }
         }
-
-        // .collections-title {
-        //     @include font-kudry-sans;
-        //     @include adaptive(font-size, 60, 32);
-        //     font-weight: 300;
-        //     line-height: 1.21;
-        //     color: $color-alternate;
-        //     text-transform: uppercase;
-        //     text-align: center;
-        // }
 
         .collections-nav {
             @include center-y;
@@ -157,6 +152,22 @@ const cards: TourCard[] = [
             &-next {
                 background-image: url('@/assets/icons/next-accent.svg');
             }
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .collections-grid-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            // @include side-paddings;
+
+            @include mobile {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
 
         .collections-grid {
@@ -166,9 +177,10 @@ const cards: TourCard[] = [
             @include adaptive(gap, 31, 16);
             align-items: flex-start;
 
-            // @include mobile {
-            //     flex-direction: column;
-            // }
+            @include mobile {
+                width: 300%;
+                transform: translateX(-33%);
+            }
         }
 
         .tour-card {

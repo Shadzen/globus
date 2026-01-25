@@ -4,6 +4,14 @@
 
 <section class="search-form">
     <div class="search-form-container">
+        <div class="search-form-header">
+            <h2 class="search-form-title">Подбор тура</h2>
+            <button class="search-form-close" type="button" aria-label="Закрыть форму поиска">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
         <div class="form-field">
             <label for="city" class="field-label">Город вылета</label>
             <input
@@ -79,69 +87,149 @@
         @include adaptive(padding-top, 52, 30);
         @include adaptive(padding-bottom, 52, 30);
         @include side-paddings;
-    }
-
-    .search-form-container {
-        position: relative;
-        width: 100%;
-        @include flex-center-between;
-        @include adaptive(gap, 38, 44);
-        @include adaptive(padding-left, 70, 0);
-        @include adaptive(padding-right, 70, 0);
 
         @include mobile {
-            flex-direction: column;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100dvw;
+            height: 100dvh;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+            @include adaptive(padding-top, 20, 20);
+
+            &._active {
+                transform: translateY(0);
+            }
         }
-    }
 
-    .form-field {
-        position: relative;
-        // flex: 1;
-        display: flex;
-        flex-direction: column;
-        @include adaptive(gap, 24, 24);
-        // min-width: 0;
-
-        @include mobile {
+        .search-form-container {
+            position: relative;
             width: 100%;
-        }
-    }
+            @include flex-center-between;
+            @include adaptive(gap, 38, 44);
+            @include adaptive(padding-left, 70, 0);
+            @include adaptive(padding-right, 70, 0);
 
-    .field-label {
-        @include font-circe-regular;
-        @include adaptive(font-size, 16, 18);
-        line-height: 1.2;
-        color: $color-main;
-        text-transform: uppercase;
-        opacity: 0.6;
-        @include adaptive(letter-spacing, 3, 3);
-    }
-
-    .field-input {
-        width: 100%;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid rgba($color-accent, 0.2);
-        @include adaptive(padding-bottom, 10, 8);
-        @include font-circe-regular;
-        @include adaptive(font-size, 26, 16);
-        line-height: 1.2;
-        color: $color-main;
-        outline: none;
-        transition: border-color 0.3s;
-
-        &::placeholder {
-            color: rgba($color-main, 0.3);
+            @include mobile {
+                flex-direction: column;
+            }
         }
 
-        &:focus {
-            border-bottom-color: rgba($color-accent, 1);
-        }
-    }
+        .search-form-header {
+            position: relative;
+            display: none;
+            z-index: 10;
+            width: 100%;
 
-    .search-btn {
-        @include adaptive(width, 172, 172);
-        @include adaptive(height, 60, 60);
-        @include button-default;
+            @include mobile {
+                display: flex;
+                justify-content: space-between;
+                // align-items: center;
+            }
+        }
+
+        .search-form-title {
+            width: auto;
+            color: #fff;
+        }
+
+        .search-form-close {
+            $btn-size: 38;
+            $line-height: 3;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            @include adaptive(width, $btn-size, $btn-size);
+            @include adaptive(height, $btn-size, $btn-size);
+
+            padding: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+
+            &:focus {
+                outline: transparent;
+            }
+
+            span {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                display: block;
+                width: 100%;
+                @include adaptive(height, $line-height, $line-height);
+                background-color: $color-main;
+
+                &:nth-child(1) {
+                    transform: translateY(-50%) rotate(45deg);
+                }
+
+                &:nth-child(2) {
+                    transform: translateY(-50%) rotate(-45deg);
+                }
+            }
+        }
+
+        .form-field {
+            position: relative;
+            // flex: 1;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 24, 24);
+            // min-width: 0;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .field-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 18);
+            line-height: 1.2;
+            color: $color-main;
+            text-transform: uppercase;
+            opacity: 0.6;
+            @include adaptive(letter-spacing, 3, 3);
+        }
+
+        .field-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba($color-accent, 0.2);
+            @include adaptive(padding-bottom, 10, 8);
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
+            color: $color-main;
+            outline: none;
+            transition: border-color 0.3s;
+
+            &::placeholder {
+                color: rgba($color-main, 0.3);
+            }
+
+            &:focus {
+                border-bottom-color: rgba($color-accent, 1);
+            }
+        }
+
+        .search-btn {
+            @include adaptive(width, 172, 172);
+            @include adaptive(height, 60, 60);
+            @include button-default;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
     }
 </style>

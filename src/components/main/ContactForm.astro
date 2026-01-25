@@ -106,16 +106,16 @@
 <style lang="scss" is:global>
     .contact-form-section {
         background: $color-alternate;
-        @include adaptive(margin-top, 164, 40);
-        @include adaptive(padding-top, 98, 40);
-        @include adaptive(padding-bottom, 98, 40);
+        @include adaptive(margin-top, 164, 100);
+        @include adaptive(padding-top, 98, 60);
+        @include adaptive(padding-bottom, 98, 60);
         @include side-paddings;
 
         .contact-form-container {
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 16, 16);
+            @include adaptive(gap, 16, 40);
 
             > * {
                 flex: 1;
@@ -130,11 +130,19 @@
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 93, 32);
+
+            @include mobile {
+                order: 2;
+            }
         }
 
         .contact-title {
             color: #fff;
             text-align: left;
+
+            @include mobile {
+                text-align: center;
+            }
         }
 
         .contact-info {
@@ -145,18 +153,29 @@
 
         .contact-item {
             @include flex-center-start;
-            @include adaptive(gap, 36, 6);
+            @include adaptive(gap, 36, 14);
             width: 74%;
+
+            @include mobile {
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
         .contact-label {
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             color: $color-main;
             text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 2);
+            @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
+
+            @include mobile {
+                width: 100%;
+                text-align: center;
+            }
         }
 
         .contact-separator {
@@ -164,11 +183,15 @@
             height: 1px;
             flex: 1;
             background: #CCA870;
+
+            @include mobile {
+                display: none;
+            }
         }
 
         .contact-value {
             @include font-kudry-sans;
-            @include adaptive(font-size, 28, 20);
+            @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
             color: $color-main;
@@ -214,10 +237,15 @@
             display: flex;
             align-items: center;
             @include adaptive(width, 500, 500);
-            @include adaptive(height, 60, 50);
+            @include adaptive(height, 60, 64);
             border: 1px solid $color-accent;
+            border-right: none;
             border-radius: 50px;
             overflow: hidden;
+
+            @include mobile {
+                width: 100%;
+            }
         }
 
         .newsletter-input {
@@ -228,11 +256,11 @@
             @include adaptive(padding-left, 45, 24);
             @include adaptive(padding-right, 20, 16);
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             color: $color-main;
             text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 2);
+            @include adaptive(letter-spacing, 3.2, 3.2);
             outline: none;
 
             &::placeholder {
@@ -241,8 +269,8 @@
         }
 
         .newsletter-btn {
-            @include adaptive(width, 60, 50);
-            @include adaptive(height, 60, 50);
+            @include adaptive(width, 60, 64);
+            @include adaptive(height, 60, 64);
             background: $color-accent;
             border: 1px solid $color-accent;
             border-radius: 50%;
@@ -269,6 +297,10 @@
         .contact-right {
             display: flex;
             align-items: flex-start;
+
+            @include mobile {
+                order: 1;
+            }
         }
 
         .contact-form {
@@ -280,13 +312,17 @@
 
         .form-title {
             @include font-kudry-sans;
-            @include adaptive(font-size, 28, 22);
+            @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
             color: $color-main;
             text-transform: uppercase;
             opacity: 0.4;
             margin: 0;
+
+            @include mobile {
+                text-align: center;
+            }
         }
 
         .form-group {
@@ -294,16 +330,16 @@
             display: flex;
             flex-direction: column;
             // @include adaptive(gap, 8, 6);
-            @include adaptive(margin-top, 32, 16);
+            @include adaptive(margin-top, 32, 32);
         }
 
         .form-label {
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             color: $color-main;
             text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 2);
+            @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
         }
 
@@ -336,9 +372,9 @@
 
         .form-checkbox {
             display: flex;
-            @include adaptive(gap, 16, 8);
+            @include adaptive(gap, 16, 16);
             align-items: flex-start;
-            @include adaptive(margin-top, 16, 8);
+            @include adaptive(margin-top, 16, 16);
 
             input[type='checkbox'] {
                 @include adaptive(width, 15, 15);
@@ -364,17 +400,17 @@
 
             label {
                 @include font-circe-regular;
-                @include adaptive(font-size, 16, 14);
+                @include adaptive(font-size, 16, 20);
                 line-height: 1;
                 color: $color-main;
                 opacity: 0.4;
                 cursor: pointer;
-                @include adaptive(letter-spacing, -0.32, -0.2);
+                @include adaptive(letter-spacing, -0.32, -0.32);
             }
         }
 
         .form-submit {
-            @include adaptive(margin-top, 32, 16);
+            @include adaptive(margin-top, 32, 32);
             @include adaptive(width, 200, 180);
             @include adaptive(height, 60, 60);
             @include button-default;

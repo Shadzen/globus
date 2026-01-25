@@ -14,7 +14,6 @@ import Logo from './Logo.astro'
                     <a href="#">Поиск туров</a>
                     <a href="#">Авиабилеты</a>
                 </nav>
-                <a href="#" class="footer-link">Способы оплаты</a>
             </div>
 
             <div class="footer-column">
@@ -25,7 +24,6 @@ import Logo from './Logo.astro'
                     <a href="#">Мероприятия</a>
                     <a href="#">Консьерж-сервис</a>
                 </nav>
-                <a href="#" class="footer-link">Политика конфиденциальности</a>
             </div>
 
             <div class="footer-column">
@@ -34,7 +32,6 @@ import Logo from './Logo.astro'
                     <a href="#">Визы</a>
                     <a href="#">Страхование</a>
                 </nav>
-                <a href="#" class="footer-link">Пользовательское соглашение</a>
             </div>
 
             <div class="footer-column">
@@ -46,11 +43,24 @@ import Logo from './Logo.astro'
                     <span class="scroll-icon"></span>
                     <span>Наверх</span>
                 </button>
+            </div>
+        </div>
+        <div class="footer-columns">
+            <div class="footer-column">
+                <a href="#" class="footer-link">Способы оплаты</a>
+            </div>
+            <div class="footer-column">
+                <a href="#" class="footer-link">Политика конфиденциальности</a>
+            </div>
+            <div class="footer-column">
+                <a href="#" class="footer-link">Пользовательское соглашение</a>
+            </div>
+            <div class="footer-column">
                 <div class="footer-legal">
-                    <p>©2025 ООО туристическое агентство "Глобус тур"</p>
+                    <p>©2026 ООО туристическое агентство "Глобус тур"</p>
                     <p>
-                        Все предложения находящиеся на сайте не являются публичной офертой. Опубликовано
-                        в рекламных целях.
+                        Все предложения находящиеся на сайте не являются публичной офертой.
+                        Опубликовано в рекламных целях.
                     </p>
                 </div>
             </div>
@@ -75,7 +85,7 @@ import Logo from './Logo.astro'
             width: 100%;
             display: flex;
             flex-direction: column;
-            @include adaptive(gap, 80, 40);
+            // @include adaptive(gap, 80, 40);
         }
 
         .footer-columns {
@@ -85,6 +95,32 @@ import Logo from './Logo.astro'
 
             @include mobile {
                 flex-direction: column;
+
+                &:nth-child(1) {
+                    .footer-column {
+                        &:nth-child(1) {
+                            order: 2;
+                        }
+
+                        &:nth-child(2) {
+                            order: 3;
+                        }
+
+                        &:nth-child(3) {
+                            order: 4;
+                        }
+
+                        &:nth-child(4) {
+                            order: 1;
+                            flex-direction: row;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+
+                &:nth-child(2) {
+                    @include adaptive(margin-top, 0, 40);
+                }
             }
         }
 
@@ -96,11 +132,15 @@ import Logo from './Logo.astro'
             &:last-child {
                 flex: 1;
             }
+
+            @include mobile {
+                width: 100%;
+            }
         }
 
         .footer-title {
             @include font-kudry-sans;
-            @include adaptive(font-size, 22, 18);
+            @include adaptive(font-size, 22, 26);
             font-weight: 300;
             line-height: 1.2;
             color: $color-accent;
@@ -114,16 +154,16 @@ import Logo from './Logo.astro'
             flex-direction: column;
             flex: 1;
             @include adaptive(gap, 20, 16);
-            @include adaptive(margin-top, 24, 24);
+            @include adaptive(margin-top, 24, 6);
 
             a {
                 @include font-circe-regular;
-                @include adaptive(font-size, 16, 14);
+                @include adaptive(font-size, 16, 18);
                 line-height: 1.6;
                 color: $color-alternate;
                 text-transform: uppercase;
-                @include adaptive(letter-spacing, 3.2, 2);
-                opacity: 0.4;
+                @include adaptive(letter-spacing, 3.2, 3.2);
+                opacity: 0.6;
                 text-decoration: none;
                 transition: opacity 0.3s;
 
@@ -150,18 +190,22 @@ import Logo from './Logo.astro'
 
         .footer-link {
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             color: $color-accent;
             text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 2);
+            @include adaptive(letter-spacing, 3.2, 3.2);
             transition: opacity 0.3s;
             white-space: normal;
             width: 50%;
-            @include adaptive(margin-top, 80, 40);
+            @include adaptive(margin-top, 80, 0);
 
             &:hover {
                 opacity: 0.8;
+            }
+
+            @include mobile {
+                width: 100%;
             }
         }
 
@@ -175,13 +219,17 @@ import Logo from './Logo.astro'
             p {
                 position: relative;
                 @include font-circe-regular;
-                @include adaptive(font-size, 16, 14);
+                @include adaptive(font-size, 16, 18);
                 line-height: 1;
                 color: $color-alternate;
-                @include adaptive(letter-spacing, -0.32, -0.2);
-                opacity: 0.4;
+                @include adaptive(letter-spacing, -0.32, 0);
+                opacity: 0.6;
                 &:last-child {
                     @include adaptive(top, 20, 0);
+                }
+
+                @include mobile {
+                    line-height: 1.6;
                 }
             }
         }

@@ -75,6 +75,9 @@ const base = import.meta.env.BASE_URL
         font-family: system-ui, sans-serif;
         background: $color-main;
         margin: 0;
+        &._disable-scrolling {
+            overflow: hidden;
+        }
         @media (min-aspect-ratio: 21/9) {
             padding: 0 12.5%;
         }
@@ -89,7 +92,7 @@ const base = import.meta.env.BASE_URL
 
     section {
         position: relative;
-        @include adaptive(width, 1920, 1920);
+        @include adaptive(width, 1920, 480);
         // @include side-paddings;
     }
 
@@ -103,14 +106,18 @@ const base = import.meta.env.BASE_URL
 
     h1 {
         color: #FFF;
-        @include adaptive(font-size, 121, 121);
+        @include adaptive(font-size, 121, 59);
         line-height: 1.3;
+
+        @include mobile {
+            line-height: 1.1;
+        }
     }
 
     h2 {
         color: $color-alternate;
         text-align: center;
-        @include adaptive(font-size, 60, 32);
+        @include adaptive(font-size, 60, 38);
         line-height: 1.2;
         // flex: 1;
 

@@ -52,16 +52,18 @@ const advantages: Advantage[] = [
 
         <div class="about-content">
             <div class="about-item">
-                <h3 class="years-title">30 лет</h3>
-                <p class="about-text">
-                    мы создаём путешествия мечты, и дарим возможность открывать мир с комфортом и
-                    удовольствием
-                </p>
-                <br />
-                <p class="about-text">
-                    Как самый крупный туроператор Сибири, мы знаем, что важно для вас: безупречный
-                    сервис, внимание к деталям и полная уверенность в своём отдыхе
-                </p>
+                <div class="about-item-content">
+                    <h3 class="years-title">30 лет</h3>
+                    <p class="about-text">
+                        мы создаём путешествия мечты, и дарим возможность открывать мир с комфортом
+                        и удовольствием
+                    </p>
+                    <br />
+                    <p class="about-text">
+                        Как самый крупный туроператор Сибири, мы знаем, что важно для вас:
+                        безупречный сервис, внимание к деталям и полная уверенность в своём отдыхе
+                    </p>
+                </div>
             </div>
 
             <div class="about-item">
@@ -71,11 +73,13 @@ const advantages: Advantage[] = [
             </div>
 
             <div class="about-item">
-                <h3 class="tourists-title">Более 500 000</h3>
-                <p class="about-text">
-                    счастливых туристов доверили нам свои впечатления – и мы сделали их путешествия
-                    по‑настоящему незабываемыми
-                </p>
+                <div class="about-item-content">
+                    <h3 class="tourists-title">Более 500 000</h3>
+                    <p class="about-text">
+                        счастливых туристов доверили нам свои впечатления – и мы сделали их
+                        путешествия по‑настоящему незабываемыми
+                    </p>
+                </div>
                 <br />
                 <a href="#" class="about-button">Подробнее о нас</a>
             </div>
@@ -88,8 +92,10 @@ const advantages: Advantage[] = [
                         <div class="advantage-icon">
                             <img src={advantage.icon.src} alt="" />
                         </div>
-                        <h4 class="advantage-title">{advantage.title}</h4>
-                        <p class="advantage-description">{advantage.description}</p>
+                        <div class="advantage-item-content">
+                            <h4 class="advantage-title">{advantage.title}</h4>
+                            <p class="advantage-description">{advantage.description}</p>
+                        </div>
                     </div>
                 ))
             }
@@ -100,7 +106,7 @@ const advantages: Advantage[] = [
 <style lang="scss" is:global>
     .about-us {
         background: $color-main;
-        @include adaptive(margin-top, 164, 40);
+        @include adaptive(margin-top, 164, 100);
         // @include adaptive(padding-bottom, 88, 40);
         @include side-paddings;
 
@@ -121,7 +127,7 @@ const advantages: Advantage[] = [
             position: relative;
             width: 100%;
             @include flex-start-center;
-            @include adaptive(gap, 70, 24);
+            @include adaptive(gap, 70, 0);
             flex-flow: wrap;
 
             > * {
@@ -134,6 +140,7 @@ const advantages: Advantage[] = [
                 > * {
                     flex: 100%;
                     max-width: 100%;
+                    width: 100%;
                 }
             }
         }
@@ -142,12 +149,35 @@ const advantages: Advantage[] = [
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 10, 10);
+
+            @include mobile {
+                &:nth-child(1) {
+                    order: 2;
+                    .about-item-content {
+                        padding-right: 16%;
+                    }
+                }
+                &:nth-child(2) {
+                    order: 1;
+                }
+                &:nth-child(3) {
+                    order: 3;
+                    .about-item-content {
+                        padding-left: 33%;
+                    }
+                }
+            }
+        }
+
+        .about-item-content {
+            position: relative;
+            width: 100%;
         }
 
         .years-title,
         .tourists-title {
             @include font-kudry-sans;
-            @include adaptive(font-size, 60, 36);
+            @include adaptive(font-size, 60, 38);
             font-weight: 300;
             line-height: 1.21;
             color: $color-accent;
@@ -158,7 +188,7 @@ const advantages: Advantage[] = [
 
         .about-text {
             @include font-circe-regular;
-            @include adaptive(font-size, 20, 16);
+            @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             color: $color-alternate;
             font-weight: 400;
@@ -168,7 +198,7 @@ const advantages: Advantage[] = [
         .about-image {
             align-self: center;
             width: 100%;
-            @include adaptive(height, 359, 250);
+            @include adaptive(height, 359, 230);
             overflow: hidden;
         }
 
@@ -176,6 +206,7 @@ const advantages: Advantage[] = [
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
         }
 
@@ -189,9 +220,9 @@ const advantages: Advantage[] = [
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 40, 24);
+            @include adaptive(gap, 40, 40);
             flex-wrap: wrap;
-            @include adaptive(margin-top, 24, 12);
+            @include adaptive(margin-top, 24, 24);
 
             > * {
                 flex: 20%;
@@ -207,11 +238,23 @@ const advantages: Advantage[] = [
             }
         }
 
-        .advantage-item {
+        .advantage-item, .advantage-item-content {
             @include flex-center-start;
             flex-direction: column;
             text-align: center;
             @include adaptive(gap, 24, 16);
+
+            @include mobile {
+                text-align: left;
+                align-items: flex-start;
+                // justify-content: flex-start;
+            }
+        }
+
+        .advantage-item {
+            @include mobile {
+                flex-direction: row;
+            }
         }
 
         .advantage-icon {
@@ -224,6 +267,15 @@ const advantages: Advantage[] = [
                 height: 100%;
                 object-fit: contain;
             }
+
+            @include mobile {
+                width: 22%;
+            }
+        }
+
+        .advantage-item-content {
+            position: relative;
+            width: 100%;
         }
 
         .advantage-title {
@@ -235,7 +287,7 @@ const advantages: Advantage[] = [
             @include adaptive(letter-spacing, 2.4, 1.8);
             font-weight: 400;
             margin: 0;
-            @include adaptive(min-height, 58, 43);
+            @include adaptive(min-height, 58, 0);
             @include flex-center;
         }
 

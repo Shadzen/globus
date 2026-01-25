@@ -31,6 +31,12 @@ const base = import.meta.env.BASE_URL
                 <a href="tel:+73832000500" class="phone">+7 383 2000 500</a>
             </div>
         </div>
+
+        <button class="mobile-menu-btn" type="button" aria-label="Открыть меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
 
@@ -41,6 +47,8 @@ const base = import.meta.env.BASE_URL
         left: 0;
         width: 100%;
         z-index: 1000;
+        --menu-animation-duration: 0.3s;
+
         @media (min-aspect-ratio: 21/9) {
             padding: 0 12.5%;
         }
@@ -54,6 +62,11 @@ const base = import.meta.env.BASE_URL
             @include adaptive(padding-top, 54, 30);
             @include adaptive(padding-bottom, 34, 20);
             @include side-paddings;
+
+            @include mobile {
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
 
         .header-actions {
@@ -61,6 +74,26 @@ const base = import.meta.env.BASE_URL
             width: 100%;
             @include flex-center-between;
             flex-shrink: 0;
+            @include mobile {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 100dvw;
+                height: 100dvh;
+                @include side-paddings;
+                @include adaptive(padding-top, 110, 110);
+                @include adaptive(padding-bottom, 40, 40);
+                flex-direction: column;
+                background-color: $color-alternate;
+                z-index: 999;
+                transform: translateX(100%);
+                transition: transform var(--menu-animation-duration) ease-in-out;
+
+                &._active {
+                    transform: translateX(0);
+                }
+            }
         }
 
         .user-type {
@@ -68,17 +101,22 @@ const base = import.meta.env.BASE_URL
             border-style: solid;
             border-color: $color-accent;
             @include adaptive(border-width, 2, 2);
-            @include adaptive(border-radius, 25, 25);
+            border-radius: 50px;
+
+            @include mobile {
+                width: 100%;
+            }
         }
 
         .user-type-btn {
-            @include adaptive(padding-top, 6, 6);
-            @include adaptive(padding-bottom, 6, 6);
+            @include flex-center;
+            @include adaptive(padding-top, 6, 8);
+            @include adaptive(padding-bottom, 6, 8);
             @include adaptive(padding-left, 18, 18);
             @include adaptive(padding-right, 18, 18);
-            @include adaptive(border-radius, 25, 25);
+            border-radius: 50px;
             @include font-circe-regular;
-            @include adaptive(font-size, 18, 16);
+            @include adaptive(font-size, 18, 22);
             line-height: 1.3;
             color: $color-main;
             background: transparent;
@@ -93,20 +131,41 @@ const base = import.meta.env.BASE_URL
             &:hover {
                 opacity: 1;
             }
+
+            @include mobile {
+                width: 50%;
+            }
         }
 
         .nav-menu {
             position: relative;
             @include flex-center-between;
-            @include adaptive(gap, 30, 30);
+            @include adaptive(gap, 30, 20);
+
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                // @include adaptive(gap, 36, 36);
+            }
 
             a {
                 @include font-circe-regular;
-                @include adaptive(font-size, 20, 16);
+                @include adaptive(font-size, 20, 22);
                 line-height: 1.2;
                 color: $color-main;
                 opacity: 0.6;
                 transition: opacity 0.3s;
+
+                @include mobile {
+                    // @include adaptive(font-size, 24, 20);
+                    // text-align: center;
+                    width: 100%;
+                    color: #fff;
+                    opacity: 1;
+                    border-bottom: 1px solid $color-accent;
+                    line-height: 2.2;
+                }
 
                 &:hover {
                     opacity: 1;
@@ -118,6 +177,15 @@ const base = import.meta.env.BASE_URL
             position: relative;
             @include flex-center-between;
             @include adaptive(gap, 18, 18);
+
+            @include mobile {
+                // flex-direction: column;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                width: 100%;
+                @include adaptive(gap, 30, 30);
+                // margin-top: 20px;
+            }
         }
 
         .dots-btn {
@@ -125,9 +193,14 @@ const base = import.meta.env.BASE_URL
             @include adaptive(width, 40, 40);
             @include adaptive(height, 40, 40);
             background: url('@/assets/icons/dots.svg') center / 100% auto no-repeat;
+
+            @include mobile {
+                order: 1;
+            }
         }
 
         .contact-btn {
+            @include flex-center;
             @include adaptive(padding-top, 6, 6);
             @include adaptive(padding-bottom, 6, 6);
             @include adaptive(padding-left, 18, 18);
@@ -136,7 +209,8 @@ const base = import.meta.env.BASE_URL
             border-style: solid;
             border-color: $color-accent;
             @include adaptive(border-width, 2, 2);
-            @include adaptive(border-radius, 25, 25);
+            // @include adaptive(border-radius, 25, 25);
+            border-radius: 50px;
 
             background: $color-accent;
             @include font-circe-regular;
@@ -150,6 +224,14 @@ const base = import.meta.env.BASE_URL
             &:hover {
                 opacity: 0.8;
             }
+
+            @include mobile {
+                order: 3;
+                width: 100%;
+                @include adaptive(height, 60, 60);
+                text-transform: uppercase;
+                @include adaptive(letter-spacing, 3, 3);
+            }
         }
 
         .phone {
@@ -159,6 +241,140 @@ const base = import.meta.env.BASE_URL
             line-height: 1.2;
             color: $color-main;
             text-transform: uppercase;
+
+            @include mobile {
+                order: 2;
+            }
+        }
+
+        .mobile-menu-btn {
+            // Размеры для расчёта
+            $btn-height: 50;
+            $btn-padding: 10;
+            $line-height: 3;
+            $lines-count: 3;
+
+            // Автоматический расчёт смещения
+            $content-height: $btn-height - ($btn-padding * 2); // 30
+            $total-lines-height: $line-height * $lines-count; // 9
+            $gap-space: $content-height - $total-lines-height; // 21
+            $gap-between: $gap-space / 2; // 10.5
+            $translate-distance: ($line-height / 2) + $gap-between + ($line-height / 2); // 13.5
+            $translate-percent: ($translate-distance / $line-height) * 100%; // 450%
+
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            @include adaptive(width, 62, 62);
+            @include adaptive(height, $btn-height, $btn-height);
+            @include adaptive(padding, $btn-padding, $btn-padding);
+            cursor: pointer;
+            z-index: 1001;
+
+            // Сброс стилей кнопки
+            background: none;
+            border: none;
+
+            &:focus {
+                outline: transparent;
+            }
+
+            @include mobile {
+                display: flex;
+            }
+
+            span {
+                display: block;
+                width: 100%;
+                @include adaptive(height, $line-height, $line-height);
+                background-color: $color-main;
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+
+                &:nth-child(2) {
+                    transition: opacity 0.1s ease;
+                }
+            }
+
+            // Состояние когда меню открыто
+            &._active {
+                span:nth-child(1) {
+                    animation: topLineToX var(--menu-animation-duration) ease-in-out forwards;
+                }
+
+                span:nth-child(2) {
+                    opacity: 0;
+                    transition-delay: calc(var(--menu-animation-duration) / 2);
+                }
+
+                span:nth-child(3) {
+                    animation: bottomLineToX var(--menu-animation-duration) ease-in-out forwards;
+                }
+            }
+
+            // Состояние закрытия (анимация назад) - только если кнопка уже использовалась
+            &._initialized:not(._active) {
+                span:nth-child(1) {
+                    animation: topLineFromX var(--menu-animation-duration) ease-in-out forwards;
+                }
+
+                span:nth-child(2) {
+                    opacity: 1;
+                    transition-delay: calc(var(--menu-animation-duration) / 2);
+                }
+
+                span:nth-child(3) {
+                    animation: bottomLineFromX var(--menu-animation-duration) ease-in-out forwards;
+                }
+            }
+
+            @keyframes topLineToX {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                }
+                50% {
+                    transform: translateY($translate-percent) rotate(0deg);
+                }
+                100% {
+                    transform: translateY($translate-percent) rotate(45deg);
+                }
+            }
+
+            @keyframes bottomLineToX {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-$translate-percent) rotate(0deg);
+                }
+                100% {
+                    transform: translateY(-$translate-percent) rotate(-45deg);
+                }
+            }
+
+            @keyframes topLineFromX {
+                0% {
+                    transform: translateY($translate-percent) rotate(45deg);
+                }
+                50% {
+                    transform: translateY($translate-percent) rotate(0deg);
+                }
+                100% {
+                    transform: translateY(0) rotate(0deg);
+                }
+            }
+
+            @keyframes bottomLineFromX {
+                0% {
+                    transform: translateY(-$translate-percent) rotate(-45deg);
+                }
+                50% {
+                    transform: translateY(-$translate-percent) rotate(0deg);
+                }
+                100% {
+                    transform: translateY(0) rotate(0deg);
+                }
+            }
         }
     }
 </style>

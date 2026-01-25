@@ -115,7 +115,9 @@ const bottomCards: NewsCard[] = [
             </div>
         </div>
 
-        <a href="#" class="news-button">Открыть глобус-news</a>
+        <div class="news-button-wrapper">
+            <a href="#" class="news-button">Открыть глобус-news</a>
+        </div>
     </div>
 </section>
 
@@ -154,8 +156,7 @@ const bottomCards: NewsCard[] = [
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(column-gap, 84, 16);
-            // @include adaptive(row-gap, 31, 16);
+            @include adaptive(column-gap, 84, 0);
             flex-wrap: wrap;
             align-items: flex-start;
             z-index: 10;
@@ -166,6 +167,7 @@ const bottomCards: NewsCard[] = [
 
             @include mobile {
                 flex-direction: column;
+                @include adaptive(row-gap, 32, 32);
             }
         }
 
@@ -189,12 +191,12 @@ const bottomCards: NewsCard[] = [
             }
             &:nth-child(2) {
                 width: 41.11%;
-                @include adaptive(margin-top, 80, 16);
+                @include adaptive(margin-top, 80, 0);
             }
             &:nth-child(3) {
                 width: 38.1%;
-                @include adaptive(margin-top, -48, -16);
-                @include adaptive(margin-left, 274, 16);
+                @include adaptive(margin-top, -48, 0);
+                @include adaptive(margin-left, 274, 0);
                 .card-category {
                     color: $color-main;
                 }
@@ -202,25 +204,53 @@ const bottomCards: NewsCard[] = [
                     color: $color-main;
                 }
             }
-            // @include mobile {
-            //     width: 100%;
-            // }
+            @include mobile {
+                &:nth-child(1) {
+                    width: 100%;
+                }
+                &:nth-child(2) {
+                    width: 100%;
+                }
+                &:nth-child(3) {
+                    width: 100%;
+                }
+            }
         }
 
         .news-card-bottom {
             width: 24.245%;
+
+            @include mobile {
+                min-width: 80%;
+                flex-shrink: 0;
+            }
         }
 
         .card-image {
             position: relative;
             width: 100%;
             overflow: hidden;
+
+            @include mobile {
+                @include adaptive(min-height, 230, 230);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
         .card-image img {
             max-width: 100%;
             height: auto;
             display: block;
+
+            @include mobile {
+                width: 100%;
+                height: 100%;
+                @include adaptive(min-height, 230, 230);
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
 
@@ -232,7 +262,7 @@ const bottomCards: NewsCard[] = [
 
         .card-category {
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             color: #667c89;
             text-transform: uppercase;
@@ -242,7 +272,7 @@ const bottomCards: NewsCard[] = [
 
         .card-title {
             @include font-kudry-sans;
-            @include adaptive(font-size, 28, 20);
+            @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
             color: $color-alternate;
@@ -254,12 +284,13 @@ const bottomCards: NewsCard[] = [
             position: relative;
             width: 100%;
             @include adaptive(margin-top, -376, -250);
+            overflow: hidden;
         }
 
         .news-dark-background {
             position: relative;
             width: 100%;
-            @include adaptive(height, 630, 250);
+            @include adaptive(height, 630, 450);
             background: $color-alternate;
             @include side-paddings;
             @include flex-center-end;
@@ -269,11 +300,10 @@ const bottomCards: NewsCard[] = [
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 17, 3);
-            flex-wrap: wrap;
+            @include adaptive(gap, 17, 15);
             @include side-paddings;
             z-index: 10;
-            @include adaptive(margin-top, -218, -120);
+            @include adaptive(margin-top, -218, -200);
 
             .card-content {
                 @include adaptive(gap, 24, 8);
@@ -285,6 +315,10 @@ const bottomCards: NewsCard[] = [
             @include adaptive(gap, 16, 12);
             flex-shrink: 0;
             z-index: 15;
+
+            @include mobile {
+                display: none;
+            }
         }
 
         .nav-btn {
@@ -316,8 +350,15 @@ const bottomCards: NewsCard[] = [
             }
         }
 
+        .news-button-wrapper {
+            position: relative;
+            width: 100%;
+            @include flex-center;
+            @include side-paddings;
+        }
+
         .news-button {
-            @include adaptive(margin-top, -44, -24);
+            @include adaptive(margin-top, -44, 0);
             @include adaptive(width, 350, 280);
             @include adaptive(height, 60, 60);
             @include button-default;
