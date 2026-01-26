@@ -115,7 +115,7 @@
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 16, 40);
+            @include adaptive(gap, 16, 60);
 
             > * {
                 flex: 1;
@@ -130,10 +130,6 @@
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 93, 32);
-
-            @include mobile {
-                order: 2;
-            }
         }
 
         .contact-title {

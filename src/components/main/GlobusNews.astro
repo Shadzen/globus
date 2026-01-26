@@ -167,7 +167,7 @@ const bottomCards: NewsCard[] = [
 
             @include mobile {
                 flex-direction: column;
-                @include adaptive(row-gap, 32, 32);
+                @include adaptive(row-gap, 0, 50);
             }
         }
 
@@ -290,7 +290,7 @@ const bottomCards: NewsCard[] = [
         .news-dark-background {
             position: relative;
             width: 100%;
-            @include adaptive(height, 630, 450);
+            @include adaptive(height, 630, 470);
             background: $color-alternate;
             @include side-paddings;
             @include flex-center-end;
@@ -358,7 +358,6 @@ const bottomCards: NewsCard[] = [
         }
 
         .news-button {
-            @include adaptive(margin-top, -44, 0);
             @include adaptive(width, 350, 280);
             @include adaptive(height, 60, 60);
             @include button-default;
