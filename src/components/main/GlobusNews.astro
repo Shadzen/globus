@@ -138,7 +138,6 @@ const bottomCards: NewsCard[] = [
     .globus-news {
         background: $color-main;
         @include adaptive(margin-top, 112, 40);
-        // @include adaptive(padding-bottom, 88, 40);
 
         .globus-news-container {
             position: relative;
@@ -147,12 +146,6 @@ const bottomCards: NewsCard[] = [
             flex-direction: column;
             @include adaptive(gap, 72, 40);
         }
-
-        // .news-header {
-        //     position: relative;
-        //     width: 100%;
-        //     @include flex-center;
-        // }
 
         .news-title {
             @include font-kudry-sans;
@@ -239,25 +232,12 @@ const bottomCards: NewsCard[] = [
             .card-content {
                 @include adaptive(gap, 22, 20);
             }
-
-            // width: 24.245%;
-
-            // @include mobile {
-            //     min-width: 80%;
-            // }
         }
 
         .card-image {
             position: relative;
             width: 100%;
             overflow: hidden;
-
-            // @include mobile {
-            //     @include adaptive(min-height, 230, 230);
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: center;
-            // }
         }
 
         .card-image img {
@@ -265,14 +245,6 @@ const bottomCards: NewsCard[] = [
             width: 100%;
             height: 100%;
             object-fit: cover;
-
-            // @include mobile {
-            //     width: 100%;
-            //     height: 100%;
-            //     // @include adaptive(min-height, 230, 230);
-            //     object-fit: cover;
-            //     // object-position: center;
-            // }
         }
 
         .card-content {
@@ -322,7 +294,6 @@ const bottomCards: NewsCard[] = [
             width: 100%;
             overflow: hidden;
             z-index: 10;
-            // @include side-paddings;
             @include adaptive(padding-top, 20, 10);
             @include adaptive(margin-top, -238, -210);
         }
@@ -331,11 +302,6 @@ const bottomCards: NewsCard[] = [
             position: relative;
             width: 100%;
             display: flex;
-            // @include adaptive(gap, 17, 15);
-
-            // .card-content {
-            //     @include adaptive(gap, 24, 8);
-            // }
         }
 
         .news-button-wrapper {

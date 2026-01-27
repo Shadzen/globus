@@ -29,7 +29,7 @@ export const initTourCollections = () => {
             disabledClass: 'nav-btn-disabled',
         },
         breakpoints: {
-            481: {
+            [BREAKPOINTS.mobile + 1]: {
                 slidesPerView: 5.15,
                 spaceBetween: getSpaceBetween(),
                 slidesOffsetBefore: getSlidesOffset(),
@@ -55,9 +55,9 @@ export const initTourCollections = () => {
             swiper.params.slidesOffsetBefore = isMobile ? 0 : newSlidesOffset
             swiper.params.slidesOffsetAfter = isMobile ? 0 : newSlidesOffset
             if (swiper.params.breakpoints) {
-                swiper.params.breakpoints[481].spaceBetween = newSpaceBetween
-                swiper.params.breakpoints[481].slidesOffsetBefore = newSlidesOffset
-                swiper.params.breakpoints[481].slidesOffsetAfter = newSlidesOffset
+                swiper.params.breakpoints[BREAKPOINTS.mobile + 1].spaceBetween = newSpaceBetween
+                swiper.params.breakpoints[BREAKPOINTS.mobile + 1].slidesOffsetBefore = newSlidesOffset
+                swiper.params.breakpoints[BREAKPOINTS.mobile + 1].slidesOffsetAfter = newSlidesOffset
             }
             swiper.update()
         }, 150)
