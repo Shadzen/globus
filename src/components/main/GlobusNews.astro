@@ -162,14 +162,15 @@ const bottomCards: NewsCard[] = [
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(column-gap, 84, 0);
+            @include adaptive(column-gap, 84, 15);
             flex-wrap: wrap;
             align-items: flex-start;
             z-index: 10;
 
             @include mobile {
                 flex-direction: column;
-                @include adaptive(row-gap, 0, 50);
+                column-gap: 0;
+                @include adaptive(row-gap, 50, 50);
             }
         }
 
@@ -199,12 +200,21 @@ const bottomCards: NewsCard[] = [
             }
             &:nth-child(2) {
                 width: 41.11%;
-                @include adaptive(margin-top, 80, 0);
+                @include adaptive(margin-top, 80, 15);
+
+                @include mobile {
+                    margin-top: 0;
+                }
             }
             &:nth-child(3) {
                 width: 38.1%;
-                @include adaptive(margin-top, -48, 0);
-                @include adaptive(margin-left, 274, 0);
+                @include adaptive(margin-top, -48, 15);
+                @include adaptive(margin-left, 274, 15);
+
+                @include mobile {
+                    margin-top: 0;
+                    margin-left: 0;
+                }
                 .card-category {
                     color: $color-main;
                 }

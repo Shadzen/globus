@@ -127,8 +127,12 @@ const advantages: Advantage[] = [
             position: relative;
             width: 100%;
             @include flex-start-center;
-            @include adaptive(gap, 70, 0);
+            @include adaptive(gap, 70, 15);
             flex-flow: wrap;
+
+            @include mobile {
+                gap: 0;
+            }
 
             > * {
                 flex: 30%;
@@ -287,7 +291,11 @@ const advantages: Advantage[] = [
             @include adaptive(letter-spacing, 2.4, 1.8);
             font-weight: 400;
             margin: 0;
-            @include adaptive(min-height, 58, 0);
+            @include adaptive(min-height, 58, 15);
+
+            @include mobile {
+                min-height: 0;
+            }
             @include flex-center;
         }
 

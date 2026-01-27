@@ -198,7 +198,7 @@ import Logo from './Logo.astro'
             transition: opacity 0.3s;
             white-space: normal;
             width: 50%;
-            @include adaptive(margin-top, 80, 0);
+            @include adaptive(margin-top, 80, 15);
 
             &:hover {
                 opacity: 0.8;
@@ -206,6 +206,7 @@ import Logo from './Logo.astro'
 
             @include mobile {
                 width: 100%;
+                margin-top: 0;
             }
         }
 
@@ -225,7 +226,11 @@ import Logo from './Logo.astro'
                 @include adaptive(letter-spacing, -0.32, 0);
                 opacity: 0.6;
                 &:last-child {
-                    @include adaptive(top, 20, 0);
+                    @include adaptive(top, 20, 15);
+
+                    @include mobile {
+                        top: 0;
+                    }
                 }
 
                 @include mobile {

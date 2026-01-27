@@ -125,7 +125,11 @@ const cards: TourCard[] = [
 
         .collections-nav {
             @include center-y;
-            @include adaptive(right, 100, 0);
+            @include adaptive(right, 100, 15);
+
+            @include mobile {
+                right: 0;
+            }
         }
 
         .collections-grid-wrapper {

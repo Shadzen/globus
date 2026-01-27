@@ -111,8 +111,13 @@
             width: 100%;
             @include flex-center-between;
             @include adaptive(gap, 38, 44);
-            @include adaptive(padding-left, 70, 0);
-            @include adaptive(padding-right, 70, 0);
+            @include adaptive(padding-left, 70, 15);
+            @include adaptive(padding-right, 70, 15);
+
+            @include mobile {
+                padding-left: 0;
+                padding-right: 0;
+            }
 
             @include mobile {
                 flex-direction: column;
