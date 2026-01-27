@@ -1,0 +1,62 @@
+---
+// src/components/SwiperNavButtons.astro
+interface Props {
+    containerClass?: string
+}
+
+const { containerClass = 'swiper-nav' } = Astro.props
+---
+
+<div class={`swiper-nav ${containerClass}`}>
+    <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд"></button>
+    <button class="nav-btn nav-btn-next" aria-label="Следующий слайд"></button>
+</div>
+
+<style lang="scss" is:global>
+    .swiper-nav {
+        @include flex-center;
+        @include adaptive(gap, 16, 12);
+        flex-shrink: 0;
+        z-index: 15;
+
+        @include mobile {
+            display: none;
+        }
+    }
+
+    .nav-btn {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s;
+        @include adaptive(width, 81, 60);
+        @include adaptive(height, 81, 60);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &-prev {
+            background-image: url('@/assets/icons/prev-accent.svg');
+        }
+
+        &-next {
+            background-image: url('@/assets/icons/next-accent.svg');
+        }
+
+        &-disabled {
+            opacity: 0.4;
+            cursor: default;
+            pointer-events: none;
+            transform: scale(1) !important;
+        }
+    }
+</style>

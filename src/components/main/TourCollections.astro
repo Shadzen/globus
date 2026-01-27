@@ -7,6 +7,7 @@ import collectionTour2 from '@/assets/images/main/collection-tour-2.jpg'
 import collectionTour3 from '@/assets/images/main/collection-tour-3.jpg'
 import collectionTour4 from '@/assets/images/main/collection-tour-4.jpg'
 import collectionTour5 from '@/assets/images/main/collection-tour-5.jpg'
+import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
 
 interface TourCard {
     id: number
@@ -52,6 +53,20 @@ const cards: TourCard[] = [
         position: 2,
         font: 'kudry',
     },
+    {
+        id: 6,
+        title: 'В мегаполисе',
+        image: collectionTour4,
+        position: 4,
+        font: 'kudry',
+    },
+    {
+        id: 7,
+        title: 'У океана',
+        image: collectionTour5,
+        position: 2,
+        font: 'kudry',
+    },
 ]
 ---
 
@@ -60,17 +75,14 @@ const cards: TourCard[] = [
         <div class="collections-header">
             <h2 class="collections-title">Коллекция туров</h2>
 
-            <div class="collections-nav">
-                <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд"></button>
-                <button class="nav-btn nav-btn-next" aria-label="Следующий слайд"></button>
-            </div>
+            <SwiperNavButtons containerClass="collections-nav" />
         </div>
 
-        <div class="collections-grid-wrapper">
-            <div class="collections-grid">
+        <div class="collections-grid-wrapper swiper">
+            <div class="collections-grid swiper-wrapper">
                 {
                     cards.map((card) => (
-                        <a href="#" class={`tour-card _pos-${card.position}`}>
+                        <a href="#" class={`tour-card swiper-slide _pos-${card.position}`}>
                             <span class="card-image">
                                 <Image
                                     src={card.image}
@@ -97,12 +109,6 @@ const cards: TourCard[] = [
     .tour-collections {
         background: $color-main;
         @include adaptive(margin-top, 128, 40);
-        // @include adaptive(padding-bottom, 88, 40);
-        @include side-paddings;
-        @include mobile {
-            padding-left: 0;
-            padding-right: 0;
-        }
 
         .tour-collections-container {
             position: relative;
@@ -119,82 +125,30 @@ const cards: TourCard[] = [
 
         .collections-nav {
             @include center-y;
-            right: 0;
-            @include flex-center;
-            @include adaptive(gap, 16, 12);
-            flex-shrink: 0;
-        }
-
-        .nav-btn {
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            @include adaptive(width, 81, 60);
-            @include adaptive(height, 81, 60);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            &:hover {
-                transform: scale(1.05);
-            }
-
-            &:active {
-                transform: scale(0.95);
-            }
-
-            &-prev {
-                background-image: url('@/assets/icons/prev-accent.svg');
-            }
-
-            &-next {
-                background-image: url('@/assets/icons/next-accent.svg');
-            }
-
-            @include mobile {
-                display: none;
-            }
+            @include adaptive(right, 100, 0);
         }
 
         .collections-grid-wrapper {
             position: relative;
             width: 100%;
             overflow: hidden;
-            // @include side-paddings;
-
-            @include mobile {
-                padding-left: 0;
-                padding-right: 0;
-            }
         }
 
         .collections-grid {
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 31, 16);
             align-items: flex-start;
-
-            @include mobile {
-                width: 300%;
-                transform: translateX(-33%);
-            }
         }
 
         .tour-card {
             @include flex-center;
             position: relative;
-            flex: 1;
-            @include adaptive(gap, 16, 12);
+            flex-shrink: 0;
             cursor: pointer;
-            // text-decoration: none;
-            transition: all 0.3s;
-
-            // @include mobile {
-            //     width: 100%;
-            // }
+            transition: transform 0.3s;
+            height: auto;
+            @include adaptive(max-width, 317, 260);
 
             &:hover {
                 transform: translateY(-8px);
@@ -208,13 +162,13 @@ const cards: TourCard[] = [
                 margin-top: 0;
             }
             &._pos-2 {
-                @include adaptive(margin-top, 30, 30);
+                @include adaptive(margin-top, 30, 15);
             }
             &._pos-3 {
-                @include adaptive(margin-top, 100, 100);
+                @include adaptive(margin-top, 100, 60);
             }
             &._pos-4 {
-                @include adaptive(margin-top, 130, 130);
+                @include adaptive(margin-top, 130, 90);
             }
         }
 
@@ -222,14 +176,13 @@ const cards: TourCard[] = [
             position: relative;
             width: 100%;
             overflow: hidden;
-            // border-radius: 8px;
         }
 
         .card-image img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         .card-overlay {

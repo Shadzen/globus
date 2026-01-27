@@ -9,6 +9,7 @@ import newsSmall1 from '@/assets/images/news/news-small-1.jpg'
 import newsSmall2 from '@/assets/images/news/news-small-2.jpg'
 import newsSmall3 from '@/assets/images/news/news-small-3.jpg'
 import newsSmall4 from '@/assets/images/news/news-small-4.jpg'
+import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
 
 interface NewsCard {
     id: number
@@ -63,6 +64,18 @@ const bottomCards: NewsCard[] = [
         category: 'Страны',
         image: newsSmall4,
     },
+    {
+        id: 8,
+        title: 'Авторские туры <br> в составе мини-группы',
+        category: 'Туры',
+        image: newsSmall1,
+    },
+    {
+        id: 9,
+        title: 'Вьетнам: <br> Топ-5 отелей Нячанга <br> на «Все включено»',
+        category: 'Отели',
+        image: newsSmall2,
+    },
 ]
 ---
 
@@ -79,7 +92,7 @@ const bottomCards: NewsCard[] = [
                         </span>
                         <span class="card-content">
                             <span class="card-category">{card.category}</span>
-                            <h3 class="card-title" set:html={card.title}></h3>
+                            <h3 class="card-title" set:html={card.title} />
                         </span>
                     </a>
                 ))
@@ -88,30 +101,30 @@ const bottomCards: NewsCard[] = [
 
         <div class="news-dark-section">
             <div class="news-dark-background">
-                <div class="news-nav">
-                    <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд"></button>
-                    <button class="nav-btn nav-btn-next" aria-label="Следующий слайд"></button>
-                </div>
+                <SwiperNavButtons containerClass="news-nav" />
             </div>
-            <div class="news-bottom-grid">
-                {
-                    bottomCards.map((card) => (
-                        <a href="#" class="news-card news-card-bottom">
-                            <span class="card-image">
-                                <Image
-                                    src={card.image}
-                                    alt={card.title}
-                                    loading="lazy"
-                                    quality={100}
-                                />
-                            </span>
-                            <span class="card-content">
-                                <span class="card-category">{card.category}</span>
-                                <h3 class="card-title" set:html={card.title}></h3>
-                            </span>
-                        </a>
-                    ))
-                }
+
+            <div class="news-bottom-grid-wrapper swiper">
+                <div class="news-bottom-grid swiper-wrapper">
+                    {
+                        bottomCards.map((card) => (
+                            <a href="#" class="news-card news-card-bottom swiper-slide">
+                                <span class="card-image">
+                                    <Image
+                                        src={card.image}
+                                        alt={card.title}
+                                        loading="lazy"
+                                        quality={100}
+                                    />
+                                </span>
+                                <span class="card-content">
+                                    <span class="card-category">{card.category}</span>
+                                    <h3 class="card-title" set:html={card.title} />
+                                </span>
+                            </a>
+                        ))
+                    }
+                </div>
             </div>
         </div>
 
@@ -161,10 +174,6 @@ const bottomCards: NewsCard[] = [
             align-items: flex-start;
             z-index: 10;
 
-            .card-content {
-                @include adaptive(gap, 12, 8);
-            }
-
             @include mobile {
                 flex-direction: column;
                 @include adaptive(row-gap, 0, 50);
@@ -175,10 +184,10 @@ const bottomCards: NewsCard[] = [
             position: relative;
             display: flex;
             flex-direction: column;
-            @include adaptive(gap, 24, 16);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: transform 0.3s;
             white-space: normal;
+            flex-shrink: 0;
 
             &:hover {
                 transform: translateY(-4px);
@@ -186,6 +195,12 @@ const bottomCards: NewsCard[] = [
         }
 
         .news-card-top {
+            @include adaptive(gap, 22, 22);
+
+            .card-content {
+                @include adaptive(gap, 14, 20);
+            }
+
             &:nth-child(1) {
                 width: 54%;
             }
@@ -218,12 +233,18 @@ const bottomCards: NewsCard[] = [
         }
 
         .news-card-bottom {
-            width: 24.245%;
+            @include adaptive(gap, 22, 20);
+            @include adaptive(max-width, 418, 351);
 
-            @include mobile {
-                min-width: 80%;
-                flex-shrink: 0;
+            .card-content {
+                @include adaptive(gap, 22, 20);
             }
+
+            // width: 24.245%;
+
+            // @include mobile {
+            //     min-width: 80%;
+            // }
         }
 
         .card-image {
@@ -231,28 +252,28 @@ const bottomCards: NewsCard[] = [
             width: 100%;
             overflow: hidden;
 
-            @include mobile {
-                @include adaptive(min-height, 230, 230);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+            // @include mobile {
+            //     @include adaptive(min-height, 230, 230);
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            // }
         }
 
         .card-image img {
-            max-width: 100%;
-            height: auto;
             display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
 
-            @include mobile {
-                width: 100%;
-                height: 100%;
-                @include adaptive(min-height, 230, 230);
-                object-fit: cover;
-                object-position: center;
-            }
+            // @include mobile {
+            //     width: 100%;
+            //     height: 100%;
+            //     // @include adaptive(min-height, 230, 230);
+            //     object-fit: cover;
+            //     // object-position: center;
+            // }
         }
-
 
         .card-content {
             position: relative;
@@ -296,58 +317,25 @@ const bottomCards: NewsCard[] = [
             @include flex-center-end;
         }
 
+        .news-bottom-grid-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            z-index: 10;
+            // @include side-paddings;
+            @include adaptive(padding-top, 20, 10);
+            @include adaptive(margin-top, -238, -210);
+        }
+
         .news-bottom-grid {
             position: relative;
             width: 100%;
             display: flex;
-            @include adaptive(gap, 17, 15);
-            @include side-paddings;
-            z-index: 10;
-            @include adaptive(margin-top, -218, -200);
+            // @include adaptive(gap, 17, 15);
 
-            .card-content {
-                @include adaptive(gap, 24, 8);
-            }
-        }
-
-        .news-nav {
-            @include flex-center;
-            @include adaptive(gap, 16, 12);
-            flex-shrink: 0;
-            z-index: 15;
-
-            @include mobile {
-                display: none;
-            }
-        }
-
-        .nav-btn {
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            @include adaptive(width, 81, 60);
-            @include adaptive(height, 81, 60);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            &:hover {
-                transform: scale(1.05);
-            }
-
-            &:active {
-                transform: scale(0.95);
-            }
-
-            &-prev {
-                background-image: url('@/assets/icons/prev-accent.svg');
-            }
-
-            &-next {
-                background-image: url('@/assets/icons/next-accent.svg');
-            }
+            // .card-content {
+            //     @include adaptive(gap, 24, 8);
+            // }
         }
 
         .news-button-wrapper {
