@@ -1,0 +1,290 @@
+---
+const services = {
+    general: [
+        'Лечение и диагностика',
+        'Номера со звукоизоляцией',
+        'Ускоренная регистрация заезда и выезда',
+        'Терраса',
+        'Мультиязычный персонал',
+        'Стойка регистрации',
+    ],
+    pool: ['Бассейн', 'Открытый бассейн', 'Частный пляж', 'Рядом с пляжем'],
+    rooms: [
+        'Обслуживание номеров',
+        'Кабельное телевидение',
+        'Телевизор',
+        'Мини-бар',
+        'Душ',
+        'Халат',
+        'Тапочки',
+        'Сейф (в номере)',
+    ],
+    internet: ['Wi-Fi'],
+    kids: [
+        'Услуги няни и уход за детьми',
+        'Детский бассейн',
+        'Размещение подходит для семей/детей',
+        'Детский клуб',
+    ],
+    sport: ['Дайвинг', 'Фитнес-центр', 'Тренажерный зал'],
+    amenities: [
+        'Гладильные принадлежности',
+        'Камера хранения',
+        'Прачечная',
+        'Сейф',
+        'Химчистка',
+        'Хранение багажа',
+        'Телефон',
+        'Утюг',
+    ],
+    dining: ['Бар', 'Завтрак', 'Кафе', 'Ресторан', 'Бар у бассейна'],
+    beauty: ['Массаж', 'Салон красоты', 'Спа-центр'],
+    entertainment: ['Рыбалка'],
+    business: ['Бизнес-центр'],
+}
+---
+
+<section class="hotel-services">
+    <div class="hotel-services-container">
+        <h2 class="hotel-services-title">Услуги в отеле</h2>
+
+        <div class="services-grid">
+            <!-- Левая колонка -->
+            <div class="services-column">
+                <!-- Общее -->
+                <div class="service-category">
+                    <h3 class="category-title">Общее</h3>
+                    <ul class="service-list">
+                        {
+                            services.general.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Бассейн и пляж -->
+                <div class="service-category">
+                    <h3 class="category-title">Бассейн<br />и пляж</h3>
+                    <ul class="service-list">
+                        {
+                            services.pool.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- В номерах -->
+                <div class="service-category">
+                    <h3 class="category-title">В номерах</h3>
+                    <ul class="service-list">
+                        {
+                            services.rooms.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Интернет -->
+                <div class="service-category">
+                    <h3 class="category-title">Интернет</h3>
+                    <ul class="service-list">
+                        {
+                            services.internet.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Дети -->
+                <div class="service-category">
+                    <h3 class="category-title">Дети</h3>
+                    <ul class="service-list">
+                        {
+                            services.kids.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Правая колонка -->
+            <div class="services-column">
+                <!-- Спорт -->
+                <div class="service-category">
+                    <h3 class="category-title">Спорт</h3>
+                    <ul class="service-list">
+                        {
+                            services.sport.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Услуги и удобства -->
+                <div class="service-category">
+                    <h3 class="category-title">Услуги<br />и удобства</h3>
+                    <ul class="service-list">
+                        {
+                            services.amenities.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Питание -->
+                <div class="service-category">
+                    <h3 class="category-title">Питание</h3>
+                    <ul class="service-list">
+                        {
+                            services.dining.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Красота и здоровье -->
+                <div class="service-category">
+                    <h3 class="category-title">Красота<br />и здоровье</h3>
+                    <ul class="service-list">
+                        {
+                            services.beauty.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Развлечение -->
+                <div class="service-category">
+                    <h3 class="category-title">Развлечение</h3>
+                    <ul class="service-list">
+                        {
+                            services.entertainment.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- Бизнес -->
+                <div class="service-category">
+                    <h3 class="category-title">Бизнес</h3>
+                    <ul class="service-list">
+                        {
+                            services.business.map((item) => (
+                                <li class="service-item">{item}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .hotel-services {
+        @include adaptive(padding-top, 120, 60);
+        @include adaptive(padding-bottom, 120, 60);
+        background: $color-main;
+
+        &-container {
+            @include side-paddings;
+        }
+
+        &-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            @include adaptive(font-size, 60, 40);
+            line-height: 1.21;
+            text-transform: uppercase;
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(margin-bottom, 60, 40);
+        }
+    }
+
+    .services-grid {
+        display: flex;
+        flex-wrap: wrap;
+        @include adaptive(gap, 90, 40);
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    .services-column {
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 40, 30);
+        flex: 1;
+        min-width: 0;
+
+        @include mobile {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    .service-category {
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 20, 16);
+        @include adaptive(padding-bottom, 40, 30);
+        border-bottom: 1px solid rgba($color-alternate, 0.2);
+
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    }
+
+    .category-title {
+        @include font-circe-regular;
+        @include adaptive(font-size, 24, 20);
+        line-height: 1.2;
+        @include adaptive(letter-spacing, 2.4, 2);
+        text-transform: uppercase;
+        color: $color-accent;
+        font-weight: 400;
+    }
+
+    .service-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 14, 12);
+    }
+
+    .service-item {
+        position: relative;
+        @include adaptive(padding-left, 28, 22);
+        @include font-circe-regular;
+        @include adaptive(font-size, 26, 18);
+        line-height: 1.21;
+        color: $color-alternate;
+        font-weight: 300;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            @include adaptive(top, 10, 8);
+            @include adaptive(width, 8, 6);
+            @include adaptive(height, 8, 6);
+            border-radius: 50%;
+            background-color: $color-accent;
+        }
+    }
+</style>

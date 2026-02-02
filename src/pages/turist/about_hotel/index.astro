@@ -1,0 +1,249 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import HotelDescription from '@/components/about_hotel/HotelDescription.astro'
+import HotelServices from '@/components/about_hotel/HotelServices.astro'
+import HotelPricing from '@/components/about_hotel/HotelPricing.astro'
+import ContactForm from '@/components/main/ContactForm.astro'
+
+import heroDesktop from '@/assets/images/about_hotel/hero-1.jpg'
+import heroMobile from '@/assets/images/about_hotel/hero-1-mobile.jpg'
+import starIcon from '@/assets/icons/star.svg'
+import gallery1 from '@/assets/images/about_hotel/hero-gallery-1.jpg'
+import gallery2 from '@/assets/images/about_hotel/hero-gallery-2.jpg'
+import gallery3 from '@/assets/images/about_hotel/hero-gallery-3.jpg'
+import gallery4 from '@/assets/images/about_hotel/hero-gallery-4.jpg'
+
+const gallery = [
+    { src: gallery1.src, alt: 'Вид на остров и виллы на воде' },
+    { src: gallery2.src, alt: 'Пляж и бассейн отеля' },
+    { src: gallery3.src, alt: 'Вид на остров с высоты' },
+    { src: gallery4.src, alt: 'Гости отеля' },
+]
+---
+
+<Layout title="GRAND PARK KODHIPPARU 5* - Глобус Тур">
+    <section class="hero-section about-hotel-hero">
+        <picture class="hero-bg">
+            <source media="(max-width: 480px)" srcset={heroMobile.src} />
+            <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+        </picture>
+
+        <div class="hero-nav">
+            <nav class="breadcrumb">
+                <a href="/">Главная</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#">Лучшие отели мира</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">GRAND PARK KODHIPPARU 5*</span>
+            </nav>
+
+            <button class="back-button" onclick="history.back()">
+                <span class="back-icon"></span>
+                <span class="back-text">назад</span>
+            </button>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hotel-title">GRAND PARK KODHIPPARU 5*</h1>
+
+            <div class="hotel-rating">
+                <img src={starIcon.src} alt="star" />
+                <img src={starIcon.src} alt="star" />
+                <img src={starIcon.src} alt="star" />
+                <img src={starIcon.src} alt="star" />
+                <img src={starIcon.src} alt="star" />
+            </div>
+
+            <p class="hotel-location">Kodhipparu, North Male Atoll, Гиравару</p>
+        </div>
+
+        <div class="hotel-gallery">
+            {
+                gallery.map((image, index) => (
+                    <div class={`gallery-item ${index === 3 ? 'gallery-item-all' : ''}`}>
+                        <img src={image.src} alt={image.alt} />
+                        {index === 3 && (
+                            <div class="gallery-overlay">
+                                <span class="gallery-text">все фото</span>
+                            </div>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <HotelDescription />
+    <HotelServices />
+    <HotelPricing />
+    <ContactForm />
+</Layout>
+
+<style lang="scss" is:global>
+    .about-hotel-hero {
+        @include adaptive(height, 923, 902);
+        @include adaptive(padding-top, 445, 374);
+    }
+
+    .hero-nav {
+        @include flex-start-between;
+        flex-direction: column;
+        @include adaptive(gap, 18, 12);
+        position: absolute;
+        @include adaptive(top, 284, 128);
+        @include adaptive(left, 100, 15);
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 10, 8);
+
+            a,
+            span {
+                @include font-circe-regular;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                color: $color-main;
+                text-decoration: none;
+            }
+
+            a:hover {
+                opacity: 0.8;
+            }
+
+            .breadcrumb-separator {
+                @include font-circe-regular;
+                font-weight: 500;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1.2;
+            }
+
+            .breadcrumb-current {
+                opacity: 0.7;
+            }
+        }
+
+        .back-button {
+            @include flex-center;
+            @include adaptive(gap, 27, 20);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s;
+
+            &:hover {
+                opacity: 0.8;
+
+                .back-icon {
+                    transform: translateX(-5px);
+                }
+            }
+
+            .back-icon {
+                @include adaptive(width, 70, 55);
+                @include adaptive(height, 70, 55);
+                background-image: url('@/assets/icons/prev-accent.svg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: transform 0.3s;
+            }
+
+            .back-text {
+                @include font-circe-regular;
+                @include adaptive(font-size, 18, 18);
+                line-height: 1.2;
+                @include adaptive(letter-spacing, 3.6, 3.6);
+                text-transform: uppercase;
+                color: white;
+            }
+        }
+    }
+
+    .hotel-title {
+        @include font-kudry-sans;
+        font-weight: 300;
+        @include adaptive(font-size, 60, 58);
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: $color-main;
+    }
+
+    .hotel-rating {
+        display: flex;
+        align-items: center;
+        @include adaptive(gap, 14, 10);
+        @include adaptive(margin-top, 14, 4);
+
+        img {
+            @include adaptive(width, 39, 26);
+            @include adaptive(height, 37, 25);
+        }
+    }
+
+    .hotel-location {
+        @include font-circe-regular;
+        font-weight: 300;
+        @include adaptive(font-size, 26, 18);
+        line-height: 1.2;
+        color: $color-main;
+        @include adaptive(margin-top, 34, 38);
+    }
+
+    .hotel-gallery {
+        z-index: 2;
+        @include side-paddings;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        @include adaptive(gap, 16, 12);
+        @include adaptive(margin-bottom, -114, -48);
+
+        @include mobile {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .gallery-item {
+        position: relative;
+        @include adaptive(height, 247, 207);
+        overflow: hidden;
+        box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+
+        &-all {
+            cursor: pointer;
+
+            // img {
+            //     filter: brightness(0.5);
+            // }
+        }
+    }
+
+    .gallery-overlay {
+        @include abs-default;
+        @include flex-center;
+        background: rgba(0, 39, 63, 0.7);
+        pointer-events: none;
+    }
+
+    .gallery-text {
+        @include font-circe-regular;
+        @include adaptive(font-size, 26.483, 20);
+        line-height: 1.21;
+        @include adaptive(letter-spacing, 2.6483, 2);
+        text-transform: uppercase;
+        color: white;
+        text-align: center;
+    }
+</style>

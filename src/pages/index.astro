@@ -10,7 +10,7 @@ import heroMobile from '@/assets/images/main/hero-1-mobile.jpg'
 ---
 
 <Layout title="Глобус Тур">
-    <section class="hero-section">
+    <section class="hero-section main-hero">
         <picture class="hero-bg">
             <source
                 media="(max-width: 480px)"
@@ -24,13 +24,15 @@ import heroMobile from '@/assets/images/main/hero-1-mobile.jpg'
             />
         </picture>
         <div class="hero-content">
-            <h1>искусство</h1>
-            <h1>открывать</h1>
-            <h1>мир</h1>
+            <div class="hero-title">
+                <h1>искусство</h1>
+                <h1>открывать</h1>
+                <h1>мир</h1>
+            </div>
+            <button class="search-tour-btn" type="button" aria-label="Подобрать тур">
+                Подобрать тур
+            </button>
         </div>
-        <button class="search-tour-btn" type="button" aria-label="Подобрать тур">
-            Подобрать тур
-        </button>
     </section>
     <SearchForm />
     <TourCollections />
@@ -40,44 +42,13 @@ import heroMobile from '@/assets/images/main/hero-1-mobile.jpg'
 </Layout>
 
 <style lang="scss" is:global>
-    .hero-section {
-        @include flex-start-between;
-        flex-direction: column;
-        position: relative;
+    .main-hero {
         @include adaptive(height, 1044, 972);
-        padding-top: 20%;
-        @include side-paddings;
-        overflow: hidden;
-
-        @include mobile {
-            padding-top: 31%;
-            padding-bottom: 30%;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: top center;
-
-                @include mobile {
-                    object-fit: cover;
-                }
-            }
-        }
+        @include adaptive(padding-top, 384, 148);
+        @include adaptive(padding-bottom, 10, 144);
 
         .hero-content {
-            position: relative;
-            z-index: 1;
-
+            @include flex-start-between;
             h1:nth-child(2) {
                 @include adaptive(padding-left, 140, 80);
             }
