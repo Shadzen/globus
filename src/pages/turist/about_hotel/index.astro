@@ -57,19 +57,23 @@ const gallery = [
             <p class="hotel-location">Kodhipparu, North Male Atoll, Гиравару</p>
         </div>
 
-        <div class="hotel-gallery">
-            {
-                gallery.map((image, index) => (
-                    <div class={`gallery-item ${index === 3 ? 'gallery-item-all' : ''}`}>
-                        <img src={image.src} alt={image.alt} />
-                        {index === 3 && (
-                            <div class="gallery-overlay">
-                                <span class="gallery-text">все фото</span>
+        <div class="hotel-gallery-container">
+            <div class="hotel-gallery swiper">
+                <div class="hotel-gallery-wrapper swiper-wrapper">
+                    {
+                        gallery.map((image, index) => (
+                            <div class={`gallery-item swiper-slide ${index === 3 ? 'gallery-item-all' : ''}`}>
+                                <img src={image.src} alt={image.alt} />
+                                {index === 3 && (
+                                    <div class="gallery-overlay">
+                                        <span class="gallery-text">все фото</span>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                ))
-            }
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </section>
 
@@ -191,22 +195,29 @@ const gallery = [
         @include adaptive(margin-top, 34, 38);
     }
 
-    .hotel-gallery {
+    .hotel-gallery-container {
+        position: relative;
+        width: 100%;
         z-index: 2;
-        @include side-paddings;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        @include adaptive(gap, 16, 12);
-        @include adaptive(margin-bottom, -114, -48);
+        @include adaptive(margin-bottom, -174, -148);
+    }
 
-        @include mobile {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    .hotel-gallery {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        @include adaptive(min-height, 300, 250);
+    }
+
+    .hotel-gallery-wrapper {
+        display: flex;
     }
 
     .gallery-item {
         position: relative;
+        @include adaptive(width, 418, 350);
         @include adaptive(height, 247, 207);
+        flex-shrink: 0;
         overflow: hidden;
         box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
 
@@ -223,10 +234,6 @@ const gallery = [
 
         &-all {
             cursor: pointer;
-
-            // img {
-            //     filter: brightness(0.5);
-            // }
         }
     }
 

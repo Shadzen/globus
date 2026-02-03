@@ -6,6 +6,7 @@ import { initHeader } from './main/header'
 import { initSearchForm } from './main/searchForm'
 import { initTourCollections } from './main/tourCollections'
 import { initGlobusNews } from './main/globusNews'
+import { initHotelGallery } from './about_hotel/hotelGallery'
 
 // Запуск при загрузке страницы
 const initAll = () => {
@@ -15,6 +16,7 @@ const initAll = () => {
     initSearchForm()
     initTourCollections()
     initGlobusNews()
+    initHotelGallery()
 }
 
 if (document.readyState === 'loading') {
