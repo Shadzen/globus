@@ -14,10 +14,34 @@ import gallery3 from '@/assets/images/about_hotel/hero-gallery-3.jpg'
 import gallery4 from '@/assets/images/about_hotel/hero-gallery-4.jpg'
 
 const gallery = [
-    { src: gallery1.src, alt: 'Вид на остров и виллы на воде' },
-    { src: gallery2.src, alt: 'Пляж и бассейн отеля' },
-    { src: gallery3.src, alt: 'Вид на остров с высоты' },
-    { src: gallery4.src, alt: 'Гости отеля' },
+    {
+        thumbnail: gallery1.src,
+        full: gallery1.src, // TODO: заменить на полноразмерную версию
+        width: 2000,
+        height: 1333,
+        alt: 'Вид на остров и виллы на воде',
+    },
+    {
+        thumbnail: gallery2.src,
+        full: gallery2.src, // TODO: заменить на полноразмерную версию
+        width: 2000,
+        height: 1333,
+        alt: 'Пляж и бассейн отеля',
+    },
+    {
+        thumbnail: gallery3.src,
+        full: gallery3.src, // TODO: заменить на полноразмерную версию
+        width: 2000,
+        height: 1333,
+        alt: 'Вид на остров с высоты',
+    },
+    {
+        thumbnail: gallery4.src,
+        full: gallery4.src, // TODO: заменить на полноразмерную версию
+        width: 2000,
+        height: 1333,
+        alt: 'Гости отеля',
+    },
 ]
 ---
 
@@ -58,12 +82,18 @@ const gallery = [
         </div>
 
         <div class="hotel-gallery-container">
-            <div class="hotel-gallery swiper">
+            <div class="about-hotel-gallery swiper" data-gallery={JSON.stringify(gallery)}>
                 <div class="hotel-gallery-wrapper swiper-wrapper">
                     {
                         gallery.map((image, index) => (
-                            <div class={`gallery-item swiper-slide ${index === 3 ? 'gallery-item-all' : ''}`}>
-                                <img src={image.src} alt={image.alt} />
+                            <div
+                                class={`about-hotel-gallery-item swiper-slide ${index === 3 ? 'about-hotel-gallery-item-all' : ''}`}
+                                data-pswp-src={image.full}
+                                data-pswp-width={image.width}
+                                data-pswp-height={image.height}
+                                data-index={index}
+                            >
+                                <img src={image.thumbnail} alt={image.alt} />
                                 {index === 3 && (
                                     <div class="gallery-overlay">
                                         <span class="gallery-text">все фото</span>
@@ -87,6 +117,97 @@ const gallery = [
     .about-hotel-hero {
         @include adaptive(height, 923, 902);
         @include adaptive(padding-top, 445, 374);
+
+        .hotel-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            @include adaptive(font-size, 60, 58);
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: $color-main;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 14, 10);
+            @include adaptive(margin-top, 14, 4);
+
+            img {
+                @include adaptive(width, 39, 26);
+                @include adaptive(height, 37, 25);
+            }
+        }
+
+        .hotel-location {
+            @include font-circe-regular;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-main;
+            @include adaptive(margin-top, 34, 38);
+        }
+
+        .hotel-gallery-container {
+            position: relative;
+            width: 100%;
+            z-index: 2;
+            @include adaptive(margin-bottom, -174, -148);
+        }
+
+        .about-hotel-gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            @include adaptive(min-height, 300, 250);
+        }
+
+        .hotel-gallery-wrapper {
+            display: flex;
+        }
+
+        .about-hotel-gallery-item {
+            position: relative;
+            @include adaptive(width, 418, 350);
+            @include adaptive(height, 247, 207);
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s;
+                pointer-events: none;
+            }
+
+            &:hover img {
+                transform: scale(1.05);
+            }
+
+            &-all {
+                cursor: pointer;
+            }
+        }
+
+        .gallery-overlay {
+            @include abs-default;
+            @include flex-center;
+            background: rgba(0, 39, 63, 0.7);
+            pointer-events: none;
+        }
+
+        .gallery-text {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26.483, 20);
+            line-height: 1.21;
+            @include adaptive(letter-spacing, 2.6483, 2);
+            text-transform: uppercase;
+            color: white;
+            text-align: center;
+        }
     }
 
     .hero-nav {
@@ -163,94 +284,5 @@ const gallery = [
                 color: white;
             }
         }
-    }
-
-    .hotel-title {
-        @include font-kudry-sans;
-        font-weight: 300;
-        @include adaptive(font-size, 60, 58);
-        line-height: 1.2;
-        text-transform: uppercase;
-        color: $color-main;
-    }
-
-    .hotel-rating {
-        display: flex;
-        align-items: center;
-        @include adaptive(gap, 14, 10);
-        @include adaptive(margin-top, 14, 4);
-
-        img {
-            @include adaptive(width, 39, 26);
-            @include adaptive(height, 37, 25);
-        }
-    }
-
-    .hotel-location {
-        @include font-circe-regular;
-        font-weight: 300;
-        @include adaptive(font-size, 26, 18);
-        line-height: 1.2;
-        color: $color-main;
-        @include adaptive(margin-top, 34, 38);
-    }
-
-    .hotel-gallery-container {
-        position: relative;
-        width: 100%;
-        z-index: 2;
-        @include adaptive(margin-bottom, -174, -148);
-    }
-
-    .hotel-gallery {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        @include adaptive(min-height, 300, 250);
-    }
-
-    .hotel-gallery-wrapper {
-        display: flex;
-    }
-
-    .gallery-item {
-        position: relative;
-        @include adaptive(width, 418, 350);
-        @include adaptive(height, 247, 207);
-        flex-shrink: 0;
-        overflow: hidden;
-        box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        &:hover img {
-            transform: scale(1.05);
-        }
-
-        &-all {
-            cursor: pointer;
-        }
-    }
-
-    .gallery-overlay {
-        @include abs-default;
-        @include flex-center;
-        background: rgba(0, 39, 63, 0.7);
-        pointer-events: none;
-    }
-
-    .gallery-text {
-        @include font-circe-regular;
-        @include adaptive(font-size, 26.483, 20);
-        line-height: 1.21;
-        @include adaptive(letter-spacing, 2.6483, 2);
-        text-transform: uppercase;
-        color: white;
-        text-align: center;
     }
 </style>

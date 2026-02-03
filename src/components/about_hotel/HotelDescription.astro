@@ -1,7 +1,18 @@
 ---
 import locationIcon from '@/assets/icons/location-pin.svg'
-import mapImage from '@/assets/images/about_hotel/temp-map-1.jpg'
 import chevronIcon from '@/assets/icons/chevron-down.svg'
+
+// Название и место отеля
+const hotelName = 'Grand Park Kodhipparu, Maldives'
+
+// Вариант 1: По названию отеля (самый надежный, Google сам найдет точное место)
+const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(hotelName)}&hl=ru&z=15&output=embed`
+
+// Вариант 2: Если вы нашли точные координаты в Google Maps, замените название на координаты:
+// Например: const mapEmbedUrlSimple = `https://maps.google.com/maps?q=4.326789,73.512345&hl=ru&z=15&output=embed`
+
+// Вариант 3: С API ключом для дополнительных возможностей (Place ID будет точнее):
+// const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(hotelName)}&zoom=15`
 ---
 
 <section class="hotel-description">
@@ -10,7 +21,13 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
 
         <div class="hotel-tabs-wrapper">
             <!-- Radio inputs (скрытые) -->
-            <input type="radio" name="hotel-tab" id="tab-location" class="hotel-tab-input" checked />
+            <input
+                type="radio"
+                name="hotel-tab"
+                id="tab-location"
+                class="hotel-tab-input"
+                checked
+            />
             <input type="radio" name="hotel-tab" id="tab-rooms" class="hotel-tab-input" />
             <input type="radio" name="hotel-tab" id="tab-amenities" class="hotel-tab-input" />
             <input type="radio" name="hotel-tab" id="tab-restaurants" class="hotel-tab-input" />
@@ -22,11 +39,21 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="location">
-                <img src={mapImage.src} alt="Карта местоположения отеля" class="tab-content-map" />
+                <iframe
+                    src={mapEmbedUrlSimple}
+                    class="tab-content-map"
+                    title="Карта местоположения отеля"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen></iframe>
                 <div class="tab-content-info">
                     <img src={locationIcon.src} alt="Местоположение" class="location-icon" />
                     <p class="hotel-description-text">
-                        Grand Park Kodhipparu (Куда-Ваттару) находится на пляже, в пределах лёгкой доступности от следующих достопримечательностей и объектов: Пляж Angsana Beach и Пляж Vabbininfaru Beach. Этот 5-звездочный курорт находится в одном регионе со следующими достопримечательностями и объектами: Пляж Бандос и Пляж Тулагири.
+                        Grand Park Kodhipparu (Куда-Ваттару) находится на пляже, в пределах лёгкой
+                        доступности от следующих достопримечательностей и объектов: Пляж Angsana
+                        Beach и Пляж Vabbininfaru Beach. Этот 5-звездочный курорт находится в одном
+                        регионе со следующими достопримечательностями и объектами: Пляж Бандос и
+                        Пляж Тулагири.
                     </p>
                 </div>
             </div>
@@ -55,7 +82,9 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="restaurants">
-                <p class="hotel-description-placeholder">Информация о кафе и ресторанах скоро появится</p>
+                <p class="hotel-description-placeholder">
+                    Информация о кафе и ресторанах скоро появится
+                </p>
             </div>
 
             <!-- Другое -->
@@ -64,7 +93,9 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="other">
-                <p class="hotel-description-placeholder">Дополнительная информация скоро появится</p>
+                <p class="hotel-description-placeholder">
+                    Дополнительная информация скоро появится
+                </p>
             </div>
         </div>
     </div>
@@ -72,7 +103,7 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
 
 <style lang="scss" is:global>
     .hotel-description {
-        @include adaptive(padding-top, 240, 170);
+        @include adaptive(padding-top, 240, 200);
         // @include adaptive(padding-bottom, 80, 60);
         // background: $color-main;
 
@@ -88,6 +119,11 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             color: $color-alternate;
+            width: 76%;
+
+            @include mobile {
+                width: 100%;
+            }
         }
 
         &-placeholder {
@@ -100,205 +136,197 @@ import chevronIcon from '@/assets/icons/chevron-down.svg'
             @include adaptive(padding, 80, 60);
             width: 100%;
         }
-    }
 
-    .hotel-tabs-wrapper {
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        @include adaptive(gap, 16, 1);
-        @include adaptive(margin-top, 24, 40);
+        .hotel-tabs-wrapper {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            @include adaptive(gap, 16, 1);
+            @include adaptive(margin-top, 24, 60);
 
-        // Десктоп: все labels собираем вверху
-        @media screen and (min-width: 481px) {
-            // Labels идут первыми (order 1-5)
-            .tab-label[data-order="1"] { order: 1; }
-            .tab-label[data-order="2"] { order: 2; }
-            .tab-label[data-order="3"] { order: 3; }
-            .tab-label[data-order="4"] { order: 4; }
-            .tab-label[data-order="5"] { order: 5; }
+            // Десктоп: все labels собираем вверху
+            @include desktop {
+                // Labels идут первыми (order 1-5)
+                .tab-label[data-order='1'] {
+                    order: 1;
+                }
+                .tab-label[data-order='2'] {
+                    order: 2;
+                }
+                .tab-label[data-order='3'] {
+                    order: 3;
+                }
+                .tab-label[data-order='4'] {
+                    order: 4;
+                }
+                .tab-label[data-order='5'] {
+                    order: 5;
+                }
 
-            // Контент идет после (order 100)
-            .tab-content {
-                order: 100;
+                // Контент идет после (order 100)
+                .tab-content {
+                    order: 100;
+                    width: 100%;
+                }
+            }
+
+            // Мобильный: каждая пара label+content идет по порядку
+            @include mobile {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        // Скрываем radio inputs
+        .hotel-tab-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        // Стили для labels (табов на десктопе, заголовков accordion на мобильном)
+        .tab-label {
+            cursor: pointer;
+            transition: all 0.3s;
+
+            // Десктоп: стили табов
+            @include desktop {
+                @include flex-center;
+                @include adaptive(height, 61, 50);
+                @include adaptive(padding-left, 50, 30);
+                @include adaptive(padding-right, 50, 30);
+                @include adaptive(padding-top, 16, 12);
+                @include adaptive(padding-bottom, 16, 12);
+                border-radius: 50px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: $color-accent;
+                background: transparent;
+
+                @include font-circe-regular;
+                @include adaptive(font-size, 22, 18);
+                line-height: 1.2;
+                @include adaptive(letter-spacing, 2.2, 1.8);
+                text-transform: uppercase;
+                color: $color-accent;
+
+                &:hover {
+                    background: rgba($color-accent, 0.1);
+                }
+
+                .tab-label-icon {
+                    display: none;
+                }
+            }
+
+            // Мобильный: стили заголовков accordion
+            @include mobile {
+                @include flex-center-between;
+                @include adaptive(padding-top, 1, 24);
+                @include adaptive(padding-bottom, 1, 24);
+                border-bottom: 1px solid $color-accent;
+
+                @include font-kudry-sans;
+                font-weight: 300;
+                @include adaptive(font-size, 1, 25.6);
+                line-height: 1.2;
+                text-transform: uppercase;
+                color: $color-alternate;
+                width: 100%;
+
+                &:first-of-type {
+                    border-top: 1px solid $color-accent;
+                }
+
+                .tab-label-text {
+                    flex: 1;
+                }
+
+                .tab-label-icon {
+                    @include adaptive(width, 1, 18.876);
+                    @include adaptive(height, 1, 13.111);
+                    flex-shrink: 0;
+                    transition: transform 0.3s;
+                }
+            }
+        }
+
+        // Стили для контента
+        .tab-content {
+            display: none;
+
+            // Десктоп: контент под всеми табами
+            @include desktop {
+                @include adaptive(margin-top, 66, 1);
+            }
+
+            // Мобильный: контент сразу после заголовка
+            @include mobile {
+                @include adaptive(padding-bottom, 1, 40);
+                border-bottom: 1px solid $color-accent;
+            }
+        }
+
+        // Активные состояния
+        #tab-location:checked ~ .tab-label[for='tab-location'],
+        #tab-rooms:checked ~ .tab-label[for='tab-rooms'],
+        #tab-amenities:checked ~ .tab-label[for='tab-amenities'],
+        #tab-restaurants:checked ~ .tab-label[for='tab-restaurants'],
+        #tab-other:checked ~ .tab-label[for='tab-other'] {
+            // Десктоп: активный таб
+            @include desktop {
+                background: $color-accent;
+                color: white;
+
+                &:hover {
+                    background: $color-accent;
+                    opacity: 0.9;
+                }
+            }
+
+            @include mobile {
+                .tab-label-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        #tab-location:checked ~ .tab-content[data-tab='location'],
+        #tab-rooms:checked ~ .tab-content[data-tab='rooms'],
+        #tab-amenities:checked ~ .tab-content[data-tab='amenities'],
+        #tab-restaurants:checked ~ .tab-content[data-tab='restaurants'],
+        #tab-other:checked ~ .tab-content[data-tab='other'] {
+            display: flex;
+            @include adaptive(gap, 60, 22);
+            align-items: flex-start;
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .tab-content-map {
+            @include adaptive(min-height, 560, 230);
+            @include adaptive(min-width, 852, 343);
+            border: 0;
+            display: block;
+
+            @include mobile {
                 width: 100%;
             }
         }
 
-        // Мобильный: каждая пара label+content идет по порядку
-        @include mobile {
+        .tab-content-info {
+            display: flex;
             flex-direction: column;
-            gap: 0;
-        }
-    }
-
-    // Скрываем radio inputs
-    .hotel-tab-input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    // Стили для labels (табов на десктопе, заголовков accordion на мобильном)
-    .tab-label {
-        cursor: pointer;
-        transition: all 0.3s;
-
-        // Десктоп: стили табов
-        @media screen and (min-width: 481px) {
-            @include flex-center;
-            @include adaptive(height, 61, 50);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            border-radius: 50px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: $color-accent;
-            background: transparent;
-
-            @include font-circe-regular;
-            @include adaptive(font-size, 22, 18);
-            line-height: 1.2;
-            @include adaptive(letter-spacing, 2.2, 1.8);
-            text-transform: uppercase;
-            color: $color-accent;
-
-            &:hover {
-                background: rgba($color-accent, 0.1);
-            }
-
-            .tab-label-icon {
-                display: none;
-            }
+            align-self: stretch;
+            justify-content: space-between;
+            @include adaptive(gap, 60, 22);
         }
 
-        // Мобильный: стили заголовков accordion
-        @include mobile {
-            @include flex-center-between;
-            @include adaptive(padding-top, 1, 24);
-            @include adaptive(padding-bottom, 1, 24);
-            border-bottom: 1px solid rgba($color-alternate, 0.2);
-
-            @include font-kudry-sans;
-            font-weight: 300;
-            @include adaptive(font-size, 1, 25.6);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: $color-alternate;
-            width: 100%;
-
-            &:first-of-type {
-                border-top: 1px solid rgba($color-alternate, 0.2);
-            }
-
-            .tab-label-text {
-                flex: 1;
-            }
-
-            .tab-label-icon {
-                @include adaptive(width, 1, 18.876);
-                @include adaptive(height, 1, 13.111);
-                flex-shrink: 0;
-                transition: transform 0.3s;
-            }
+        .location-icon {
+            @include adaptive(width, 112, 65.715);
+            @include adaptive(height, 120, 70.4);
         }
-    }
-
-    // Стили для контента
-    .tab-content {
-        display: none;
-
-        // Десктоп: контент под всеми табами
-        @media screen and (min-width: 481px) {
-            @include adaptive(margin-top, 83, 1);
-        }
-
-        // Мобильный: контент сразу после заголовка
-        @include mobile {
-            @include adaptive(padding-bottom, 1, 40);
-            border-bottom: 1px solid rgba($color-alternate, 0.2);
-        }
-    }
-
-    // Активные состояния
-    #tab-location:checked ~ .tab-label[for="tab-location"],
-    #tab-rooms:checked ~ .tab-label[for="tab-rooms"],
-    #tab-amenities:checked ~ .tab-label[for="tab-amenities"],
-    #tab-restaurants:checked ~ .tab-label[for="tab-restaurants"],
-    #tab-other:checked ~ .tab-label[for="tab-other"] {
-        // Десктоп: активный таб
-        @media screen and (min-width: 481px) {
-            background: $color-accent;
-            color: white;
-
-            &:hover {
-                background: $color-accent;
-                opacity: 0.9;
-            }
-        }
-
-        // Мобильный: поворачиваем иконку
-        @include mobile {
-            .tab-label-icon {
-                transform: rotate(180deg);
-            }
-        }
-    }
-
-    // Показываем активный контент
-    #tab-location:checked ~ .tab-content[data-tab="location"],
-    #tab-rooms:checked ~ .tab-content[data-tab="rooms"],
-    #tab-amenities:checked ~ .tab-content[data-tab="amenities"],
-    #tab-restaurants:checked ~ .tab-content[data-tab="restaurants"],
-    #tab-other:checked ~ .tab-content[data-tab="other"] {
-        display: block;
-    }
-
-    // Стили для контента внутри табов
-    .tab-content-map {
-        width: 100%;
-        @include adaptive(height, 560, 230.4);
-        object-fit: cover;
-
-        @media screen and (min-width: 481px) {
-            flex: 1;
-        }
-
-        @include mobile {
-            @include adaptive(margin-bottom, 0, 24);
-        }
-    }
-
-    .tab-content-info {
-        display: flex;
-        flex-direction: column;
-        align-self: stretch;
-        justify-content: space-between;
-    }
-
-    // Десктоп: два колонки для контента "Местоположение"
-    @media screen and (min-width: 481px) {
-        #tab-location:checked ~ .tab-content[data-tab="location"] {
-            display: flex !important;
-            @include adaptive(gap, 100, 30);
-            align-items: flex-start;
-        }
-    }
-
-    // Мобильный: одна колонка
-    @include mobile {
-        .tab-content[data-tab="location"] {
-            &:not([style*="display: none"]) {
-                display: flex !important;
-                flex-direction: column;
-            }
-        }
-    }
-
-    .location-icon {
-        @include adaptive(width, 112, 65.715);
-        @include adaptive(height, 120, 70.4);
     }
 </style>
