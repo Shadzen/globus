@@ -1,0 +1,562 @@
+---
+// src/components/best_hotels/BestHotels.astro
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
+import gtRecommendsIcon from '@/assets/icons/gt-recommends.svg'
+import starAltAccentIcon from '@/assets/icons/star-alt-accent.svg'
+import starAltWhiteIcon from '@/assets/icons/star-alt-white.svg'
+
+// Импорты изображений отелей
+import hotel1 from '@/assets/images/best_hotels/best-hotel-1.jpg'
+import hotel2 from '@/assets/images/best_hotels/best-hotel-2.jpg'
+import hotel3 from '@/assets/images/best_hotels/best-hotel-3.jpg'
+import hotel4 from '@/assets/images/best_hotels/best-hotel-4.jpg'
+
+interface Hotel {
+    id: number
+    name: string
+    image: ImageMetadata
+    price: string
+    badge: string
+    isRecommended?: boolean
+    href?: string
+}
+
+const hotels: Hotel[] = [
+    {
+        id: 1,
+        name: 'Akra Antalya 5*',
+        image: hotel1,
+        price: 'от 134 900 руб.',
+        badge: 'Ультра все включено',
+        href: '/turist/about_hotel',
+    },
+    {
+        id: 2,
+        name: 'Kaya Belek 5*',
+        image: hotel2,
+        price: 'от 140 300 руб.',
+        badge: 'Ультра все включено',
+        href: '/turist/about_hotel',
+    },
+    {
+        id: 3,
+        name: 'Dobedan Exclusive<br />Hotel & Spa 5*',
+        image: hotel3,
+        price: 'от 162 600 руб.',
+        badge: 'Ультра все включено',
+        href: '/turist/about_hotel',
+    },
+    {
+        id: 4,
+        name: 'Rixos Park Belek 5*',
+        image: hotel4,
+        price: 'от 168 700 руб.',
+        badge: 'Ультра все включено',
+        isRecommended: true,
+        href: '/turist/about_hotel',
+    },
+    {
+        id: 2,
+        name: 'Kaya Belek 5*',
+        image: hotel2,
+        price: 'от 140 300 руб.',
+        badge: 'Ультра все включено',
+        href: '/turist/about_hotel',
+    },
+]
+---
+
+<section class="best-hotels">
+    <div class="best-hotels-container">
+        <div class="best-hotels-header">
+            <div class="header-content">
+                <h2 class="section-title">Наши<br />специалисты</h2>
+                <div class="section-description">
+                    <p>
+                        не просто менеджеры, а кураторы безупречного отдыха.<br />
+                        Они объехали весь земной шар с одной целью: найти для вас<br />
+                        те самые уникальные места, где каждая деталь — это часть картины<br />
+                        под названием «идеальное путешествие».
+                    </p>
+                    <p>
+                        Мы собрали коллекцию отелей, которые эксперты<br />
+                        и путешественники единогласно признают лучшими.
+                    </p>
+                    <p>
+                        И теперь мы готовы поделиться с вами этим искусством —<br />
+                        искусством открывать мир во всем его великолепии.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="hotels-nav-wrapper">
+            <SwiperNavButtons />
+        </div>
+
+        <div class="hotels-slider-wrapper swiper">
+            <div class="hotels-slider swiper-wrapper">
+                {
+                    hotels.map((hotel) => (
+                        <div class="hotel-card swiper-slide">
+                            <a href={hotel.href} class="hotel-card-link">
+                                <div class="hotel-image">
+                                    <Image
+                                        src={hotel.image}
+                                        alt={hotel.name}
+                                        loading="lazy"
+                                        quality={100}
+                                    />
+                                    <div class="hotel-badge">
+                                        <span>{hotel.badge}</span>
+                                    </div>
+                                    {hotel.isRecommended && (
+                                        <div class="hotel-recommended">
+                                            <img src={gtRecommendsIcon.src} alt="GT рекомендует" />
+                                        </div>
+                                    )}
+                                </div>
+                                <div class="hotel-info">
+                                    <h3 class="hotel-name" set:html={hotel.name} />
+                                    <p class="hotel-price">{hotel.price}</p>
+                                </div>
+                            </a>
+                            <button class="hotel-book-btn">Забронировать</button>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hotel-search-results">
+    <div class="search-form-wrapper">
+        <form class="search-form">
+            <div class="search-field">
+                <label class="search-label" for="country-select">страна</label>
+                <div class="search-value-wrapper">
+                    <select
+                        id="country-select"
+                        class="search-select"
+                        name="country"
+                        autocomplete="country"
+                    >
+                        <option value="">Выберите страну</option>
+                        <option value="turkey">Турция</option>
+                        <option value="egypt">Египет</option>
+                        <option value="uae">ОАЭ</option>
+                        <option value="maldives">Мальдивы</option>
+                        <option value="thailand">Таиланд</option>
+                    </select>
+                    <div class="search-underline"></div>
+                </div>
+            </div>
+
+            <div class="search-field">
+                <label class="search-label">отель</label>
+                <div class="search-value-wrapper">
+                    <div class="search-stars">
+                        <button type="button" class="star-btn" data-rating="1">
+                            <img src={starAltAccentIcon.src} alt="1 звезда" />
+                        </button>
+                        <button type="button" class="star-btn" data-rating="2">
+                            <img src={starAltAccentIcon.src} alt="2 звезды" />
+                        </button>
+                        <button type="button" class="star-btn" data-rating="3">
+                            <img src={starAltAccentIcon.src} alt="3 звезды" />
+                        </button>
+                        <button type="button" class="star-btn" data-rating="4">
+                            <img src={starAltAccentIcon.src} alt="4 звезды" />
+                        </button>
+                        <button type="button" class="star-btn" data-rating="5">
+                            <img src={starAltWhiteIcon.src} alt="5 звезд" />
+                        </button>
+                    </div>
+                    <input
+                        type="hidden"
+                        name="rating"
+                        id="rating-input"
+                        value="4"
+                        autocomplete="off"
+                    />
+                    <div class="search-underline"></div>
+                </div>
+            </div>
+
+            <div class="search-field">
+                <label class="search-label" for="budget-input">Бюджет</label>
+                <div class="search-value-wrapper">
+                    <input
+                        type="text"
+                        id="budget-input"
+                        class="search-input"
+                        name="budget"
+                        placeholder="от 500 000 руб"
+                        value="от 500 000 руб"
+                        autocomplete="off"
+                    />
+                    <div class="search-underline"></div>
+                </div>
+            </div>
+
+            <button type="submit" class="search-submit-btn">Подобрать</button>
+        </form>
+    </div>
+
+    <div class="hotels-grid">
+        {
+            hotels.map((hotel) => (
+                <div class="hotel-card">
+                    <a href={hotel.href} class="hotel-card-link">
+                        <div class="hotel-image">
+                            <Image
+                                src={hotel.image}
+                                alt={hotel.name}
+                                loading="lazy"
+                                quality={100}
+                            />
+                            <div class="hotel-badge">
+                                <span>{hotel.badge}</span>
+                            </div>
+                            {hotel.isRecommended && (
+                                <div class="hotel-recommended">
+                                    <img src={gtRecommendsIcon.src} alt="GT рекомендует" />
+                                </div>
+                            )}
+                        </div>
+                        <div class="hotel-info">
+                            <h3 class="hotel-name" set:html={hotel.name} />
+                            <p class="hotel-price">{hotel.price}</p>
+                        </div>
+                    </a>
+                    <button class="hotel-book-btn">Забронировать</button>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .best-hotels {
+        background: $color-main;
+        @include adaptive(margin-top, 70, 60);
+
+        .best-hotels-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .best-hotels-header {
+            position: relative;
+            @include side-paddings;
+
+            .header-content {
+                display: flex;
+                @include adaptive(gap, 22, 22);
+                justify-content: space-between;
+
+                @include mobile {
+                    flex-direction: column;
+                }
+            }
+        }
+
+        .section-title {
+            text-align: left;
+        }
+
+        .section-description {
+            @include font-circe-regular;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+
+            p {
+                margin: 0;
+                @include adaptive(margin-bottom, 20, 16);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .hotels-nav-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            @include adaptive(margin-top, 38, 2);
+            @include side-paddings;
+        }
+
+        .hotels-slider-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            @include adaptive(padding-top, 34, 24);
+        }
+
+        .hotels-slider {
+            display: flex;
+            align-items: stretch;
+
+            .hotel-card {
+                height: 100%;
+            }
+        }
+    }
+
+    // Общие стили для карточек отелей (используются и в слайдере, и в сетке)
+    .hotel-card {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 32, 40);
+
+        // В слайдере задаём фиксированную ширину
+        .hotels-slider & {
+            @include adaptive(width, 418, 322);
+        }
+    }
+
+    .hotel-card-link {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        white-space: normal;
+
+        &:hover {
+            transform: translateY(-8px);
+        }
+    }
+
+    .hotel-image {
+        position: relative;
+        @include adaptive(height, 280, 216);
+        overflow: hidden;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .hotel-badge {
+        position: absolute;
+        @include adaptive(bottom, 20, 15);
+        @include adaptive(left, 20, 15);
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid $color-accent;
+        border-radius: 500px;
+        @include adaptive(padding-top, 13, 10);
+        @include adaptive(padding-bottom, 13, 10);
+        @include adaptive(padding-left, 40, 20);
+        @include adaptive(padding-right, 40, 20);
+
+        span {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.21;
+            color: $color-main;
+        }
+    }
+
+    .hotel-recommended {
+        position: absolute;
+        @include adaptive(top, 4, 2);
+        @include adaptive(right, 4, 2);
+        @include adaptive(width, 125, 70);
+        @include adaptive(height, 125, 70);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .hotel-info {
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 14, 10);
+        @include adaptive(margin-top, 24, 18);
+        width: 100%;
+    }
+
+    .hotel-name {
+        @include font-kudry-sans;
+        font-weight: 300;
+        @include adaptive(font-size, 28, 22);
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: $color-alternate;
+        margin: 0;
+        @include adaptive(min-height, 67, 53);
+    }
+
+    .hotel-price {
+        @include font-circe-regular;
+        font-weight: 300;
+        @include adaptive(font-size, 26, 20);
+        line-height: 1.2;
+        color: $color-accent;
+        margin: 0;
+    }
+
+    .hotel-book-btn {
+        @include button-default;
+        @include adaptive(padding-top, 16, 12);
+        @include adaptive(padding-bottom, 16, 12);
+        @include adaptive(padding-left, 50, 30);
+        @include adaptive(padding-right, 50, 30);
+        width: auto;
+        align-self: flex-start;
+    }
+
+    .hotel-search-results {
+        @include adaptive(margin-top, 128, 60);
+
+        .search-form-wrapper {
+            background: $color-alternate;
+            @include adaptive(padding-top, 54, 40);
+            @include adaptive(padding-bottom, 54, 40);
+            @include side-paddings;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: flex-end;
+            @include adaptive(gap, 60, 20);
+            flex-wrap: wrap;
+
+            @include mobile {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        .search-field {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 18, 12);
+            flex: 1;
+            min-width: 0;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .search-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            @include adaptive(letter-spacing, 3.2, 2);
+            text-transform: uppercase;
+            color: $color-main;
+            opacity: 0.55;
+        }
+
+        .search-value-wrapper {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 12, 10);
+        }
+
+        .search-select,
+        .search-input {
+            @include font-circe-regular;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-main;
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 0;
+            cursor: pointer;
+            appearance: none;
+
+            &::placeholder {
+                color: $color-main;
+                opacity: 1;
+            }
+        }
+
+        .search-select {
+            option {
+                background: $color-alternate;
+                color: $color-main;
+            }
+        }
+
+        .search-stars {
+            display: flex;
+            @include adaptive(gap, 8, 6);
+            align-items: center;
+        }
+
+        .star-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            img {
+                @include adaptive(width, 21, 18);
+                @include adaptive(height, 20, 17);
+            }
+        }
+
+        .search-underline {
+            width: 100%;
+            height: 1px;
+            background: $color-accent;
+        }
+
+        .search-submit-btn {
+            @include button-default;
+            @include adaptive(padding-top, 16, 14);
+            @include adaptive(padding-bottom, 16, 14);
+            @include adaptive(padding-left, 50, 40);
+            @include adaptive(padding-right, 50, 40);
+            flex-shrink: 0;
+
+            @include mobile {
+                width: 100%;
+                @include adaptive(margin-top, 30, 30);
+            }
+        }
+
+        .hotels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            @include adaptive(column-gap, 16, 12);
+            @include adaptive(row-gap, 32, 24);
+            @include adaptive(margin-top, 74, 60);
+            @include side-paddings;
+
+            .hotel-card {
+                @include mobile {
+                    flex: 0 0 100%;
+                }
+            }
+        }
+    }
+</style>

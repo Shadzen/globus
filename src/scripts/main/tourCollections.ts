@@ -1,4 +1,7 @@
 // src/scripts/main/tourCollections.ts
+// NOTE: Не использует initSlider() из swiperHelpers.ts из-за специфичной логики:
+// - centeredSlides на мобильных
+// - breakpoints с разными настройками для desktop/mobile
 import { Swiper, Navigation } from '../swiper'
 import { adaptive, BREAKPOINTS } from '../utils'
 
