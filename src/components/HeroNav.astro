@@ -1,4 +1,6 @@
 ---
+const base = import.meta.env.BASE_URL
+
 interface BreadcrumbItem {
     label: string
     href?: string
@@ -13,7 +15,7 @@ const { items, showBackButton = true } = Astro.props
 
 // Умная логика для href:
 // - Последний элемент без href → span (текущая страница)
-// - Первый элемент без href → автоматически "/"
+// - Первый элемент без href → автоматически base URL
 // - Остальные элементы без href → "#"
 const getItemHref = (item: BreadcrumbItem, index: number, total: number): string | null => {
     if (item.href !== undefined) {
@@ -28,7 +30,7 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
 
     // Первый элемент - всегда главная
     if (index === 0) {
-        return '/'
+        return base
     }
 
     // Все остальные - заглушка

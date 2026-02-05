@@ -6,6 +6,8 @@ import HotelServices from '@/components/about_hotel/HotelServices.astro'
 import HotelPricing from '@/components/about_hotel/HotelPricing.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
 
+const base = import.meta.env.BASE_URL
+
 import heroDesktop from '@/assets/images/about_hotel/hero-1.jpg'
 import heroMobile from '@/assets/images/about_hotel/hero-1-mobile.jpg'
 import starIcon from '@/assets/icons/star-accent.svg'
@@ -95,7 +97,7 @@ const galleryPreview = gallery.slice(0, 4)
         <HeroNav
             items={[
                 { label: 'Главная' },
-                { label: 'Лучшие отели мира', href: '/turist/best_hotels' },
+                { label: 'Лучшие отели мира', href: `${base}turist/best_hotels` },
                 { label: 'GRAND PARK KODHIPPARU 5*' },
             ]}
         />
