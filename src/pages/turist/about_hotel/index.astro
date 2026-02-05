@@ -1,5 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import HeroNav from '@/components/HeroNav.astro'
 import HotelDescription from '@/components/about_hotel/HotelDescription.astro'
 import HotelServices from '@/components/about_hotel/HotelServices.astro'
 import HotelPricing from '@/components/about_hotel/HotelPricing.astro'
@@ -7,65 +8,97 @@ import ContactForm from '@/components/main/ContactForm.astro'
 
 import heroDesktop from '@/assets/images/about_hotel/hero-1.jpg'
 import heroMobile from '@/assets/images/about_hotel/hero-1-mobile.jpg'
-import starIcon from '@/assets/icons/star.svg'
+import starIcon from '@/assets/icons/star-accent.svg'
+
+// Превью для отображения на странице
 import gallery1 from '@/assets/images/about_hotel/hero-gallery-1.jpg'
 import gallery2 from '@/assets/images/about_hotel/hero-gallery-2.jpg'
 import gallery3 from '@/assets/images/about_hotel/hero-gallery-3.jpg'
 import gallery4 from '@/assets/images/about_hotel/hero-gallery-4.jpg'
 
+// Полноразмерные версии для лайтбокса
+import gallery1Full from '@/assets/images/about_hotel/hero-gallery-1-full.jpg'
+import gallery2Full from '@/assets/images/about_hotel/hero-gallery-2-full.jpg'
+import gallery3Full from '@/assets/images/about_hotel/hero-gallery-3-full.jpg'
+import gallery4Full from '@/assets/images/about_hotel/hero-gallery-4-full.jpg'
+
+const fullSize = {
+    width: 2100,
+    height: 1241,
+}
+
+// Полная галерея - все фотки для лайтбокса
 const gallery = [
     {
         thumbnail: gallery1.src,
-        full: gallery1.src, // TODO: заменить на полноразмерную версию
-        width: 2000,
-        height: 1333,
+        full: gallery1Full.src,
+        width: fullSize.width,
+        height: fullSize.height,
         alt: 'Вид на остров и виллы на воде',
     },
     {
         thumbnail: gallery2.src,
-        full: gallery2.src, // TODO: заменить на полноразмерную версию
-        width: 2000,
-        height: 1333,
+        full: gallery2Full.src,
+        width: fullSize.width,
+        height: fullSize.height,
         alt: 'Пляж и бассейн отеля',
     },
     {
         thumbnail: gallery3.src,
-        full: gallery3.src, // TODO: заменить на полноразмерную версию
-        width: 2000,
-        height: 1333,
+        full: gallery3Full.src,
+        width: fullSize.width,
+        height: fullSize.height,
         alt: 'Вид на остров с высоты',
     },
     {
         thumbnail: gallery4.src,
-        full: gallery4.src, // TODO: заменить на полноразмерную версию
-        width: 2000,
-        height: 1333,
+        full: gallery4Full.src,
+        width: fullSize.width,
+        height: fullSize.height,
         alt: 'Гости отеля',
     },
+    // Плейсхолдеры для тестирования большой галереи
+    {
+        thumbnail: 'https://placehold.co/418x247?text=5',
+        full: 'https://placehold.co/2100x1241?text=5',
+        width: fullSize.width,
+        height: fullSize.height,
+        alt: 'Плейсхолдер 5',
+    },
+    {
+        thumbnail: 'https://placehold.co/418x247?text=6',
+        full: 'https://placehold.co/2100x1241?text=6',
+        width: fullSize.width,
+        height: fullSize.height,
+        alt: 'Плейсхолдер 6',
+    },
+    {
+        thumbnail: 'https://placehold.co/418x247?text=7',
+        full: 'https://placehold.co/2100x1241?text=7',
+        width: fullSize.width,
+        height: fullSize.height,
+        alt: 'Плейсхолдер 7',
+    },
 ]
+
+// Только первые 4 фотки для отображения на странице
+const galleryPreview = gallery.slice(0, 4)
 ---
 
 <Layout title="GRAND PARK KODHIPPARU 5* - Глобус Тур">
     <section class="hero-section about-hotel-hero">
-        <picture class="hero-bg">
+        <picture class="hero-bg _overlay-darker">
             <source media="(max-width: 480px)" srcset={heroMobile.src} />
             <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
         </picture>
 
-        <div class="hero-nav">
-            <nav class="breadcrumb">
-                <a href="/">Главная</a>
-                <span class="breadcrumb-separator">/</span>
-                <a href="#">Лучшие отели мира</a>
-                <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb-current">GRAND PARK KODHIPPARU 5*</span>
-            </nav>
-
-            <button class="back-button" onclick="history.back()">
-                <span class="back-icon"></span>
-                <span class="back-text">назад</span>
-            </button>
-        </div>
+        <HeroNav
+            items={[
+                { label: 'Главная' },
+                { label: 'Лучшие отели мира' },
+                { label: 'GRAND PARK KODHIPPARU 5*' },
+            ]}
+        />
 
         <div class="hero-content">
             <h1 class="hotel-title">GRAND PARK KODHIPPARU 5*</h1>
@@ -82,10 +115,12 @@ const gallery = [
         </div>
 
         <div class="hotel-gallery-container">
+            <!-- data-gallery содержит ВСЕ фотки для лайтбокса -->
             <div class="about-hotel-gallery swiper" data-gallery={JSON.stringify(gallery)}>
                 <div class="hotel-gallery-wrapper swiper-wrapper">
                     {
-                        gallery.map((image, index) => (
+                        // На странице показываем только первые 4 фотки
+                        galleryPreview.map((image, index) => (
                             <div
                                 class={`about-hotel-gallery-item swiper-slide ${index === 3 ? 'about-hotel-gallery-item-all' : ''}`}
                                 data-pswp-src={image.full}
@@ -106,6 +141,27 @@ const gallery = [
             </div>
         </div>
     </section>
+
+    <!-- Модальное окно с полноэкранной галереей всех превьюшек -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-modal-overlay"></div>
+        <div class="gallery-modal-content">
+            <button class="gallery-modal-close" aria-label="Закрыть галерею">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 8L8 24M8 8L24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="gallery-modal-grid">
+                {
+                    gallery.map((image, index) => (
+                        <div class="gallery-modal-item" data-index={index}>
+                            <img src={image.thumbnail} alt={image.alt} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
 
     <HotelDescription />
     <HotelServices />
@@ -159,7 +215,8 @@ const gallery = [
             position: relative;
             width: 100%;
             overflow: hidden;
-            @include adaptive(min-height, 300, 250);
+            @include adaptive(min-height, 350, 300);
+            @include adaptive(padding-top, 50, 30);
         }
 
         .hotel-gallery-wrapper {
@@ -174,17 +231,17 @@ const gallery = [
             overflow: hidden;
             box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
             cursor: pointer;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform 0.3s;
                 pointer-events: none;
-            }
-
-            &:hover img {
-                transform: scale(1.05);
             }
 
             &-all {
@@ -210,78 +267,105 @@ const gallery = [
         }
     }
 
-    .hero-nav {
-        @include flex-start-between;
-        flex-direction: column;
-        @include adaptive(gap, 18, 12);
-        position: absolute;
-        @include adaptive(top, 284, 128);
-        @include adaptive(left, 100, 15);
+    // Модальное окно галереи
+    .gallery-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
 
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            @include adaptive(gap, 10, 8);
+        &.is-active {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
 
-            a,
-            span {
-                @include font-circe-regular;
-                @include adaptive(font-size, 20, 18);
-                line-height: 1.2;
-                color: $color-main;
-                text-decoration: none;
+            .gallery-modal-overlay {
+                opacity: 1;
             }
 
-            a:hover {
-                opacity: 0.8;
-            }
-
-            .breadcrumb-separator {
-                @include font-circe-regular;
-                font-weight: 500;
-                @include adaptive(font-size, 16, 14);
-                line-height: 1.2;
-            }
-
-            .breadcrumb-current {
-                opacity: 0.7;
+            .gallery-modal-content {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
-        .back-button {
-            @include flex-center;
-            @include adaptive(gap, 27, 20);
+        &-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        &-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 1;
+            @include side-paddings;
+            @include adaptive(padding-top, 80, 80);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        &-close {
+            position: fixed;
+            @include adaptive(top, 40, 20);
+            @include adaptive(right, 40, 20);
+            @include adaptive(width, 48, 48);
+            @include adaptive(height, 48, 48);
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             transition: all 0.3s;
+            z-index: 2;
 
             &:hover {
-                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
 
-                .back-icon {
-                    transform: translateX(-5px);
-                }
+        &-grid {
+            display: flex;
+            flex-wrap: wrap;
+            @include adaptive(gap, 16, 16);
+            justify-content: center;
+        }
+
+        &-item {
+            position: relative;
+            @include adaptive(width, 418, 350);
+            @include adaptive(height, 247, 207);
+            flex-shrink: 0;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
             }
 
-            .back-icon {
-                @include adaptive(width, 70, 55);
-                @include adaptive(height, 70, 55);
-                background-image: url('@/assets/icons/prev-accent.svg');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                transition: transform 0.3s;
-            }
-
-            .back-text {
-                @include font-circe-regular;
-                @include adaptive(font-size, 18, 18);
-                line-height: 1.2;
-                @include adaptive(letter-spacing, 3.6, 3.6);
-                text-transform: uppercase;
-                color: white;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
     }

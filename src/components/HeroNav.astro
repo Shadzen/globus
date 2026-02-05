@@ -1,0 +1,152 @@
+---
+interface BreadcrumbItem {
+    label: string
+    href?: string
+}
+
+interface Props {
+    items: BreadcrumbItem[]
+    showBackButton?: boolean
+}
+
+const { items, showBackButton = true } = Astro.props
+
+// Умная логика для href:
+// - Последний элемент без href → span (текущая страница)
+// - Первый элемент без href → автоматически "/"
+// - Остальные элементы без href → "#"
+const getItemHref = (item: BreadcrumbItem, index: number, total: number): string | null => {
+    if (item.href !== undefined) {
+        return item.href
+    }
+
+    // ВАЖНО: Проверяем последний элемент ПЕРВЫМ!
+    // Если элемент один - он последний, значит текущая страница
+    if (index === total - 1) {
+        return null
+    }
+
+    // Первый элемент - всегда главная
+    if (index === 0) {
+        return '/'
+    }
+
+    // Все остальные - заглушка
+    return '#'
+}
+---
+
+<div class="hero-nav">
+    <nav class="breadcrumb">
+        {
+            items.map((item, index) => {
+                const href = getItemHref(item, index, items.length)
+                return (
+                    <>
+                        {href !== null ? (
+                            <a href={href}>{item.label}</a>
+                        ) : (
+                            <span class="breadcrumb-current">{item.label}</span>
+                        )}
+                        {index < items.length - 1 && <span class="breadcrumb-separator">/</span>}
+                    </>
+                )
+            })
+        }
+    </nav>
+
+    {
+        showBackButton && (
+            <button class="back-button" onclick="history.back()">
+                <span class="back-icon" />
+                <span class="back-text">назад</span>
+            </button>
+        )
+    }
+</div>
+
+<style lang="scss" is:global>
+    .hero-nav {
+        @include flex-start-between;
+        flex-direction: column;
+        @include adaptive(gap, 18, 12);
+        position: absolute;
+        @include adaptive(top, 284, 128);
+        @include adaptive(left, 100, 15);
+        z-index: 3;
+
+        @include mobile {
+            @include adaptive(width, 465, 465);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 10, 8);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+
+            a,
+            span {
+                @include font-circe-regular;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                color: $color-main;
+                text-decoration: none;
+            }
+
+            a:hover {
+                opacity: 0.8;
+            }
+
+            .breadcrumb-separator {
+                @include font-circe-regular;
+                font-weight: 500;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1.2;
+            }
+
+            .breadcrumb-current {
+                opacity: 0.7;
+            }
+        }
+
+        .back-button {
+            @include flex-center;
+            @include adaptive(gap, 27, 20);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s;
+
+            &:hover {
+                opacity: 0.8;
+
+                .back-icon {
+                    transform: translateX(-5px);
+                }
+            }
+
+            .back-icon {
+                @include adaptive(width, 70, 55);
+                @include adaptive(height, 70, 55);
+                background-image: url('@/assets/icons/prev-accent.svg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: transform 0.3s;
+            }
+
+            .back-text {
+                @include font-circe-regular;
+                @include adaptive(font-size, 18, 18);
+                line-height: 1.2;
+                @include adaptive(letter-spacing, 3.6, 3.6);
+                text-transform: uppercase;
+                color: white;
+            }
+        }
+    }
+</style>

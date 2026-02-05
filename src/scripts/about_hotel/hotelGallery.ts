@@ -46,7 +46,28 @@ export const initHotelGallery = () => {
 
     lightbox.init()
 
-    // Обработка кликов на слайды
+    // Получаем элементы модального окна
+    const galleryModal = document.getElementById('galleryModal')
+    const modalOverlay = galleryModal?.querySelector('.gallery-modal-overlay')
+    const modalContent = galleryModal?.querySelector('.gallery-modal-content')
+    const modalClose = galleryModal?.querySelector('.gallery-modal-close')
+    const modalItems = galleryModal?.querySelectorAll('.gallery-modal-item')
+
+    // Функция открытия модального окна
+    const openModal = () => {
+        if (!galleryModal) return
+        galleryModal.classList.add('is-active')
+        document.body.style.overflow = 'hidden'
+    }
+
+    // Функция закрытия модального окна
+    const closeModal = () => {
+        if (!galleryModal) return
+        galleryModal.classList.remove('is-active')
+        document.body.style.overflow = ''
+    }
+
+    // Обработка кликов на слайды в превью
     const galleryItems = document.querySelectorAll('.about-hotel-gallery .about-hotel-gallery-item')
     galleryItems.forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -55,11 +76,43 @@ export const initHotelGallery = () => {
             const isAllPhotos = item.classList.contains('about-hotel-gallery-item-all')
 
             if (isAllPhotos) {
-                lightbox.loadAndOpen(0)
+                // Открываем модальное окно со всеми превьюшками
+                openModal()
             } else {
+                // Открываем PhotoSwipe сразу
                 lightbox.loadAndOpen(index)
             }
         })
+    })
+
+    // Обработка кликов на превьюшки в модальном окне
+    modalItems?.forEach((item) => {
+        item.addEventListener('click', () => {
+            const index = parseInt((item as HTMLElement).dataset.index || '0', 10)
+            closeModal()
+            // Небольшая задержка для плавности
+            setTimeout(() => {
+                lightbox.loadAndOpen(index)
+            }, 100)
+        })
+    })
+
+    // Закрытие модального окна
+    modalOverlay?.addEventListener('click', closeModal)
+    modalClose?.addEventListener('click', closeModal)
+
+    // Закрытие при клике на пустое место (не на превьюшки)
+    modalContent?.addEventListener('click', (e) => {
+        if (e.target === modalContent) {
+            closeModal()
+        }
+    })
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && galleryModal?.classList.contains('is-active')) {
+            closeModal()
+        }
     })
 
     // Адаптивность Swiper при ресайзе
