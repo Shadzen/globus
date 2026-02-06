@@ -7,12 +7,14 @@ interface Props {
     color?: 'light' | 'dark' | 'black',
     size?: 'default' | 'small' | 'large',
     class?: string,
+    userType?: 'tourist' | 'agent'
 }
 
 const {
     color = 'light',
     size = 'default',
     class: className,
+    userType = 'tourist',
 } = Astro.props
 
 const logos = {
@@ -23,9 +25,10 @@ const logos = {
 
 const selectedLogo = logos[color]
 const base = import.meta.env.BASE_URL
+const logoUrl = `${base}${userType}/`
 ---
 
-<a href={base} class:list={['logo-wrapper', `_${size}`, className]}>
+<a href={logoUrl} class:list={['logo-wrapper', `_${size}`, className]}>
     <img src={selectedLogo.src} alt="Глобус Тур" />
 </a>
 

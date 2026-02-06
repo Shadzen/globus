@@ -1,18 +1,16 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import MainHero from '@/components/main/MainHero.astro'
-import SearchForm from '@/components/main/SearchForm.astro'
 import TourCollections from '@/components/main/TourCollections.astro'
 import GlobusNews from '@/components/main/GlobusNews.astro'
 import AboutUs from '@/components/main/AboutUs.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
 ---
 
-<Layout title="Глобус Тур">
-    <MainHero userType="tourist" />
-    <SearchForm />
+<Layout title="Глобус Тур" userType="agent">
+    <MainHero userType="agent" />
     <TourCollections />
     <GlobusNews />
     <AboutUs />
-    <ContactForm userType="tourist" />
+    <ContactForm userType="agent" />
 </Layout>

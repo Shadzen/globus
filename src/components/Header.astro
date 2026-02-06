@@ -2,25 +2,43 @@
 // src/components/Header.astro
 import Logo from './Logo.astro'
 const base = import.meta.env.BASE_URL
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
 ---
 
 <header>
     <div class="header-container">
-        <Logo />
+        <Logo userType={userType} />
 
         <div class="header-actions">
             <div class="user-type">
-                <a href="#" class="user-type-btn _active">Турист</a>
-                <a href="#" class="user-type-btn">Агент</a>
+                <a href={`${base}tourist/`} class:list={["user-type-btn", { "_active": userType === 'tourist' }]}>Турист</a>
+                <a href={`${base}agent/`} class:list={["user-type-btn", { "_active": userType === 'agent' }]}>Агент</a>
             </div>
 
             <nav class="nav-menu">
-                <a href={`${base}about`}>О нас</a>
+                {userType === 'agent' && (
+                    <a href="#">Кыргызстан</a>
+                )}
+                <a href={`${base}${userType}/about`}>О нас</a>
                 <a href="#">Поиск тура и отеля</a>
                 <a href="#">Глобус-News</a>
-                <a href="#">Коллекции туров</a>
-                <a href={`${base}turist/best_hotels`}>Лучшие отели мира</a>
-                <a href="#">Деловой туризм</a>
+                {userType === 'tourist' ? (
+                    <>
+                        <a href="#">Коллекции туров</a>
+                        <a href={`${base}tourist/best_hotels`}>Лучшие отели мира</a>
+                        <a href="#">Деловой туризм</a>
+                    </>
+                ) : (
+                    <>
+                        <a href="#">Стать партнером</a>
+                        <a href="#">Страны</a>
+                    </>
+                )}
             </nav>
 
             <div class="contacts">
@@ -142,10 +160,18 @@ const base = import.meta.env.BASE_URL
             @include flex-center-between;
             @include adaptive(gap, 30, 20);
 
+            @include desktop {
+                @include adaptive(padding-left, 50, 50);
+                @include adaptive(padding-right, 50, 50);
+                flex: 1;
+            }
+
             @include mobile {
                 flex-direction: column;
                 align-items: flex-start;
                 width: 100%;
+                @include adaptive(padding-top, 30, 30);
+                @include adaptive(padding-bottom, 30, 30);
                 // @include adaptive(gap, 36, 36);
             }
 

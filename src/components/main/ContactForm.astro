@@ -1,13 +1,23 @@
 ---
 // src/components/main/ContactForm.astro
+import phoneIcon from '@/assets/icons/phone-accent.svg'
+import mailIcon from '@/assets/icons/mail-accent.svg'
+import telegramIcon from '@/assets/icons/telegram-accent-borderless.svg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
 ---
 
-<section class="contact-form-section">
-    <div class="contact-form-container">
-        <div class="contact-left">
-            <h2 class="contact-title">Открываем мир</h2>
+<section class="contact-form-section" class:list={{ '_agent': userType === 'agent' }}>
+    {userType === 'tourist' ? (
+        <div class="contact-form-container">
+            <div class="contact-left">
+                <h2 class="contact-title">Открываем мир</h2>
 
-            <div class="contact-info">
+                <div class="contact-info">
                 <div class="contact-item">
                     <span class="contact-label">Телефон</span>
                     <div class="contact-separator"></div>
@@ -100,6 +110,54 @@
             </form>
         </div>
     </div>
+    ) : (
+        <div class="contact-agent-container">
+            <h2 class="contact-title">Открываем мир</h2>
+
+            <div class="contact-agent-buttons">
+                <a href="tel:880020006578" class="contact-agent-btn">
+                    <img src={phoneIcon.src} alt="" />
+                    <span>8 800 2000 6578</span>
+                </a>
+
+                <a href="mailto:info@globus-tour.ru" class="contact-agent-btn">
+                    <img src={mailIcon.src} alt="" />
+                    <span>info@globus-tour.ru</span>
+                </a>
+
+                <a href="#" class="contact-agent-btn">
+                    <img src={telegramIcon.src} alt="" />
+                    <span>Группа в ТГ</span>
+                </a>
+
+                <form class="newsletter-form">
+                    <input
+                        type="email"
+                        id="newsletter-email-agent"
+                        name="email"
+                        placeholder="Подпишись на новости"
+                        class="newsletter-input"
+                        aria-label="Email для подписки"
+                        autocomplete="email"
+                    />
+                    <button type="submit" class="newsletter-btn" aria-label="Подписаться">
+                        <svg
+                            width="39"
+                            height="32"
+                            viewBox="0 0 39 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
+                                stroke="white"
+                                stroke-width="2"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    )}
 </section>
 
 <style lang="scss" is:global>
@@ -410,6 +468,78 @@
             @include adaptive(height, 60, 60);
             @include button-default;
             align-self: flex-start;
+        }
+    }
+
+    // Стили для версии агента
+    .contact-form-section._agent {
+        .contact-agent-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include adaptive(gap, 58, 50);
+        }
+
+        .contact-title {
+            color: $color-main;
+        }
+
+        .contact-agent-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            @include adaptive(gap, 40, 28);
+            width: 100%;
+
+            @include mobile {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        .contact-agent-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include adaptive(gap, 20, 15);
+            @include adaptive(padding-left, 40, 30);
+            @include adaptive(padding-right, 40, 30);
+            @include adaptive(padding-top, 12, 13);
+            @include adaptive(padding-bottom, 12, 13);
+            border: 1px solid $color-accent;
+            border-radius: 50px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            img, svg {
+                flex-shrink: 0;
+                @include adaptive(width, 34, 36);
+                @include adaptive(height, 34, 36);
+            }
+
+            span {
+                @include font-circe-regular;
+                @include adaptive(font-size, 24, 18);
+                line-height: 1.2;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: $color-accent;
+                white-space: nowrap;
+            }
+
+            &:hover {
+                background-color: rgba($color-accent, 0.1);
+            }
+        }
+
+        .newsletter-form {
+            @include desktop {
+                @include adaptive(width, 416, 416);
+            }
         }
     }
 </style>

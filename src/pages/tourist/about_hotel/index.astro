@@ -87,7 +87,7 @@ const gallery = [
 const galleryPreview = gallery.slice(0, 4)
 ---
 
-<Layout title="GRAND PARK KODHIPPARU 5* - Глобус Тур">
+<Layout title="GRAND PARK KODHIPPARU 5* - Глобус Тур" userType="tourist">
     <section class="hero-section about-hotel-hero">
         <picture class="hero-bg _overlay-darker">
             <source media="(max-width: 480px)" srcset={heroMobile.src} />
@@ -97,7 +97,7 @@ const galleryPreview = gallery.slice(0, 4)
         <HeroNav
             items={[
                 { label: 'Главная' },
-                { label: 'Лучшие отели мира', href: `${base}turist/best_hotels` },
+                { label: 'Лучшие отели мира', href: `${base}tourist/best_hotels` },
                 { label: 'GRAND PARK KODHIPPARU 5*' },
             ]}
         />

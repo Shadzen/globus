@@ -1,6 +1,12 @@
 ---
 // src/components/Footer.astro
 import Logo from './Logo.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
 ---
 
 <footer>
@@ -13,6 +19,9 @@ import Logo from './Logo.astro'
                     <a href="#">О нас</a>
                     <a href="#">Поиск туров</a>
                     <a href="#">Авиабилеты</a>
+                    {userType === 'agent' && (
+                        <a href="#">Документы</a>
+                    )}
                 </nav>
             </div>
 
@@ -23,19 +32,37 @@ import Logo from './Logo.astro'
                     <a href="#">Активный отдых</a>
                     <a href="#">Мероприятия</a>
                     <a href="#">Консьерж-сервис</a>
+                    {userType === 'agent' && (
+                        <>
+                            <a href="#">Страны</a>
+                            <a href="#">Рекламные туры</a>
+                        </>
+                    )}
                 </nav>
             </div>
 
             <div class="footer-column">
                 <h3 class="footer-title">Полезное</h3>
                 <nav class="footer-nav">
-                    <a href="#">Визы</a>
-                    <a href="#">Страхование</a>
+                    {userType === 'tourist' ? (
+                        <>
+                            <a href="#">Визы</a>
+                            <a href="#">Страхование</a>
+                        </>
+                    ) : (
+                        <>
+                            <a href="#">Бонусная программа</a>
+                            <a href="#">Selfie travel</a>
+                            <a href="#">Обучение</a>
+                            <a href="#">Партнерам</a>
+                            <a href="#">Финансовые гарантии</a>
+                        </>
+                    )}
                 </nav>
             </div>
 
             <div class="footer-column">
-                <Logo color="black" size="small" />
+                <Logo color="black" size="small" userType={userType} />
                 <button
                     class="scroll-top-btn"
                     onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
