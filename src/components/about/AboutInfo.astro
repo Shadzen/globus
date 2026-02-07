@@ -1,0 +1,357 @@
+---
+// src/components/about/AboutInfo.astro
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import aboutBig1 from '@/assets/images/about/about-grid-big-1.jpg'
+import aboutBig2 from '@/assets/images/about/about-grid-big-2.jpg'
+import aboutBig3 from '@/assets/images/about/about-grid-big-3.jpg'
+import teamMember1 from '@/assets/images/about/about-grid-small-1.jpg'
+import teamMember2 from '@/assets/images/about/about-grid-small-2.jpg'
+import teamMember3 from '@/assets/images/about/about-grid-small-3.jpg'
+import teamMember4 from '@/assets/images/about/about-grid-small-4.jpg'
+import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
+
+interface InfoCard {
+    id: number
+    title: string
+    description: string
+    image: ImageMetadata
+}
+
+interface TeamMember {
+    id: number
+    name: string
+    position: string
+    image: ImageMetadata
+}
+
+const topCards: InfoCard[] = [
+    {
+        id: 1,
+        title: '30 лет опыта — тысячи открытых горизонтов',
+        description:
+            'Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием',
+        image: aboutBig1,
+    },
+    {
+        id: 2,
+        title: 'Всегда в курсе последних<br />новостей в мире путешествий',
+        description:
+            'Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием',
+        image: aboutBig2,
+    },
+    {
+        id: 3,
+        title: 'Мы ищем маршруты,<br />которые вдохновляют',
+        description:
+            'Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием',
+        image: aboutBig3,
+    },
+]
+
+const teamMembers: TeamMember[] = [
+    {
+        id: 1,
+        name: 'Марина Васильева',
+        position: 'CEO',
+        image: teamMember1,
+    },
+    {
+        id: 2,
+        name: 'Марина Васильева',
+        position: 'Руководитель отдела продаж',
+        image: teamMember2,
+    },
+    {
+        id: 3,
+        name: 'Марина Васильева',
+        position: 'эксперт по семейному туризму',
+        image: teamMember3,
+    },
+    {
+        id: 4,
+        name: 'Марина Васильева',
+        position: 'эксперт по внутреннему туризму',
+        image: teamMember4,
+    },
+    {
+        id: 5,
+        name: 'Марина Васильева',
+        position: 'CEO',
+        image: teamMember1,
+    },
+    {
+        id: 6,
+        name: 'Марина Васильева',
+        position: 'Руководитель отдела продаж',
+        image: teamMember2,
+    },
+]
+---
+
+<section class="about-info">
+    <div class="about-info-container">
+        <div class="info-top-grid">
+            {
+                topCards.map((card, index) => (
+                    <div class:list={['info-card', `info-card-${index + 1}`]}>
+                        <span class="card-image">
+                            <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
+                        </span>
+                        <h3 class="card-title" set:html={card.title} />
+                        {index !== 2 && <p class="card-description" set:html={card.description} />}
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="team-section">
+            <div class="team-background">
+                <h2 class="team-title">команда</h2>
+                <SwiperNavButtons containerClass="team-nav" />
+            </div>
+
+            <div class="team-grid-wrapper swiper">
+                <div class="team-grid swiper-wrapper">
+                    {
+                        teamMembers.map((member) => (
+                            <div class="team-card swiper-slide">
+                                <span class="team-image">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        loading="lazy"
+                                        quality={100}
+                                    />
+                                </span>
+                                <span class="team-content">
+                                    <span class="team-position">{member.position}</span>
+                                    <h3 class="team-name" set:html={member.name} />
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .about-info {
+        @include adaptive(margin-top, 110, 65);
+
+        .about-info-container {
+            position: relative;
+            width: 100%;
+            @include flex-center;
+            flex-direction: column;
+            @include adaptive(gap, 72, 40);
+        }
+
+        .info-top-grid {
+            @include side-paddings;
+            position: relative;
+            width: 100%;
+            display: flex;
+            @include adaptive(column-gap, 84, 15);
+            flex-wrap: wrap;
+            align-items: flex-start;
+            z-index: 10;
+
+            @include mobile {
+                flex-direction: column;
+                column-gap: 0;
+                @include adaptive(row-gap, 50, 38);
+            }
+        }
+
+        .info-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            white-space: normal;
+            flex-shrink: 0;
+
+            &.info-card-1 {
+                width: 54%;
+
+                .card-description {
+                    @include desktop {
+                        text-align: right;
+                        @include adaptive(padding-right, 62, 2);
+                    }
+                }
+            }
+
+            &.info-card-2 {
+                width: 41.1%;
+                @include desktop {
+                    @include adaptive(margin-top, 148, 2);
+                    .card-description {
+                        @include adaptive(padding-left, 212, 2);
+                        @include adaptive(padding-right, 114, 2);
+                    }
+                }
+            }
+
+            &.info-card-3 {
+                width: 38.1%;
+
+                @include desktop {
+                    @include adaptive(margin-top, -130, 2);
+                    @include adaptive(margin-left, 274, 2);
+                }
+
+                .card-title {
+                    color: $color-main;
+                }
+            }
+
+            @include mobile {
+                &.info-card-1,
+                &.info-card-2,
+                &.info-card-3 {
+                    width: 100%;
+                }
+            }
+        }
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 26);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-alternate;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-top, 34, 17);
+        }
+
+        .card-description {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            color: #667c89;
+            margin: 0;
+            @include adaptive(margin-top, 12, 12);
+        }
+
+        .team-section {
+            position: relative;
+            width: 100%;
+            @include adaptive(margin-top, -280, -280);
+            overflow: hidden;
+            @include adaptive(padding-bottom, 80, 80);
+        }
+
+        .team-background {
+            position: relative;
+            width: 100%;
+            @include adaptive(height, 760, 900);
+            background: $color-alternate;
+            @include side-paddings;
+            @include flex-center;
+
+            @include mobile {
+                @include adaptive(padding-bottom, 2, 280);
+            }
+        }
+
+        .team-title {
+            color: $color-main;
+            flex: 1;
+        }
+
+        .team-nav {
+            @include center-y;
+            @include adaptive(right, 100, 15);
+        }
+
+        .team-grid-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            z-index: 10;
+            @include adaptive(margin-top, -292, -550);
+        }
+
+        .team-grid {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .team-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            @include adaptive(gap, 22, 20);
+            @include adaptive(max-width, 418, 262);
+        }
+
+        .team-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            @include adaptive(height, 461, 290);
+        }
+
+        .team-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 22, 20);
+        }
+
+        .team-position {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 18);
+            line-height: 1.6;
+            color: #667c89;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 1.6);
+            // font-weight: 400;
+
+            @include mobile {
+                @include adaptive(min-height, 58, 58);
+            }
+        }
+
+        .team-name {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 26);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-alternate;
+            text-transform: uppercase;
+            margin: 0;
+            width: 50%;
+
+            @include mobile {
+                color: $color-main;
+            }
+        }
+    }
+</style>

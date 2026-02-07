@@ -1,0 +1,185 @@
+---
+// src/components/about/AboutStats.astro
+
+interface Stat {
+    id: number
+    number: string
+    description: string
+}
+
+const stats: Stat[] = [
+    {
+        id: 1,
+        number: '500 000+',
+        description: 'довольных туристов',
+    },
+    {
+        id: 2,
+        number: '30 лет',
+        description: 'на рынке',
+    },
+    {
+        id: 3,
+        number: '25+',
+        description: 'сотрудников',
+    },
+    {
+        id: 4,
+        number: '98',
+        description: 'доступных стран',
+    },
+]
+
+const mainDescription = `мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием Доверили нам свои впечатления –и мы сделали их путешествия по-настоящему незабываемыми`
+---
+
+<section class="about-stats">
+    <div class="about-stats-container">
+        <div class="stats-main">
+            <span class="stats-large-number" aria-hidden="true">98</span>
+            <h2 class="stats-title">доступных<br />стран</h2>
+        </div>
+
+        <div class="stats-content">
+            <p class="stats-description">{mainDescription}</p>
+            <p class="stats-description">{mainDescription}</p>
+
+            <div class="stats-grid">
+                {
+                    stats.map((stat) => (
+                        <div class:list={['stat-item', { '_mobile-only': stat.id === 4 }]}>
+                            <span class="stat-number">{stat.number}</span>
+                            <p class="stat-description">{stat.description}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .about-stats {
+        @include adaptive(margin-top, 120, 60);
+
+        .about-stats-container {
+            position: relative;
+            width: 100%;
+            @include side-paddings;
+            display: flex;
+            @include adaptive(gap, 262, 40);
+            align-items: flex-start;
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .stats-main {
+            position: relative;
+            flex-shrink: 0;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .stats-large-number {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 362, 200);
+            font-weight: 300;
+            line-height: 1;
+            color: $color-accent;
+            text-transform: uppercase;
+        }
+
+        .stats-title {
+            text-align: left;
+        }
+
+        .stats-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+            flex: 1;
+        }
+
+        .stats-description {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+            opacity: 0.6;
+            width: 85%;
+
+            @include mobile {
+                width: 100%;
+                order: 2;
+            }
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            @include adaptive(gap, 60, 30);
+            @include adaptive(margin-top, 110, 20);
+            width: 85%;
+
+            @include mobile {
+                width: 100%;
+                order: 1;
+                margin-top: 0;
+                @include adaptive(margin-bottom, 30, 30);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 14, 4);
+
+            &._mobile-only {
+                display: none;
+
+                @include mobile {
+                    display: flex;
+                }
+            }
+
+            @include mobile {
+                min-width: 33%;
+                &:nth-child(1) {
+                    order: 1;
+                }
+                &:nth-child(2) {
+                    order: 3;
+                }
+                &:nth-child(3) {
+                    order: 2;
+                }
+                &:nth-child(4) {
+                    order: 4;
+                }
+            }
+        }
+
+        .stat-number {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 74, 59);
+            font-weight: 300;
+            line-height: 1;
+            color: $color-accent;
+            text-transform: uppercase;
+        }
+
+        .stat-description {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+            opacity: 0.6;
+        }
+    }
+</style>

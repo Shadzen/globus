@@ -127,8 +127,19 @@
     transform: translateY(-50%);
 }
 
+@mixin center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 @mixin font-circe-regular {
     font-family: 'circe_regular', Arial, sans-serif;
+}
+
+@mixin font-circe-light {
+    font-family: 'circe_regular', Arial, sans-serif;
+    font-weight: 300;
 }
 
 @mixin font-kudry-classic {
