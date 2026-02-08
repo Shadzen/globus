@@ -1,0 +1,199 @@
+---
+import photo3 from '@/assets/images/news_type_three/news-type-three-photo-3.jpg'
+
+interface Hotel {
+    name: string
+    price: string
+    image: string
+    badge: string
+}
+
+const hotels: Hotel[] = [
+    {
+        name: 'ATLANTIS THE PALM DUBAI 5*',
+        price: 'от 366 300 руб/чел',
+        image: photo3.src,
+        badge: 'BB',
+    },
+    {
+        name: 'ATLANTIS THE ROYAL 5*',
+        price: 'от 616 600 руб/чел',
+        image: photo3.src,
+        badge: 'BB',
+    },
+]
+---
+
+<section class="news-type-three-hotels-section">
+    <div class="news-type-three-hotels-container">
+        <h2 class="hotels-main-title">Стоимость проживания на 7 ночей с 28.12:</h2>
+
+        <div class="hotels-grid">
+            {hotels.map((hotel) => (
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src={hotel.image} alt={hotel.name} loading="lazy" decoding="async" />
+                        <div class="hotel-badge">{hotel.badge}</div>
+                    </div>
+                    <h3 class="hotel-name">{hotel.name}</h3>
+                    <p class="hotel-price">{hotel.price}</p>
+                    <button class="btn-booking">Забронировать</button>
+                </div>
+            ))}
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="info-grid">
+            <div class="info-item">
+                <h3 class="info-title">В стоимость тура включено:</h3>
+                <p class="info-text">проживание с завтраками</p>
+            </div>
+            <div class="info-item">
+                <h3 class="info-title">Дополнительно оплачивается:</h3>
+                <p class="info-text">перелет в Дубай, билеты на концерт с ужином и трансфер аэропорт-отель-аэропорт.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-type-three-hotels-section {
+        @include adaptive(margin-top, 100, 50);
+
+        .news-type-three-hotels-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .hotels-main-title {
+            @include font-kudry-sans;
+            color: $color-alternate;
+            @include adaptive(font-size, 32, 24);
+            line-height: 1.2;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 50, 30);
+        }
+
+        .hotels-grid {
+            display: flex;
+            @include adaptive(gap, 41, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .hotel-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-image {
+            position: relative;
+            // @include adaptive(border-radius, 20, 15);
+            overflow: hidden;
+            @include adaptive(margin-bottom, 30, 20);
+            @include adaptive(height, 280, 200);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .hotel-badge {
+            position: absolute;
+            @include adaptive(left, 28, 20);
+            @include adaptive(bottom, 20, 15);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #CCA870;
+            border-radius: 500px;
+            @include adaptive(padding-top, 10, 8);
+            @include adaptive(padding-bottom, 10, 8);
+            @include adaptive(padding-left, 40, 30);
+            @include adaptive(padding-right, 40, 30);
+            @include font-circe-regular;
+            color: #FFFDF8;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.21;
+        }
+
+        .hotel-name {
+            @include font-kudry-sans;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 10, 8);
+        }
+
+        .hotel-price {
+            @include font-circe-light;
+            color: #CCA870;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            margin: 0;
+            @include adaptive(margin-bottom, 20, 15);
+        }
+
+        .btn-booking {
+            @include button-default;
+            @include adaptive(padding-top, 18, 14);
+            @include adaptive(padding-bottom, 18, 14);
+            @include adaptive(padding-left, 60, 40);
+            @include adaptive(padding-right, 60, 40);
+            @include adaptive(font-size, 16, 14);
+            white-space: nowrap;
+            width: fit-content;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 1px solid #CCA870;
+            @include adaptive(margin-top, 60, 40);
+            @include adaptive(margin-bottom, 40, 30);
+        }
+
+        .info-grid {
+            display: flex;
+            @include adaptive(gap, 41, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .info-item {
+            flex: 1;
+        }
+
+        .info-title {
+            @include font-kudry-sans;
+            color: #CCA870;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 10, 8);
+        }
+
+        .info-text {
+            @include font-circe-light;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            margin: 0;
+        }
+    }
+</style>

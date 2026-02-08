@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NewsTypeThreeHero from '@/components/news_type_three/NewsTypeThreeHero.astro'
+import NewsTypeThreeInfo from '@/components/news_type_three/NewsTypeThreeInfo.astro'
+import NewsTypeThreePricing from '@/components/news_type_three/NewsTypeThreePricing.astro'
+import NewsTypeThreeHotels from '@/components/news_type_three/NewsTypeThreeHotels.astro'
+import ContactCTA from '@/components/ContactCTA.astro'
+---
+
+<Layout title="Новости Тип 3 - Прототип" userType="tourist" heroTextColor="dark">
+    <NewsTypeThreeHero userType="tourist" />
+    <NewsTypeThreeInfo userType="tourist" />
+    <NewsTypeThreePricing userType="tourist" />
+    <NewsTypeThreeHotels userType="tourist" />
+    <ContactCTA title="Мы с удовольствием расскажем вам<br />о туре подробнее, вы можете:" />
+</Layout>

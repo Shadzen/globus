@@ -1,0 +1,81 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/news_type_three/hero-1.jpg'
+import heroMobile from '@/assets/images/news_type_three/hero-1-mobile.jpg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section news-type-three-hero">
+    <picture class="hero-bg">
+        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Глобус-News', href: `${base}${userType}/news/` },
+        { label: 'Новый Год в Дубае' },
+    ]} textColor="dark" />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Новый Год в Дубае – Концерт легендарной группы Maroon 5!</h2>
+        <p class="hero-subtitle">Друзья, приглашаем встретить Новый Год в Дубае и с радостью анонсируем концерт группы Maroon 5 -
+            31 декабря в отелях Atlantis The Royalи Atlantis The Palm!</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-type-three-hero {
+        @include adaptive(height, 1050, 776);
+        @include adaptive(padding-top, 423, 518);
+
+        .hero-bg {
+            @include adaptive(height, 360, 231);
+            @include adaptive(width, 1720, 450);
+            bottom: 0;
+            @include adaptive(left, 100, 15);
+
+            @include desktop {
+                top: auto;
+            }
+
+            @include mobile {
+                @include adaptive(top, 250, 250);
+            }
+        }
+
+        .hero-content {
+            z-index: 2;
+            flex-wrap: wrap;
+            flex-direction: row;
+            flex: 0;
+        }
+
+        .hero-title {
+            color: $color-alternate;
+            text-align: left;
+
+            @include desktop {
+                width: 50%;
+            }
+        }
+
+        .hero-subtitle {
+            color: $color-alternate;
+            @include adaptive(padding-top, 2, 16);
+            @include adaptive(padding-right, 80, 2);
+
+            @include desktop {
+                width: 33%;
+                margin-left: auto;
+            }
+        }
+    }
+</style>

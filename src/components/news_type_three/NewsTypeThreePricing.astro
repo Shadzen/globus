@@ -1,0 +1,261 @@
+---
+interface PriceCategory {
+    title: string
+    subtitle: string
+    description: string
+    prices: {
+        adult: string
+        adultNote: string
+        child?: string
+        childNote?: string
+        infant?: string
+        infantNote?: string
+    }
+}
+
+const categories: PriceCategory[] = [
+    {
+        title: 'Премиум-места',
+        subtitle: '(PREMIUM SEATING)',
+        description: 'Вас встретят шампанским и канапе, после чего вы сможете танцевать всю ночь напролет под живую музыку в исполнении оркестра из 30 человек и наслаждаться непрерывными развлечениями. Премиум-места включают в себя полный доступ к гала-ужину с богатым шведским столом, предлагающим изысканные деликатесы от омаров до икры и все те удовольствия, которые вы только пожелаете.',
+        prices: {
+            adult: 'от 1960 $',
+            adultNote: '(от 14 лет и старше)',
+            child: 'от 1360 $',
+            childNote: '(для детей от 4 до 13 лет)',
+            infant: 'Бесплатно',
+            infantNote: '(для детей до 3 лет)',
+        },
+    },
+    {
+        title: 'Красный круг',
+        subtitle: '(ROUGE CIRCLE)',
+        description: 'Насладитесь эксклюзивными местами в Rouge Circle, откуда открывается прекрасный вид всего в нескольких шагах от сцены. Начните с приветственного бокала шампанского и канапе, а затем насладитесь неограниченным доступом к элегантному банкету "шведский стол" на гала-ужине.',
+        prices: {
+            adult: 'от 2560 $',
+            adultNote: '(14 лет и старше)',
+            child: 'от 1660 $',
+            childNote: '(для детей от 4 до 13 лет)',
+            infant: 'Бесплатно',
+            infantNote: '(для детей до 3 лет)',
+        },
+    },
+    {
+        title: 'Золотой круг',
+        subtitle: '(GOLDEN CIRCLE)',
+        description: 'Окунитесь в Золотой круг, чтобы получить самые эксклюзивные впечатления, с прекрасными видами прямо перед сценой. Насладитесь персональной коробкой с икорной, неограниченным обслуживанием белыми трюфелями и премиальными напитками в течение всего вечера. В ваш билет также входит полный доступ к роскошному фуршету Гала-ужина.',
+        prices: {
+            adult: 'от 3770 $',
+            adultNote: '(14 лет и старше)',
+            child: 'от 2500 $',
+            childNote: '(для детей от 4 до 13 лет)',
+        },
+    },
+]
+---
+
+<section class="news-type-three-pricing-section">
+    <div class="news-type-three-pricing-container">
+        {categories.map((category, index) => (
+            <>
+                <div class="pricing-category">
+                    <div class="category-header">
+                        <div class="category-titles">
+                            <h3 class="category-title">{category.title}</h3>
+                            <p class="category-subtitle">{category.subtitle}</p>
+                        </div>
+                        <button class="btn-booking">Забронировать</button>
+                    </div>
+
+                    <div class="category-content">
+                        <p class="category-description">{category.description}</p>
+                        
+                        <div class="category-prices">
+                            <div class="price-badge">
+                                <p class="price-main">{category.prices.adult}</p>
+                                <p class="price-note">{category.prices.adultNote}</p>
+                            </div>
+                            
+                            {category.prices.child && (
+                                <div class="price-badge">
+                                    <p class="price-main">{category.prices.child}</p>
+                                    <p class="price-note">{category.prices.childNote}</p>
+                                </div>
+                            )}
+                            
+                            {category.prices.infant && (
+                                <div class="price-badge">
+                                    <p class="price-main">{category.prices.infant}</p>
+                                    <p class="price-note">{category.prices.infantNote}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {index < categories.length - 1 && <hr class="category-divider" />}
+            </>
+        ))}
+
+        <hr class="final-divider" />
+
+        <p class="pricing-note">
+            Стоимость билетов указана для гостей ATLANTIS THE PALM DUBAI 5* ATLANTIS THE ROYAL 5*, проживающих в отеле в новогодний период. Желающие посетить концерт без проживания в отеле, могут приобрести билеты на концерт отдельно (стоимость по запросу).
+        </p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-type-three-pricing-section {
+        @include adaptive(margin-top, 100, 50);
+
+        .news-type-three-pricing-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .pricing-category {
+            display: flex;
+            @include adaptive(gap, 47, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .category-header {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+
+            @include desktop {
+                flex: 0 0 auto;
+                min-width: 40%;
+            }
+        }
+
+        .category-titles {
+            flex: 1;
+        }
+
+        .category-title {
+            @include font-kudry-sans;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 5, 3);
+        }
+
+        .category-subtitle {
+            @include font-circe-regular;
+            color: #667C89;
+            opacity: 0.6;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            letter-spacing: 3.2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .btn-booking {
+            @include button-default;
+            @include adaptive(padding-top, 18, 14);
+            @include adaptive(padding-bottom, 18, 14);
+            @include adaptive(padding-left, 60, 40);
+            @include adaptive(padding-right, 60, 40);
+            @include adaptive(font-size, 16, 14);
+            white-space: nowrap;
+            width: fit-content;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .category-content {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+            flex: 1;
+        }
+
+        .category-description {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .category-prices {
+            display: flex;
+            @include adaptive(gap, 20, 15);
+            flex-wrap: wrap;
+        }
+
+        .price-badge {
+            border: 2px solid #CCA870;
+            border-radius: 390px;
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            @include adaptive(min-width, 273, 200);
+
+            @include mobile {
+                flex: 1;
+                min-width: calc(50% - 7.5px);
+            }
+        }
+
+        .price-main {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .price-note {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 14, 12);
+            line-height: 1.2;
+            margin: 0;
+            @include adaptive(margin-top, 2, 2);
+        }
+
+        .category-divider {
+            border: none;
+            border-top: 1px solid #CCA870;
+            @include adaptive(margin-top, 50, 30);
+            @include adaptive(margin-bottom, 50, 30);
+        }
+
+        .final-divider {
+            border: none;
+            border-top: 1px solid #CCA870;
+            @include adaptive(margin-top, 60, 40);
+            @include adaptive(margin-bottom, 40, 30);
+        }
+
+        .pricing-note {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            text-align: center;
+            margin: 0;
+            max-width: 831px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
