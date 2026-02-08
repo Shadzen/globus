@@ -10,6 +10,7 @@ import { initHotelGallery } from './about_hotel/hotelGallery'
 import { initBestHotels } from './best_hotels/bestHotels'
 import { initAboutInfo } from './about/aboutInfo'
 import { initAboutTimeline } from './about/aboutTimeline'
+import { initAboutMap } from './about/aboutMap'
 
 // Запуск при загрузке страницы
 const initAll = () => {
@@ -23,6 +24,7 @@ const initAll = () => {
     initBestHotels()
     initAboutInfo()
     initAboutTimeline()
+    initAboutMap()
 }
 
 if (document.readyState === 'loading') {

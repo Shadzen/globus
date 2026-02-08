@@ -1,8 +1,20 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import AboutHero from '@/components/about/AboutHero.astro'
+import AboutInfo from '@/components/about/AboutInfo.astro'
+import AboutStats from '@/components/about/AboutStats.astro'
+import AboutTimeline from '@/components/about/AboutTimeline.astro'
+import AboutMap from '@/components/about/AboutMap.astro'
+import AboutContacts from '@/components/about/AboutContacts.astro'
+import ContactForm from '@/components/main/ContactForm.astro'
 ---
 
 <Layout title="О нас - Глобус Тур" userType="agent">
     <AboutHero userType="agent" />
+    <AboutInfo />
+    <AboutStats />
+    <AboutTimeline />
+    <AboutMap />
+    <AboutContacts userType="agent" />
+    <ContactForm userType="agent" />
 </Layout>

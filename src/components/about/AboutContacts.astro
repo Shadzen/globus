@@ -1,0 +1,403 @@
+---
+// src/components/about/AboutContacts.astro
+import type { ImageMetadata } from 'astro'
+import contactPhoto1 from '@/assets/images/about/contact-photo-1.jpg'
+
+interface ContactPerson {
+    name: string
+    position: string
+    email: string
+    phone: string
+    image: ImageMetadata
+}
+
+interface ContactTab {
+    id: string
+    label: string
+    people: ContactPerson[]
+}
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+
+// Все менеджеры
+const allManagers: ContactPerson[] = [
+    {
+        name: 'Лавренчук Олеся',
+        position: 'Заместитель директора по работе с клиентами',
+        email: 'globus1@globus-tour.ru',
+        phone: '+79130637740',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Маковецкая Ульяна',
+        position: 'Менеджер по туризму',
+        email: 'globus40@globus-tour.ru',
+        phone: '+79137907620',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Курлович Снежана',
+        position: 'Менеджер по туризму',
+        email: 'globus38@globus-tour.ru',
+        phone: '+79130637754',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Чагина Юлия',
+        position: 'Руководитель отдела корпоративного обслуживания',
+        email: 'globus21@globus-tour.ru',
+        phone: '+79130013959',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Анипер Елизавета',
+        position: 'Менеджер по туризму',
+        email: 'globus2@globus-tour.ru',
+        phone: '+79130637719',
+        image: contactPhoto1,
+    },
+]
+
+const tabs: ContactTab[] = [
+    {
+        id: 'managers',
+        label: 'Менеджеры',
+        people: userType === 'agent' ? allManagers.slice(0, 3) : allManagers,
+    },
+    {
+        id: 'visa',
+        label: 'Визовый отдел',
+        people: [
+            {
+                name: 'Иванова Мария',
+                position: 'Специалист визового отдела',
+                email: 'visa@globus-tour.ru',
+                phone: '+79130637700',
+                image: contactPhoto1,
+            },
+        ],
+    },
+    {
+        id: 'booking',
+        label: 'Отдел бронирования и продажи авиа билетов',
+        people: [
+            {
+                name: 'Петрова Анна',
+                position: 'Специалист по бронированию',
+                email: 'booking@globus-tour.ru',
+                phone: '+79130637701',
+                image: contactPhoto1,
+            },
+        ],
+    },
+    {
+        id: 'leadership',
+        label: userType === 'agent' ? 'Руководители' : 'Администраторы',
+        people: [
+            {
+                name: 'Сидорова Екатерина',
+                position: userType === 'agent' ? 'Руководитель' : 'Администратор',
+                email: 'admin@globus-tour.ru',
+                phone: '+79130637702',
+                image: contactPhoto1,
+            },
+        ],
+    },
+]
+---
+
+<section class="about-contacts">
+    <div class="about-contacts-container">
+        <h2 class="about-contacts-title">Контакты</h2>
+
+        <div class="contacts-tabs-wrapper">
+            <!-- Radio inputs (скрытые) -->
+            {tabs.map((tab, i) => (
+                <input
+                    type="radio"
+                    name="contacts-tab"
+                    id={`contacts-tab-${tab.id}`}
+                    class="contacts-tab-input"
+                    checked={i === 0}
+                />
+            ))}
+
+            <!-- Табы и контент -->
+            {tabs.map((tab, i) => (
+                <>
+                    <label
+                        for={`contacts-tab-${tab.id}`}
+                        class="contacts-tab-label"
+                        data-order={i + 1}
+                    >
+                        {tab.label}
+                    </label>
+                    <div class="contacts-tab-content" data-tab={tab.id}>
+                        {tab.people.length > 0 ? (
+                            <div class="contacts-grid">
+                                {tab.people.map((person) => (
+                                    <div class="contact-card">
+                                        <div class="contact-avatar">
+                                            <img
+                                                src={person.image.src}
+                                                alt={person.name}
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <div class="contact-info">
+                                            <div class="contact-info-top">
+                                                <h3 class="contact-name">{person.name}</h3>
+                                                <p class="contact-position">{person.position}</p>
+                                            </div>
+                                            <div class="contact-links">
+                                                <a
+                                                    href={`mailto:${person.email}`}
+                                                    class="contact-link"
+                                                >
+                                                    {person.email}
+                                                </a>
+                                                <a
+                                                    href={`tel:${person.phone}`}
+                                                    class="contact-link"
+                                                >
+                                                    {person.phone}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p class="contacts-placeholder">Информация скоро появится</p>
+                        )}
+                    </div>
+                </>
+            ))}
+        </div>
+
+        <hr class="contacts-divider" />
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .about-contacts {
+        background: $color-alternate;
+        @include adaptive(padding-top, 80, 40);
+        // @include adaptive(padding-bottom, 80, 60);
+
+        ~ .contact-form-section {
+            margin-top: 0;
+        }
+
+        .about-contacts-container {
+            @include side-paddings;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-contacts-title {
+            text-align: left;
+            color: #fff;
+        }
+
+        // ─── Табы ───
+
+        .contacts-tabs-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            @include adaptive(gap, 6, 6);
+            @include adaptive(margin-top, 26, 28);
+
+            // Labels всегда идут первыми через order
+            .contacts-tab-label[data-order='1'] { order: 1; }
+            .contacts-tab-label[data-order='2'] { order: 2; }
+            .contacts-tab-label[data-order='3'] { order: 3; }
+            .contacts-tab-label[data-order='4'] { order: 4; }
+
+            .contacts-tab-content {
+                order: 100;
+                width: 100%;
+            }
+
+            @include mobile {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .contacts-tab-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .contacts-tab-label {
+            @include flex-center;
+            @include adaptive(height, 61, 64);
+            @include adaptive(padding-left, 48, 64);
+            @include adaptive(padding-right, 48, 64);
+            border-radius: 50px;
+            border: 1px solid $color-accent;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            @include font-circe-regular;
+            @include adaptive(font-size, 22, 18);
+            line-height: 1.2;
+            @include adaptive(letter-spacing, 2.2, 3.6);
+            text-transform: uppercase;
+            text-align: center;
+            color: $color-accent;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            &:hover {
+                background: rgba($color-accent, 0.1);
+            }
+        }
+
+        // Активные состояния — label
+        #contacts-tab-managers:checked ~ .contacts-tab-label[for='contacts-tab-managers'],
+        #contacts-tab-visa:checked ~ .contacts-tab-label[for='contacts-tab-visa'],
+        #contacts-tab-booking:checked ~ .contacts-tab-label[for='contacts-tab-booking'],
+        #contacts-tab-leadership:checked ~ .contacts-tab-label[for='contacts-tab-leadership'] {
+            background: $color-accent;
+            color: white;
+
+            &:hover {
+                background: $color-accent;
+                opacity: 0.9;
+            }
+        }
+
+        // Активные состояния — контент
+        #contacts-tab-managers:checked ~ .contacts-tab-content[data-tab='managers'],
+        #contacts-tab-visa:checked ~ .contacts-tab-content[data-tab='visa'],
+        #contacts-tab-booking:checked ~ .contacts-tab-content[data-tab='booking'],
+        #contacts-tab-leadership:checked ~ .contacts-tab-content[data-tab='leadership'] {
+            display: block;
+        }
+
+        .contacts-tab-content {
+            display: none;
+            @include adaptive(margin-top, 66, 40);
+        }
+
+        .contacts-placeholder {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-alternate;
+            opacity: 0.5;
+            text-align: center;
+            @include adaptive(padding, 80, 60);
+            width: 100%;
+        }
+
+        // ─── Сетка контактов ───
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptive(column-gap, 60, 30);
+            @include adaptive(row-gap, 80, 50);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-card {
+            display: flex;
+            @include adaptive(gap, 30, 24);
+        }
+
+        .contact-avatar {
+            @include adaptive(width, 115, 111);
+            @include adaptive(height, 115, 111);
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 24, 24);
+            flex: 1;
+        }
+
+        .contact-info-top {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-name {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 26);
+            font-weight: 300;
+            line-height: 1.2;
+            color: #cca770;
+            text-transform: uppercase;
+            margin: 0;
+            width: 50%;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .contact-position {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: #667c89;
+            margin: 0;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 5, 5);
+            margin-top: auto;
+        }
+
+        .contact-link {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-main;
+            text-decoration: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        // ─── Разделитель ───
+
+        .contacts-divider {
+            border: none;
+            border-top: 1px solid $color-accent;
+            @include adaptive(margin-top, 98, 60);
+            width: 100%;
+        }
+    }
+</style>

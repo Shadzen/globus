@@ -1,0 +1,106 @@
+---
+// src/components/about/AboutMap.astro
+---
+
+<section class="about-map">
+    <div class="about-map-container">
+        <div class="about-map-text">
+            <div class="about-map-block">
+                <h3 class="about-map-heading">Адрес</h3>
+                <p class="about-map-info">Новосибирск, ул. Советская, дом 64, оф. 403.</p>
+            </div>
+            <div class="about-map-block">
+                <h3 class="about-map-heading">График работы</h3>
+                <p class="about-map-info">
+                    Пн — Пт: 10:00 — 19:00<br />Суббота: 11:00 — 18:00
+                </p>
+            </div>
+        </div>
+        <div
+            class="about-map-image"
+            id="about-yandex-map"
+            data-lat="55.048513"
+            data-lng="82.911446"
+            data-zoom="16"
+            data-hint="Глобус-тур"
+            data-balloon="Новосибирск, ул. Советская, дом 64, оф. 403"
+            data-preset="islands#redDotIcon"
+        ></div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .about-map {
+        background: $color-alternate;
+        @include adaptive(padding-top, 80, 40);
+        @include adaptive(padding-bottom, 80, 60);
+
+        .about-map-container {
+            position: relative;
+            width: 100%;
+            @include side-paddings;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            @include mobile {
+                flex-direction: column;
+                @include adaptive(gap, 38, 38);
+            }
+        }
+
+        .about-map-text {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 106, 50);
+            @include adaptive(padding-top, 36, 2);
+            flex-shrink: 0;
+
+            @include mobile {
+                order: 2;
+                width: 100%;
+            }
+        }
+
+        .about-map-block {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 6, 20);
+        }
+
+        .about-map-heading {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 26);
+            font-weight: 300;
+            line-height: 1.2;
+            color: $color-main;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .about-map-info {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
+            color: #667c89;
+            width: 70%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+        }
+
+        .about-map-image {
+            @include adaptive(width, 1141, 450);
+            @include adaptive(height, 357, 230);
+            flex-shrink: 0;
+            overflow: hidden;
+
+            @include mobile {
+                order: 1;
+                width: 100%;
+            }
+        }
+    }
+</style>
