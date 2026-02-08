@@ -11,6 +11,7 @@ import { initBestHotels } from './best_hotels/bestHotels'
 import { initAboutInfo } from './about/aboutInfo'
 import { initAboutTimeline } from './about/aboutTimeline'
 import { initAboutMap } from './about/aboutMap'
+import { initNewsSlider } from './news/newsSlider'
 
 // Запуск при загрузке страницы
 const initAll = () => {
@@ -25,6 +26,7 @@ const initAll = () => {
     initAboutInfo()
     initAboutTimeline()
     initAboutMap()
+    initNewsSlider()
 }
 
 if (document.readyState === 'loading') {

@@ -8,11 +8,11 @@ import NewsSlider from '@/components/news/NewsSlider.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
 ---
 
-<Layout title="Новости - Прототип" userType="tourist" heroTextColor="dark">
-    <NewsHero userType="tourist" />
+<Layout title="Новости - Прототип" userType="agent" heroTextColor="dark">
+    <NewsHero userType="agent" />
     <NewsFilter />
-    <NewsGrid userType="tourist" />
-    <NewsPagination currentPage={1} totalPages={15} userType="tourist" />
-    <NewsSlider userType="tourist" />
-    <ContactForm userType="tourist" />
+    <NewsGrid userType="agent" />
+    <NewsPagination currentPage={1} totalPages={15} userType="agent" />
+    <NewsSlider userType="agent" />
+    <ContactForm userType="agent" />
 </Layout>

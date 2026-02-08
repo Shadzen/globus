@@ -1,0 +1,151 @@
+---
+interface Props {
+    currentPage?: number
+    totalPages?: number
+    userType?: 'tourist' | 'agent'
+}
+
+const { currentPage = 1, totalPages = 15, userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+
+// Генерация массива страниц для пагинации
+const generatePageNumbers = (current: number, total: number) => {
+    const pages: (number | string)[] = []
+
+    if (total <= 10) {
+        // Если страниц мало, показываем все
+        for (let i = 1; i <= total; i++) {
+            pages.push(i)
+        }
+    } else {
+        // Показываем первые 8 страниц
+        for (let i = 1; i <= 8; i++) {
+            pages.push(i)
+        }
+        pages.push('...')
+        // Показываем последние 4 страницы
+        for (let i = total - 3; i <= total; i++) {
+            pages.push(i)
+        }
+    }
+
+    return pages
+}
+
+const pageNumbers = generatePageNumbers(currentPage, totalPages)
+---
+
+<section class="news-pagination-section">
+    <div class="container">
+        <button class="load-more-btn" type="button"> Загрузить еще </button>
+
+        <nav class="pagination" aria-label="Навигация по страницам">
+            <ul class="pagination-list">
+                {
+                    pageNumbers.map((page) => (
+                        <li class="pagination-item">
+                            {typeof page === 'number' ?
+                                <a
+                                    href={`${base}${userType}/news/?page=${page}`}
+                                    class={`pagination-link ${page === currentPage ? 'active' : ''}`}
+                                    aria-label={`Страница ${page}`}
+                                    aria-current={page === currentPage ? 'page' : undefined}
+                                >
+                                    {page}
+                                </a>
+                            :   <span class="pagination-ellipsis">{page}</span>}
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-pagination-section {
+        @include adaptive(margin-top, 40, 20);
+
+        .container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include adaptive(gap, 60, 40);
+        }
+
+        .load-more-btn {
+            @include button-default;
+            @include adaptive(height, 60, 50);
+            @include adaptive(padding-left, 50, 32);
+            @include adaptive(padding-right, 50, 32);
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .pagination {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination-list {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 33, 20);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-link {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            @include adaptive(letter-spacing, 3.2, 2.8);
+            text-transform: uppercase;
+            color: #667c89;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            @include adaptive(width, 29, 29);
+            @include adaptive(height, 29, 29);
+            @include flex-center;
+            position: relative;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            letter-spacing: 0;
+
+            &:hover {
+                color: $color-alternate;
+            }
+
+            &.active {
+                color: $color-alternate;
+                border-color: $color-alternate;
+            }
+        }
+
+        .pagination-ellipsis {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            @include adaptive(letter-spacing, 3.2, 2.8);
+            text-transform: uppercase;
+            color: #667c89;
+            user-select: none;
+        }
+    }
+</style>

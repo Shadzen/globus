@@ -21,8 +21,10 @@ const base = import.meta.env.BASE_URL
     <HeroNav items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Глобус-News' }]} textColor="dark" />
 
     <div class="hero-content">
-        <h1 class="hero-title">Глобус-</h1>
-        <h1 class="hero-title">news</h1>
+        <h1 class="hero-title">
+            <span>Глобус-</span>
+            <span>news</span>
+        </h1>
         <p class="hero-subtitle">Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием</p>
     </div>
 </section>
@@ -30,7 +32,7 @@ const base = import.meta.env.BASE_URL
 <style lang="scss" is:global>
     .news-hero {
         @include adaptive(height, 1044, 700);
-        @include adaptive(padding-top, 502, 510);
+        @include adaptive(padding-top, 478, 510);
 
         .hero-bg {
             @include adaptive(height, 754, 231);
@@ -53,23 +55,31 @@ const base = import.meta.env.BASE_URL
             flex-wrap: wrap;
             flex-direction: row;
             flex: 0;
+
+            @include desktop {
+                width: 56%;
+            }
         }
 
         .hero-title {
             color: $color-alternate;
-            @include adaptive(padding-right, 60, 12);
-            @include adaptive(font-size, 110, 60);
+            // @include adaptive(padding-right, 60, 12);
+            @include adaptive(font-size, 120, 60);
 
             @include desktop {
-                line-height: 1;
+                line-height: 1.1;
 
-                &:nth-child(2) {
-                    @include adaptive(padding-left, 244, 2);
+                span:nth-child(1) {
+                    @include adaptive(padding-left, 110, 2);
+                }
+
+                span:nth-child(2) {
+                    @include adaptive(padding-left, 454, 2);
                 }
             }
 
             @include mobile {
-                line-height: 1.2;
+                display: flex;
             }
         }
 
@@ -82,8 +92,8 @@ const base = import.meta.env.BASE_URL
             @include adaptive(padding-top, 12, 16);
 
             @include desktop {
-                @include adaptive(padding-left, 248, 2);
-                width: 41%;
+                @include adaptive(padding-left, 146, 2);
+                width: 85%;
             }
         }
     }
