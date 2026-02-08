@@ -1,0 +1,18 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NewsTypeOneHero from '@/components/news_type_one/NewsTypeOneHero.astro'
+import NewsTypeOneSchedule from '@/components/news_type_one/NewsTypeOneSchedule.astro'
+import NewsTypeOneGallery from '@/components/news_type_one/NewsTypeOneGallery.astro'
+import NewsTypeOneTours from '@/components/news_type_one/NewsTypeOneTours.astro'
+import NewsTypeOneInfo from '@/components/news_type_one/NewsTypeOneInfo.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+---
+
+<Layout title="Новости Тип 1 - Прототип" userType="tourist" heroTextColor="dark">
+    <NewsTypeOneHero userType="tourist" />
+    <NewsTypeOneSchedule userType="tourist" />
+    <NewsTypeOneGallery userType="tourist" />
+    <NewsTypeOneTours userType="tourist" />
+    <NewsTypeOneInfo userType="tourist" />
+    <ContactsGrid standalone />
+</Layout>

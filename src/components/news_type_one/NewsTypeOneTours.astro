@@ -1,0 +1,169 @@
+---
+interface TourCard {
+    id: number
+    title: string
+    features: string[]
+    dates: string
+    price: string
+}
+
+const tours: TourCard[] = [
+    {
+        id: 1,
+        title: 'Эр-рияд + Аль-Ула',
+        features: ['Прямой рейс', '5 дней / 4 ночи', 'Из Москвы'],
+        dates: 'с 25.08.25 г по 23.03.26 г,\nпонедельник, среда, пятница',
+        price: 'от 300 000  руб/чел',
+    },
+    {
+        id: 2,
+        title: 'Эр-рияд + Аль-Ула',
+        features: ['Прямой рейс', '8 дней / 7 ночей', 'Из Москвы'],
+        dates: 'с 25.08.25 г по 23.03.26 г, ежедневно, кроме четверга и субботы',
+        price: 'от 412 000  руб/чел',
+    },
+]
+---
+
+<section class="news-tours-section">
+    <div class="news-tours-container">
+        {tours.map((tour, index) => (
+            <div class="tour-card">
+                <h2 class="tour-title">{tour.title}</h2>
+
+                <div class="tour-features">
+                    {tour.features.map((feature) => (
+                        <span class="tour-feature">{feature}</span>
+                    ))}
+                </div>
+
+                <div class="tour-details">
+                    <div class="tour-detail">
+                        <span class="detail-label">даты</span>
+                        <p class="detail-value">{tour.dates}</p>
+                    </div>
+
+                    <div class="tour-detail">
+                        <span class="detail-label">стоимость</span>
+                        <p class="detail-price">{tour.price}</p>
+                    </div>
+
+                    <button class="tour-btn" type="button">
+                        Найти
+                    </button>
+                </div>
+
+                {index === 0 && <div class="tour-divider"></div>}
+            </div>
+        ))}
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-tours-section {
+        @include adaptive(margin-top, 80, 50);
+
+        .news-tours-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 64, 40);
+        }
+
+        .tour-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 32, 24);
+        }
+
+        .tour-title {
+            text-align: left;
+        }
+
+        .tour-features {
+            display: flex;
+            flex-wrap: wrap;
+            @include adaptive(gap, 16, 12);
+        }
+
+        .tour-feature {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+            border: 2px solid $color-accent;
+            @include adaptive(padding-left, 45, 24);
+            @include adaptive(padding-right, 45, 24);
+            @include adaptive(padding-top, 11, 8);
+            @include adaptive(padding-bottom, 11, 8);
+            border-radius: 500px;
+            white-space: nowrap;
+        }
+
+        .tour-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            @include adaptive(gap, 40, 20);
+            align-items: flex-start;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tour-detail {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 18, 12);
+        }
+
+        .detail-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            color: $color-alternate;
+            opacity: 0.6;
+        }
+
+        .detail-value {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-alternate;
+            white-space: pre-line;
+            margin: 0;
+        }
+
+        .detail-price {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 22);
+            line-height: 1.2;
+            color: $color-accent;
+            margin: 0;
+        }
+
+        .tour-btn {
+            @include button-default;
+            @include adaptive(height, 60, 50);
+            @include adaptive(padding-left, 50, 32);
+            @include adaptive(padding-right, 50, 32);
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .tour-divider {
+            position: absolute;
+            left: 0;
+            right: 0;
+            @include adaptive(bottom, -32, -20);
+            height: 1px;
+            background-color: $color-alternate;
+        }
+    }
+</style>

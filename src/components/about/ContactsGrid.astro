@@ -1,6 +1,7 @@
 ---
 // src/components/about/ContactsGrid.astro
 import type { ImageMetadata } from 'astro'
+import contactPhoto1 from '@/assets/images/about/contact-photo-1.jpg'
 
 export interface ContactPerson {
     name: string
@@ -11,13 +12,39 @@ export interface ContactPerson {
 }
 
 interface Props {
-    people: ContactPerson[]
+    people?: ContactPerson[]
+    standalone?: boolean
 }
 
-const { people } = Astro.props
+// Дефолтные контакты
+const defaultPeople: ContactPerson[] = [
+    {
+        name: 'Лавренчук Олеся',
+        position: 'Заместитель директора по работе с клиентами',
+        email: 'globus1@globus-tour.ru',
+        phone: '+79130637740',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Маковецкая Ульяна',
+        position: 'Менеджер по туризму',
+        email: 'globus40@globus-tour.ru',
+        phone: '+79137907620',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Курлович Снежана',
+        position: 'Менеджер по туризму',
+        email: 'globus38@globus-tour.ru',
+        phone: '+79130637754',
+        image: contactPhoto1,
+    },
+]
+
+const { people = defaultPeople, standalone = false } = Astro.props
 ---
 
-<div class="contacts-grid">
+<div class:list={['contacts-grid', { '_standalone': standalone }]}>
     {
         people.map((person) => (
             <div class="contact-card">
@@ -51,6 +78,12 @@ const { people } = Astro.props
         grid-template-columns: repeat(3, 1fr);
         @include adaptive(column-gap, 60, 30);
         @include adaptive(row-gap, 80, 50);
+        background-color: $color-alternate;
+
+        &._standalone {
+            @include side-paddings;
+            @include adaptive(margin-top, 80, 40);
+        }
 
         @include mobile {
             grid-template-columns: 1fr;

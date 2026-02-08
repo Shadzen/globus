@@ -1,0 +1,90 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/news_type_one/hero-1.jpg'
+import heroMobile from '@/assets/images/news_type_one/hero-1-mobile.jpg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section news-hero">
+    <picture class="hero-bg">
+        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Туры', href: `${base}${userType}/tours/` },
+        { label: 'Саудовская Аравия: Туры на прямых рейсах из Москвы', href: `${base}${userType}/news_type_one/` },
+    ]} textColor="dark" />
+
+    <div class="hero-content">
+        <h2 class="hero-title">
+            Саудовская Аравия: Туры на прямых рейсах из Москвы
+        </h2>
+        <p class="hero-subtitle">Приглашаем отправиться в незабываемое путешествие по Саудовской Аравии — экскурсионные туры Аль-Ула+Эр-Рияд на прямых рейсах из Москвы.</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-hero {
+        @include adaptive(height, 894, 736);
+        @include adaptive(padding-top, 518, 518);
+
+        .hero-bg {
+            @include adaptive(height, 607, 231);
+            @include adaptive(width, 849, 450);
+            bottom: 0;
+            @include adaptive(right, 2, 15);
+            left: auto;
+
+            @include desktop {
+                top: auto;
+                right: 0;
+            }
+
+            @include mobile {
+                @include adaptive(top, 250, 250);
+            }
+        }
+
+        .hero-content {
+            z-index: 2;
+            flex-wrap: wrap;
+            flex-direction: row;
+            flex: 0;
+
+            @include desktop {
+                width: 52%;
+            }
+        }
+
+        .hero-title {
+            color: $color-alternate;
+            text-align: left;
+
+            @include mobile {
+                display: flex;
+            }
+        }
+
+        .hero-subtitle {
+            @include font-circe-regular;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+            @include adaptive(padding-top, 22, 16);
+
+            @include desktop {
+                width: 83%;
+            }
+        }
+    }
+</style>

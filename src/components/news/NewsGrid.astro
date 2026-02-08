@@ -30,7 +30,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Саудовская Аравия: Туры на прямых рейсах из Москвы',
-        slug: 'saudi-arabia-tours',
+        slug: 'news_type_one',
     },
     {
         id: 2,
@@ -38,7 +38,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Турция приглашает на бархатный сезон!',
-        slug: 'turkey-velvet-season',
+        slug: 'news_type_two',
     },
     {
         id: 3,
@@ -46,7 +46,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Турция приглашает на бархатный сезон!',
-        slug: 'turkey-velvet-season-2',
+        slug: 'news_type_three',
     },
     {
         id: 4,
@@ -54,7 +54,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Турция приглашает на бархатный сезон!',
-        slug: 'turkey-velvet-season-3',
+        slug: 'news_type_one',
     },
     {
         id: 5,
@@ -62,7 +62,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Саудовская Аравия: Туры на прямых рейсах из Москвы',
-        slug: 'saudi-arabia-tours-2',
+        slug: 'news_type_two',
     },
     {
         id: 6,
@@ -70,7 +70,7 @@ const newsItems: NewsItem[] = [
         category: 'Туры',
         date: '16 октября 2025',
         title: 'Турция приглашает на бархатный сезон!',
-        slug: 'turkey-velvet-season-4',
+        slug: 'news_type_three',
     },
 ]
 ---
@@ -80,7 +80,7 @@ const newsItems: NewsItem[] = [
         <div class="news-grid">
             {
                 newsItems.map((item, index) => (
-                    <a href={`${base}${userType}/news/${item.slug}/`} class={`news-card news-card-${index + 1}`}>
+                    <a href={`${base}${userType}/${item.slug}/`} class={`news-card news-card-${index + 1}`}>
                         <div class="news-card-image">
                             <img src={item.image.src} alt={item.title} loading="lazy" />
                             <div class="news-card-overlay">

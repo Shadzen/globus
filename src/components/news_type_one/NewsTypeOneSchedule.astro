@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets'
+import flynasLogo from '@/assets/images/news_type_one/company-logo-1.svg'
+import saudiaLogo from '@/assets/images/news_type_one/company-logo-2.png'
+
+interface ScheduleRow {
+    id: number
+    airline: 'flynas' | 'saudia'
+    date: string
+    route: string
+    departures: string
+}
+
+const scheduleData: ScheduleRow[] = [
+    {
+        id: 1,
+        airline: 'flynas',
+        date: 'с 01.08.2025 г',
+        route: 'Москва (Внуково) → Эр-Рияд',
+        departures: 'Понедельник, среда, пятница',
+    },
+    {
+        id: 2,
+        airline: 'saudia',
+        date: 'с 17.10.2025 г',
+        route: 'Москва (Шереметьево) → Эр-Рияд',
+        departures: 'Вторник, пятница, воскресенье',
+    },
+]
+---
+
+<section class="news-schedule-section">
+    <div class="news-schedule-container">
+        <h2 class="schedule-title">Полетная программа Москва-Эр-Рияд:</h2>
+
+        <div class="schedule-table">
+            <div class="table-header">
+                <div class="table-cell header-cell">Авиакомпания</div>
+                <div class="table-cell header-cell">Даты</div>
+                <div class="table-cell header-cell">Направление</div>
+                <div class="table-cell header-cell">Вылеты</div>
+            </div>
+
+            {scheduleData.map((row) => (
+                <div class="table-row">
+                    <div class="table-cell airline-cell">
+                        {row.airline === 'flynas' ? (
+                            <Image
+                                src={flynasLogo}
+                                alt="Flynas"
+                                class="airline-logo"
+                                loading="lazy"
+                            />
+                        ) : (
+                            <Image
+                                src={saudiaLogo}
+                                alt="Saudia"
+                                class="airline-logo"
+                                loading="lazy"
+                            />
+                        )}
+                    </div>
+                    <div class="table-cell date-cell">{row.date}</div>
+                    <div class="table-cell route-cell">{row.route}</div>
+                    <div class="table-cell departures-cell">{row.departures}</div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-schedule-section {
+        @include adaptive(margin-top, 64, 40);
+
+        .news-schedule-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .schedule-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: $color-alternate;
+            text-align: center;
+            font-weight: 300;
+            @include adaptive(margin-bottom, 40, 24);
+        }
+
+        .schedule-table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            @include adaptive(gap, 45, 20);
+            @include adaptive(padding-bottom, 24, 16);
+            border-bottom: 1px solid $color-accent;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            @include adaptive(gap, 45, 20);
+            @include adaptive(padding-top, 24, 20);
+            @include adaptive(padding-bottom, 24, 20);
+            border-bottom: 1px solid $color-accent;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(gap, 16, 16);
+            }
+        }
+
+        .table-cell {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .header-cell {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            color: $color-alternate;
+            opacity: 0.6;
+        }
+
+        .airline-cell {
+            @include adaptive(padding-top, 6, 6);
+
+            @include mobile {
+                justify-content: center;
+            }
+
+            .airline-logo {
+                @include adaptive(max-width, 196, 140);
+                @include adaptive(max-height, 72, 50);
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        .date-cell,
+        .route-cell,
+        .departures-cell {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-alternate;
+
+            @include mobile {
+                position: relative;
+                @include adaptive(padding-left, 120, 120);
+
+                &::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 0;
+                    @include font-circe-regular;
+                    @include adaptive(font-size, 16, 14);
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        @include mobile {
+            .date-cell::before {
+                content: 'Даты:';
+            }
+
+            .route-cell::before {
+                content: 'Направление:';
+            }
+
+            .departures-cell::before {
+                content: 'Вылеты:';
+            }
+        }
+    }
+</style>

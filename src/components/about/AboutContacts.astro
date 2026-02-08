@@ -58,7 +58,7 @@ const tabs: ContactTab[] = [
     {
         id: 'managers',
         label: 'Менеджеры',
-        people: userType === 'agent' ? allManagers.slice(0, 3) : allManagers,
+        people: userType === 'tourist' ? allManagers : [],
     },
     {
         id: 'visa',
@@ -129,7 +129,9 @@ const tabs: ContactTab[] = [
                         {tab.label}
                     </label>
                     <div class="contacts-tab-content" data-tab={tab.id}>
-                        {tab.people.length > 0 ? (
+                        {tab.id === 'managers' && userType === 'agent' ? (
+                            <ContactsGrid />
+                        ) : tab.people.length > 0 ? (
                             <ContactsGrid people={tab.people} />
                         ) : (
                             <p class="contacts-placeholder">Информация скоро появится</p>
