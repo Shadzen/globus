@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NewsTypeTwoHero from '@/components/news_type_two/NewsTypeTwoHero.astro'
+import NewsTypeTwoOffers from '@/components/news_type_two/NewsTypeTwoOffers.astro'
+import NewsTypeTwoHotelsSlider from '@/components/news_type_two/NewsTypeTwoHotelsSlider.astro'
+import ContactCTA from '@/components/ContactCTA.astro'
+---
+
+<Layout title="Новости Тип 2 - Прототип" userType="agent" heroTextColor="dark">
+    <NewsTypeTwoHero userType="agent" />
+    <NewsTypeTwoOffers userType="agent" />
+    <NewsTypeTwoHotelsSlider userType="agent" />
+    <ContactCTA title="Мы с удовольствием расскажем вам<br />о туре подробнее, вы можете:" />
+</Layout>

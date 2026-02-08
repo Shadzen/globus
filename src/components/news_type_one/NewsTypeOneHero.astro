@@ -12,7 +12,7 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section news-hero">
+<section class="hero-section news-type-one-hero">
     <picture class="hero-bg">
         <source media="(max-width: 480px)" srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
@@ -21,7 +21,7 @@ const base = import.meta.env.BASE_URL
     <HeroNav items={[
         { label: 'Главная', href: `${base}${userType}/` },
         { label: 'Туры', href: `${base}${userType}/tours/` },
-        { label: 'Саудовская Аравия: Туры на прямых рейсах из Москвы', href: `${base}${userType}/news_type_one/` },
+        { label: 'Саудовская Аравия: Туры на прямых рейсах из Москвы' },
     ]} textColor="dark" />
 
     <div class="hero-content">
@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL
 </section>
 
 <style lang="scss" is:global>
-    .news-hero {
+    .news-type-one-hero {
         @include adaptive(height, 894, 736);
         @include adaptive(padding-top, 518, 518);
 

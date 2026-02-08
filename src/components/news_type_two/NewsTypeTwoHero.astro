@@ -1,0 +1,87 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/news_type_two/hero-1.jpg'
+import heroMobile from '@/assets/images/news_type_two/hero-1-mobile.jpg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section news-type-two-hero">
+    <picture class="hero-bg">
+        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Глобус-News', href: `${base}${userType}/news/` },
+        { label: 'Турция приглашает на бархатный сезон!' },
+    ]} textColor="dark" />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Турция приглашает</h2>
+        <h2 class="hero-title">на бархатный сезон!</h2>
+        <p class="hero-subtitle">Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое море создают идеальные условия для восстановления сил перед долгой зимой, а лучшие курорты радуют выгодными акциями и спецпредложениями. Спешите воспользоваться всеми преимуществами осеннего отдыха на Анталийском побережье.</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-type-two-hero {
+        @include adaptive(height, 970, 776);
+        @include adaptive(padding-top, 447, 518);
+
+        .hero-bg {
+            @include adaptive(height, 355, 231);
+            @include adaptive(width, 924, 450);
+            bottom: 0;
+            @include adaptive(left, 100, 15);
+
+            @include desktop {
+                top: auto;
+            }
+
+            @include mobile {
+                @include adaptive(top, 250, 250);
+            }
+        }
+
+        .hero-content {
+            z-index: 2;
+            flex-wrap: wrap;
+            flex-direction: row;
+            flex: 0;
+        }
+
+        .hero-title {
+            color: $color-alternate;
+            text-align: left;
+
+            @include desktop {
+                &:nth-child(2) {
+                    @include adaptive(padding-left, 434, 2);
+                }
+            }
+        }
+
+        .hero-subtitle {
+            @include font-circe-regular;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-alternate;
+            @include adaptive(padding-top, 138, 16);
+            @include adaptive(padding-right, 130, 2);
+
+            @include desktop {
+                width: 41%;
+                margin-left: auto;
+            }
+        }
+    }
+</style>

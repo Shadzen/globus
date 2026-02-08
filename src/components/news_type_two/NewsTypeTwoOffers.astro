@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import photo1 from '@/assets/images/news_type_two/news-type-two-photo-1.jpg'
+import photo2 from '@/assets/images/news_type_two/news-type-two-photo-2.jpg'
+import photo3 from '@/assets/images/news_type_two/news-type-two-photo-3.jpg'
+import photo4 from '@/assets/images/news_type_two/news-type-two-photo-4.jpg'
+
+interface HotelOffer {
+    id: number
+    image: ImageMetadata
+    badge: string
+    title: string
+    price: string
+}
+
+const offers: HotelOffer[] = [
+    {
+        id: 1,
+        image: photo1,
+        badge: 'Ультра все включено',
+        title: 'Akra Antalya 5*',
+        price: 'от 134 900 руб.',
+    },
+    {
+        id: 2,
+        image: photo2,
+        badge: 'Ультра все включено',
+        title: 'Kaya Belek 5*',
+        price: 'от 140 300 руб.',
+    },
+    {
+        id: 3,
+        image: photo3,
+        badge: 'Ультра все включено',
+        title: 'Dobedan Exclusive Hotel & Spa 5*',
+        price: 'от 162 600 руб.',
+    },
+    {
+        id: 4,
+        image: photo4,
+        badge: 'Ультра все включено',
+        title: 'Rixos Park Belek 5*',
+        price: 'от 168 700 руб.',
+    },
+]
+---
+
+<section class="hotel-offers-section">
+    <div class="hotel-offers-container">
+        <h2 class="offers-title">Лучшие предложения с вылетом из<br />Новосибирска 22.10 на 9 ночей:</h2>
+
+        <div class="offers-grid">
+            {offers.map((offer) => (
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <Image
+                            src={offer.image}
+                            alt={offer.title}
+                            loading="lazy"
+                            quality={100}
+                        />
+                        <span class="offer-badge">{offer.badge}</span>
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">{offer.title}</h3>
+                        <p class="offer-price">{offer.price}</p>
+                        <button class="offer-btn" type="button">
+                            Забронировать
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .hotel-offers-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .hotel-offers-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .offers-title {
+            @include adaptive(margin-bottom, 80, 50);
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(gap, 40, 20);
+            grid-auto-rows: auto;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .offer-card {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 16, 12);
+        }
+
+        .offer-image {
+            position: relative;
+            width: 100%;
+            @include adaptive(height, 340, 250);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .offer-badge {
+            position: absolute;
+            @include adaptive(left, 36, 20);
+            @include adaptive(bottom, 36, 20);
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: $color-main;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid $color-accent;
+            @include adaptive(padding-left, 45, 24);
+            @include adaptive(padding-right, 45, 24);
+            @include adaptive(padding-top, 14, 10);
+            @include adaptive(padding-bottom, 14, 10);
+            border-radius: 500px;
+        }
+
+        .offer-content {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 16, 12);
+        }
+
+        .offer-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 32, 24);
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: $color-alternate;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .offer-price {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-accent;
+        }
+
+        .offer-btn {
+            @include button-default;
+            @include adaptive(height, 60, 50);
+            @include adaptive(padding-left, 50, 32);
+            @include adaptive(padding-right, 50, 32);
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+            align-self: flex-start;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+    }
+</style>
