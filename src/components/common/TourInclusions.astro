@@ -1,0 +1,363 @@
+---
+interface InclusionItem {
+    text: string
+}
+
+interface AdditionalContent {
+    type: 'link' | 'text' | 'list'
+    data: {
+        link?: { href: string; text: string }
+        text?: string
+        items?: InclusionItem[]
+    }
+}
+
+interface Props {
+    includedItems: InclusionItem[][]
+    additionalContent?: AdditionalContent[]
+    useGrid?: boolean
+    darkTheme?: boolean
+}
+
+const { includedItems, additionalContent = [], useGrid = false, darkTheme = false } = Astro.props
+---
+
+<section class:list={['tour-inclusions-section', { 'dark-theme': darkTheme }]}>
+    <div class="tour-inclusions-container">
+        <h2 class="section-title">В стоимость тура входит:</h2>
+
+        {useGrid ? (
+            <ul class="inclusions-grid">
+                {includedItems.flat().map((item) => (
+                    <li class="inclusion-item">
+                        <div class="inclusion-bullet"></div>
+                        <p class="inclusion-text">{item.text}</p>
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <div class="info-columns">
+                {includedItems.map((column) => (
+                    <ul class="info-list">
+                        {column.map((item) => (
+                            <li class="info-item">
+                                <span class="info-bullet"></span>
+                                <p class="info-text">{item.text}</p>
+                            </li>
+                        ))}
+                    </ul>
+                ))}
+            </div>
+        )}
+
+        <div class="divider"></div>
+
+        <h3 class="subsection-title">Дополнительно оплачивается:</h3>
+
+        {additionalContent.length > 0 && (
+            <div class="additional-section">
+                {additionalContent.map((content) => (
+                    <>
+                        {content.type === 'link' && content.data.link && (
+                            <div class="additional-item">
+                                <img src="/src/assets/icons/arrow-14-accent.svg" alt="" class="arrow-icon" />
+                                <a href={content.data.link.href} class="visa-link">
+                                    {content.data.link.text}
+                                </a>
+                            </div>
+                        )}
+                        {content.type === 'text' && content.data.text && (
+                            <p class="additional-text" set:html={content.data.text}></p>
+                        )}
+                        {content.type === 'list' && content.data.items && (
+                            <ul class:list={[useGrid ? 'inclusions-grid' : 'info-columns']}>
+                                {content.data.items.map((item) => (
+                                    <li class:list={[useGrid ? 'inclusion-item' : 'info-item']}>
+                                        {useGrid ? (
+                                            <div class="inclusion-bullet"></div>
+                                        ) : (
+                                            <span class="info-bullet"></span>
+                                        )}
+                                        <p class:list={[useGrid ? 'inclusion-text' : 'info-text']}>{item.text}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
+                ))}
+            </div>
+        )}
+
+        <div class="divider"></div>
+
+        <div class="bottom-section">
+            <p class="bottom-text">
+                Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
+            </p>
+            <div class="bottom-buttons">
+                <button class="request-btn" type="button">
+                    запрос на поиск
+                </button>
+                <button class="search-btn" type="button">
+                    перейти в поиск туров
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-inclusions-section {
+        @include adaptive(padding-top, 80, 50);
+        @include adaptive(padding-bottom, 80, 50);
+
+        &.dark-theme {
+            background: #00273F;
+
+            .section-title,
+            .subsection-title,
+            .info-text,
+            .inclusion-text,
+            .bottom-text {
+                color: #FFFDF8;
+            }
+
+            .additional-text {
+                color: #FFFDF8;
+            }
+        }
+
+        .tour-inclusions-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .section-title {
+            @include font-kudry-sans;
+            color: $color-alternate;
+            @include adaptive(font-size, 60, 38);
+            line-height: 1.21;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 50, 30);
+        }
+
+        // Grid layout (для NewsTypeFour)
+        .inclusions-grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptive(gap, 30, 20);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .inclusion-item {
+            display: flex;
+            @include adaptive(gap, 10, 8);
+            align-items: flex-start;
+        }
+
+        .inclusion-bullet {
+            @include adaptive(width, 12, 10);
+            @include adaptive(height, 12, 10);
+            @include adaptive(min-width, 12, 10);
+            border-radius: 50%;
+            background-color: $color-accent;
+            flex-shrink: 0;
+            @include adaptive(margin-top, 6, 5);
+        }
+
+        .inclusion-text {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        // Columns layout (для NewsTypeOne)
+        .info-columns {
+            display: flex;
+            @include adaptive(gap, 55, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .info-list {
+            flex: 1;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+        }
+
+        .info-item {
+            display: flex;
+            @include adaptive(gap, 10, 8);
+            align-items: flex-start;
+        }
+
+        .info-bullet {
+            @include adaptive(width, 12, 10);
+            @include adaptive(height, 12, 10);
+            @include adaptive(min-width, 12, 10);
+            border-radius: 50%;
+            background-color: $color-accent;
+            @include adaptive(margin-top, 8, 6);
+        }
+
+        .info-text {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            margin: 0;
+            flex: 1;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #CCA870;
+            @include adaptive(margin-top, 50, 30);
+            @include adaptive(margin-bottom, 40, 25);
+        }
+
+        .subsection-title {
+            @include font-kudry-sans;
+            color: $color-alternate;
+            @include adaptive(font-size, 32, 24);
+            line-height: 1.2;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 40, 25);
+        }
+
+        .additional-section {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+        }
+
+        .additional-item {
+            display: flex;
+            @include adaptive(gap, 14, 10);
+            align-items: center;
+        }
+
+        .arrow-icon {
+            @include adaptive(width, 14, 12);
+            @include adaptive(height, 14, 12);
+            flex-shrink: 0;
+        }
+
+        .visa-link {
+            @include font-circe-regular;
+            color: $color-accent;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .additional-text {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include adaptive(gap, 30, 20);
+
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .bottom-text {
+            @include font-circe-light;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            margin: 0;
+            flex: 1;
+            max-width: 693px;
+        }
+
+        .bottom-buttons {
+            display: flex;
+            @include adaptive(gap, 15, 10);
+            flex-shrink: 0;
+
+            @include mobile {
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+
+        .search-btn {
+            @include button-default;
+            @include adaptive(padding-top, 18, 14);
+            @include adaptive(padding-bottom, 18, 14);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            @include adaptive(font-size, 16, 14);
+            white-space: nowrap;
+
+            @include mobile {
+                width: 100%;
+                white-space: normal;
+            }
+        }
+
+        .request-btn {
+            @include adaptive(padding-top, 18, 14);
+            @include adaptive(padding-bottom, 18, 14);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            @include adaptive(font-size, 16, 14);
+            font-family: inherit;
+            @include font-circe-regular;
+            text-transform: uppercase;
+            letter-spacing: 3.2px;
+            line-height: 1.6;
+            color: #CCA870;
+            background: transparent;
+            border: 1px solid #CCA870;
+            border-radius: 390px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+
+            &:hover {
+                background: #CCA870;
+                color: white;
+            }
+
+            @include mobile {
+                width: 100%;
+                white-space: normal;
+            }
+        }
+    }
+</style>

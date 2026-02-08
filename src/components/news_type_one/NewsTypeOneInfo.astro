@@ -1,272 +1,54 @@
 ---
+import TourInclusions from '@/components/common/TourInclusions.astro'
+
 interface IncludedItem {
-    id: number
     text: string
 }
 
 const includedColumns: IncludedItem[][] = [
     [
-        { id: 1, text: 'Авиаперелет Москва — Эр-Рияд — Москва\n(прямые рейсы Flynas, Saudia airlines)*' },
-        { id: 2, text: 'Авиаперелет Эр-Рияд — Аль-Ула — Эр-Рияд\n(прямые рейсы Flynas, Saudia airlines)*' },
-        { id: 3, text: 'Встреча/проводы в аэропорту.' },
-        { id: 4, text: 'Размещение в указанных отелях\nили аналогичных отелях той же\nкатегории с завтраками.' },
-        { id: 5, text: 'Проживание в отеле Sahary Al Ula\nс полупансионом (включая завтрак и ужин).' },
+        { text: 'Авиаперелет Москва — Эр-Рияд — Москва\n(прямые рейсы Flynas, Saudia airlines)*' },
+        { text: 'Авиаперелет Эр-Рияд — Аль-Ула — Эр-Рияд\n(прямые рейсы Flynas, Saudia airlines)*' },
+        { text: 'Встреча/проводы в аэропорту.' },
+        { text: 'Размещение в указанных отелях\nили аналогичных отелях той же\nкатегории с завтраками.' },
+        { text: 'Проживание в отеле Sahary Al Ula\nс полупансионом (включая завтрак и ужин).' },
     ],
     [
-        { id: 6, text: 'Мероприятия, указанные в программе.' },
-        { id: 7, text: 'Входные билеты по программе.' },
-        { id: 8, text: 'Англоговорящий гид в Эр-Рияде.' },
-        { id: 9, text: 'Экскурсия по Аль-Уле на автобусе SIC.' },
-        { id: 10, text: 'Обед на местной ферме в Аль-Уле.' },
-        { id: 11, text: 'Англоговорящий местный координатор\nтура на протяжении всего тура.' },
+        { text: 'Мероприятия, указанные в программе.' },
+        { text: 'Входные билеты по программе.' },
+        { text: 'Англоговорящий гид в Эр-Рияде.' },
+        { text: 'Экскурсия по Аль-Уле на автобусе SIC.' },
+        { text: 'Обед на местной ферме в Аль-Уле.' },
+        { text: 'Англоговорящий местный координатор\nтура на протяжении всего тура.' },
     ],
     [
-        { id: 12, text: 'Частный транспорт на современном комфортабельном автомобиле по программе.' },
-        { id: 13, text: 'Бесплатная вода в автобусе ежедневно.' },
-        { id: 14, text: 'Медицинская страховка' },
+        { text: 'Частный транспорт на современном комфортабельном автомобиле по программе.' },
+        { text: 'Бесплатная вода в автобусе ежедневно.' },
+        { text: 'Медицинская страховка' },
     ],
+]
+
+const additionalContent = [
+    {
+        type: 'link' as const,
+        data: {
+            link: {
+                href: 'https://agency.globus-tour.ru/agencies/strany/saudovskaya-araviya/viza',
+                text: 'Виза в Садовскую Аравию',
+            },
+        },
+    },
+    {
+        type: 'text' as const,
+        data: {
+            text: 'Доплата за русскоговорящего<br />сопровождающего - 135 $  в сутки.',
+        },
+    },
 ]
 ---
 
-<section class="tour-info-section">
-    <div class="tour-info-container">
-        <h2 class="section-title">В стоимость тура входит:</h2>
-
-        <div class="info-columns">
-            {includedColumns.map((column) => (
-                <ul class="info-list">
-                    {column.map((item) => (
-                        <li class="info-item">
-                            <span class="info-bullet"></span>
-                            <p class="info-text">{item.text}</p>
-                        </li>
-                    ))}
-                </ul>
-            ))}
-        </div>
-
-        <div class="divider"></div>
-
-        <h3 class="subsection-title">Дополнительно оплачивается:</h3>
-
-        <div class="additional-info">
-            <div class="additional-item">
-                <img src="/src/assets/icons/arrow-14-accent.svg" alt="" class="arrow-icon" />
-                <a href="https://agency.globus-tour.ru/agencies/strany/saudovskaya-araviya/viza" class="visa-link">
-                    Виза в Садовскую Аравию
-                </a>
-            </div>
-            <p class="additional-text">
-                Доплата за русскоговорящего<br />
-                сопровождающего - 135 $  в сутки.
-            </p>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="bottom-section">
-            <p class="bottom-text">
-                Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
-            </p>
-            <div class="bottom-buttons">
-                <button class="request-btn" type="button">
-                    запрос на поиск
-                </button>
-                <button class="search-btn" type="button">
-                    перейти в поиск туров
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style lang="scss" is:global>
-    .tour-info-section {
-        @include adaptive(margin-top, 80, 50);
-
-        .tour-info-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .section-title {
-            @include adaptive(margin-bottom, 64, 40);
-        }
-
-        .info-columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            @include adaptive(gap, 40, 24);
-
-            @include mobile {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .info-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 24, 20);
-        }
-
-        .info-item {
-            display: flex;
-            @include adaptive(gap, 18, 12);
-            align-items: flex-start;
-        }
-
-        .info-bullet {
-            @include adaptive(width, 12, 10);
-            @include adaptive(height, 12, 10);
-            @include adaptive(min-width, 12, 10);
-            border-radius: 50%;
-            background-color: $color-accent;
-            @include adaptive(margin-top, 8, 6);
-        }
-
-        .info-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            color: $color-alternate;
-            white-space: pre-line;
-        }
-
-        .divider {
-            @include adaptive(margin-top, 64, 40);
-            @include adaptive(margin-bottom, 48, 32);
-            height: 1px;
-            background-color: $color-accent;
-        }
-
-        .subsection-title {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 32, 24);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: $color-alternate;
-            font-weight: 300;
-            text-align: center;
-            @include adaptive(margin-bottom, 40, 24);
-        }
-
-        .additional-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            @include adaptive(gap, 40, 24);
-            align-items: flex-start;
-
-            @include mobile {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .additional-item {
-            display: flex;
-            align-items: center;
-            @include adaptive(gap, 18, 12);
-        }
-
-        .arrow-icon {
-            @include adaptive(width, 75, 50);
-            @include adaptive(height, 75, 50);
-            flex-shrink: 0;
-        }
-
-        .visa-link {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-alternate;
-            text-decoration: underline;
-            transition: opacity 0.3s;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        .additional-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-alternate;
-        }
-
-        .bottom-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            @include adaptive(gap, 40, 24);
-
-            @include mobile {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        .bottom-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-alternate;
-            max-width: 700px;
-        }
-
-        .bottom-buttons {
-            display: flex;
-            @include adaptive(gap, 16, 12);
-            flex-shrink: 0;
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .request-btn {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
-            line-height: 1.6;
-            @include adaptive(letter-spacing, 3.2, 2.8);
-            text-transform: uppercase;
-            color: $color-accent;
-            background: transparent;
-            border: 1px solid $color-accent;
-            @include adaptive(height, 61, 50);
-            @include adaptive(padding-left, 50, 32);
-            @include adaptive(padding-right, 50, 32);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-
-            &:hover {
-                opacity: 0.8;
-                transform: translateY(-2px);
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        .search-btn {
-            @include button-default;
-            @include adaptive(height, 61, 50);
-            @include adaptive(padding-left, 50, 32);
-            @include adaptive(padding-right, 50, 32);
-            white-space: nowrap;
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-    }
-</style>
+<TourInclusions 
+    includedItems={includedColumns} 
+    additionalContent={additionalContent}
+    useGrid={false}
+/>

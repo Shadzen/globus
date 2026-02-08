@@ -1,0 +1,35 @@
+---
+import TourInclusions from '@/components/common/TourInclusions.astro'
+
+interface InclusionItem {
+    text: string
+}
+
+const inclusionsTop: InclusionItem[] = [
+    { text: 'Проживание + питание (7 ночей)' },
+    { text: 'Мед страховка' },
+    { text: 'Трансфер на Мальдивах' },
+]
+
+const inclusionsBottom: InclusionItem[] = [
+    { text: 'Из Новосибирска транзитом через Дубай на рейсах а/к Fly Dubai' },
+    { text: 'Из Москвы прямые рейсы а/к Аэрофлот (транзитом из любого города)' },
+    { text: 'Из Москвы транзитные рейсы (ч/з Дубай, Доху, Абу-Даби и т.д.)' },
+]
+
+const additionalContent = [
+    {
+        type: 'list' as const,
+        data: {
+            items: inclusionsBottom,
+        },
+    },
+]
+---
+
+<TourInclusions
+    includedItems={[inclusionsTop]}
+    additionalContent={additionalContent}
+    useGrid={true}
+    darkTheme={false}
+/>

@@ -1,0 +1,313 @@
+---
+import photo1 from '@/assets/images/news_type_four/news-type-four-photo-1.jpg'
+import photo2 from '@/assets/images/news_type_four/news-type-four-photo-2.jpg'
+import photo3 from '@/assets/images/news_type_four/news-type-four-photo-3.jpg'
+
+interface Feature {
+    label?: string
+    value: string
+}
+
+interface Hotel {
+    name: string
+    price: string
+    image: string
+    badge: string
+    features: Feature[]
+    link?: string
+}
+
+const hotels: Hotel[] = [
+    {
+        name: 'GRAND PARK KODHIPPARU 5*',
+        price: 'от 152 700 руб.чел',
+        image: photo1.src,
+        badge: 'BB',
+        features: [
+            { label: 'Период бронирования', value: 'до 23.12.25' },
+            { label: 'Период проживания', value: 'до 23.12.25' },
+            { value: 'До 40% на проживание' },
+            { value: 'Апгрейд питания: ВВ = HB, HB = FB, FB = All' },
+            { value: '2 детей до 12 лет проживают и питаются бесплатно (до 30.09.25)' },
+        ],
+    },
+    {
+        name: 'JOY ISLAND MALDIVES 5*',
+        price: 'от 162 600 руб.чел',
+        image: photo2.src,
+        badge: 'All inclusive',
+        link: 'https://globus-tour.ru/hotel/64ccb9deb86148e83071e4fd',
+        features: [
+            { label: 'Период бронирования', value: 'до 23.12.25' },
+            { label: 'Период проживания', value: 'до 23.12.25' },
+            { value: 'До 30% на проживание до 30.11.25' },
+            { value: 'Бесплатный трансфер в обе стороны, при проживании от 7 ночей (01.10.25–31.10.25)' },
+        ],
+    },
+    {
+        name: 'THE STANDARD HURUVALHI MALDIVES 5*',
+        price: 'от 233 600 руб.чел',
+        image: photo3.src,
+        badge: 'FB=BB',
+        features: [
+            { label: 'Период бронирования', value: 'до 23.12.25' },
+            { label: 'Период проживания', value: 'до 23.12.25' },
+            { value: 'До 40% на проживание' },
+            { value: 'Апгрейд питания: ВВ = HB, HB = FB' },
+            { value: '2 детей до 12 лет проживают и питаются бесплатно (до 30.09.25)' },
+            { value: 'Дополнительные 5% при проживании от 10 ночей' },
+        ],
+    },
+]
+---
+
+<section class="news-type-four-offers-section">
+    <div class="news-type-four-offers-container">
+        <h2 class="offers-title">Стоимость проживания</h2>
+        <div class="offers-badge">с трансфером с 6.09 на 7 ночей</div>
+
+        <div class="hotels-list">
+            {hotels.map((hotel, index) => (
+                <>
+                    <div class="hotel-item">
+                        <div class="hotel-info">
+                            {hotel.link ? (
+                                <a href={hotel.link} class="hotel-name" target="_blank" rel="noopener noreferrer">
+                                    {hotel.name}
+                                </a>
+                            ) : (
+                                <h3 class="hotel-name">{hotel.name}</h3>
+                            )}
+                            <p class="hotel-price">{hotel.price}</p>
+
+                            <ul class="hotel-features">
+                                {hotel.features.map((feature) => (
+                                    <li class="feature-item">
+                                        <div class="feature-bullet"></div>
+                                        <div class="feature-content">
+                                            {feature.label && <p class="feature-label">{feature.label}</p>}
+                                            <p class="feature-value">{feature.value}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <button class="btn-booking">Забронировать</button>
+                        </div>
+
+                        <div class="hotel-image">
+                            <img src={hotel.image} alt={hotel.name} loading="lazy" decoding="async" />
+                            <div class="hotel-badge">{hotel.badge}</div>
+                        </div>
+                    </div>
+
+                    {index < hotels.length - 1 && <hr class="hotel-divider" />}
+                </>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .news-type-four-offers-section {
+        background: $color-alternate;
+        @include adaptive(margin-top, 120, 60);
+        @include adaptive(padding-top, 76, 50);
+        @include adaptive(padding-bottom, 100, 60);
+
+        .news-type-four-offers-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .offers-title {
+            @include font-kudry-sans;
+            color: #FFFDF8;
+            @include adaptive(font-size, 60, 38);
+            line-height: 1.21;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 30, 20);
+        }
+
+        .offers-badge {
+            @include font-circe-light;
+            color: #CCA870;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            text-align: center;
+            border: 1px solid #CCA870;
+            border-radius: 390px;
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            display: inline-block;
+            margin: 0 auto;
+            @include adaptive(margin-bottom, 60, 40);
+
+            @include desktop {
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        .hotels-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-item {
+            display: flex;
+            @include adaptive(gap, 50, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .hotel-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-name {
+            @include font-kudry-sans;
+            color: #FFFDF8;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-bottom, 10, 8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #CCA870;
+            }
+        }
+
+        .hotel-price {
+            @include font-circe-regular;
+            color: #CCA870;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.21;
+            margin: 0;
+            @include adaptive(margin-bottom, 40, 25);
+        }
+
+        .hotel-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 33, 20);
+            @include adaptive(margin-bottom, 40, 30);
+        }
+
+        .feature-item {
+            display: flex;
+            @include adaptive(gap, 10, 8);
+            align-items: flex-start;
+        }
+
+        .feature-bullet {
+            @include adaptive(width, 12, 10);
+            @include adaptive(height, 12, 10);
+            @include adaptive(min-width, 12, 10);
+            border-radius: 50%;
+            background-color: #CCA870;
+            flex-shrink: 0;
+            @include adaptive(margin-top, 8, 6);
+        }
+
+        .feature-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 8, 5);
+        }
+
+        .feature-label {
+            @include font-circe-regular;
+            color: #FFFDF8;
+            opacity: 0.6;
+            @include adaptive(font-size, 20, 16);
+            line-height: 1.21;
+            margin: 0;
+        }
+
+        .feature-value {
+            @include font-circe-regular;
+            color: #FFFDF8;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.21;
+            margin: 0;
+        }
+
+        .btn-booking {
+            @include button-default;
+            @include adaptive(padding-top, 18, 14);
+            @include adaptive(padding-bottom, 18, 14);
+            @include adaptive(padding-left, 60, 40);
+            @include adaptive(padding-right, 60, 40);
+            @include adaptive(font-size, 16, 14);
+            white-space: nowrap;
+            width: fit-content;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .hotel-image {
+            position: relative;
+            overflow: hidden;
+            @include adaptive(width, 970, auto);
+            @include adaptive(height, 560, 300);
+
+            @include desktop {
+                flex-shrink: 0;
+            }
+
+            @include mobile {
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .hotel-badge {
+            position: absolute;
+            @include adaptive(left, 36, 20);
+            @include adaptive(top, 30, 20);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #CCA870;
+            border-radius: 500px;
+            @include adaptive(padding-top, 14, 10);
+            @include adaptive(padding-bottom, 14, 10);
+            @include adaptive(padding-left, 45, 30);
+            @include adaptive(padding-right, 45, 30);
+            @include font-circe-light;
+            color: #FFFDF8;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+        }
+
+        .hotel-divider {
+            border: none;
+            border-top: 1px solid #CCA870;
+            @include adaptive(margin-top, 80, 40);
+            @include adaptive(margin-bottom, 80, 40);
+            width: 100%;
+        }
+    }
+</style>
