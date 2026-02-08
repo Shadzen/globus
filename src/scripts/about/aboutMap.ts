@@ -16,9 +16,12 @@ export const initAboutMap = () => {
     const hint = mapContainer.dataset.hint || ''
     const balloon = mapContainer.dataset.balloon || ''
     const preset = mapContainer.dataset.preset || 'islands#redDotIcon'
+    const apiKey = mapContainer.dataset.apiKey || ''
 
     const script = document.createElement('script')
-    script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU'
+    // Backend should provide API key via data-api-key attribute
+    const apiKeyParam = apiKey ? `&apikey=${apiKey}` : ''
+    script.src = `https://api-maps.yandex.ru/2.1/?lang=ru_RU${apiKeyParam}`
     script.onload = () => {
         ymaps.ready(() => {
             const map = new ymaps.Map('about-yandex-map', {
