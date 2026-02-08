@@ -62,7 +62,7 @@ const { userType = 'tourist' } = Astro.props
             </div>
 
             <div class="footer-column">
-                <Logo color="black" size="small" userType={userType} />
+                <Logo color="dark" size="small" userType={userType} />
                 <button
                     class="scroll-top-btn"
                     onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
@@ -106,6 +106,7 @@ const { userType = 'tourist' } = Astro.props
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-bottom, 30, 20);
         @include side-paddings;
+        z-index: 1;
 
         .footer-container {
             position: relative;

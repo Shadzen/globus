@@ -5,17 +5,18 @@ const base = import.meta.env.BASE_URL
 
 interface Props {
     userType?: 'tourist' | 'agent'
+    heroTextColor?: 'light' | 'dark'
 }
 
-const { userType = 'tourist' } = Astro.props
+const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 ---
 
-<header>
+<header class:list={[{ '_dark-text': heroTextColor === 'dark' }]}>
     <div class="header-container">
-        <Logo userType={userType} />
+        <Logo userType={userType} color={heroTextColor === 'dark' ? 'dark' : 'light'} />
 
         <div class="header-actions">
-            <div class="user-type">
+            <div class:list={["user-type", `_${userType}`]}>
                 <a href={`${base}tourist/`} class:list={["user-type-btn", { "_active": userType === 'tourist' }]}>Турист</a>
                 <a href={`${base}agent/`} class:list={["user-type-btn", { "_active": userType === 'agent' }]}>Агент</a>
             </div>
@@ -26,7 +27,7 @@ const { userType = 'tourist' } = Astro.props
                 )}
                 <a href={`${base}${userType}/about`}>О нас</a>
                 <a href="#">Поиск тура и отеля</a>
-                <a href="#">Глобус-News</a>
+                <a href={`${base}${userType}/news`}>Глобус-News</a>
                 {userType === 'tourist' ? (
                     <>
                         <a href="#">Коллекции туров</a>
@@ -120,6 +121,14 @@ const { userType = 'tourist' } = Astro.props
             border-color: $color-accent;
             @include adaptive(border-width, 2, 2);
             border-radius: 50px;
+
+            &._tourist {
+                border-left: none;
+            }
+
+            &._agent {
+                border-right: none;
+            }
 
             @include mobile {
                 width: 100%;
@@ -316,9 +325,10 @@ const { userType = 'tourist' } = Astro.props
                 background-color: $color-main;
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
+                transition: background-color var(--menu-animation-duration) ease-in-out;
 
                 &:nth-child(2) {
-                    transition: opacity 0.1s ease;
+                    transition: opacity 0.1s ease, background-color var(--menu-animation-duration) ease-in-out;
                 }
             }
 
@@ -399,6 +409,56 @@ const { userType = 'tourist' } = Astro.props
                 }
                 100% {
                     transform: translateY(0) rotate(0deg);
+                }
+            }
+        }
+
+        // Темный цвет текста для страниц со светлым фоном hero
+        &._dark-text {
+            .user-type-btn {
+                &:not(._active) {
+                    color: $color-alternate;
+
+                    @include mobile {
+                        color: $color-main;
+                    }
+                }
+            }
+
+            .nav-menu {
+                a {
+                    color: $color-alternate;
+
+                    @include mobile {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .phone {
+                color: $color-alternate;
+
+                @include mobile {
+                    color: $color-main;
+                }
+            }
+
+            .mobile-menu-btn {
+                @include mobile {
+                    // Когда меню закрыто - темные полоски
+                    span {
+                        background-color: $color-alternate;
+                    }
+
+                    // Когда меню открыто - светлые полоски
+                    &._active span {
+                        background-color: $color-main;
+                    }
+
+                    // Когда меню закрывается - обратно темные
+                    &._initialized:not(._active) span {
+                        background-color: $color-alternate;
+                    }
                 }
             }
         }

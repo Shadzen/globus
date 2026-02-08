@@ -1,7 +1,6 @@
 ---
 import LogoLight from '@/assets/images/logo/logo-light.svg'
 import LogoDark from '@/assets/images/logo/logo-dark.svg'
-import LogoBlack from '@/assets/images/logo/logo-black.svg'
 
 interface Props {
     color?: 'light' | 'dark' | 'black',
@@ -17,19 +16,13 @@ const {
     userType = 'tourist',
 } = Astro.props
 
-const logos = {
-    light: LogoLight,
-    dark: LogoDark,
-    black: LogoBlack,
-}
-
-const selectedLogo = logos[color]
 const base = import.meta.env.BASE_URL
 const logoUrl = `${base}${userType}/`
 ---
 
-<a href={logoUrl} class:list={['logo-wrapper', `_${size}`, className]}>
-    <img src={selectedLogo.src} alt="Глобус Тур" />
+<a href={logoUrl} class:list={['logo-wrapper', `_${size}`, `_${color}`, className]}>
+    <img src={LogoLight.src} alt="Глобус Тур" class="logo-light" />
+    <img src={LogoDark.src} alt="Глобус Тур" class="logo-dark" />
 </a>
 
 <style lang="scss" is:global>
@@ -42,6 +35,29 @@ const logoUrl = `${base}${userType}/`
             width: 100%;
             height: 100%;
             object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .logo-light {
+            opacity: 1;
+        }
+
+        .logo-dark {
+            opacity: 0;
+        }
+
+        // Когда выбран темный логотип
+        &._dark {
+            .logo-light {
+                opacity: 0;
+            }
+
+            .logo-dark {
+                opacity: 1;
+            }
         }
 
         &._default {
