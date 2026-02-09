@@ -1,0 +1,86 @@
+---
+import photo1 from '@/assets/images/business_tourism/business-tourism-photo-1.jpg'
+import photo2 from '@/assets/images/business_tourism/business-tourism-photo-2.jpg'
+---
+
+<section class="business-tourism-info-section">
+    <div class="business-tourism-info-container">
+        <div class="info-grid">
+            <div class="info-text">
+                <p>Компания «Глобус-тур» — эксперт в организации делового туризма. Мы берём на себя все заботы по планированию вашего мероприятия, чтобы вы могли сосредоточиться на главном — на своих бизнес-целях и впечатлениях команды. В 2022 году нашу работу отметили наградой Best MICE Project, и мы продолжаем создавать события, которые запоминаются надолго.</p>
+            </div>
+
+            <div class="info-image">
+                <img src={photo1.src} alt="Деловое мероприятие" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="info-image">
+                <img src={photo2.src} alt="Деловой туризм" loading="lazy" decoding="async" />
+            </div>
+
+            <div class="info-text">
+                <p>Мы понимаем, что деловой туризм — это не просто поездки, а инструмент развития бизнеса. Поэтому мы предлагаем комплекс решений, адаптированных под ваши задачи.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .business-tourism-info-section {
+        @include adaptive(margin-top, 100, 50);
+
+        .business-tourism-info-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .info-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            @include adaptive(gap, 53, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .info-text {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+            width: 33%;
+            margin-right: auto;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            p {
+                @include font-circe-light;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 18);
+                line-height: 1.2;
+                margin: 0;
+            }
+        }
+
+        .info-image {
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            @include desktop {
+                max-width: 57.8%;
+            }
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+    }
+</style>

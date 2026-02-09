@@ -41,7 +41,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
                     <ul class="info-list">
                         {column.map((item) => (
                             <li class="info-item">
-                                <span class="info-bullet"></span>
+                                <span class="bullet"></span>
                                 <p class="info-text">{item.text}</p>
                             </li>
                         ))}
@@ -74,9 +74,9 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
                                 {content.data.items.map((item) => (
                                     <li class:list={[useGrid ? 'inclusion-item' : 'info-item']}>
                                         {useGrid ? (
-                                            <div class="inclusion-bullet"></div>
+                                            <div class="bullet"></div>
                                         ) : (
-                                            <span class="info-bullet"></span>
+                                            <span class="bullet"></span>
                                         )}
                                         <p class:list={[useGrid ? 'inclusion-text' : 'info-text']}>{item.text}</p>
                                     </li>
@@ -161,16 +161,10 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
             display: flex;
             @include adaptive(gap, 10, 8);
             align-items: flex-start;
-        }
 
-        .inclusion-bullet {
-            @include adaptive(width, 12, 10);
-            @include adaptive(height, 12, 10);
-            @include adaptive(min-width, 12, 10);
-            border-radius: 50%;
-            background-color: $color-accent;
-            flex-shrink: 0;
-            @include adaptive(margin-top, 6, 5);
+            .bullet {
+                @include adaptive(margin-top, 6, 5);
+            }
         }
 
         .inclusion-text {
@@ -205,15 +199,10 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
             display: flex;
             @include adaptive(gap, 10, 8);
             align-items: flex-start;
-        }
 
-        .info-bullet {
-            @include adaptive(width, 12, 10);
-            @include adaptive(height, 12, 10);
-            @include adaptive(min-width, 12, 10);
-            border-radius: 50%;
-            background-color: $color-accent;
-            @include adaptive(margin-top, 8, 6);
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+            }
         }
 
         .info-text {

@@ -1,0 +1,18 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import BusinessTourismHero from '@/components/business_tourism/BusinessTourismHero.astro'
+import BusinessTourismDirections from '@/components/business_tourism/BusinessTourismDirections.astro'
+import BusinessTourismInfo from '@/components/business_tourism/BusinessTourismInfo.astro'
+import BusinessTourismAdvantages from '@/components/business_tourism/BusinessTourismAdvantages.astro'
+import BusinessTourismCompanies from '@/components/business_tourism/BusinessTourismCompanies.astro'
+import ContactCTA from '@/components/ContactCTA.astro'
+---
+
+<Layout title="Деловой туризм - Прототип" userType="tourist" heroTextColor="dark">
+    <BusinessTourismHero userType="tourist" />
+    <BusinessTourismDirections />
+    <BusinessTourismInfo />
+    <BusinessTourismAdvantages />
+    <BusinessTourismCompanies />
+    <ContactCTA title="Свяжитесь с нами для разработки<br />персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>

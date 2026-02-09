@@ -12,6 +12,7 @@ import { initAboutInfo } from './about/aboutInfo'
 import { initAboutTimeline } from './about/aboutTimeline'
 import { initAboutMap } from './about/aboutMap'
 import { initNewsSlider } from './news/newsSlider'
+import { initCompaniesSlider } from './business_tourism/companiesSlider'
 
 // Запуск при загрузке страницы
 const initAll = () => {
@@ -27,6 +28,7 @@ const initAll = () => {
     initAboutTimeline()
     initAboutMap()
     initNewsSlider()
+    initCompaniesSlider()
 }
 
 if (document.readyState === 'loading') {

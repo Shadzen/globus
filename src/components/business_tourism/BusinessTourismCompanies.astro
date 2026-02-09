@@ -1,0 +1,124 @@
+---
+import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
+
+import logo1 from '@/assets/images/business_tourism/company-logo-1.png'
+import logo2 from '@/assets/images/business_tourism/company-logo-2.png'
+import logo3 from '@/assets/images/business_tourism/company-logo-3.png'
+import logo4 from '@/assets/images/business_tourism/company-logo-4.png'
+import logo5 from '@/assets/images/business_tourism/company-logo-5.png'
+
+const companies = [
+    { id: 1, logo: logo1, name: 'Катрен' },
+    { id: 2, logo: logo2, name: 'NL International' },
+    { id: 3, logo: logo3, name: 'Ростелеком' },
+    { id: 4, logo: logo4, name: 'МС' },
+    { id: 5, logo: logo5, name: 'Greenway' },
+    { id: 6, logo: logo1, name: 'Катрен' },
+]
+---
+
+<section class="business-tourism-companies-section">
+    <div class="business-tourism-companies-container">
+        <div class="companies-header">
+            <h2 class="companies-title">Мы работаем с лидерами рынка</h2>
+            <SwiperNavButtons containerClass="companies-nav" />
+        </div>
+
+        <div class="companies-slider-wrapper swiper">
+            <div class="companies-slider swiper-wrapper">
+                {companies.map((company) => (
+                    <div class="company-slide swiper-slide">
+                        <div class="company-logo">
+                            <img src={company.logo.src} alt={company.name} loading="lazy" decoding="async" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .business-tourism-companies-section {
+        @include adaptive(margin-top, 100, 50);
+
+        .business-tourism-companies-container {
+            width: 100%;
+        }
+
+        .companies-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include adaptive(gap, 32, 20);
+            position: relative;
+            @include side-paddings;
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .companies-title {
+            @include font-kudry-sans;
+            text-transform: uppercase;
+            font-style: normal;
+            font-weight: 300;
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(font-size, 60, 38);
+            line-height: 1.21;
+            margin: 0;
+        }
+
+        .companies-nav {
+            @include center-y;
+            @include adaptive(right, 100, 15);
+        }
+
+        .companies-slider-wrapper {
+            overflow: hidden;
+            width: 100%;
+            @include adaptive(padding-top, 70, 40);
+            @include adaptive(padding-bottom, 40, 20);
+        }
+
+        .companies-slider {
+            display: flex;
+            align-items: center;
+        }
+
+        .company-slide {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            @include adaptive(height, 130, 100);
+
+            @include desktop {
+                width: calc((100% - 100px * 2 - 16px * 4) / 5);
+            }
+
+            @include mobile {
+                width: calc((100% - 15px * 2 - 15px) / 2);
+            }
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                display: block;
+            }
+        }
+    }
+</style>

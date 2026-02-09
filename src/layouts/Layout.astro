@@ -142,6 +142,16 @@ const base = import.meta.env.BASE_URL
         margin: 0;
     }
 
+    // Общий стиль для точек-маркеров
+    .bullet {
+        @include adaptive(width, 12, 10);
+        @include adaptive(height, 12, 10);
+        @include adaptive(min-width, 12, 10);
+        border-radius: 50%;
+        background-color: $color-accent;
+        flex-shrink: 0;
+    }
+
     .swiper {
         @include side-paddings;
 
