@@ -1,0 +1,49 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/tour_search/hero-1.jpg'
+import heroMobile from '@/assets/images/tour_search/hero-1-mobile.jpg'
+
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section tour-search-hero">
+    <picture class="hero-bg _overlay-gradient">
+        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav
+        items={[{ label: 'Главная', href: `${base}/tourist/` }, { label: 'Лучшие предложения' }]}
+    />
+
+    <div class="hero-content">
+        <div class="hero-title">
+            <h1>Поиск</h1>
+            <h1>Тура</h1>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-search-hero {
+        @include adaptive(height, 1044, 972);
+        @include adaptive(padding-top, 526, 248);
+
+        .hero-content {
+            @include flex-start-between;
+
+            h1 {
+                @include desktop {
+                    &:nth-child(1) {
+                        @include adaptive(padding-left, 42, 80);
+                    }
+
+                    &:nth-child(2) {
+                        @include adaptive(padding-left, 386, 80);
+                    }
+                }
+            }
+        }
+    }
+</style>

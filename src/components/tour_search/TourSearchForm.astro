@@ -1,0 +1,539 @@
+---
+import chevronDown from '@/assets/icons/chevron-down.svg'
+import arrowsUpDown from '@/assets/icons/arrows-up-down.svg'
+import groupIcon from '@/assets/icons/group.svg'
+import mapMarker from '@/assets/icons/map-marker.svg'
+import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
+---
+
+<section class="tour-search-form-section">
+    <div class="tour-search-form-container">
+        <!-- Переключатель: Туры с перелетом / Отели -->
+        <div class="search-tabs">
+            <div class="search-tab active">
+                <div class="tab-radio"></div>
+                <span class="tab-label">Туры с перелетом</span>
+            </div>
+            <div class="search-tab">
+                <div class="tab-radio"></div>
+                <span class="tab-label">Отели</span>
+            </div>
+        </div>
+
+        <!-- Основная форма поиска -->
+        <div class="search-form-main">
+            <!-- Город вылета -->
+            <div class="form-field city-field">
+                <div class="field-content">
+                    <p class="field-value">Из Новосибирска</p>
+                    <div class="field-divider"></div>
+                </div>
+                <div class="field-icon">
+                    <img src={chevronDown.src} alt="" />
+                </div>
+            </div>
+
+            <!-- Страна -->
+            <div class="form-field country-field">
+                <label class="field-label">страна</label>
+                <div class="field-content">
+                    <p class="field-value">ОАЭ</p>
+                    <a href="#" class="field-link">Выбрать курорт/отель</a>
+                </div>
+                <div class="field-divider"></div>
+                <div class="field-icon">
+                    <img src={chevronDown.src} alt="" />
+                </div>
+            </div>
+
+            <!-- Дата вылета -->
+            <div class="form-field date-field">
+                <label class="field-label">Дата вылета</label>
+                <div class="field-content">
+                    <p class="field-value">16 сен - 25 сен</p>
+                    <div class="field-divider"></div>
+                </div>
+            </div>
+
+            <!-- Ночей -->
+            <div class="form-field nights-field">
+                <label class="field-label">Ночей</label>
+                <div class="field-content">
+                    <p class="field-value">6-14</p>
+                    <div class="field-divider"></div>
+                </div>
+            </div>
+
+            <!-- Туристы -->
+            <div class="form-field tourists-field">
+                <label class="field-label">Туристы</label>
+                <div class="field-content">
+                    <p class="field-value">2 взрослых</p>
+                    <div class="field-divider"></div>
+                </div>
+            </div>
+
+            <!-- Кнопка поиска -->
+            <button class="search-button">Найти</button>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="search-filters">
+            <!-- Класс отеля -->
+            <div class="filter-field hotel-class-field">
+                <label class="filter-label">Класс отеля</label>
+                <div class="star-rating">
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star">★</span>
+                </div>
+                <div class="filter-divider"></div>
+            </div>
+
+            <!-- Питание -->
+            <div class="filter-field">
+                <label class="filter-label">Питание</label>
+                <div class="filter-icon">
+                    <img src={chevronDown.src} alt="" />
+                </div>
+                <div class="filter-divider"></div>
+            </div>
+
+            <!-- Рейтинг -->
+            <div class="filter-field">
+                <label class="filter-label">Рейтинг</label>
+                <div class="filter-icon">
+                    <img src={chevronDown.src} alt="" />
+                </div>
+                <div class="filter-divider"></div>
+            </div>
+
+            <!-- Услуги отеля -->
+            <div class="filter-field">
+                <label class="filter-label">Услуги отеля</label>
+                <div class="filter-icon">
+                    <img src={chevronDown.src} alt="" />
+                </div>
+                <div class="filter-divider"></div>
+            </div>
+
+            <!-- Кнопки сортировки -->
+            <div class="sort-buttons">
+                <button class="sort-button price-sort">
+                    <img src={arrowsUpDown.src} alt="" />
+                    <span>По цене</span>
+                </button>
+                <button class="sort-button icon-only">
+                    <img src={arrowsUpDown.src} alt="" class="reversed" />
+                </button>
+                <button class="sort-button icon-only">
+                    <img src={arrowsUpDown.src} alt="" />
+                </button>
+            </div>
+        </div>
+
+        <!-- Дополнительные опции -->
+        <div class="additional-options">
+            <div class="option-item">
+                <img src={groupIcon.src} alt="" class="option-icon" />
+                <span class="option-text">Сгруппировать по курортам</span>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <div class="option-item cta-option">
+                <h3 class="cta-title">Не знаете, какой отель выбрать?</h3>
+                <p class="cta-text">Посмотрите готовые подборки от наших менеджеров!</p>
+                <button class="cta-button">
+                    <img src={arrowRightFilled.src} alt="" />
+                </button>
+            </div>
+
+            <div class="option-item">
+                <img src={mapMarker.src} alt="" class="option-icon" />
+                <span class="option-text">Показать на карте</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-search-form-section {
+        @include adaptive(margin-top, 0, 0);
+
+        .tour-search-form-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        // Переключатель табов
+        .search-tabs {
+            background-color: $color-alternate;
+            @include adaptive(padding-top, 38, 30);
+            @include adaptive(padding-bottom, 30, 25);
+            @include side-paddings;
+            display: flex;
+            @include adaptive(gap, 50, 30);
+        }
+
+        .search-tab {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 14, 10);
+            cursor: pointer;
+        }
+
+        .tab-radio {
+            @include adaptive(width, 14, 12);
+            @include adaptive(height, 14, 12);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 253, 248, 0.5);
+            position: relative;
+
+            .search-tab.active & {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    @include adaptive(width, 8, 6);
+                    @include adaptive(height, 8, 6);
+                    border-radius: 50%;
+                    background-color: #FFFDF8;
+                }
+            }
+        }
+
+        .tab-label {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: #FFFDF8;
+
+            .search-tab:not(.active) & {
+                color: #8C9DA4;
+            }
+        }
+
+        // Основная форма
+        .search-form-main {
+            background-color: $color-alternate;
+            @include adaptive(padding-bottom, 75, 50);
+            @include side-paddings;
+            display: grid;
+            @include adaptive(gap, 49, 20);
+            
+            @include desktop {
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-areas: "city country date nights tourists button";
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "city"
+                    "country"
+                    "date"
+                    "nights"
+                    "tourists"
+                    "button";
+            }
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 18, 15);
+            position: relative;
+        }
+
+        .city-field { grid-area: city; }
+        .country-field { grid-area: country; }
+        .date-field { grid-area: date; }
+        .nights-field { grid-area: nights; }
+        .tourists-field { grid-area: tourists; }
+
+        .field-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 253, 248, 0.55);
+        }
+
+        .field-content {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 12, 10);
+        }
+
+        .field-value {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: #FFFDF8;
+            margin: 0;
+        }
+
+        .field-link {
+            font-family: 'Open Sans', sans-serif;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.3;
+            color: $color-accent;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .field-divider {
+            height: 1px;
+            background-color: rgba(255, 253, 248, 0.3);
+            width: 100%;
+        }
+
+        .field-icon {
+            position: absolute;
+            @include adaptive(right, 0, 0);
+            @include adaptive(top, 50, 40);
+            
+            img {
+                @include adaptive(width, 15, 12);
+                @include adaptive(height, 14, 12);
+                display: block;
+            }
+        }
+
+        .search-button {
+            grid-area: button;
+            background-color: $color-accent;
+            border: 1px solid $color-accent;
+            border-radius: 500px;
+            @include adaptive(height, 60, 50);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #FFFDF8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: end;
+
+            &:hover {
+                background-color: darken(#CCA870, 10%);
+            }
+        }
+
+        // Фильтры
+        .search-filters {
+            background-color: #FFFDF8;
+            @include adaptive(padding-top, 30, 25);
+            @include adaptive(padding-bottom, 30, 25);
+            @include side-paddings;
+            display: flex;
+            @include adaptive(gap, 54, 20);
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .filter-field {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 14, 10);
+            position: relative;
+        }
+
+        .hotel-class-field {
+            @include adaptive(width, 401, 300);
+        }
+
+        .filter-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(0, 39, 63, 0.55);
+        }
+
+        .star-rating {
+            display: flex;
+            @include adaptive(gap, 6, 4);
+        }
+
+        .star {
+            @include adaptive(font-size, 20, 16);
+            color: rgba(0, 39, 63, 0.2);
+
+            &.active {
+                color: $color-accent;
+            }
+        }
+
+        .filter-divider {
+            height: 1px;
+            background-color: rgba(0, 39, 63, 0.2);
+            width: 100%;
+        }
+
+        .filter-icon {
+            position: absolute;
+            @include adaptive(right, 0, 0);
+            @include adaptive(top, 0, 0);
+            
+            img {
+                @include adaptive(width, 18, 15);
+                @include adaptive(height, 18, 15);
+                display: block;
+            }
+        }
+
+        .sort-buttons {
+            display: flex;
+            @include adaptive(gap, 8, 6);
+            margin-left: auto;
+        }
+
+        .sort-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include adaptive(gap, 10, 8);
+            @include adaptive(height, 54, 44);
+            @include adaptive(padding-left, 45, 20);
+            @include adaptive(padding-right, 45, 20);
+            border: 2px solid $color-accent;
+            border-radius: 500px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: rgba(204, 168, 112, 0.1);
+            }
+
+            &.icon-only {
+                @include adaptive(width, 54, 44);
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            img {
+                @include adaptive(width, 14, 12);
+                @include adaptive(height, 27, 22);
+                display: block;
+
+                &.reversed {
+                    transform: rotate(180deg);
+                }
+            }
+
+            span {
+                @include font-circe-light;
+                @include adaptive(font-size, 26, 18);
+                line-height: 1.2;
+                color: $color-alternate;
+            }
+        }
+
+        // Дополнительные опции
+        .additional-options {
+            background-color: $color-alternate;
+            @include adaptive(padding-top, 50, 40);
+            @include adaptive(padding-bottom, 50, 40);
+            @include side-paddings;
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 40, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 10, 8);
+        }
+
+        .option-icon {
+            @include adaptive(width, 28, 22);
+            @include adaptive(height, 28, 22);
+            display: block;
+        }
+
+        .option-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: #FFFDF8;
+        }
+
+        .divider-line {
+            height: 1px;
+            background-color: rgba(255, 253, 248, 0.2);
+            flex: 1;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .cta-option {
+            flex-direction: row;
+            @include adaptive(gap, 20, 15);
+            align-items: flex-start;
+            flex: 1;
+        }
+
+        .cta-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: #FFFDF8;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .cta-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            color: #FFFDF8;
+            margin: 0;
+            @include adaptive(margin-top, 10, 8);
+        }
+
+        .cta-button {
+            @include adaptive(width, 54, 44);
+            @include adaptive(height, 54, 44);
+            border-radius: 50%;
+            background-color: $color-accent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+
+            &:hover {
+                background-color: darken(#CCA870, 10%);
+            }
+
+            img {
+                @include adaptive(width, 20, 16);
+                @include adaptive(height, 20, 16);
+                display: block;
+            }
+        }
+    }
+</style>
