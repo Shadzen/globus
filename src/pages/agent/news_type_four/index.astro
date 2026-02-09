@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NewsTypeFourHero from '@/components/news_type_four/NewsTypeFourHero.astro'
+import NewsTypeFourOffers from '@/components/news_type_four/NewsTypeFourOffers.astro'
+import NewsTypeFourInclusions from '@/components/news_type_four/NewsTypeFourInclusions.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+---
+
+<Layout title="Новости Тип 4 - Прототип" userType="agent" heroTextColor="dark">
+    <NewsTypeFourHero userType="agent" />
+    <NewsTypeFourOffers userType="agent" />
+    <NewsTypeFourInclusions userType="agent" />
+    <ContactsGrid standalone />
+</Layout>

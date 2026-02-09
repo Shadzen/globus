@@ -73,127 +73,128 @@ const { hotels } = Astro.props
         width: 100%;
         overflow: hidden;
         @include adaptive(padding-top, 34, 24);
-    }
 
-    .hotels-slider {
-        display: flex;
-        align-items: stretch;
+        .hotels-slider {
+            display: flex;
+            align-items: stretch;
 
-        .hotel-card {
-            height: 100%;
+            .hotel-card {
+                height: 100%;
+                // В слайдере задаём фиксированную ширину
+                @include adaptive(width, 418, 322);
+            }
         }
     }
 
     // Общие стили для карточек отелей (используются и в слайдере, и в сетке)
-    .hotel-card {
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        @include adaptive(gap, 32, 40);
-
-        // В слайдере задаём фиксированную ширину
-        .hotels-slider & {
-            @include adaptive(width, 418, 322);
+    // Применяются только внутри .hotels-slider-wrapper и .hotels-grid
+    .hotels-slider-wrapper,
+    .hotels-grid {
+        .hotel-card {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 32, 40);
         }
-    }
 
-    .hotel-card-link {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        width: 100%;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-        white-space: normal;
-
-        &:hover {
-            transform: translateY(-8px);
-        }
-    }
-
-    .hotel-image {
-        position: relative;
-        @include adaptive(height, 280, 216);
-        overflow: hidden;
-        width: 100%;
-
-        img {
+        .hotel-card-link {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            white-space: normal;
+
+            &:hover {
+                transform: translateY(-8px);
+            }
         }
-    }
 
-    .hotel-badge {
-        position: absolute;
-        @include adaptive(bottom, 20, 15);
-        @include adaptive(left, 20, 15);
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid $color-accent;
-        border-radius: 500px;
-        @include adaptive(padding-top, 13, 10);
-        @include adaptive(padding-bottom, 13, 10);
-        @include adaptive(padding-left, 40, 20);
-        @include adaptive(padding-right, 40, 20);
+        .hotel-image {
+            position: relative;
+            @include adaptive(height, 280, 216);
+            overflow: hidden;
+            width: 100%;
 
-        span {
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .hotel-badge {
+            position: absolute;
+            @include adaptive(bottom, 20, 15);
+            @include adaptive(left, 20, 15);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid $color-accent;
+            border-radius: 500px;
+            @include adaptive(padding-top, 13, 10);
+            @include adaptive(padding-bottom, 13, 10);
+            @include adaptive(padding-left, 40, 20);
+            @include adaptive(padding-right, 40, 20);
+
+            span {
+                @include font-circe-regular;
+                @include adaptive(font-size, 20, 16);
+                line-height: 1.21;
+                color: $color-main;
+            }
+        }
+
+        .hotel-recommended {
+            position: absolute;
+            @include adaptive(top, 4, 2);
+            @include adaptive(right, 4, 2);
+            @include adaptive(width, 125, 70);
+            @include adaptive(height, 125, 70);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .hotel-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 14, 10);
+            @include adaptive(margin-top, 24, 18);
+            width: 100%;
+        }
+
+        .hotel-name {
+            @include font-kudry-sans;
+            font-weight: 300;
+            @include adaptive(font-size, 28, 22);
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: $color-alternate;
+            margin: 0;
+            @include adaptive(min-height, 67, 53);
+        }
+
+        .hotel-price {
             @include font-circe-regular;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.21;
-            color: $color-main;
+            font-weight: 300;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            color: $color-accent;
+            margin: 0;
         }
-    }
 
-    .hotel-recommended {
-        position: absolute;
-        @include adaptive(top, 4, 2);
-        @include adaptive(right, 4, 2);
-        @include adaptive(width, 125, 70);
-        @include adaptive(height, 125, 70);
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        .hotel-book-btn {
+            @include button-default;
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            width: auto;
+            align-self: flex-start;
         }
-    }
-
-    .hotel-info {
-        display: flex;
-        flex-direction: column;
-        @include adaptive(gap, 14, 10);
-        @include adaptive(margin-top, 24, 18);
-        width: 100%;
-    }
-
-    .hotel-name {
-        @include font-kudry-sans;
-        font-weight: 300;
-        @include adaptive(font-size, 28, 22);
-        line-height: 1.2;
-        text-transform: uppercase;
-        color: $color-alternate;
-        margin: 0;
-        @include adaptive(min-height, 67, 53);
-    }
-
-    .hotel-price {
-        @include font-circe-regular;
-        font-weight: 300;
-        @include adaptive(font-size, 26, 20);
-        line-height: 1.2;
-        color: $color-accent;
-        margin: 0;
-    }
-
-    .hotel-book-btn {
-        @include button-default;
-        @include adaptive(padding-top, 16, 12);
-        @include adaptive(padding-bottom, 16, 12);
-        @include adaptive(padding-left, 50, 30);
-        @include adaptive(padding-right, 50, 30);
-        width: auto;
-        align-self: flex-start;
     }
 </style>
