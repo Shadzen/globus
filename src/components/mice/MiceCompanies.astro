@@ -1,11 +1,11 @@
 ---
 import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
 
-import logo1 from '@/assets/images/business_tourism/company-logo-1.png'
-import logo2 from '@/assets/images/business_tourism/company-logo-2.png'
-import logo3 from '@/assets/images/business_tourism/company-logo-3.png'
-import logo4 from '@/assets/images/business_tourism/company-logo-4.png'
-import logo5 from '@/assets/images/business_tourism/company-logo-5.png'
+import logo1 from '@/assets/images/mice/company-logo-1.png'
+import logo2 from '@/assets/images/mice/company-logo-2.png'
+import logo3 from '@/assets/images/mice/company-logo-3.png'
+import logo4 from '@/assets/images/mice/company-logo-4.png'
+import logo5 from '@/assets/images/mice/company-logo-5.png'
 
 const companies = [
     { id: 1, logo: logo1, name: 'Катрен' },
@@ -17,8 +17,8 @@ const companies = [
 ]
 ---
 
-<section class="business-tourism-companies-section">
-    <div class="business-tourism-companies-container">
+<section class="mice-companies-section">
+    <div class="mice-companies-container">
         <div class="companies-header">
             <h2 class="companies-title">Мы работаем с лидерами рынка</h2>
             <SwiperNavButtons containerClass="companies-nav" />
@@ -39,10 +39,10 @@ const companies = [
 </section>
 
 <style lang="scss" is:global>
-    .business-tourism-companies-section {
+    .mice-companies-section {
         @include adaptive(margin-top, 100, 50);
 
-        .business-tourism-companies-container {
+        .mice-companies-container {
             width: 100%;
         }
 

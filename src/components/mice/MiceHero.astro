@@ -2,8 +2,8 @@
 import HeroNav from '@/components/HeroNav.astro'
 import { BREAKPOINTS } from '@/scripts/utils'
 
-import heroDesktop from '@/assets/images/business_tourism/hero-1.jpg'
-import heroMobile from '@/assets/images/business_tourism/hero-1-mobile.jpg'
+import heroDesktop from '@/assets/images/mice/hero-1.jpg'
+import heroMobile from '@/assets/images/mice/hero-1-mobile.jpg'
 
 interface Props {
     userType?: 'tourist' | 'agent'
@@ -13,7 +13,7 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section business-tourism-hero">
+<section class="hero-section mice-hero">
     <picture class="hero-bg">
         <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
@@ -34,7 +34,7 @@ const base = import.meta.env.BASE_URL
 </section>
 
 <style lang="scss" is:global>
-    .business-tourism-hero {
+    .mice-hero {
         @include adaptive(padding-top, 390, 210);
 
         .hero-bg {

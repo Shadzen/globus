@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import MiceHero from '@/components/mice/MiceHero.astro'
+import MiceDirections from '@/components/mice/MiceDirections.astro'
+import MiceInfo from '@/components/mice/MiceInfo.astro'
+import MiceAdvantages from '@/components/mice/MiceAdvantages.astro'
+import MiceCompanies from '@/components/mice/MiceCompanies.astro'
+import ContactCTA from '@/components/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Деловой туризм - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <MiceHero userType="tourist" />
+    <MiceDirections />
+    <MiceInfo />
+    <MiceAdvantages />
+    <MiceCompanies />
+    <ContactCTA title="Свяжитесь с нами для разработки<br />персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>

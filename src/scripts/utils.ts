@@ -5,6 +5,8 @@ export const BREAKPOINTS = {
     desktop: 1920,
 } as const
 
+export const COMPANY_NAME = 'Глобус-тур'
+
 const WIDE_RATIO = 21 / 9
 const WIDE_VW_MULTIPLIER = 0.75
 
