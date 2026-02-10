@@ -1,0 +1,129 @@
+---
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+
+// Данные о странах по регионам
+const regions = [
+    {
+        title: 'Европа',
+        countries: [
+            'Австрия',
+            'Венгрия',
+            'Германия',
+            'Греция',
+            'Израиль',
+            'Италия',
+            'Кипр',
+            'Болгария',
+            'Франция',
+            'Швейцария',
+        ],
+    },
+    {
+        title: 'Азия, Ближний и Средний Восток',
+        countries: ['Китай', 'Сингапур', 'Южная Корея', 'Япония', 'Индия'],
+    },
+    {
+        title: 'Америка и страны Карибского бассейна',
+        countries: ['Ангилья', 'Антигуа и Барбуда', 'Аргентина', 'Багамские острова', 'Барбадос'],
+    },
+]
+---
+
+<section class="visas-countries-section">
+    <div class="visas-countries-container">
+        <h2 class="visas-countries-title">Страны</h2>
+
+        <div class="visas-countries-content">
+            {
+                regions.map((region) => (
+                    <div class="region">
+                        <h3 class="region-title">{region.title}</h3>
+                        <ul class="region-list">
+                            {region.countries.map((country) => (
+                                <li class="region-item">
+                                    <a href={`${base}${userType}/visas/visa_greece`} class="region-link">
+                                        {country}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .visas-countries-section {
+        @include adaptive(margin-top, 80, 40);
+
+        .visas-countries-container {
+            @include side-paddings;
+            width: 100%;
+        }
+        .visas-countries-content {
+            display: grid;
+            @include adaptive(margin-top, 44, 36);
+            @include adaptive(gap, 250, 30);
+
+            @include desktop {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .region {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .region-title {
+            @include font-circe-regular;
+            font-weight: 400;
+            color: $color-accent;
+            @include adaptive(font-size, 24, 31);
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 3);
+            margin: 0;
+        }
+
+        .region-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 15, 12);
+            @include adaptive(margin-top, 22, 28);
+        }
+
+        .region-item {
+            margin: 0;
+        }
+
+        .region-link {
+            @include font-circe-light;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
+            font-weight: 350;
+            white-space: normal;
+            transition: color 0.3s ease;
+            display: inline-block;
+
+            &:hover {
+                color: $color-accent;
+            }
+        }
+    }
+</style>

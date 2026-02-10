@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
 ---
 
 <footer>
@@ -46,7 +47,7 @@ const { userType = 'tourist' } = Astro.props
                 <nav class="footer-nav">
                     {userType === 'tourist' ? (
                         <>
-                            <a href="#">Визы</a>
+                            <a href={`${base}tourist/visas`}>Визы</a>
                             <a href="#">Страхование</a>
                         </>
                     ) : (

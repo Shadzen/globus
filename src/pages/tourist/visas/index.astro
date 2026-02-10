@@ -1,0 +1,12 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import VisasHero from '@/components/visas/VisasHero.astro'
+import VisasCountries from '@/components/visas/VisasCountries.astro'
+import ContactCTA from '@/components/ContactCTA.astro'
+---
+
+<Layout title="Визы - Глобус-Тур" userType="tourist" heroTextColor="dark">
+    <VisasHero userType="tourist" />
+    <VisasCountries userType="tourist" />
+    <ContactCTA title="Остались вопросы? свяжитесь с нами!" />
+</Layout>
