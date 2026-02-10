@@ -1,0 +1,67 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/visa/hero-1.jpg'
+import heroMobile from '@/assets/images/visa/hero-1-mobile.jpg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section visa-hero">
+    <picture class="hero-bg">
+        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[{
+        label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Визы', href: `${base}${userType}/visas` },
+        { label: 'Греция' },
+    ]} textColor="dark" />
+
+    <div class="hero-content _dark-text">
+        <h2 class="hero-title">Виза в грецию</h2>
+        <p class="hero-subtitle">На данный момент Греция открывает визы гражданам РФ на даты поездки. Средний срок оформления визы от 4х недель. Подать документы можно по цели поездки туризм и по приглашению от родственников или друзей.</p>
+        <p class="hero-subtitle">Подать документы на визу возможно с понедельника по пятницу по предварительной записи.</p>
+        <div class="hero-buttons">
+            <a href="#" class="hero-button">туристическая виза</a>
+            <a href="#" class="hero-button _outline">консульская виза</a>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .visa-hero {
+        @include adaptive(min-height, 880, 700);
+        @include adaptive(padding-top, 446, 518);
+
+        .hero-bg {
+            @include adaptive(height, 595, 231);
+            @include adaptive(width, 849, 450);
+            bottom: 0;
+            left: auto;
+            right: 0;
+            @include adaptive(top, 285, 250);
+
+            @include mobile {
+                @include adaptive(right, 100, 15);
+            }
+        }
+
+        .hero-content {
+            flex-wrap: wrap;
+            flex-direction: row;
+            flex: 0;
+            @include adaptive(row-gap, 20, 12);
+
+            @include desktop {
+                width: 56%;
+            }
+        }
+    }
+</style>

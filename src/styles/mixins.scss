@@ -185,6 +185,27 @@
     }
 }
 
+@mixin button-sized {
+    @include button-default;
+    @include adaptive(font-size, 22, 18);
+    @include adaptive(letter-spacing, 2.2, 3.6);
+    @include adaptive(padding-top, 16, 20);
+    @include adaptive(padding-bottom, 16, 20);
+    @include adaptive(padding-left, 50, 30);
+    @include adaptive(padding-right, 50, 30);
+}
+
+@mixin button-sized-outline {
+    @include button-sized;
+    background: transparent;
+    color: $color-accent;
+    border-color: $color-accent;
+
+    &:hover {
+        background: rgba($color-accent, 0.1);
+    }
+}
+
 @mixin mobile {
     @media screen and (max-width: #{$mobile-width}px) {
         @content;

@@ -14,6 +14,7 @@ export interface ContactPerson {
 interface Props {
     people?: ContactPerson[]
     standalone?: boolean
+    title?: string
 }
 
 // Дефолтные контакты
@@ -41,10 +42,14 @@ const defaultPeople: ContactPerson[] = [
     },
 ]
 
-const { people = defaultPeople, standalone = false } = Astro.props
+const { people = defaultPeople, standalone = false, title } = Astro.props
 ---
 
 <div class:list={['contacts-grid', { '_standalone': standalone }]}>
+    {title && (
+        <h2 class="contacts-grid-title" set:html={title} />
+    )}
+
     {
         people.map((person) => (
             <div class="contact-card">
@@ -88,6 +93,12 @@ const { people = defaultPeople, standalone = false } = Astro.props
         @include mobile {
             grid-template-columns: 1fr;
         }
+    }
+
+    .contacts-grid-title {
+        color: $color-main;
+        text-align: center;
+        grid-column: 1 / -1;
     }
 
     .contact-card {

@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import VisaHero from '@/components/visa/VisaHero.astro'
+import VisaInfo from '@/components/visa/VisaInfo.astro'
+import VisaDocuments from '@/components/visa/VisaDocuments.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+---
+
+<Layout title="Виза Греция - Глобус Тур" userType="tourist" heroTextColor="dark">
+    <VisaHero userType="tourist" />
+    <VisaInfo />
+    <VisaDocuments />
+    <ContactsGrid standalone title="Остались вопросы? свяжитесь с нами!" />
+</Layout>

@@ -217,7 +217,11 @@ const base = import.meta.env.BASE_URL
 
             &._overlay-darker {
                 &::after {
-                    background: linear-gradient(0deg, rgba(0, 39, 63, 0.70) 0%, rgba(0, 39, 63, 0.70) 100%);
+                    background: linear-gradient(
+                        0deg,
+                        rgba(0, 39, 63, 0.7) 0%,
+                        rgba(0, 39, 63, 0.7) 100%
+                    );
                 }
             }
         }
@@ -230,7 +234,14 @@ const base = import.meta.env.BASE_URL
             // @include adaptive(gap, 50, 12);
             width: 100%;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+
+            &._dark-text {
+                .hero-title,
+                .hero-subtitle {
+                    color: $color-alternate;
+                }
+            }
         }
 
         .hero-subtitle {
@@ -238,6 +249,25 @@ const base = import.meta.env.BASE_URL
             font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
+        }
+
+        .hero-buttons {
+            display: flex;
+            @include adaptive(gap, 20, 16);
+            @include adaptive(margin-top, 30, 16);
+
+            @include mobile {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        .hero-button {
+            @include button-sized;
+
+            &._outline {
+                @include button-sized-outline;
+            }
         }
     }
 </style>

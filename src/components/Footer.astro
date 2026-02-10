@@ -16,9 +16,9 @@ const base = import.meta.env.BASE_URL
             <div class="footer-column">
                 <h3 class="footer-title">Глобус тур</h3>
                 <nav class="footer-nav">
-                    <a href="#">Глобус-News</a>
-                    <a href="#">О нас</a>
-                    <a href="#">Поиск туров</a>
+                    <a href={`${base}${userType}/news`}>Глобус-News</a>
+                    <a href={`${base}${userType}/about`}>О нас</a>
+                    <a href={`${base}${userType}/tour_search`}>Поиск туров</a>
                     <a href="#">Авиабилеты</a>
                     {userType === 'agent' && (
                         <a href="#">Документы</a>
