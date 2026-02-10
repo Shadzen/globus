@@ -40,9 +40,9 @@ const directions = [
 <style lang="scss" is:global>
     .business-tourism-directions-section {
         @include adaptive(margin-top, 120, 60);
-        background-color: #00273f;
-        @include adaptive(padding-top, 70, 50);
-        @include adaptive(padding-bottom, 70, 50);
+        background-color: $color-alternate;
+        @include adaptive(padding-top, 70, 60);
+        @include adaptive(padding-bottom, 70, 60);
 
         .business-tourism-directions-container {
             @include side-paddings;
@@ -50,21 +50,15 @@ const directions = [
         }
 
         .directions-title {
-            @include font-kudry-sans;
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: 300;
-            color: #FFFDF8;
-            text-align: center;
-            @include adaptive(font-size, 60, 38);
-            line-height: 1.21;
-            @include adaptive(margin-bottom, 90, 50);
+            color: $color-main;
         }
 
         .directions-grid {
+            @include adaptive(margin-top, 90, 50);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            @include adaptive(gap, 34, 30);
+            @include adaptive(row-gap, 45, 30);
+            @include adaptive(column-gap, 90, 30);
 
             @include mobile {
                 grid-template-columns: 1fr;
@@ -73,7 +67,7 @@ const directions = [
 
         .direction-item {
             display: flex;
-            gap: 10px;
+            @include adaptive(gap, 10, 12);
             align-items: flex-start;
 
             .bullet {
@@ -85,23 +79,27 @@ const directions = [
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            @include adaptive(gap, 10, 12);
         }
 
         .direction-title {
             @include font-circe-regular;
             font-style: normal;
-            color: #FFFDF8;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.21;
+            color: $color-main;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
             margin: 0;
+
+            @include desktop {
+                width: 50%;
+            }
         }
 
         .direction-description {
             @include font-circe-regular;
             font-style: normal;
             color: #667C89;
-            @include adaptive(font-size, 20, 16);
+            @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;
         }
