@@ -1,0 +1,21 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section _dark-text _type-one">
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Политика конфиденциальности' },
+    ]} />
+</section>
+
+<style lang="scss" is:global>
+
+</style>

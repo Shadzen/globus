@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PrivacyPolicyHero from '@/components/privacy_policy/PrivacyPolicyHero.astro'
+import PrivacyPolicy from '@/components/privacy_policy/PrivacyPolicy.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Политика конфиденциальности - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <PrivacyPolicyHero userType="tourist" />
+    <PrivacyPolicy />
+</Layout>

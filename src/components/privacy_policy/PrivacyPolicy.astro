@@ -1,0 +1,223 @@
+---
+import chevronDown from '@/assets/icons/chevron-down.svg'
+
+const accordionSections = [
+    {
+        id: 'general',
+        title: '1. Общие положения',
+        content: `<p>Содержание раздела об общих положениях...</p>`,
+    },
+    {
+        id: 'concepts',
+        title: '2. Основные понятия',
+        content: `<p>Содержание раздела об основных понятиях...</p>`,
+    },
+    {
+        id: 'goals',
+        title: '3. Цели и правовые основания обработки персональных данных',
+        content: `<p>Содержание раздела о целях и правовых основаниях...</p>`,
+    },
+    {
+        id: 'principles',
+        title: '4. Принципы обработки персональных данных',
+        content: `<p>Содержание раздела о принципах обработки...</p>`,
+    },
+    {
+        id: 'procedure',
+        title: '5. Порядок и условия обработки персональных данных',
+        content: `<p>Содержание раздела о порядке и условиях обработки...</p>`,
+    },
+    {
+        id: 'protection',
+        title: '6. Защита персональных данных и обеспечение режима их конфиденциальности',
+        content: `<p>Содержание раздела о защите персональных данных...</p>`,
+    },
+    {
+        id: 'terms',
+        title: '7. Сроки обработки персональных данных',
+        content: `<p>Содержание раздела о сроках обработки...</p>`,
+    },
+    {
+        id: 'access',
+        title: '8. Допуск к обработке персональных данных',
+        content: `<p>Содержание раздела о допуске к обработке...</p>`,
+    },
+    {
+        id: 'obligations',
+        title: '9. Обязанности Общества при обработке персональных данных',
+        content: `<p>Содержание раздела об обязанностях Общества...</p>`,
+    },
+    {
+        id: 'rights',
+        title: '10. Основные права субъекта персональных данных',
+        content: `<p>Содержание раздела об основных правах субъекта...</p>`,
+    },
+    {
+        id: 'responsibility',
+        title: '11. Ответсвенность за обеспечение безопасности персональных данных',
+        content: `<p>Содержание раздела об ответственности...</p>`,
+    },
+    {
+        id: 'information',
+        title: '12. Порядок предоставления информации субъекту персональных данных',
+        content: `<p>Содержание раздела о порядке предоставления информации...</p>`,
+    },
+    {
+        id: 'final',
+        title: '13. Заключительные положения',
+        content: `<p>Содержание раздела о заключительных положениях...</p>`,
+    },
+]
+---
+
+<section class="user-agreement-section">
+    <div class="user-agreement-container">
+        <h2 class="agreement-title">Политика конфиденциальности</h2>
+
+        <div class="agreement-intro">
+            <p>
+                Политика в отношении обработки и защиты персональных данных в ООО Туристическое
+                агентство «Глобус-тур»
+            </p>
+        </div>
+
+        <div class="accordion">
+            {
+                accordionSections.map((section) => (
+                    <div class="accordion-item" data-accordion-item>
+                        <div class="divider" />
+                        <button
+                            class="accordion-header"
+                            data-accordion-button
+                            aria-expanded="false"
+                        >
+                            <h3 class="accordion-title">{section.title}</h3>
+                            <img src={chevronDown.src} alt="" class="accordion-icon" />
+                        </button>
+                        <div class="accordion-content" data-accordion-content>
+                            <div class="accordion-content-inner" set:html={section.content} />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .user-agreement-section {
+        @include adaptive(margin-top, 40, 40);
+        @include flex-center;
+
+        .user-agreement-container {
+            @include side-paddings;
+            width: 85%;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .agreement-title {
+            @include adaptive(font-size, 60, 34);
+
+            @include desktop {
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            @include mobile {
+                text-align: left;
+            }
+        }
+
+        .agreement-intro {
+            @include adaptive(margin-top, 78, 40);
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            p {
+                @include font-circe-light;
+                font-weight: 350;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 22);
+                line-height: 1.21;
+                margin: 0;
+            }
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(margin-top, 30, 30);
+        }
+
+        .accordion-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include adaptive(gap, 20, 16);
+            background: none;
+            border: none;
+            @include adaptive(padding-top, 44, 22);
+            @include adaptive(padding-bottom, 44, 22);
+            cursor: pointer;
+            text-align: left;
+
+            @include desktop {
+                @include adaptive(padding-left, 146, 146);
+            }
+        }
+
+        .accordion-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            flex: 1;
+        }
+
+        .accordion-icon {
+            flex-shrink: 0;
+            @include adaptive(width, 24, 20);
+            @include adaptive(height, 24, 20);
+            transition: transform 0.3s ease;
+
+            [aria-expanded='true'] & {
+                transform: rotate(180deg);
+            }
+        }
+
+        .accordion-content {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            @include adaptive(padding-bottom, 44, 22);
+
+            @include desktop {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            p {
+                @include font-circe-regular;
+                color: $color-alternate;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                margin: 0;
+            }
+        }
+    }
+</style>
