@@ -1,5 +1,5 @@
 ---
-// src/components/Header.astro
+// src/components/common/Header.astro
 import Logo from './Logo.astro'
 import dotsIcon from '@/assets/icons/dots.svg'
 const base = import.meta.env.BASE_URL
@@ -301,9 +301,9 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             $content-height: $btn-height - ($btn-padding * 2); // 30
             $total-lines-height: $line-height * $lines-count; // 9
             $gap-space: $content-height - $total-lines-height; // 21
-            $gap-between: $gap-space / 2; // 10.5
-            $translate-distance: ($line-height / 2) + $gap-between + ($line-height / 2); // 13.5
-            $translate-percent: ($translate-distance / $line-height) * 100%; // 450%
+            $gap-between: calc($gap-space / 2); // 10.5
+            $translate-distance: calc($line-height / 2) + $gap-between + calc($line-height / 2); // 13.5
+            $translate-percent: calc($translate-distance / $line-height) * 100%; // 450%
 
             display: none;
             flex-direction: column;

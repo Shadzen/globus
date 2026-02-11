@@ -4,8 +4,8 @@ import '../styles/fonts.scss'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'photoswipe/style.css'
-import Header from '@/components/Header.astro'
-import Footer from '@/components/Footer.astro'
+import Header from '@/components/common/Header.astro'
+import Footer from '@/components/common/Footer.astro'
 
 interface Props {
     title: string
@@ -83,7 +83,7 @@ const base = import.meta.env.BASE_URL
         flex-direction: column;
         min-height: 100dvh;
         font-family: system-ui, sans-serif;
-        background: $color-main;
+        background: #000;
         margin: 0;
         &._disable-scrolling {
             overflow: hidden;
@@ -98,6 +98,7 @@ const base = import.meta.env.BASE_URL
         width: 100%;
         margin: 0;
         padding: 0;
+        background: $color-main;
     }
 
     section {

@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import HeroNav from '@/components/HeroNav.astro'
+import HeroNav from '@/components/common/HeroNav.astro'
 import HotelDescription from '@/components/about_hotel/HotelDescription.astro'
 import HotelServices from '@/components/about_hotel/HotelServices.astro'
 import HotelPricing from '@/components/about_hotel/HotelPricing.astro'
@@ -260,9 +260,9 @@ const galleryPreview = gallery.slice(0, 4)
 
         .gallery-text {
             @include font-circe-regular;
-            @include adaptive(font-size, 26.483, 20);
+            @include adaptive(font-size, 26, 20);
             line-height: 1.21;
-            @include adaptive(letter-spacing, 2.6483, 2);
+            @include adaptive(letter-spacing, 2.6, 2);
             text-transform: uppercase;
             color: white;
             text-align: center;

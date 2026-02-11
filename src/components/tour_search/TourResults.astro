@@ -113,7 +113,7 @@ const hotels: Hotel[] = [
 
 <style lang="scss" is:global>
     .tour-results-section {
-        @include adaptive(margin-top, 0, 0);
+        // @include adaptive(margin-top, 0, 0);
         background-color: #FFFDF8;
 
         .tour-results-container {
@@ -140,7 +140,7 @@ const hotels: Hotel[] = [
         }
 
         .hotel-image {
-            @include adaptive(width, 273, auto);
+            @include adaptive(width, 273, 100%);
             @include adaptive(height, 179, 200);
             overflow: hidden;
 
@@ -339,7 +339,7 @@ const hotels: Hotel[] = [
             transition: all 0.3s ease;
 
             &:hover {
-                background-color: darken(#CCA870, 10%);
+                // background-color: darken(#CCA870, 10%);
             }
         }
 

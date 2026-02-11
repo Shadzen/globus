@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <section class="info-grid-section">
@@ -97,17 +98,17 @@
                 display: block;
             }
 
+            &._pos-1 {
+                @include adaptive(margin-top, -264, 0);
+            }
+
             @include desktop {
                 max-width: 59%;
-
-                &._pos-1 {
-                    @include adaptive(margin-top, -264, -264);
-                }
             }
 
             @include mobile {
                 width: 100%;
-                @include adaptive(height, 2, 231);
+                @include adaptive(height, 0, 231);
                 order: 1;
 
                 img {

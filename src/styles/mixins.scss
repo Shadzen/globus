@@ -1,4 +1,6 @@
 // src/styles/mixins.scss
+@use 'sass:meta';
+@use 'sass:math';
 @use 'variables' as *;
 
 @function adaptive-value($size, $base, $is-wide: false) {
@@ -6,6 +8,18 @@
 
     @if $is-wide {
         $vw: 75vw;
+    }
+
+    @if meta.type-of($size) == 'string' {
+        @return $size;
+    }
+
+    @if meta.type-of($size) == 'number' and not math.is-unitless($size) {
+        @return $size;
+    }
+
+    @if $size == 0 {
+        @return 0;
     }
 
     @return calc(#{$vw} / (#{$base} / #{$size}));

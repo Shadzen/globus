@@ -266,11 +266,15 @@ const hotels: Hotel[] = [
         .hotel-image {
             position: relative;
             overflow: hidden;
-            @include adaptive(width, 970, auto);
+            @include adaptive(width, 970, 970);
             @include adaptive(height, 560, 300);
 
             @include desktop {
                 flex-shrink: 0;
+            }
+
+            @include mobile {
+                width: 100%;
             }
 
             @include mobile {

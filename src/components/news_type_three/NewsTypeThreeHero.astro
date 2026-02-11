@@ -1,5 +1,5 @@
 ---
-import HeroNav from '@/components/HeroNav.astro'
+import HeroNav from '@/components/common/HeroNav.astro'
 
 import heroDesktop from '@/assets/images/news_type_three/hero-1.jpg'
 import heroMobile from '@/assets/images/news_type_three/hero-1-mobile.jpg'
@@ -67,8 +67,8 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-subtitle {
-            @include adaptive(padding-top, 2, 16);
-            @include adaptive(padding-right, 80, 2);
+            @include adaptive(padding-top, 0, 16);
+            @include adaptive(padding-right, 80, 0);
 
             @include desktop {
                 width: 33%;

@@ -1,5 +1,5 @@
 ---
-import HeroNav from '@/components/HeroNav.astro'
+import HeroNav from '@/components/common/HeroNav.astro'
 
 import heroDesktop from '@/assets/images/news/news-page-hero-1.jpg'
 import heroMobile from '@/assets/images/news/news-page-hero-1-mobile.jpg'
@@ -18,14 +18,19 @@ const base = import.meta.env.BASE_URL
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
-    <HeroNav items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Глобус-News' }]} />
+    <HeroNav
+        items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Глобус-News' }]}
+    />
 
     <div class="hero-content">
         <h1 class="hero-title">
             <span>Глобус-</span>
             <span>news</span>
         </h1>
-        <p class="hero-subtitle">Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием</p>
+        <p class="hero-subtitle">
+            Эксклюзивные статьи и подборки в одном месте. Мы создаём путешествия мечты, помогая
+            тысячам туристов открывать мир с комфортом и удовольствием
+        </p>
     </div>
 </section>
 
@@ -67,14 +72,14 @@ const base = import.meta.env.BASE_URL
 
             @include desktop {
                 line-height: 1.1;
+            }
 
-                span:nth-child(1) {
-                    @include adaptive(padding-left, 110, 2);
-                }
+            span:nth-child(1) {
+                @include adaptive(padding-left, 110, 0);
+            }
 
-                span:nth-child(2) {
-                    @include adaptive(padding-left, 454, 2);
-                }
+            span:nth-child(2) {
+                @include adaptive(padding-left, 454, 0);
             }
 
             @include mobile {
@@ -84,9 +89,9 @@ const base = import.meta.env.BASE_URL
 
         .hero-subtitle {
             @include adaptive(padding-top, 12, 16);
+            @include adaptive(padding-left, 146, 0);
 
             @include desktop {
-                @include adaptive(padding-left, 146, 2);
                 width: 85%;
             }
         }

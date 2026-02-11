@@ -2,7 +2,7 @@
 // src/components/best_hotels/HotelsSlider.astro
 import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
-import SwiperNavButtons from '@/components/SwiperNavButtons.astro'
+import SwiperNavButtons from '@/components/common/SwiperNavButtons.astro'
 import gtRecommendsIcon from '@/assets/icons/gt-recommends.svg'
 
 export interface Hotel {
@@ -64,7 +64,7 @@ const { hotels } = Astro.props
     .hotels-nav-wrapper {
         display: flex;
         justify-content: flex-end;
-        @include adaptive(margin-top, 38, 2);
+        @include adaptive(margin-top, 38, 0);
         @include side-paddings;
     }
 
@@ -80,14 +80,11 @@ const { hotels } = Astro.props
 
             .hotel-card {
                 height: 100%;
-                // В слайдере задаём фиксированную ширину
                 @include adaptive(width, 418, 322);
             }
         }
     }
 
-    // Общие стили для карточек отелей (используются и в слайдере, и в сетке)
-    // Применяются только внутри .hotels-slider-wrapper и .hotels-grid
     .hotels-slider-wrapper,
     .hotels-grid {
         .hotel-card {

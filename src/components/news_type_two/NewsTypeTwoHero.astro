@@ -1,5 +1,5 @@
 ---
-import HeroNav from '@/components/HeroNav.astro'
+import HeroNav from '@/components/common/HeroNav.astro'
 
 import heroDesktop from '@/assets/images/news_type_two/hero-1.jpg'
 import heroMobile from '@/assets/images/news_type_two/hero-1-mobile.jpg'
@@ -18,16 +18,23 @@ const base = import.meta.env.BASE_URL
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
-    <HeroNav items={[
-        { label: 'Главная', href: `${base}${userType}/` },
-        { label: 'Глобус-News', href: `${base}${userType}/news/` },
-        { label: 'Турция приглашает на бархатный сезон!' },
-    ]} />
+    <HeroNav
+        items={[
+            { label: 'Главная', href: `${base}${userType}/` },
+            { label: 'Глобус-News', href: `${base}${userType}/news/` },
+            { label: 'Турция приглашает на бархатный сезон!' },
+        ]}
+    />
 
     <div class="hero-content">
         <h2 class="hero-title">Турция приглашает</h2>
         <h2 class="hero-title">на бархатный сезон!</h2>
-        <p class="hero-subtitle">Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое море создают идеальные условия для восстановления сил перед долгой зимой, а лучшие курорты радуют выгодными акциями и спецпредложениями. Спешите воспользоваться всеми преимуществами осеннего отдыха на Анталийском побережье.</p>
+        <p class="hero-subtitle">
+            Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое море
+            создают идеальные условия для восстановления сил перед долгой зимой, а лучшие курорты
+            радуют выгодными акциями и спецпредложениями. Спешите воспользоваться всеми
+            преимуществами осеннего отдыха на Анталийском побережье.
+        </p>
     </div>
 </section>
 
@@ -61,16 +68,14 @@ const base = import.meta.env.BASE_URL
         .hero-title {
             text-align: left;
 
-            @include desktop {
-                &:nth-child(2) {
-                    @include adaptive(padding-left, 434, 2);
-                }
+            &:nth-child(2) {
+                @include adaptive(padding-left, 434, 0);
             }
         }
 
         .hero-subtitle {
             @include adaptive(padding-top, 138, 16);
-            @include adaptive(padding-right, 130, 2);
+            @include adaptive(padding-right, 130, 0);
 
             @include desktop {
                 width: 41%;
