@@ -4,6 +4,8 @@ import HeroNav from '@/components/HeroNav.astro'
 import heroDesktop from '@/assets/images/visa/hero-1.jpg'
 import heroMobile from '@/assets/images/visa/hero-1-mobile.jpg'
 
+import { BREAKPOINTS } from '@/scripts/utils'
+
 interface Props {
     userType?: 'tourist' | 'agent'
 }
@@ -12,19 +14,19 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section visa-hero">
+<section class="hero-section visa-hero _dark-text">
     <picture class="hero-bg">
-        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
-    <HeroNav items={[{
-        label: 'Главная', href: `${base}${userType}/` },
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
         { label: 'Визы', href: `${base}${userType}/visas` },
         { label: 'Греция' },
-    ]} textColor="dark" />
+    ]} />
 
-    <div class="hero-content _dark-text">
+    <div class="hero-content">
         <h2 class="hero-title">Виза в грецию</h2>
         <p class="hero-subtitle">На данный момент Греция открывает визы гражданам РФ на даты поездки. Средний срок оформления визы от 4х недель. Подать документы можно по цели поездки туризм и по приглашению от родственников или друзей.</p>
         <p class="hero-subtitle">Подать документы на визу возможно с понедельника по пятницу по предварительной записи.</p>
@@ -62,6 +64,11 @@ const base = import.meta.env.BASE_URL
             @include desktop {
                 width: 56%;
             }
+        }
+
+        .hero-title {
+            text-align: left;
+            @include adaptive(font-size, 60, 60);
         }
     }
 </style>

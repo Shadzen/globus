@@ -4,9 +4,10 @@ import VisaHero from '@/components/visa/VisaHero.astro'
 import VisaInfo from '@/components/visa/VisaInfo.astro'
 import VisaDocuments from '@/components/visa/VisaDocuments.astro'
 import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Виза Греция - Глобус Тур" userType="tourist" heroTextColor="dark">
+<Layout title={`Виза Греция - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
     <VisaHero userType="tourist" />
     <VisaInfo />
     <VisaDocuments />

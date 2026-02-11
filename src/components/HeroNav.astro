@@ -9,10 +9,9 @@ interface BreadcrumbItem {
 interface Props {
     items: BreadcrumbItem[]
     showBackButton?: boolean
-    textColor?: 'light' | 'dark'
 }
 
-const { items, showBackButton = true, textColor = 'light' } = Astro.props
+const { items, showBackButton = true } = Astro.props
 
 // Умная логика для href:
 // - Последний элемент без href → span (текущая страница)
@@ -39,7 +38,7 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
 }
 ---
 
-<div class:list={["hero-nav", { '_dark-text': textColor === 'dark' }]}>
+<div class="hero-nav">
     <nav class="breadcrumb">
         {
             items.map((item, index) => {
@@ -149,20 +148,6 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
                 @include adaptive(letter-spacing, 3.6, 3.6);
                 text-transform: uppercase;
                 color: white;
-            }
-        }
-
-        // Темный цвет текста для светлого фона
-        &._dark-text {
-            .breadcrumb {
-                a,
-                span {
-                    color: $color-alternate;
-                }
-            }
-
-            .back-text {
-                color: $color-alternate;
             }
         }
     }

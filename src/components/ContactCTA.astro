@@ -92,7 +92,8 @@ const { title, description } = Astro.props
         }
 
         .contact-btn-outline {
-            @include button-sized-outline;
+            @include button-sized;
+            @include button-outline;
             @include adaptive(font-size, 24, 18);
         }
     }

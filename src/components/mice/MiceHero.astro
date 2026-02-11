@@ -1,9 +1,10 @@
 ---
 import HeroNav from '@/components/HeroNav.astro'
-import { BREAKPOINTS } from '@/scripts/utils'
 
 import heroDesktop from '@/assets/images/mice/hero-1.jpg'
 import heroMobile from '@/assets/images/mice/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
 
 interface Props {
     userType?: 'tourist' | 'agent'
@@ -13,18 +14,20 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section mice-hero">
+<section class="hero-section mice-hero _dark-text _type-one">
     <picture class="hero-bg">
         <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
     <HeroNav
-        items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Деловой туризм' }]}
-        textColor="dark"
+        items={[
+            { label: 'Главная', href: `${base}${userType}/` },
+            { label: 'Деловой туризм' },
+        ]}
     />
 
-    <div class="hero-content _dark-text">
+    <div class="hero-content">
         <h2 class="hero-title">Деловой туризм</h2>
         <p class="hero-subtitle">
             Создаём безупречные бизнес-путешествия и незабываемые корпоративные события. Пока вы
@@ -35,30 +38,7 @@ const base = import.meta.env.BASE_URL
 
 <style lang="scss" is:global>
     .mice-hero {
-        @include adaptive(padding-top, 390, 210);
-
-        .hero-bg {
-            position: relative;
-            @include adaptive(margin-top, 60, 30);
-            @include side-paddings;
-            width: 100%;
-            @include adaptive(min-height, 360, 231);
-
-            @include desktop {
-                order: 2;
-            }
-        }
-
-        .hero-content {
-            @include adaptive(margin-top, 30, 20);
-
-            @include desktop {
-                flex-direction: row;
-            }
-        }
-
         .hero-title {
-            text-align: left;
             @include adaptive(font-size, 74, 60);
 
             @include desktop {
@@ -67,7 +47,6 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-subtitle {
-            @include adaptive(padding-top, 2, 16);
             @include adaptive(padding-right, 30, 2);
 
             @include desktop {

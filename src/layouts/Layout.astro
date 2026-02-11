@@ -172,7 +172,6 @@ const base = import.meta.env.BASE_URL
     .hero-section {
         @include flex-start-between;
         flex-direction: column;
-        // overflow: hidden;
 
         .hero-bg {
             @include abs-default;
@@ -235,13 +234,6 @@ const base = import.meta.env.BASE_URL
             width: 100%;
             position: relative;
             z-index: 2;
-
-            &._dark-text {
-                .hero-title,
-                .hero-subtitle {
-                    color: $color-alternate;
-                }
-            }
         }
 
         .hero-subtitle {
@@ -264,9 +256,70 @@ const base = import.meta.env.BASE_URL
 
         .hero-button {
             @include button-sized;
+            @include adaptive(font-size, 22, 18);
 
             &._outline {
-                @include button-sized-outline;
+                @include button-outline;
+            }
+        }
+
+        &._dark-text {
+            .hero-nav {
+                .breadcrumb {
+                    a,
+                    span {
+                        color: $color-alternate;
+                    }
+                }
+
+                .back-text {
+                    color: $color-alternate;
+                }
+            }
+
+            .hero-content {
+                .hero-title,
+                .hero-subtitle {
+                    color: $color-alternate;
+                }
+            }
+        }
+
+        &._type-one {
+            @include adaptive(padding-top, 410, 210);
+
+            .hero-bg {
+                position: relative;
+                @include adaptive(margin-top, 50, 30);
+                @include side-paddings;
+                width: 100%;
+                @include adaptive(min-height, 360, 231);
+
+                @include desktop {
+                    order: 2;
+                }
+
+                @include mobile {
+                    order: 1;
+                }
+            }
+
+            .hero-content {
+                @include adaptive(margin-top, 30, 20);
+                @include adaptive(gap, 50, 16);
+
+                @include desktop {
+                    flex-direction: row;
+                    order: 1;
+                }
+
+                @include mobile {
+                    order: 2;
+                }
+            }
+
+            .hero-title {
+                text-align: left;
             }
         }
     }

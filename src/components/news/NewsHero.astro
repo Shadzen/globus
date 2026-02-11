@@ -12,13 +12,13 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section news-hero">
+<section class="hero-section news-hero _dark-text">
     <picture class="hero-bg">
         <source media="(max-width: 480px)" srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
-    <HeroNav items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Глобус-News' }]} textColor="dark" />
+    <HeroNav items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'Глобус-News' }]} />
 
     <div class="hero-content">
         <h1 class="hero-title">
@@ -62,7 +62,6 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-title {
-            color: $color-alternate;
             // @include adaptive(padding-right, 60, 12);
             @include adaptive(font-size, 120, 60);
 
@@ -84,7 +83,6 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-subtitle {
-            color: $color-alternate;
             @include adaptive(padding-top, 12, 16);
 
             @include desktop {
