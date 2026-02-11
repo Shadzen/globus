@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PaymentMethodsHero from '@/components/payment_methods/PaymentMethodsHero.astro'
+import PaymentMethods from '@/components/payment_methods/PaymentMethods.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Способы оплаты - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <PaymentMethodsHero userType="tourist" />
+    <PaymentMethods />
+</Layout>

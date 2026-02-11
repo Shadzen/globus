@@ -114,6 +114,11 @@ const accordionSections = [
         }
 
         .agreement-title {
+            @include desktop {
+                width: 90%;
+                margin: 0 auto;
+            }
+
             @include mobile {
                 text-align: left;
             }
