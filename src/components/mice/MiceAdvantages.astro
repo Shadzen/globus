@@ -1,159 +1,38 @@
 ---
+import InfoList from '@/components/InfoList.astro'
 import advantage1Icon from '@/assets/icons/advantage-2.svg'
 import advantage2Icon from '@/assets/icons/advantage-5.svg'
 import advantage3Icon from '@/assets/icons/advantage-6.svg'
 import advantage4Icon from '@/assets/icons/advantage-7.svg'
 import advantage5Icon from '@/assets/icons/advantage-4.svg'
 
-const advantages = [
+const items = [
     {
-        icon: advantage1Icon,
-        title: 'Опыт, который говорит за себя',
+        icon: advantage1Icon.src,
+        label: 'Опыт, который говорит за себя',
         description: 'Мы организовали поездки для 4000 человек в Сингапуре и для 650 — на Ибице. Ваше мероприятие в надёжных руках.',
     },
     {
-        icon: advantage2Icon,
-        title: 'Лучшие цены благодаря партнерской сети',
+        icon: advantage2Icon.src,
+        label: 'Лучшие цены благодаря партнерской сети',
         description: 'Специальные условия с отелями и авиакомпаниями помогают нам предлагать вам интересные условия.',
     },
     {
-        icon: advantage3Icon,
-        title: 'Визы без стресса',
+        icon: advantage3Icon.src,
+        label: 'Визы без стресса',
         description: 'Собственный визовый центр с высоким процентом одобрения, даже для больших групп.',
     },
     {
-        icon: advantage4Icon,
-        title: 'Полное сопровождение «под ключ»',
+        icon: advantage4Icon.src,
+        label: 'Полное сопровождение «под ключ»',
         description: 'От идеи до воплощения: гиды-переводчики, трансферы, решение нестандартных задач и поддержка 24/7.',
     },
     {
-        icon: advantage5Icon,
-        title: 'Эксклюзив для маленьких групп',
+        icon: advantage5Icon.src,
+        label: 'Эксклюзив для маленьких групп',
         description: 'Мечтаете о необычном формате? Организуем уникальное путешествие для 10–50 человек в самые экзотические уголки планеты.',
     },
 ]
 ---
 
-<section class="mice-advantages-section">
-    <div class="mice-advantages-container">
-        <h2 class="advantages-title">Почему с нами легко работать?</h2>
-
-        <div class="advantages-list">
-            {advantages.map((advantage) => (
-                <div class="advantage-item">
-                    <div class="advantage-icon">
-                        <img src={advantage.icon.src} alt="" loading="lazy" decoding="async" />
-                    </div>
-                    <div class="advantage-content">
-                        <h3 class="advantage-title">{advantage.title}</h3>
-                        <p class="advantage-description">{advantage.description}</p>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-</section>
-
-<style lang="scss" is:global>
-    .mice-advantages-section {
-        @include adaptive(margin-top, 120, 60);
-
-        .mice-advantages-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .advantages-title {
-            @include font-kudry-sans;
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: 300;
-            color: $color-alternate;
-            text-align: center;
-            @include adaptive(font-size, 60, 38);
-            line-height: 1.2;
-            @include adaptive(margin-bottom, 90, 50);
-        }
-
-        .advantages-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .advantage-item {
-            display: flex;
-            @include adaptive(gap, 30, 20);
-            align-items: flex-start;
-            @include adaptive(padding-top, 50, 30);
-            @include adaptive(padding-bottom, 50, 30);
-            border-bottom: 1px solid $color-accent;
-
-            @include mobile {
-                flex-direction: column;
-            }
-
-            &:last-child {
-                border-bottom: none;
-            }
-        }
-
-        .advantage-icon {
-            flex-shrink: 0;
-            @include adaptive(width, 90, 60);
-            @include adaptive(height, 90, 60);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            img {
-                max-width: 100%;
-                max-height: 100%;
-                display: block;
-            }
-        }
-
-        .advantage-content {
-            flex: 1;
-            display: flex;
-            @include adaptive(gap, 20, 15);
-
-            @include desktop {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .advantage-title {
-            @include font-circe-regular;
-            color: $color-accent;
-            @include adaptive(font-size, 24, 18);
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin: 0;
-            flex-shrink: 0;
-
-            @include desktop {
-                @include adaptive(width, 450, 300);
-                @include adaptive(padding-top, 3, 0);
-            }
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        .advantage-description {
-            @include font-circe-regular;
-            color: #667C89;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            margin: 0;
-            flex: 1;
-        }
-    }
-</style>
+<InfoList items={items} title="Почему с нами легко работать?" />

@@ -1,0 +1,193 @@
+---
+interface InfoItem {
+    icon: string
+    label: string
+    value?: string
+    description?: string
+    list?: string[]
+}
+
+interface Props {
+    items: InfoItem[]
+    dark?: boolean
+    title?: string
+}
+
+const { items, dark = false, title } = Astro.props
+---
+
+<section class:list={['info-list-section', { '_dark': dark }]}>
+    <div class="info-list-container">
+        {title && <h2 class="info-list-title">{title}</h2>}
+        {items.map((item, index) => (
+            <>
+                <div class="info-list-item">
+                    <div class="info-list-icon">
+                        <img src={item.icon} alt="" />
+                    </div>
+                    <div class="info-list-content">
+                        <h3 class="info-list-label">{item.label}</h3>
+                        <div class="info-list-text">
+                            {item.value && (
+                                <p class="info-list-value">{item.value}</p>
+                            )}
+                            {item.description && (
+                                <p class="info-list-description">{item.description}</p>
+                            )}
+                            {item.list && (
+                                <ul class="info-list-ul">
+                                    {item.list.map((listItem) => (
+                                        <li class="info-list-ul-item">{listItem}</li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                {index < items.length - 1 && (
+                    <div class="info-list-divider"></div>
+                )}
+            </>
+        ))}
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .info-list-section {
+        @include adaptive(margin-top, 60, 40);
+        @include adaptive(padding-top, 80, 40);
+        @include adaptive(padding-bottom, 80, 40);
+
+        &._dark {
+            background-color: $color-alternate;
+        }
+
+        .info-list-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-list-title {
+            @include adaptive(margin-bottom, 60, 30);
+        }
+
+        .info-list-item {
+            display: flex;
+            @include adaptive(gap, 40, 24);
+            align-items: center;
+
+            @include desktop {
+                @include adaptive(padding-left, 30, 2);
+            }
+
+            @include mobile {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .info-list-icon {
+            flex-shrink: 0;
+            @include adaptive(width, 100, 72);
+            @include adaptive(height, 80, 60);
+            @include flex-center;
+
+            img {
+                max-width: 100%;
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        .info-list-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 40, 20);
+
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                @include adaptive(gap, 12, 8);
+            }
+        }
+
+        .info-list-text {
+            flex: 1;
+        }
+
+        .info-list-label {
+            @include font-circe-regular;
+            font-weight: 400;
+            color: $color-accent;
+            @include adaptive(font-size, 24, 20);
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 2);
+            margin: 0;
+            flex-shrink: 0;
+
+            @include desktop {
+                @include adaptive(width, 800, 800);
+            }
+        }
+
+        .info-list-value {
+            @include font-circe-light;
+            color: $color-main;
+            @include adaptive(font-size, 26, 22);
+            line-height: 1.2;
+            margin: 0;
+            font-weight: 350;
+        }
+
+        .info-list-description {
+            @include font-circe-regular;
+            color: #667c89;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .info-list-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 12, 10);
+        }
+
+        .info-list-ul-item {
+            @include font-circe-regular;
+            color: #667c89;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            font-weight: 400;
+            position: relative;
+            @include adaptive(padding-left, 23, 20);
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                @include adaptive(top, 7, 6);
+                @include adaptive(width, 8, 6);
+                @include adaptive(height, 8, 6);
+                background-color: $color-accent;
+                border-radius: 50%;
+            }
+        }
+
+        .info-list-divider {
+            height: 1px;
+            background-color: $color-accent;
+            @include adaptive(margin-top, 24, 48);
+            @include adaptive(margin-bottom, 24, 48);
+            width: 100%;
+        }
+    }
+</style>

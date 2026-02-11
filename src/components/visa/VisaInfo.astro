@@ -1,211 +1,35 @@
 ---
+import InfoList from '@/components/InfoList.astro'
 import visaIcon1 from '@/assets/icons/visa-icon-1.svg'
 import visaIcon2 from '@/assets/icons/visa-icon-2.svg'
 import visaIcon3 from '@/assets/icons/visa-icon-3.svg'
 import visaIcon4 from '@/assets/icons/visa-icon-4.svg'
 
-const price = '3000 руб.'
-const processingTime = '7 рабочих дней'
-const additionalFee = 'Консульский и сервисный сборы в размере 140 евро (сбор оплачивается в рублях в Визовом центре при подаче документов)'
-const importantNotes = [
-    'Необходимо предоставить документы, которые подтверждают полную оплату отеля и билетов',
-    'Для подачи документов необходимо личное присутствие в визовом центре',
+const items = [
+    {
+        icon: visaIcon1.src,
+        label: 'Цена',
+        value: '3000 руб.',
+    },
+    {
+        icon: visaIcon2.src,
+        label: 'срок оформления',
+        value: '7 рабочих дней',
+    },
+    {
+        icon: visaIcon3.src,
+        label: 'дополнительно оплачивается',
+        description: 'Консульский и сервисный сборы в размере 140 евро (сбор оплачивается в рублях в Визовом центре при подаче документов)',
+    },
+    {
+        icon: visaIcon4.src,
+        label: 'Важно!',
+        list: [
+            'Необходимо предоставить документы, которые подтверждают полную оплату отеля и билетов',
+            'Для подачи документов необходимо личное присутствие в визовом центре',
+        ],
+    },
 ]
 ---
 
-<section class="visa-info-section">
-    <div class="visa-info-container">
-        <div class="visa-info-item">
-            <div class="visa-info-icon">
-                <img src={visaIcon1.src} alt="" />
-            </div>
-            <div class="visa-info-content">
-                <h3 class="visa-info-label">Цена</h3>
-                <div class="visa-info-text">
-                    <p class="visa-info-value">{price}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="visa-info-divider"></div>
-
-        <div class="visa-info-item">
-            <div class="visa-info-icon">
-                <img src={visaIcon2.src} alt="" />
-            </div>
-            <div class="visa-info-content">
-                <h3 class="visa-info-label">срок оформления</h3>
-                <div class="visa-info-text">
-                    <p class="visa-info-value">{processingTime}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="visa-info-divider"></div>
-
-        <div class="visa-info-item">
-            <div class="visa-info-icon">
-                <img src={visaIcon3.src} alt="" />
-            </div>
-            <div class="visa-info-content">
-                <h3 class="visa-info-label">дополнительно оплачивается</h3>
-                <div class="visa-info-text">
-                    <p class="visa-info-description">{additionalFee}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="visa-info-divider"></div>
-
-        <div class="visa-info-item">
-            <div class="visa-info-icon">
-                <img src={visaIcon4.src} alt="" />
-            </div>
-            <div class="visa-info-content">
-                <h3 class="visa-info-label">Важно!</h3>
-                <div class="visa-info-text">
-                    <ul class="visa-info-list">
-                        {
-                            importantNotes.map((note) => (
-                                <li class="visa-info-list-item">{note}</li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style lang="scss" is:global>
-    .visa-info-section {
-        background-color: $color-alternate;
-        @include adaptive(margin-top, 60, 40);
-        @include adaptive(padding-top, 80, 40);
-        @include adaptive(padding-bottom, 80, 40);
-
-        .visa-info-container {
-            @include side-paddings;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .visa-info-item {
-            display: flex;
-            @include adaptive(gap, 40, 24);
-            align-items: center;
-
-            @include desktop {
-                @include adaptive(padding-left, 30, 2);
-            }
-
-            @include mobile {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-        }
-
-        .visa-info-icon {
-            flex-shrink: 0;
-            @include adaptive(width, 100, 72);
-            @include adaptive(height, 80, 60);
-            @include flex-center;
-
-            img {
-                max-width: 100%;
-                width: auto;
-                height: 100%;
-            }
-        }
-
-        .visa-info-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            @include adaptive(gap, 40, 20);
-
-            @include mobile {
-                flex-direction: column;
-                align-items: flex-start;
-                @include adaptive(gap, 12, 8);
-            }
-        }
-
-        .visa-info-text {
-            flex: 1;
-        }
-
-        .visa-info-label {
-            @include font-circe-regular;
-            font-weight: 400;
-            color: $color-accent;
-            @include adaptive(font-size, 24, 20);
-            line-height: 1.2;
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 2.4, 2);
-            margin: 0;
-            flex-shrink: 0;
-
-            @include desktop {
-                @include adaptive(width, 688, 688);
-            }
-        }
-
-        .visa-info-value {
-            @include font-circe-light;
-            color: $color-main;
-            @include adaptive(font-size, 26, 22);
-            line-height: 1.2;
-            margin: 0;
-            font-weight: 350;
-        }
-
-        .visa-info-description {
-            @include font-circe-regular;
-            color: #667c89;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .visa-info-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 12, 10);
-        }
-
-        .visa-info-list-item {
-            @include font-circe-regular;
-            color: #667c89;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            font-weight: 400;
-            position: relative;
-            @include adaptive(padding-left, 23, 20);
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                @include adaptive(top, 7, 6);
-                @include adaptive(width, 8, 6);
-                @include adaptive(height, 8, 6);
-                background-color: $color-accent;
-                border-radius: 50%;
-            }
-        }
-
-        .visa-info-divider {
-            height: 1px;
-            background-color: $color-accent;
-            @include adaptive(margin-top, 24, 48);
-            @include adaptive(margin-bottom, 24, 48);
-            width: 100%;
-        }
-    }
-</style>
+<InfoList items={items} dark />

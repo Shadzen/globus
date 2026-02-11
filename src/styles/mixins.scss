@@ -152,7 +152,7 @@
 
 @mixin button-default {
     @include flex-center;
-    @include adaptive(gap, 10, 8);
+    @include adaptive(gap, 20, 12);
     flex-shrink: 0;
     @include font-circe-regular;
     @include adaptive(font-size, 16, 18);
@@ -160,15 +160,20 @@
     color: $color-main;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     @include adaptive(letter-spacing, 3, 3);
     background: $color-accent;
-
     border-style: solid;
     border-color: $color-accent;
     @include adaptive(border-width, 2, 2);
-    // @include adaptive(border-radius, 25, 25);
-    border-radius: 50px;
+    border-radius: 500px;
+    white-space: nowrap;
+
+    img {
+        @include adaptive(width, 40, 30);
+        @include adaptive(height, 40, 30);
+        flex-shrink: 0;
+    }
 
     @include mobile {
         width: 100%;
@@ -187,10 +192,11 @@
 
 @mixin button-sized {
     @include button-default;
-    @include adaptive(font-size, 22, 18);
+    // @include adaptive(font-size, 22, 18);
     @include adaptive(letter-spacing, 2.2, 3.6);
-    @include adaptive(padding-top, 16, 20);
-    @include adaptive(padding-bottom, 16, 20);
+    // @include adaptive(padding-top, 16, 20);
+    // @include adaptive(padding-bottom, 16, 20);
+    @include adaptive(height, 61, 64);
     @include adaptive(padding-left, 50, 30);
     @include adaptive(padding-right, 50, 30);
 }
