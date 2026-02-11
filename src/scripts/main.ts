@@ -13,6 +13,7 @@ import { initAboutTimeline } from './about/aboutTimeline'
 import { initAboutMap } from './about/aboutMap'
 import { initNewsSlider } from './news/newsSlider'
 import { initCompaniesSlider } from './mice/companiesSlider'
+import { initUserAgreementAccordion } from './user_agreement/userAgreement'
 
 // Запуск при загрузке страницы
 const initAll = () => {
@@ -29,6 +30,7 @@ const initAll = () => {
     initAboutMap()
     initNewsSlider()
     initCompaniesSlider()
+    initUserAgreementAccordion()
 }
 
 if (document.readyState === 'loading') {

@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import UserAgreementHero from '@/components/user_agreement/UserAgreementHero.astro'
+import UserAgreement from '@/components/user_agreement/UserAgreement.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Пользовательское соглашение - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <UserAgreementHero userType="tourist" />
+    <UserAgreement />
+</Layout>

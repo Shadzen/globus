@@ -1,0 +1,230 @@
+---
+import chevronDown from '@/assets/icons/chevron-down.svg'
+
+const accordionSections = [
+    {
+        id: 'terms',
+        title: 'Термины, применяемые в настоящем Соглашении',
+        content: `<p>Сайт - это совокупность текстов, графических элементов, дизайна, изображений, программного кода, фото- и видеоматериалов и иных результатов интеллектуальной деятельности Администрации Сайта, содержащихся в сети Интернет под доменным именем globus-tour.ru.</p>
+<p>Администрация Сайта - это общества и лица, обладающие правами администрирования Сайта.</p>
+<p>Пользователь - это любое лицо, осуществившее вход на Сайт, заполнившее поля онлайн-форм на Сайте и принявшее условия настоящего Соглашения.</p>
+<p>Персональные данные - любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу (субъекту персональных данных)/Пользователю (Федеральный закон от 27.07.2006 № 152-ФЗ «О персональных данных»).</p>
+<p>Обработка персональных данных - перечень действий с персональными данными Пользователя, заполнившего поля онлайн-форм: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (распространение, предоставление доступа), обезличивание, блокирование, удаление, уничтожение персональных данных Пользователя, отправившего запрос, передача по требованию суда, в том числе, третьим лицам, с соблюдением мер, обеспечивающих защиту персональных данных от несанкционированного доступа.</p>`,
+    },
+    {
+        id: 'consent',
+        title: 'Согласие на обработку персональных данных',
+        content: `<p>Содержание раздела о согласии на обработку персональных данных...</p>`,
+    },
+    {
+        id: 'conditions',
+        title: 'Условия и порядок пользования сайтом пользователями/Права и обязанности сторон настоящего Соглашения',
+        content: `<p>Содержание раздела об условиях и порядке пользования...</p>`,
+    },
+    {
+        id: 'moderation',
+        title: 'Правила модерации',
+        content: `<p>Содержание раздела о правилах модерации...</p>`,
+    },
+    {
+        id: 'publication',
+        title: 'Правила публикации информации',
+        content: `<p>Содержание раздела о правилах публикации...</p>`,
+    },
+    {
+        id: 'other',
+        title: 'Иные условия',
+        content: `<p>Содержание раздела об иных условиях...</p>`,
+    },
+    {
+        id: 'responsibility',
+        title: 'Ответственность сторон',
+        content: `<p>Содержание раздела об ответственности сторон...</p>`,
+    },
+    {
+        id: 'validity',
+        title: 'Время и условия действия Соглашения',
+        content: `<p>Содержание раздела о времени и условиях действия...</p>`,
+    },
+    {
+        id: 'chat',
+        title: 'Чат "Онлайн-консультант"',
+        content: `<p>Содержание раздела о чате онлайн-консультанта...</p>`,
+    },
+]
+---
+
+<section class="user-agreement-section">
+    <div class="user-agreement-container">
+        <h2 class="agreement-title">Пользовательское соглашение</h2>
+
+        <div class="agreement-intro">
+            <p>Настоящее Пользовательское соглашение (далее - Соглашение) разработано в целях:</p>
+            <ul>
+                <li>
+                    получения Согласия на обработку персональных данных лиц, осуществляющих поиск и
+                    размещение информации (далее - Пользователи) на ресурсе globus-tour.ru (далее -
+                    Сайт), оператором персональных данных (далее - Администрация);
+                </li>
+                <li>определения условий и порядка пользования Сайтом Пользователями.</li>
+            </ul>
+            <p>
+                Регистрируясь на Сайте, Пользователь обязуется принять Согласие на обработку
+                персональных данных, а также посредством регистрации на Сайте Пользователь
+                подтверждает, что ознакомился и согласен с условиями и порядком пользования Сайтом.
+                Регистрация Пользователя на Сайте является акцептом Соглашения.
+            </p>
+        </div>
+
+        <div class="accordion">
+            {
+                accordionSections.map((section) => (
+                    <div class="accordion-item" data-accordion-item>
+                        <div class="divider" />
+                        <button
+                            class="accordion-header"
+                            data-accordion-button
+                            aria-expanded="false"
+                        >
+                            <h3 class="accordion-title">{section.title}</h3>
+                            <img src={chevronDown.src} alt="" class="accordion-icon" />
+                        </button>
+                        <div class="accordion-content" data-accordion-content>
+                            <div class="accordion-content-inner" set:html={section.content} />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .user-agreement-section {
+        @include adaptive(margin-top, 40, 40);
+        @include flex-center;
+
+        .user-agreement-container {
+            @include side-paddings;
+            width: 85%;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        .agreement-title {
+            @include mobile {
+                text-align: left;
+            }
+        }
+
+        .agreement-intro {
+            @include adaptive(margin-top, 78, 40);
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            p {
+                @include font-circe-regular;
+                color: $color-alternate;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            ul {
+                list-style: disc;
+                @include adaptive(padding-left, 30, 24);
+                margin: 0;
+                width: 70%;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                li {
+                    @include font-circe-regular;
+                    color: $color-alternate;
+                    @include adaptive(font-size, 20, 18);
+                    line-height: 1.2;
+                    @include adaptive(margin-top, 12, 12);
+                    @include adaptive(margin-bottom, 12, 12);
+                }
+            }
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(margin-top, 30, 30);
+        }
+
+        .accordion-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include adaptive(gap, 20, 16);
+            background: none;
+            border: none;
+            @include adaptive(padding-top, 44, 22);
+            @include adaptive(padding-bottom, 44, 22);
+            cursor: pointer;
+            text-align: left;
+
+            @include desktop {
+                @include adaptive(padding-left, 146, 146);
+            }
+        }
+
+        .accordion-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            flex: 1;
+        }
+
+        .accordion-icon {
+            flex-shrink: 0;
+            @include adaptive(width, 24, 20);
+            @include adaptive(height, 24, 20);
+            transition: transform 0.3s ease;
+
+            [aria-expanded='true'] & {
+                transform: rotate(180deg);
+            }
+        }
+
+        .accordion-content {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            @include adaptive(padding-bottom, 44, 22);
+
+            @include desktop {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            p {
+                @include font-circe-regular;
+                color: $color-alternate;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                margin: 0
+            }
+        }
+    }
+</style>
