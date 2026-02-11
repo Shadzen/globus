@@ -4,43 +4,47 @@ import photo1 from '@/assets/images/concierge_service/concierge-service-photo-1.
 import photo2 from '@/assets/images/concierge_service/concierge-service-photo-2.jpg'
 
 const services = [
-    'Утончённые отели и виллы в самых живописных уголках планеты,',
-    'Яхты и вертолёты для особенных перелётов,',
-    'Концерты и события мирового уровня,',
-    'Путешествия на люксовых поездах,',
-    'Гастрономические открытия в лучших ресторанах мира.',
+    'Утончённые отели и виллы в самых живописных уголках планеты',
+    'Яхты и вертолёты для особенных перелётов',
+    'Концерты и события мирового уровня',
+    'Путешествия на люксовых поездах',
+    'Гастрономические открытия в лучших ресторанах мира',
 ]
 ---
 
 <section class="concierge-service-info-section">
     <div class="concierge-service-info-container">
-        <div class="service-row">
-            <div class="service-text">
-                <p class="service-description">
-                    Путешествия — это не просто дороги и города.<br />
-                    Это искусство открывать мир в его красоте, вдохновении и неповторимых деталях.
-                </p>
+        <div class="info-grid">
+            <div class="info-grid-row">
+                <div class="info-text _pos-1">
+                    <p>
+                        Путешествия — это не просто дороги и города. Это искусство открывать мир в
+                        его красоте, вдохновении и неповторимых деталях.
+                    </p>
+                </div>
+
+                <div class="info-image">
+                    <Image src={photo1} alt="Консьерж-сервис" />
+                </div>
             </div>
-            <div class="service-image">
-                <Image src={photo1} alt="" />
-            </div>
-        </div>
-        <div class="service-row">
-            <div class="service-image">
-                <Image src={photo2} alt="" />
-            </div>
-            <div class="service-text">
-                <p class="service-description">
-                    Мы создаём маршруты, в которых всё продумано до мелочей:
-                </p>
-                <ul class="service-list">
-                    {services.map((service) => (
-                        <li class="service-list-item">
-                            <span class="bullet"></span>
-                            <span class="service-list-text">{service}</span>
-                        </li>
-                    ))}
-                </ul>
+            <div class="info-grid-row">
+                <div class="info-image _pos-1">
+                    <Image src={photo2} alt="Люксовые путешествия" />
+                </div>
+
+                <div class="info-text">
+                    <p>Мы создаём маршруты, в которых всё продумано до мелочей:</p>
+                    <ul class="service-list">
+                        {
+                            services.map((service) => (
+                                <li class="service-list-item">
+                                    <span class="bullet" />
+                                    <span class="service-list-text">{service}</span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -53,51 +57,48 @@ const services = [
         .concierge-service-info-container {
             @include side-paddings;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 60, 40);
         }
 
-        .service-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            @include adaptive(gap, 40, 30);
-            align-items: center;
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 80, 30);
+        }
+
+        .info-grid-row {
+            display: flex;
+            justify-content: space-between;
+            @include adaptive(gap, 52, 30);
 
             @include mobile {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                flex-direction: column;
             }
         }
 
-        .service-text {
+        .info-text {
             display: flex;
             flex-direction: column;
-        }
+            @include adaptive(gap, 30, 30);
+            width: 33%;
+            margin-right: auto;
 
-        .service-description {
-            @include font-circe-light;
-            font-weight: 350;
-            color: $color-alternate;
-            @include adaptive(font-size, 26, 22);
-            line-height: 1.2;
-            margin: 0;
-        }
+            @include desktop {
+                &._pos-1 {
+                    @include adaptive(margin-top, 28, 28);
+                }
+            }
 
-        .service-intro {
-            @include adaptive(margin-bottom, 40, 30);
-        }
-
-        .service-image {
-            position: relative;
-            overflow: hidden;
-
-            img {
+            @include mobile {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-                @include adaptive(min-height, 356, 250);
+                order: 2;
+            }
+
+            p {
+                @include font-circe-light;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 18);
+                line-height: 1.2;
+                margin: 0;
             }
         }
 
@@ -122,11 +123,41 @@ const services = [
 
         .service-list-text {
             @include font-circe-light;
-            font-weight: 350;
             color: $color-alternate;
-            @include adaptive(font-size, 26, 22);
+            @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             flex: 1;
+        }
+
+        .info-image {
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            @include desktop {
+                max-width: 59%;
+
+                &._pos-1 {
+                    @include adaptive(margin-top, -264, -264);
+                }
+            }
+
+            @include mobile {
+                width: 100%;
+                @include adaptive(height, 2, 231);
+                order: 1;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
         }
     }
 </style>
