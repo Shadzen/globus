@@ -1,0 +1,29 @@
+---
+import InfoList from '@/components/InfoList.astro'
+import insuranceIcon1 from '@/assets/icons/advantage-8.svg'
+import insuranceIcon2 from '@/assets/icons/advantage-9.svg'
+import insuranceIcon3 from '@/assets/icons/advantage-6.svg'
+
+const insuranceItems = [
+    {
+        icon: insuranceIcon1.src,
+        label: 'Есть годовой полис',
+        description: 'Удобно, если часто выезжаете за границу в течение года',
+    },
+    {
+        icon: insuranceIcon2.src,
+        label: 'Можно оформить в путешествии',
+        description: 'Если забыли или не смогли приобрести полис заранее',
+    },
+    {
+        icon: insuranceIcon3.src,
+        label: 'Подходит для визы',
+        description: 'Его можно приложить к документам для предоставления в посольство',
+    },
+]
+---
+
+<InfoList
+    title="Преимущества страхования путешествий в Ингосстрахе"
+    items={insuranceItems}
+/>

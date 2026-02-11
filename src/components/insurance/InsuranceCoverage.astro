@@ -1,0 +1,125 @@
+---
+const coverageItems = [
+    {
+        title: 'Лечение и диагностика',
+        description: 'Амбулаторно и в стационаре, процедуры по назначению врача',
+    },
+    {
+        title: 'Экстренная стоматология',
+        description: 'Осмотр, лечение и лекарства при воспалении зуба или дёсен',
+    },
+    {
+        title: 'Экстренная госпитализация',
+        description: 'Амбулаторно и в стационаре, процедуры по назначению врача',
+    },
+    {
+        title: 'Лекарства',
+        description: 'Медикаменты по рецепту, средства перевязки и фиксации',
+    },
+    {
+        title: 'Расходы на обратную дорогу',
+        description: 'При задержке за границей из-за страхового случая',
+    },
+    {
+        title: 'Возврат домой для лечения',
+        description: 'Если за границей оно невозможно или превышает сумму покрытия',
+    },
+]
+---
+
+<section class="insurance-coverage-section">
+    <div class="insurance-coverage-container">
+        <h2 class="coverage-title">Что входит в полис</h2>
+
+        <div class="coverage-grid">
+            {coverageItems.map((item) => (
+                <div class="coverage-item">
+                    <span class="bullet"></span>
+                    <div class="coverage-content">
+                        <h3 class="coverage-item-title">{item.title}</h3>
+                        <p class="coverage-description">{item.description}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <div class="coverage-button-wrapper">
+            <a href="#" class="coverage-button">Скачать правила страхования</a>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .insurance-coverage-section {
+        background-color: $color-alternate;
+        @include adaptive(padding-top, 70, 60);
+        @include adaptive(padding-bottom, 70, 60);
+
+        .insurance-coverage-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .coverage-title {
+            color: $color-main;
+        }
+
+        .coverage-grid {
+            @include adaptive(margin-top, 60, 40);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptive(row-gap, 33, 30);
+            @include adaptive(column-gap, 295, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .coverage-item {
+            display: flex;
+            @include adaptive(gap, 10, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+            }
+        }
+
+        .coverage-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 8, 8);
+        }
+
+        .coverage-item-title {
+            @include font-circe-regular;
+            font-style: normal;
+            color: $color-main;
+            @include adaptive(font-size, 26, 22);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .coverage-description {
+            @include font-circe-regular;
+            font-style: normal;
+            color: #667c89;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .coverage-button-wrapper {
+            @include adaptive(margin-top, 60, 40);
+            display: flex;
+            justify-content: center;
+        }
+
+        .coverage-button {
+            @include button-default;
+            @include button-sized;
+        }
+    }
+</style>

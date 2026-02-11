@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import InsuranceHero from '@/components/insurance/InsuranceHero.astro'
+import InsuranceAdvantages from '@/components/insurance/InsuranceAdvantages.astro'
+import InsuranceCoverage from '@/components/insurance/InsuranceCoverage.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Страхование - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <InsuranceHero userType="tourist" />
+    <InsuranceAdvantages />
+    <InsuranceCoverage />
+</Layout>

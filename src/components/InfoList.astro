@@ -71,6 +71,12 @@ const { items, dark = false, title } = Astro.props
 
         .info-list-title {
             @include adaptive(margin-bottom, 60, 30);
+            margin-left: auto;
+            margin-right: auto;
+
+            @include desktop {
+                width: 80%;
+            }
         }
 
         .info-list-item {

@@ -175,13 +175,16 @@ const base = import.meta.env.BASE_URL
 
         .hero-bg {
             @include abs-default;
+            display: block;
+            overflow: hidden;
             z-index: 0;
 
             img {
+                display: block;
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                object-position: top center;
+                object-position: center;
             }
 
             &::after {
@@ -320,6 +323,40 @@ const base = import.meta.env.BASE_URL
 
             .hero-title {
                 text-align: left;
+            }
+        }
+
+        &._type-two {
+            @include adaptive(min-height, 880, 700);
+            @include adaptive(padding-top, 446, 518);
+
+            .hero-bg {
+                @include adaptive(height, 595, 231);
+                @include adaptive(width, 849, 450);
+                bottom: 0;
+                left: auto;
+                right: 0;
+                @include adaptive(top, 285, 250);
+
+                @include mobile {
+                    @include adaptive(right, 100, 15);
+                }
+            }
+
+            .hero-content {
+                flex-wrap: wrap;
+                flex-direction: row;
+                flex: 0;
+                @include adaptive(row-gap, 20, 12);
+
+                @include desktop {
+                    width: 56%;
+                }
+            }
+
+            .hero-title {
+                text-align: left;
+                @include adaptive(font-size, 60, 60);
             }
         }
     }
