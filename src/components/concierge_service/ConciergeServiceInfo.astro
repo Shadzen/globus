@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets'
+import InfoGrid from '@/components/InfoGrid.astro'
 import photo1 from '@/assets/images/concierge_service/concierge-service-photo-1.jpg'
 import photo2 from '@/assets/images/concierge_service/concierge-service-photo-2.jpg'
 
@@ -12,152 +13,36 @@ const services = [
 ]
 ---
 
-<section class="concierge-service-info-section">
-    <div class="concierge-service-info-container">
-        <div class="info-grid">
-            <div class="info-grid-row">
-                <div class="info-text _pos-1">
-                    <p>
-                        Путешествия — это не просто дороги и города. Это искусство открывать мир в
-                        его красоте, вдохновении и неповторимых деталях.
-                    </p>
-                </div>
+<InfoGrid>
+    <div class="info-grid-row">
+        <div class="info-text _pos-1">
+            <p>
+                Путешествия — это не просто дороги и города. Это искусство открывать мир в
+                его красоте, вдохновении и неповторимых деталях.
+            </p>
+        </div>
 
-                <div class="info-image">
-                    <Image src={photo1} alt="Консьерж-сервис" />
-                </div>
-            </div>
-            <div class="info-grid-row">
-                <div class="info-image _pos-1">
-                    <Image src={photo2} alt="Люксовые путешествия" />
-                </div>
-
-                <div class="info-text">
-                    <p>Мы создаём маршруты, в которых всё продумано до мелочей:</p>
-                    <ul class="service-list">
-                        {
-                            services.map((service) => (
-                                <li class="service-list-item">
-                                    <span class="bullet" />
-                                    <span class="service-list-text">{service}</span>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </div>
+        <div class="info-image">
+            <Image src={photo1} alt="Консьерж-сервис" />
         </div>
     </div>
-</section>
+    <div class="info-grid-row">
+        <div class="info-image _pos-1">
+            <Image src={photo2} alt="Люксовые путешествия" />
+        </div>
 
-<style lang="scss" is:global>
-    .concierge-service-info-section {
-        @include adaptive(margin-top, 120, 60);
-
-        .concierge-service-info-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .info-grid {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 80, 30);
-        }
-
-        .info-grid-row {
-            display: flex;
-            justify-content: space-between;
-            @include adaptive(gap, 52, 30);
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .info-text {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 30, 30);
-            width: 33%;
-            margin-right: auto;
-
-            @include desktop {
-                &._pos-1 {
-                    @include adaptive(margin-top, 28, 28);
+        <div class="info-text">
+            <p>Мы создаём маршруты, в которых всё продумано до мелочей:</p>
+            <ul class="service-list">
+                {
+                    services.map((service) => (
+                        <li class="service-list-item">
+                            <span class="bullet" />
+                            <span class="service-list-text">{service}</span>
+                        </li>
+                    ))
                 }
-            }
-
-            @include mobile {
-                width: 100%;
-                order: 2;
-            }
-
-            p {
-                @include font-circe-light;
-                color: $color-alternate;
-                @include adaptive(font-size, 26, 18);
-                line-height: 1.2;
-                margin: 0;
-            }
-        }
-
-        .service-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 21, 18);
-        }
-
-        .service-list-item {
-            display: flex;
-            @include adaptive(gap, 10, 10);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-            }
-        }
-
-        .service-list-text {
-            @include font-circe-light;
-            color: $color-alternate;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            flex: 1;
-        }
-
-        .info-image {
-            overflow: hidden;
-
-            img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
-            @include desktop {
-                max-width: 59%;
-
-                &._pos-1 {
-                    @include adaptive(margin-top, -264, -264);
-                }
-            }
-
-            @include mobile {
-                width: 100%;
-                @include adaptive(height, 2, 231);
-                order: 1;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                }
-            }
-        }
-    }
-</style>
+            </ul>
+        </div>
+    </div>
+</InfoGrid>

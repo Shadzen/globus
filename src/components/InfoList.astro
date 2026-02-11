@@ -45,7 +45,7 @@ const { items, dark = false, title } = Astro.props
                     </div>
                 </div>
                 {index < items.length - 1 && (
-                    <div class="info-list-divider"></div>
+                    <div class="divider info-list-divider"></div>
                 )}
             </>
         ))}
@@ -176,11 +176,8 @@ const { items, dark = false, title } = Astro.props
         }
 
         .info-list-divider {
-            height: 1px;
-            background-color: $color-accent;
             @include adaptive(margin-top, 24, 48);
             @include adaptive(margin-bottom, 24, 48);
-            width: 100%;
         }
     }
 </style>

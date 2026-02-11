@@ -1,0 +1,90 @@
+---
+
+---
+
+<section class="concierge-service-text-section">
+    <div class="concierge-service-text-container">
+        <div class="divider"></div>
+
+        <h2 class="section-title">
+            Каждый наш партнёр —<br />
+            это знак качества и надёжности.
+        </h2>
+
+        <div class="section-content">
+            <p class="content-paragraph">
+                Каждое впечатление — это штрих к вашей личной картине путешествия.
+            </p>
+            <p class="content-paragraph">
+                Наше главное отличие — премиальный сервис: персональный подход, внимание к каждой
+                детали и забота о вашем времени.<br />
+                Мы стремимся превзойти ожидания, превращая путешествие в коллекцию идеальных моментов.
+            </p>
+            <p class="content-paragraph">Ведь истинная роскошь — не в вещах, а в моменте.</p>
+        </div>
+
+        <p class="section-subtitle">Искусство открывать мир мы превращаем в вашу реальность.</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .concierge-service-text-section {
+        @include adaptive(margin-top, 60, 30);
+
+        .concierge-service-text-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            @include adaptive(font-size, 60, 40);
+            @include adaptive(margin-top, 60, 30);
+
+            @include mobile {
+                text-align: left;
+            }
+        }
+
+        .section-content {
+            @include adaptive(margin-top, 60, 30);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-paragraph {
+            @include font-circe-light;
+            font-weight: 350;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            margin: 0;
+            @include adaptive(margin-bottom, 12, 10);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            @include desktop {
+                text-align: center;
+            }
+        }
+
+        .section-subtitle {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 24);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(margin-top, 60, 30);
+
+            @include desktop {
+                text-align: center;
+            }
+        }
+    }
+</style>

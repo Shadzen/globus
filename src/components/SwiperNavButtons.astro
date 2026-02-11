@@ -1,5 +1,8 @@
 ---
 // src/components/SwiperNavButtons.astro
+import prevAccentIcon from '@/assets/icons/prev-accent.svg'
+import nextAccentIcon from '@/assets/icons/next-accent.svg'
+
 interface Props {
     containerClass?: string
 }
@@ -8,8 +11,12 @@ const { containerClass = 'swiper-nav' } = Astro.props
 ---
 
 <div class={`swiper-nav ${containerClass}`}>
-    <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд"></button>
-    <button class="nav-btn nav-btn-next" aria-label="Следующий слайд"></button>
+    <button class="nav-btn nav-btn-prev" aria-label="Предыдущий слайд">
+        <img src={prevAccentIcon.src} alt="" />
+    </button>
+    <button class="nav-btn nav-btn-next" aria-label="Следующий слайд">
+        <img src={nextAccentIcon.src} alt="" />
+    </button>
 </div>
 
 <style lang="scss" is:global>
@@ -32,9 +39,12 @@ const { containerClass = 'swiper-nav' } = Astro.props
         transition: all 0.3s;
         @include adaptive(width, 81, 60);
         @include adaptive(height, 81, 60);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         &:hover {
             transform: scale(1.05);
@@ -42,14 +52,6 @@ const { containerClass = 'swiper-nav' } = Astro.props
 
         &:active {
             transform: scale(0.95);
-        }
-
-        &-prev {
-            background-image: url('@/assets/icons/prev-accent.svg');
-        }
-
-        &-next {
-            background-image: url('@/assets/icons/next-accent.svg');
         }
 
         &-disabled {

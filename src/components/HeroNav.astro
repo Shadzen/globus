@@ -1,4 +1,6 @@
 ---
+import prevAccentIcon from '@/assets/icons/prev-accent.svg'
+
 const base = import.meta.env.BASE_URL
 
 interface BreadcrumbItem {
@@ -60,7 +62,7 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
     {
         showBackButton && (
             <button class="back-button" onclick="history.back()">
-                <span class="back-icon" />
+                <img src={prevAccentIcon.src} alt="" class="back-icon" />
                 <span class="back-text">назад</span>
             </button>
         )
@@ -134,10 +136,6 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
             .back-icon {
                 @include adaptive(width, 70, 55);
                 @include adaptive(height, 70, 55);
-                background-image: url('@/assets/icons/prev-accent.svg');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
                 transition: transform 0.3s;
             }
 

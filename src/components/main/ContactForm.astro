@@ -3,6 +3,7 @@
 import phoneIcon from '@/assets/icons/phone-accent.svg'
 import mailIcon from '@/assets/icons/mail-accent.svg'
 import telegramIcon from '@/assets/icons/telegram-accent-borderless.svg'
+import telegramAccentIcon from '@/assets/icons/telegram-accent.svg'
 
 interface Props {
     userType?: 'tourist' | 'agent'
@@ -22,7 +23,9 @@ const { userType = 'tourist' } = Astro.props
                     <span class="contact-label">Телефон</span>
                     <div class="contact-separator"></div>
                     <div class="social-icons">
-                        <a href="#" class="social-icon social-icon-telegram" aria-label="Telegram"></a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <img src={telegramAccentIcon.src} alt="" />
+                        </a>
                     </div>
                     <a href="tel:880020006578" class="contact-value">8 800 2000 6578</a>
                 </div>
@@ -267,22 +270,17 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(width, 40, 32);
             @include adaptive(height, 40, 32);
             display: block;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
             transition: transform 0.3s;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
 
             &:hover {
                 transform: scale(1.1);
             }
-
-            &-telegram {
-                background-image: url('@/assets/icons/telegram-accent.svg');
-            }
-
-            // &-whatsapp {
-            //     background-image: url('@/assets/icons/whatsapp-accent.svg');
-            // }
         }
 
         .newsletter-form {

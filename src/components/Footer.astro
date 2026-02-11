@@ -1,6 +1,7 @@
 ---
 // src/components/Footer.astro
 import Logo from './Logo.astro'
+import upWhiteIcon from '@/assets/icons/up-white.svg'
 
 interface Props {
     userType?: 'tourist' | 'agent'
@@ -32,7 +33,7 @@ const base = import.meta.env.BASE_URL
                     <a href="#">Семейный отдых</a>
                     <a href="#">Активный отдых</a>
                     <a href="#">Мероприятия</a>
-                    <a href={`${base}${userType}/concierge_service`}>Консьерж-сервис</a>
+                    <a href={`${base}tourist/concierge_service`}>Консьерж-сервис</a>
                     {userType === 'agent' && (
                         <>
                             <a href="#">Страны</a>
@@ -68,7 +69,7 @@ const base = import.meta.env.BASE_URL
                     class="scroll-top-btn"
                     onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 >
-                    <span class="scroll-icon"></span>
+                    <img src={upWhiteIcon.src} alt="" class="scroll-icon" />
                     <span>Наверх</span>
                 </button>
             </div>
@@ -211,10 +212,6 @@ const base = import.meta.env.BASE_URL
         .scroll-icon {
             @include adaptive(width, 40, 32);
             @include adaptive(height, 40, 32);
-            background-image: url('@/assets/icons/up-white.svg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .footer-link {
