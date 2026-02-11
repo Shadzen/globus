@@ -1,4 +1,4 @@
-export const initUserAgreementAccordion = () => {
+export const initAccordion = () => {
     const accordionButtons = document.querySelectorAll('[data-accordion-button]')
     
     if (accordionButtons.length === 0) return

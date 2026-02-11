@@ -1,0 +1,103 @@
+---
+interface Props {
+    title: string
+    containerWidth?: string
+}
+
+const { title, containerWidth = '85%' } = Astro.props
+---
+
+<section class="legal-page-section">
+    <div class="legal-page-container" style={`width: ${containerWidth}`}>
+        <h2 class="legal-title">{title}</h2>
+
+        <div class="legal-intro">
+            <slot name="intro" />
+        </div>
+
+        <div class="legal-content">
+            <slot />
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .legal-page-section {
+        @include adaptive(margin-top, 40, 40);
+        @include flex-center;
+
+        .legal-page-container {
+            @include side-paddings;
+
+            @include mobile {
+                width: 100% !important;
+            }
+        }
+
+        .legal-title {
+            @include adaptive(font-size, 60, 34);
+
+            @include desktop {
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            @include mobile {
+                text-align: left;
+            }
+        }
+
+        .legal-intro {
+            @include adaptive(margin-top, 78, 40);
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+            p {
+                @include font-circe-regular;
+                color: $color-alternate;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                margin: 0;
+
+                a {
+                    color: $color-alternate;
+                    text-decoration: none;
+                    transition: opacity 0.3s ease;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+
+            ul {
+                list-style: disc;
+                @include adaptive(padding-left, 30, 24);
+                margin: 0;
+                width: 70%;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                li {
+                    @include font-circe-regular;
+                    color: $color-alternate;
+                    @include adaptive(font-size, 20, 18);
+                    line-height: 1.2;
+                    @include adaptive(margin-top, 12, 12);
+                    @include adaptive(margin-bottom, 12, 12);
+                }
+            }
+        }
+
+        .legal-content {
+            @include adaptive(margin-top, 44, 22);
+        }
+    }
+</style>
