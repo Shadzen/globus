@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import ConciergeServiceHero from '@/components/concierge_service/ConciergeServiceHero.astro'
+import ConciergeServiceIcons from '@/components/concierge_service/ConciergeServiceIcons.astro'
+import ConciergeServiceInfo from '@/components/concierge_service/ConciergeServiceInfo.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Визы - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <ConciergeServiceHero userType="tourist" />
+    <ConciergeServiceIcons />
+    <ConciergeServiceInfo />
+</Layout>

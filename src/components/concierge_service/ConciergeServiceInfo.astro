@@ -1,0 +1,132 @@
+---
+import { Image } from 'astro:assets'
+import photo1 from '@/assets/images/concierge_service/concierge-service-photo-1.jpg'
+import photo2 from '@/assets/images/concierge_service/concierge-service-photo-2.jpg'
+
+const services = [
+    'Утончённые отели и виллы в самых живописных уголках планеты,',
+    'Яхты и вертолёты для особенных перелётов,',
+    'Концерты и события мирового уровня,',
+    'Путешествия на люксовых поездах,',
+    'Гастрономические открытия в лучших ресторанах мира.',
+]
+---
+
+<section class="concierge-service-info-section">
+    <div class="concierge-service-info-container">
+        <div class="service-row">
+            <div class="service-text">
+                <p class="service-description">
+                    Путешествия — это не просто дороги и города.<br />
+                    Это искусство открывать мир в его красоте, вдохновении и неповторимых деталях.
+                </p>
+            </div>
+            <div class="service-image">
+                <Image src={photo1} alt="" />
+            </div>
+        </div>
+        <div class="service-row">
+            <div class="service-image">
+                <Image src={photo2} alt="" />
+            </div>
+            <div class="service-text">
+                <p class="service-description">
+                    Мы создаём маршруты, в которых всё продумано до мелочей:
+                </p>
+                <ul class="service-list">
+                    {services.map((service) => (
+                        <li class="service-list-item">
+                            <span class="bullet"></span>
+                            <span class="service-list-text">{service}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .concierge-service-info-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .concierge-service-info-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 60, 40);
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            @include adaptive(gap, 40, 30);
+            align-items: center;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .service-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-description {
+            @include font-circe-light;
+            font-weight: 350;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 22);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .service-intro {
+            @include adaptive(margin-bottom, 40, 30);
+        }
+
+        .service-image {
+            position: relative;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                @include adaptive(min-height, 356, 250);
+            }
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 21, 18);
+        }
+
+        .service-list-item {
+            display: flex;
+            @include adaptive(gap, 10, 10);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+            }
+        }
+
+        .service-list-text {
+            @include font-circe-light;
+            font-weight: 350;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 22);
+            line-height: 1.2;
+            flex: 1;
+        }
+    }
+</style>

@@ -142,7 +142,6 @@ const base = import.meta.env.BASE_URL
         margin: 0;
     }
 
-    // Общий стиль для точек-маркеров
     .bullet {
         @include adaptive(width, 12, 10);
         @include adaptive(height, 12, 10);
@@ -150,6 +149,19 @@ const base = import.meta.env.BASE_URL
         border-radius: 50%;
         background-color: $color-accent;
         flex-shrink: 0;
+    }
+
+    .svg-icon {
+        flex-shrink: 0;
+        @include adaptive(width, 100, 72);
+        @include adaptive(height, 80, 60);
+        @include flex-center;
+
+        img {
+            max-width: 100%;
+            width: auto;
+            height: 100%;
+        }
     }
 
     .swiper {

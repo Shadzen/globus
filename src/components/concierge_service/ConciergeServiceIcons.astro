@@ -1,0 +1,77 @@
+---
+import advantage1Icon from '@/assets/icons/advantage-1.svg'
+import advantage2Icon from '@/assets/icons/advantage-2.svg'
+import advantage3Icon from '@/assets/icons/advantage-3.svg'
+
+const services = [
+    {
+        icon: advantage1Icon.src,
+        title: 'Персональный сервис',
+    },
+    {
+        icon: advantage2Icon.src,
+        title: 'Внимание к каждой детали',
+    },
+    {
+        icon: advantage3Icon.src,
+        title: 'Забота о вашем времени',
+    },
+]
+---
+
+<section class="concierge-service-icons-section">
+    <div class="concierge-service-icons-container">
+        <div class="services-grid">
+            {services.map((service) => (
+                <div class="service-item">
+                    <div class="svg-icon">
+                        <img src={service.icon} alt="" />
+                    </div>
+                    <h3 class="service-title">{service.title}</h3>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .concierge-service-icons-section {
+        @include adaptive(margin-top, 60, 30);
+
+        .concierge-service-icons-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptive(gap, 60, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 20, 16);
+
+            @include desktop {
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
+
+        .service-title {
+            @include font-circe-regular;
+            font-weight: 400;
+            color: $color-accent;
+            @include adaptive(font-size, 28, 18);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+        }
+    }
+</style>

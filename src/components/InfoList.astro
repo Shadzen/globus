@@ -22,7 +22,7 @@ const { items, dark = false, title } = Astro.props
         {items.map((item, index) => (
             <>
                 <div class="info-list-item">
-                    <div class="info-list-icon">
+                    <div class="svg-icon">
                         <img src={item.icon} alt="" />
                     </div>
                     <div class="info-list-content">
@@ -91,19 +91,6 @@ const { items, dark = false, title } = Astro.props
             @include mobile {
                 flex-direction: row;
                 align-items: flex-start;
-            }
-        }
-
-        .info-list-icon {
-            flex-shrink: 0;
-            @include adaptive(width, 100, 72);
-            @include adaptive(height, 80, 60);
-            @include flex-center;
-
-            img {
-                max-width: 100%;
-                width: auto;
-                height: 100%;
             }
         }
 

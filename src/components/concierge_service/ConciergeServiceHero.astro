@@ -1,0 +1,49 @@
+---
+import HeroNav from '@/components/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/concierge_service/hero-1.jpg'
+import heroMobile from '@/assets/images/concierge_service/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section concierge-service-hero _dark-text _type-one">
+    <picture class="hero-bg">
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Консьерж-сервис' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Персональные консьерж-услуги по всему миру</h2>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .concierge-service-hero {
+        .hero-content {
+            @include desktop {
+                justify-content: center;
+            }
+        }
+        .hero-title {
+            @include adaptive(font-size, 74, 50);
+
+            @include desktop {
+                width: 70%;
+                text-align: center !important;
+            }
+        }
+    }
+</style>
