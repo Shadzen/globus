@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import DocsAccordionHero from '@/components/docs_accordion/DocsAccordionHero.astro'
+import DocsAccordionContent from '@/components/docs_accordion/DocsAccordionContent.astro'
+import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Документы - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <DocsAccordionHero userType="agent" />
+    <DocsAccordionContent />
+    <ContactCTA title="Свяжитесь с нами для разработки персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>

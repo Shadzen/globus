@@ -11,9 +11,13 @@ const { title, containerWidth = '85%' } = Astro.props
     <div class="legal-page-container" style={`width: ${containerWidth}`}>
         <h2 class="legal-title">{title}</h2>
 
-        <div class="legal-intro">
-            <slot name="intro" />
-        </div>
+        {
+            Astro.slots.has('intro') && (
+                <div class="legal-intro">
+                    <slot name="intro" />
+                </div>
+            )
+        }
 
         <div class="legal-content">
             <slot />
@@ -42,9 +46,9 @@ const { title, containerWidth = '85%' } = Astro.props
                 margin: 0 auto;
             }
 
-            @include mobile {
-                text-align: left;
-            }
+            // @include mobile {
+            //     text-align: left;
+            // }
         }
 
         .legal-intro {

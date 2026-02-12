@@ -1,0 +1,160 @@
+---
+import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import Accordion from '@/components/common/Accordion.astro'
+import downloadIcon from '@/assets/icons/arrow-18-accent.svg'
+
+interface DocLink {
+    title: string
+    url: string
+}
+
+const generateDocsHtml = (docs: DocLink[]) => {
+    if (docs.length === 0) return ''
+
+    return `
+        <div class="docs-grid">
+            ${docs.map((doc) => `
+                <a href="${doc.url}" class="docs-link" target="_blank" rel="noopener noreferrer">
+                    <div class="docs-link-icon">
+                        <img src="${downloadIcon.src}" alt="" />
+                    </div>
+                    <span class="docs-link-text">${doc.title}</span>
+                </a>
+            `).join('')}
+        </div>
+    `
+}
+
+const docsSections = [
+    {
+        id: 'contracts',
+        title: 'Договоры',
+        docs: [
+            {
+                title: 'Договор бронирования<br>и оформления авиаперевозок (форма для субагентов)',
+                url: '#',
+            },
+            {
+                title: 'Договор о реализации туристских услуг (форма для субагентов), ред. 31.07.2025г.',
+                url: '#',
+            },
+            {
+                title: 'Заявление на возврат Глобус-тур',
+                url: '#',
+            },
+            {
+                title: 'Заявление на возврат для заявок Selfie Travel',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: 'statements',
+        title: 'Заявления',
+        docs: [
+            {
+                title: 'Заявление на возврат Глобус-тур',
+                url: '#',
+            },
+            {
+                title: 'Заявление на возврат для заявок Selfie Travel',
+                url: '#',
+            },
+            {
+                title: 'Заявление на возврат Глобус-тур',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: 'reports',
+        title: 'Отчеты',
+        docs: [
+            {
+                title: 'Заявление на возврат Глобус-тур',
+                url: '#',
+            },
+            {
+                title: 'Заявление на возврат для заявок Selfie Travel',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: 'other',
+        title: 'Другое',
+        docs: [
+            {
+                title: 'Заявление на возврат Глобус-тур',
+                url: '#',
+            },
+        ],
+    },
+]
+
+const accordionSections = docsSections.map((section) => ({
+    id: section.id,
+    title: section.title,
+    content: generateDocsHtml(section.docs),
+}))
+---
+
+<LegalPageLayout title="Документы">
+    <Accordion sections={accordionSections} type="docs" />
+</LegalPageLayout>
+
+<style lang="scss" is:global>
+    .accordion {
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(column-gap, 80, 30);
+            @include adaptive(row-gap, 43, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .docs-link {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 31, 20);
+            text-decoration: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .docs-link-icon {
+            @include adaptive(width, 75, 60);
+            @include adaptive(height, 75, 60);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .docs-link-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            white-space: normal;
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+    }
+</style>

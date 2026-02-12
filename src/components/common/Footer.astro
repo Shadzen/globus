@@ -22,7 +22,7 @@ const base = import.meta.env.BASE_URL
                     <a href={`${base}${userType}/tour_search`}>Поиск туров</a>
                     <a href="#">Авиабилеты</a>
                     {userType === 'agent' && (
-                        <a href="#">Документы</a>
+                        <a href={`${base}agent/docs_accordion`}>Документы</a>
                     )}
                 </nav>
             </div>

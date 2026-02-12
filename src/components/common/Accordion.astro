@@ -9,12 +9,13 @@ interface AccordionSection {
 
 interface Props {
     sections: AccordionSection[]
+    type?: 'docs' | string
 }
 
-const { sections } = Astro.props
+const { sections, type } = Astro.props
 ---
 
-<div class="accordion">
+<div class="accordion" data-type={type}>
     {
         sections.map((section) => (
             <div class="accordion-item" data-accordion-item>
@@ -48,9 +49,20 @@ const { sections } = Astro.props
             @include adaptive(padding-bottom, 44, 22);
             cursor: pointer;
             text-align: left;
+            @include adaptive(padding-left, 146, 0);
+        }
 
-            @include desktop {
-                @include adaptive(padding-left, 146, 146);
+        &[data-type='docs'] {
+            .accordion-item:first-child .divider {
+                display: none;
+            }
+
+            .accordion-header {
+                padding-left: 0;
+            }
+
+            .accordion-content-inner {
+                width: 100%;
             }
         }
 
@@ -70,10 +82,10 @@ const { sections } = Astro.props
             @include adaptive(width, 24, 20);
             @include adaptive(height, 24, 20);
             transition: transform 0.3s ease;
+        }
 
-            [aria-expanded='true'] & {
-                transform: rotate(180deg);
-            }
+        .accordion-header[aria-expanded='true'] .accordion-icon {
+            transform: rotate(180deg);
         }
 
         .accordion-content {
