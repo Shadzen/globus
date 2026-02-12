@@ -1,0 +1,35 @@
+---
+import VideosGrid from '@/components/education/VideosGrid.astro'
+import { webinarsData } from '@/data/webinars'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'agent' } = Astro.props
+
+const videos = [
+    ...webinarsData,
+    ...webinarsData.map((video, index) => ({
+        ...video,
+        id: `${video.id}-duplicate-${index}`,
+    })),
+]
+---
+
+<section class="webinar-archive-grid-section">
+    <div class="webinar-archive-grid-container">
+        <VideosGrid videos={videos} userType={userType} textColor="alternate" />
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .webinar-archive-grid-section {
+        @include adaptive(margin-top, 60, 60);
+
+        .webinar-archive-grid-container {
+            @include side-paddings;
+            width: 100%;
+        }
+    }
+</style>

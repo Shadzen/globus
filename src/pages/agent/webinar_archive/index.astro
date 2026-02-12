@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import WebinarArchiveHero from '@/components/webinar_archive/WebinarArchiveHero.astro'
+import WebinarSearchForm from '@/components/webinar_archive/WebinarSearchForm.astro'
+import WebinarArchiveGrid from '@/components/webinar_archive/WebinarArchiveGrid.astro'
+import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Архив вебинаров - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <WebinarArchiveHero userType="agent" />
+    <WebinarSearchForm userType="agent" />
+    <WebinarArchiveGrid userType="agent" />
+    <ContactCTA title="Свяжитесь с нами для разработки персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>

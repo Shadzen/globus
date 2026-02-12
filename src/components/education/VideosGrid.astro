@@ -16,12 +16,13 @@ export interface VideoItem {
 interface Props {
     videos: VideoItem[]
     userType?: 'tourist' | 'agent'
+    textColor?: 'main' | 'alternate'
 }
 
-const { videos } = Astro.props
+const { videos, textColor = 'main' } = Astro.props
 ---
 
-<div class="videos-grid">
+<div class="videos-grid" data-text-color={textColor}>
     {
         videos.map((video) => (
             <div class="video-card">
@@ -184,6 +185,13 @@ const { videos } = Astro.props
             line-height: 1.2;
             margin: 0;
             white-space: normal;
+        }
+
+        &[data-text-color='alternate'] {
+            .video-material-link,
+            .video-material-text {
+                color: $color-alternate;
+            }
         }
     }
 </style>
