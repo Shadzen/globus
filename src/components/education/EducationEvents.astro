@@ -1,0 +1,54 @@
+---
+import EventsGrid from '@/components/education/EventsGrid.astro'
+import type { EventItem } from '@/components/education/EventsGrid.astro'
+import eventPhoto from '@/assets/images/education/education-photo-1.jpg'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'agent' } = Astro.props
+
+const events: EventItem[] = [
+    {
+        id: '1',
+        imageUrl: eventPhoto.src,
+        date: '26.08-30.08.2024',
+        title: 'Ras Al Khaimah Siberian Road Show 2024',
+        materialLabel: 'Скачать материалы семинара',
+        materialUrl: '#',
+    },
+    {
+        id: '2',
+        imageUrl: eventPhoto.src,
+        date: '22.09.2022',
+        title: 'Семинар "Туры в Таиланд через Казахстан"',
+        materialLabel: 'Скачать материалы семинара',
+        materialUrl: '#',
+    },
+]
+---
+
+<section class="education-events-section">
+    <div class="education-events-container">
+        <h2 class="education-events-title">Мероприятия</h2>
+
+        <EventsGrid events={events} userType={userType} />
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .education-events-section {
+        @include adaptive(margin-top, 60, 60);
+
+        .education-events-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .education-events-title {
+            color: $color-alternate;
+            @include adaptive(margin-bottom, 30, 30);
+        }
+    }
+</style>

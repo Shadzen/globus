@@ -1,0 +1,160 @@
+---
+import VideosGrid from '@/components/education/VideosGrid.astro'
+import type { VideoItem } from '@/components/education/VideosGrid.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'agent' } = Astro.props
+const base = import.meta.env.BASE_URL
+
+const videos: VideoItem[] = [
+    {
+        id: '1',
+        videoUrl: '#',
+        date: '12.11.2025',
+        title: 'Вебинар с отелем Banyan Tree Dubai 5*',
+        materials: [
+            {
+                label: 'Скачать материалы презентации',
+                url: 'https://drive.google.com/file/d/1EMBiwQ8-LE6obtWZlSMuOQtCTZobF9_2/view?usp=sharing',
+            },
+        ],
+    },
+    {
+        id: '2',
+        videoUrl: '#',
+        date: '30.10.2025',
+        title: 'Вебинар с Selfie Travel "Египет: Шар-эль-Шейх из Красноярска"',
+        materials: [
+            {
+                label: 'Скачать материалы презентации',
+                url: '#',
+            },
+            {
+                label: 'Скачать материалы презентации «Как начать работать с Selfie Travel»',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: '3',
+        videoUrl: '#',
+        date: '07.10.2025',
+        title: 'Вебинар по экскурсионному Китаю',
+        materials: [
+            {
+                label: 'Скачать материалы презентации по круизам',
+                url: '#',
+            },
+            {
+                label: 'Скачать материалы презентации по Чжанцзяцзе',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: '4',
+        videoUrl: '#',
+        date: '30.09.2025',
+        title: 'Вебинар по Индии (Гоа)',
+        materials: [
+            {
+                label: 'Скачать материалы презентации',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: '5',
+        videoUrl: '#',
+        date: '26.09.2025',
+        title: 'Вебинар по Северной Корее',
+        materials: [
+            {
+                label: 'Скачать материалы презентации',
+                url: '#',
+            },
+        ],
+    },
+    {
+        id: '6',
+        videoUrl: '#',
+        date: '17.09.2025',
+        title: 'Вебинар по Бали с отелем Regent Bali Canggu',
+        materials: [],
+    },
+    {
+        id: '7',
+        videoUrl: '#',
+        date: '26.08.2025',
+        title: 'Вебинар Открытие Mandarin Oriental Downtown 5*',
+        materials: [],
+    },
+    {
+        id: '8',
+        videoUrl: '#',
+        date: '22, 27, 29.05.2025',
+        title: 'Онлайн-марафон по Саудовской Аравии',
+        materials: [
+            {
+                label: 'Скачать материалы презентации Эр-Рияд',
+                url: '#',
+            },
+            {
+                label: 'Скачать материалы презентации Аль-Ула',
+                url: '#',
+            },
+            {
+                label: 'Скачать материалы презентации Красное море',
+                url: '#',
+            },
+        ],
+    },
+]
+---
+
+<section class="education-videos-section">
+    <div class="education-videos-container">
+        <h2 class="education-videos-title">Записи вебинаров</h2>
+
+        <VideosGrid videos={videos} userType={userType} />
+
+        <div class="education-videos-footer">
+            <a href={`${base}${userType}/webinar_archive/`} class="education-videos-button">
+                <span>Архив вебинаров</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .education-videos-section {
+        @include adaptive(margin-top, 120, 60);
+        background-color: $color-alternate;
+        @include adaptive(padding-top, 80, 60);
+        @include adaptive(padding-bottom, 80, 60);
+
+        .education-videos-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .education-videos-title {
+            color: $color-main;
+            text-align: center;
+            @include adaptive(margin-bottom, 60, 30);
+        }
+
+        .education-videos-footer {
+            display: flex;
+            justify-content: center;
+            @include adaptive(margin-top, 60, 60);
+        }
+
+        .education-videos-button {
+            @include button-sized;
+        }
+    }
+</style>

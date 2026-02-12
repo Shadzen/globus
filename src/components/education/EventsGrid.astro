@@ -1,0 +1,164 @@
+---
+import arrowIcon from '@/assets/icons/arrow-18-accent.svg'
+
+export interface EventItem {
+    id: string
+    imageUrl: string
+    date: string
+    title: string
+    materialLabel?: string
+    materialUrl?: string
+}
+
+interface Props {
+    events: EventItem[]
+    userType?: 'tourist' | 'agent'
+}
+
+const { events } = Astro.props
+---
+
+<div class="events-grid">
+    {
+        events.map((event) => (
+            <div class="event-card">
+                <div class="event-image">
+                    <img src={event.imageUrl} alt={event.title} loading="lazy" />
+                </div>
+
+                <div class="event-content">
+                    <div class="event-info">
+                        <time class="event-date">{event.date}</time>
+                        <h3 class="event-title">{event.title}</h3>
+                    </div>
+
+                    {event.materialUrl && (
+                        <a
+                            href={event.materialUrl}
+                            class="event-material-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="event-material-icon">
+                                <img src={arrowIcon.src} alt="" />
+                            </div>
+                            <span class="event-material-text">
+                                {event.materialLabel || 'Скачать материалы семинара'}
+                            </span>
+                        </a>
+                    )}
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<style lang="scss" is:global>
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        @include adaptive(column-gap, 20, 30);
+        @include adaptive(row-gap, 80, 40);
+        align-items: start;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+
+        .event-card {
+            display: flex;
+            @include adaptive(gap, 36, 18);
+            align-items: flex-start;
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .event-image {
+            @include adaptive(width, 416, 100%);
+            @include adaptive(height, 282, 305);
+            flex-shrink: 0;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .event-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            @include adaptive(min-height, 282, auto);
+            @include adaptive(gap, 36, 18);
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 8, 8);
+            width: 80%;
+        }
+
+        .event-date {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 18);
+            color: #667c89;
+            line-height: 1.6;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 3.2);
+        }
+
+        .event-title {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 24);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 400;
+            white-space: normal;
+        }
+
+        .event-material-link {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 18, 18);
+            text-decoration: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .event-material-icon {
+            @include adaptive(width, 75, 60);
+            @include adaptive(height, 75, 60);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .event-material-text {
+            @include font-circe-regular;
+            @include adaptive(font-size, 18, 16);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            white-space: normal;
+        }
+    }
+</style>
