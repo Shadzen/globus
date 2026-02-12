@@ -1,0 +1,43 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section bonus-program-hero _dark-text _type-one">
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Бонусная программа' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Бонусная программа</h2>
+        <p class="hero-subtitle">Бронируйте туры уже сейчас, чтобы стать членом клуба «Globus Luxe» и воспользоваться специальными привилегиями в соответствии с вашим  статусом.</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .bonus-program-hero {
+        .hero-content {
+            flex-direction: column !important;
+            @include adaptive(gap, 8, 16, true);
+        }
+
+        .hero-title {
+            @include adaptive(font-size, 74, 60);
+            margin: 0 auto;
+            text-align: center !important;
+        }
+
+        .hero-subtitle {
+            @include adaptive(width, 60%, 80%);
+            margin: 0 auto;
+            text-align: center !important;
+        }
+    }
+</style>

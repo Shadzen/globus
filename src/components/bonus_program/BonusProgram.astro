@@ -1,0 +1,369 @@
+---
+import bonusSilver from '@/assets/images/bonus_program/bonus-silver.svg'
+import bonusGold from '@/assets/images/bonus_program/bonus-gold.svg'
+import bonusPlatinum from '@/assets/images/bonus_program/bonus-platinum.svg'
+---
+
+<section class="bonus-program-section">
+    <div class="bonus-program-container">
+        <h2 class="bonus-program-title">Условия бонусной программы:</h2>
+
+        <div class="bonus-tier">
+            <div class="bonus-tier-content">
+                <h3 class="bonus-tier-name">Silver</h3>
+                <div class="bonus-tier-columns">
+                    <div class="bonus-tier-details">
+                        <p>Оборот за 1 календарный год от 75 000 y.e.</p>
+                        <p>Кэшбэк* - 0,5%</p>
+                        <p>Приоритетное подтверждение в РТ со скидкой 15%</p>
+                    </div>
+                    <div class="bonus-tier-benefits">
+                        <p>Приглашение в эксклюзивные релакс туры</p>
+                        <p>Закрытые обучающие программы по продвижению продукта и работе в VIP сегменте</p>
+                        <p>Приоритетное сопровождение 24/7.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bonus-tier-card">
+                <img src={bonusSilver.src} alt="Silver" />
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bonus-tier bonus-tier-reverse">
+            <div class="bonus-tier-content">
+                <h3 class="bonus-tier-name">Gold</h3>
+                <div class="bonus-tier-columns">
+                    <div class="bonus-tier-details">
+                        <p>Оборот за 1 календарный год от 150 000 y.e.</p>
+                        <p>Кэшбэк* – 0,75%</p>
+                        <p>Гарантированное подтверждение в РТ  со скидкой 30%</p>
+                    </div>
+                    <div class="bonus-tier-benefits">
+                        <p>Приглашение в эксклюзивные релакс туры со скидкой 50%</p>
+                        <p>Закрытые обучающие программы по продвижению продукта и работе в VIP сегменте</p>
+                        <p>Приоритетное сопровождение 24/7.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bonus-tier-card">
+                <img src={bonusGold.src} alt="Gold" />
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bonus-tier">
+            <div class="bonus-tier-content">
+                <h3 class="bonus-tier-name">Platinum</h3>
+                <div class="bonus-tier-columns">
+                    <div class="bonus-tier-details">
+                        <p>Оборот за 1 календарный год от 300 000 y.e.</p>
+                        <p>Кэшбэк* – 1%</p>
+                        <p>Гарантированное подтверждение в РТ  со скидкой – 50%</p>
+                    </div>
+                    <div class="bonus-tier-benefits">
+                        <p>Бесплатное участие в эксклюзивных релакс турах (один раз в год)</p>
+                        <p>Закрытые обучающие программы по продвижению продукта и работе в VIPсегменте</p>
+                        <p>Приоритетное сопровождение 24/7.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bonus-tier-card">
+                <img src={bonusPlatinum.src} alt="Platinum" />
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bonus-important-section">
+            <h3 class="bonus-important-title">Важно</h3>
+            <p class="bonus-important-text">
+                С 01.09.2025 Начисление Кэшбэка распространяется  только на туры с перелетом и без перелета, забронированные в онлайн  системе Глобус -Тур. Заявки<br />
+                на отдельные услуги и заявки по спец.тарифам не учитываются.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="bonus-program-title">Как использовать Кэшбэк?</h2>
+
+        <div class="bonus-cashback-grid">
+            <div class="bonus-cashback-item">
+                <p>Оплатить накопленным кэшбэком можно до 50% забронированного тура!</p>
+            </div>
+
+            <div class="bonus-cashback-item">
+                <p>Оплатить заявку кэшбэком можно в личном кабинете нажав «оплата заявки» и далее  «Использовать накопленные бонусы» либо на вкладке «Бонусы менеджеров» нажав на «Использовать бонусы»</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bonus-warning-section">
+            <h3 class="bonus-warning-title">Важно!</h3>
+            <div class="bonus-warning-grid">
+                <ul class="bonus-warning-list">
+                    <li>Конвертация кэшбэка в валюту заявки осуществляется по курсу, актуальному на дату их списания.</li>
+                    <li>Заявки, при оплате которых использовался кэшбэк, исключаются из расчета бонусной программы.</li>
+                </ul>
+
+                <ul class="bonus-warning-list">
+                    <li>Конвертация кэшбэка в валюту заявки осуществляется по курсу, актуальному на дату их списания.</li>
+                    <li>Заявки, при оплате которых использовался кэшбэк, исключаются из расчета бонусной программы.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .bonus-program-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .bonus-program-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .bonus-program-title {
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(margin-bottom, 60, 30);
+        }
+
+        .bonus-tier {
+            display: flex;
+            @include adaptive(gap, 98, 30);
+            align-items: center;
+            justify-content: space-between;
+
+            @include mobile {
+                flex-direction: column;
+            }
+
+            &.bonus-tier-reverse {
+                @include desktop {
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+
+        .bonus-tier-content {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 44, 20);
+        }
+
+        .bonus-tier-name {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 60, 40);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .bonus-tier-columns {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            @include adaptive(column-gap, 66, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(row-gap, 20, 20);
+            }
+        }
+
+        .bonus-tier-details {
+            @include adaptive(max-width, 368, 100%);
+        }
+
+        .bonus-tier-benefits {
+            @include adaptive(max-width, 426, 100%);
+        }
+
+        .bonus-tier-details,
+        .bonus-tier-benefits {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 13, 10);
+
+            p {
+                @include font-circe-light;
+                @include adaptive(font-size, 26, 18);
+                color: $color-alternate;
+                line-height: 1.2;
+                margin: 0;
+
+                @include mobile {
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .bonus-tier-card {
+            @include adaptive(width, 525, 100%);
+            @include adaptive(height, 327, 280);
+            flex-shrink: 0;
+            margin: 0 auto;
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .divider {
+            @include adaptive(margin-top, 100, 40);
+            @include adaptive(margin-bottom, 100, 40);
+        }
+
+        .bonus-important-section {
+            text-align: center;
+        }
+
+        .bonus-important-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 32, 38);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin: 0;
+            @include adaptive(margin-bottom, 20, 15);
+        }
+
+        .bonus-important-text {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0 auto;
+            @include adaptive(max-width, 740, 100%);
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .bonus-cashback-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(column-gap, 360, 30);
+            @include adaptive(margin-bottom, 60, 40);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(row-gap, 20, 20);
+            }
+        }
+
+        .bonus-cashback-item {
+            p {
+                @include font-circe-light;
+                @include adaptive(font-size, 26, 18);
+                color: $color-alternate;
+                line-height: 1.2;
+                margin: 0;
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                @include mobile {
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .bonus-warning-section {
+            display: flex;
+            @include adaptive(gap, 300, 0);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .bonus-warning-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 60, 38);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin: 0;
+            @include adaptive(margin-bottom, 8, 20);
+        }
+
+        .bonus-warning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(column-gap, 40, 20);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(row-gap, 30, 30);
+            }
+        }
+
+        .bonus-warning-list {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+
+            li {
+                @include adaptive(margin-bottom, 20, 10);
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                @include mobile {
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+</style>

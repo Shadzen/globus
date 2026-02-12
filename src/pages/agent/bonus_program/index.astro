@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import BonusProgramHero from '@/components/bonus_program/BonusProgramHero.astro'
+import BonusProgram from '@/components/bonus_program/BonusProgram.astro'
+import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Бонусная программа - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <BonusProgramHero userType="agent" />
+    <BonusProgram userType="agent" />
+    <ContactCTA title="Свяжитесь с нами для разработки персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>
