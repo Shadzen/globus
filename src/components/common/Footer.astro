@@ -36,7 +36,7 @@ const base = import.meta.env.BASE_URL
                     <a href={`${base}tourist/concierge_service`}>Консьерж-сервис</a>
                     {userType === 'agent' && (
                         <>
-                            <a href="#">Страны</a>
+                            <a href={`${base}agent/countries`}>Страны</a>
                             <a href="#">Рекламные туры</a>
                         </>
                     )}

@@ -1,12 +1,13 @@
 ---
 interface Props {
     userType?: 'tourist' | 'agent'
+    showTitle?: boolean
+    links?: string[]
 }
 
-const { userType = 'tourist' } = Astro.props
+const { userType = 'tourist', showTitle = true, links = ['visa', 'visa', 'visa'] } = Astro.props
 const base = import.meta.env.BASE_URL
 
-// Данные о странах по регионам
 const regions = [
     {
         title: 'Европа',
@@ -36,24 +37,29 @@ const regions = [
 
 <section class="visas-countries-section">
     <div class="visas-countries-container">
-        <h2 class="visas-countries-title">Страны</h2>
+        {showTitle && <h2 class="visas-countries-title">Страны</h2>}
 
         <div class="visas-countries-content">
             {
-                regions.map((region) => (
-                    <div class="region">
-                        <h3 class="region-title">{region.title}</h3>
-                        <ul class="region-list">
-                            {region.countries.map((country) => (
-                                <li class="region-item">
-                                    <a href={`${base}${userType}/visa`} class="region-link">
-                                        {country}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
+                regions.map((region, regionIndex) => {
+                    const link = links[regionIndex] || '#'
+                    const href = link === '#' ? '#' : `${base}${userType}/${link}`
+
+                    return (
+                        <div class="region">
+                            <h3 class="region-title">{region.title}</h3>
+                            <ul class="region-list">
+                                {region.countries.map((country) => (
+                                    <li class="region-item">
+                                        <a href={href} class="region-link">
+                                            {country}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )
+                })
             }
         </div>
     </div>

@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import CountriesHero from '@/components/countries/CountriesHero.astro'
+import VisasCountries from '@/components/visas/VisasCountries.astro'
+import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Страны - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <CountriesHero userType="agent" />
+    <VisasCountries userType="agent" showTitle={false} links={['country_type_one', 'country_type_two', 'country_type_one']} />
+    <ContactCTA title="Остались вопросы? свяжитесь с нами!" />
+</Layout>

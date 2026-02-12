@@ -1,0 +1,39 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/visas/hero-1.jpg'
+import heroMobile from '@/assets/images/visas/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section visas-hero _dark-text _type-one">
+    <picture class="hero-bg">
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Страны' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Страны</h2>
+        <p class="hero-subtitle">
+            Собственный визовый центр «Глобус-тур» — это гарантия надёжности и уверенности в
+            результате.
+        </p>
+        <p class="hero-subtitle">
+            Вы можете рассчитывать на индивидуальную консультацию, сопровождение на всех этапах
+            получения визы и высокую скорость обработки заявок.
+        </p>
+    </div>
+</section>
