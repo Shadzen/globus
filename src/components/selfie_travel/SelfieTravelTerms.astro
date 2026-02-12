@@ -1,0 +1,249 @@
+---
+---
+
+<section class="selfie-terms-section">
+    <div class="selfie-terms-container">
+        <h2 class="selfie-terms-title">
+            Комиссия, условия оплаты и аннуляции тура:
+        </h2>
+
+        <div class="selfie-terms-conditions">
+            <div class="selfie-terms-condition">
+                <h4 class="selfie-terms-condition-title">Условия оплаты:</h4>
+                <p class="selfie-terms-condition-text">
+                    Оплата 30% в течение 3-х дней после подтверждения заявки, остальная сумма минимум за 21 день до вылета. Особые условия оплаты в пиковые и высокие даты указаны в доп. соглашении.
+                </p>
+            </div>
+
+            <div class="selfie-terms-condition">
+                <h4 class="selfie-terms-condition-title">Условия аннуляции:</h4>
+                <p class="selfie-terms-condition-text">
+                    За чартерные авиабилеты 100% штраф (возможна замена фамилий, согласованная заранее), отель аннулируется по условиям контракта.
+                </p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="selfie-terms-commission-info">
+            <p class="selfie-terms-info-text">
+                С 01.09.2024 повышается комиссия на туры туроператора Selfie Travel<br />
+                с вылетом из Екатеринбурга во Вьетнам, из Красноярска в Египет:<br />
+                10% на все туры, кроме:
+            </p>
+            <ul class="selfie-terms-info-list">
+                <li>7% на PROMO–туры,</li>
+                <li>7% на туры Selfie Sale.</li>
+                <li>Стоимость авиабилетов с вылетом из Екатеринбурга и Новосибирска — нетто (без комиссии)</li>
+            </ul>
+        </div>
+
+        <p class="selfie-terms-note">
+            Предложение действует для заявок, заведенных с 01.09.2024.
+        </p>
+
+        <div class="divider"></div>
+
+        <h3 class="selfie-terms-subtitle">
+            Комиссия по турам с вылетами через/из городов Казахстана составляет:
+        </h3>
+
+        <div class="selfie-terms-rates">
+            <div class="selfie-terms-rates-column">
+                <ul class="selfie-terms-rates-list">
+                    <li>8% стандартные туры</li>
+                    <li>5% на наземное обслуживание</li>
+                </ul>
+            </div>
+
+            <div class="selfie-terms-rates-column">
+                <ul class="selfie-terms-rates-list">
+                    <li>5% туры со знаком PROMO, SELFIE SALE, BLACK FRIDAY</li>
+                    <li>При бронировании только авибилетов — цена нетто +4% к цене</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .selfie-terms-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .selfie-terms-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .selfie-terms-title {
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(margin-bottom, 50, 30);
+        }
+
+        .selfie-terms-conditions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(column-gap, 80, 30);
+            @include adaptive(margin-bottom, 52, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(row-gap, 30, 30);
+            }
+        }
+
+        .selfie-terms-condition {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 14, 15);
+        }
+
+        .selfie-terms-condition-title {
+            @include font-circe-regular;
+            @include adaptive(font-size, 24, 18);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 2.4);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .selfie-terms-condition-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .divider {
+            @include adaptive(margin-top, 0, 0);
+            @include adaptive(margin-bottom, 37, 30);
+        }
+
+        .selfie-terms-commission-info {
+            @include adaptive(margin-bottom, 35, 25);
+            @include adaptive(max-width, 1187, 100%);
+        }
+
+        .selfie-terms-info-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+            @include adaptive(margin-bottom, 10, 10);
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-terms-info-list {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+
+            li {
+                @include adaptive(margin-bottom, 10, 8);
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .selfie-terms-note {
+            @include font-circe-regular;
+            @include adaptive(font-size, 24, 18);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 2.4);
+            margin: 0;
+            @include adaptive(margin-bottom, 62, 30);
+            @include adaptive(max-width, 1187, 100%);
+        }
+
+        .selfie-terms-subtitle {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 32, 26);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin: 0;
+            @include adaptive(margin-bottom, 47, 30);
+        }
+
+        .selfie-terms-rates {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            @include adaptive(column-gap, 40, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                @include adaptive(row-gap, 30, 30);
+            }
+        }
+
+        .selfie-terms-rates-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .selfie-terms-rates-list {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+
+            li {
+                @include adaptive(margin-bottom, 33, 20);
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+</style>

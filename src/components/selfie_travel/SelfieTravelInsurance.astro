@@ -1,0 +1,209 @@
+---
+---
+
+<section class="selfie-insurance-section">
+    <div class="selfie-insurance-container">
+        <h2 class="selfie-insurance-title">
+            Страхование:
+        </h2>
+
+        <p class="selfie-insurance-intro">
+            В стоимость тура включена мед. страховка со страховым покрытие 30 000 USD<br />
+            (с покрытием COVID-19 официально подтвержденным)
+        </p>
+
+        <div class="selfie-insurance-content">
+            <div class="selfie-insurance-left">
+                <h4 class="selfie-insurance-subtitle">
+                    При бронировании возможно добавить страховку:
+                </h4>
+
+                <ul class="selfie-insurance-list">
+                    <li>Добровольное страхование COVID-19 (по желанию) (3000 USD) +40 USD</li>
+                    <li>
+                        Или увеличить сумму страхового покрытия:<br />
+                        Медицинская страховка (МСТ 50000 USD) (50000 USD) +15 USD
+                    </li>
+                </ul>
+            </div>
+
+            <div class="selfie-insurance-divider"></div>
+
+            <div class="selfie-insurance-right">
+                <p class="selfie-insurance-text">
+                    Оформить страховку от невыезда в ЛК Selfie Travel нельзя. Возможно оформить  страховку от невыезда компании "Ингосстрах",<br />
+                    стоимость составит - 5% от  стоимости тура. Страховка оформляется не позднее 7-ми дней после  подтверждения тура<br />
+                    и не позднее 7-ми дней до даты заезда. Запрос на  оформление страховки просим отправлять на почту oplatakaz@globus-tour.ru<br />
+                    (В теме письма указать "Оформление страховки от невыезда по заявке №_______")
+                </p>
+            </div>
+        </div>
+
+        <h3 class="selfie-insurance-documents-title">
+            Документы по туру:
+        </h3>
+
+        <p class="selfie-insurance-documents-text">
+            Полный пакет полетных документов будет доступен за 4 дня до вылета.
+        </p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .selfie-insurance-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .selfie-insurance-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .selfie-insurance-title {
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(margin-bottom, 20, 20);
+        }
+
+        .selfie-insurance-intro {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-align: center;
+            @include adaptive(max-width, 1187, 100%);
+            margin: 0 auto;
+            @include adaptive(margin-bottom, 60, 30);
+
+            @include mobile {
+                width: 80%;
+
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-insurance-content {
+            display: flex;
+            @include adaptive(gap, 35, 30);
+            align-items: flex-start;
+            @include adaptive(margin-bottom, 0, 30);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .selfie-insurance-left {
+            flex-shrink: 0;
+            @include adaptive(width, 833, 100%);
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 60, 20);
+            @include adaptive(padding-top, 24, 0);
+        }
+
+        .selfie-insurance-subtitle {
+            @include font-circe-regular;
+            @include adaptive(font-size, 24, 18);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 2.4, 2.4);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .selfie-insurance-list {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+
+            li {
+                @include adaptive(margin-bottom, 40, 20);
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                @include mobile {
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .selfie-insurance-divider {
+            @include adaptive(width, 1, 100%);
+            @include adaptive(height, 289, 1);
+            background-color: $color-accent;
+            flex-shrink: 0;
+
+            @include mobile {
+                width: 100%;
+                height: 1px;
+            }
+        }
+
+        .selfie-insurance-right {
+            flex: 1;
+            @include adaptive(padding-top, 24, 0);
+        }
+
+        .selfie-insurance-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-insurance-documents-title {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 32, 26);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            margin: 0;
+            @include adaptive(margin-top, 85, 50);
+            @include adaptive(margin-bottom, 25, 20);
+        }
+
+        .selfie-insurance-documents-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-align: center;
+            @include adaptive(max-width, 1061, 100%);
+            margin: 0 auto;
+        }
+    }
+</style>

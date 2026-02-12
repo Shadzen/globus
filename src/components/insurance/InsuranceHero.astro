@@ -14,7 +14,7 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section insurance-hero _dark-text _type-two">
+<section class="hero-section _dark-text _type-two">
     <picture class="hero-bg">
         <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
@@ -31,7 +31,3 @@ const base = import.meta.env.BASE_URL
         <p class="hero-subtitle">Страховка для туристов помогает обезопасить себя от траты времени, нервов и денег в другом городе или чужой стране в случае получения травмы или болезни, потери багажа или документов, а также в других ситуациях, когда вам будет необходима помощь. Туристическая страховка даст вам возможность чувствовать себя уверенно в любом путешествии.</p>
     </div>
 </section>
-
-<style lang="scss" is:global>
-
-</style>

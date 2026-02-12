@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import SelfieTravelHero from '@/components/selfie_travel/SelfieTravelHero.astro'
+import SelfieTravel from '@/components/selfie_travel/SelfieTravel.astro'
+import SelfieTravelPayment from '@/components/selfie_travel/SelfieTravelPayment.astro'
+import SelfieTravelTerms from '@/components/selfie_travel/SelfieTravelTerms.astro'
+import SelfieTravelInsurance from '@/components/selfie_travel/SelfieTravelInsurance.astro'
+import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`SELFIE TRAVEL - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <SelfieTravelHero userType="agent" />
+    <SelfieTravel userType="agent" />
+    <SelfieTravelPayment userType="agent" />
+    <SelfieTravelTerms userType="agent" />
+    <SelfieTravelInsurance userType="agent" />
+    <ContactCTA title="Свяжитесь с нами для разработки персонального предложения" description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании" />
+</Layout>

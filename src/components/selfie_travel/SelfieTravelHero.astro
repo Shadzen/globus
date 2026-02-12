@@ -1,0 +1,50 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/selfie_travel/hero-1.jpg'
+import heroMobile from '@/assets/images/selfie_travel/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section selfie-travel-hero _dark-text _type-two">
+    <picture class="hero-bg">
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'SELFIE TRAVEL' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Selfie Travel</h2>
+        <p class="hero-subtitle">
+            В рамках совместного проекта с туроператорской компанией
+            <a class="hero-subtitle-link" href="https://b2b.selfietravel.kz/search_tour?TOWNFROMINC=1939&STATEINC=19&TOURINC=818&CHECKIN_BEG=20221019&NIGHTS_FROM=9&CHECKIN_END=20221021&NIGHTS_TILL=20&ADULT=2&CHILD=0" target="_blank">Selfie Travel</a>
+             предлагаем туры из городов Казахстана
+        </p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .selfie-travel-hero {
+        @include adaptive(min-height, 736, 518, true);
+
+        .hero-title {
+            @include adaptive(font-size, 74, 60, true);
+        }
+
+        .hero-subtitle {
+            @include adaptive(width, 65%, 75%);
+        }
+    }
+</style>

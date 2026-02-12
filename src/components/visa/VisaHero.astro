@@ -14,7 +14,7 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section visa-hero _dark-text _type-two">
+<section class="hero-section _dark-text _type-two">
     <picture class="hero-bg">
         <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
@@ -36,7 +36,3 @@ const base = import.meta.env.BASE_URL
         </div>
     </div>
 </section>
-
-<style lang="scss" is:global>
-
-</style>

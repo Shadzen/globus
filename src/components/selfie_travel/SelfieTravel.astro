@@ -1,0 +1,274 @@
+---
+import advantageIcon1 from '@/assets/icons/advantage-10.svg'
+import advantageIcon2 from '@/assets/icons/advantage-11.svg'
+import advantageIcon3 from '@/assets/icons/advantage-6.svg'
+import advantageIcon4 from '@/assets/icons/advantage-3.svg'
+---
+
+<section class="selfie-travel-section">
+    <div class="selfie-travel-container">
+        <h2 class="selfie-travel-title">
+            Как начать работать с ТОО Selfie Travel:
+        </h2>
+
+        <p class="selfie-travel-intro">
+            С целью оперативности и актуальности ценовых предложений бронирование осуществляется на сайте ТОО «SelfieTravel (Селфи Трэвел)»
+            <a href="https://www.selfietravel.kz/" class="selfie-travel-link">selfietravel.kz</a>
+            (<a href="https://b2b.selfietravel.kz/cl_refer" class="selfie-travel-link">b2b.selfietravel.kz/cl_refer</a>).
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="selfie-travel-subtitle">
+            Для того, чтобы иметь возможность бронировать туры на сайте ТОО «SelfieTravel (Селфи Трэвел)»,<br />
+            СУБАГЕНТУ необходимо:
+        </p>
+
+        <div class="selfie-travel-grid">
+            <div class="selfie-travel-item">
+                <div class="selfie-travel-icon">
+                    <img src={advantageIcon1.src} alt="" />
+                </div>
+                <div class="selfie-travel-content">
+                    <p class="selfie-travel-text">
+                        Иметь действующий договор<br />
+                        с ООО ТА «Глобус-тур»
+                    </p>
+                </div>
+            </div>
+
+            <div class="selfie-travel-item">
+                <div class="selfie-travel-icon">
+                    <img src={advantageIcon2.src} alt="" />
+                </div>
+                <div class="selfie-travel-content">
+                    <p class="selfie-travel-text">
+                        На указанную при регистрации почту,<br />
+                        в течение суток после получения скана доп соглашения, приходит логин и пароль для бронирования<br />
+                        туров в систему Selfie Travel. Посмотреть туры<br />
+                        и проверить цены вы можете без получения<br />
+                        логина и пароля.
+                    </p>
+                </div>
+            </div>
+
+            <div class="selfie-travel-item">
+                <div class="selfie-travel-icon">
+                    <img src={advantageIcon3.src} alt="" />
+                </div>
+                <div class="selfie-travel-content">
+                    <div class="selfie-travel-text-block">
+                        <p class="selfie-travel-text">
+                            Для регистрации в Селфи Трэвел отправить<br />
+                            на электронную почту <a href="mailto:kaz@globus-tour.ru" class="selfie-travel-link-dark">kaz@globus-tour.ru</a><br />
+                            следующую информацию:
+                        </p>
+                        <ul class="selfie-travel-list">
+                            <li>Название агентства</li>
+                            <li>ИНН</li>
+                            <li>Город</li>
+                            <li>ФИО, кто будет бронировать<br />(лучше выбрать одно, чтобы был один пароль)</li>
+                            <li>Тел менеджера (только мобильный)</li>
+                            <li>E-mail</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="selfie-travel-item">
+                <div class="selfie-travel-icon">
+                    <img src={advantageIcon4.src} alt="" />
+                </div>
+                <div class="selfie-travel-content">
+                    <div class="selfie-travel-text-block">
+                        <p class="selfie-travel-text">
+                            Скачать дополнительное соглашение для бронирования туров из Казахстана из вашего ЛК в ООО ТА «Глобус-тур». Найти вкладку "Данные агентства",  далее вкладка<br />
+                            "Печать договора", тип договора: "Доп.соглашение<br />
+                            (о  бронировании туров из Казахстана)", нажимаете<br />
+                            кнопку "Добавить", договор скачается.
+                        </p>
+                        <p class="selfie-travel-text">
+                            Подписать и отправить скан на <a href="mailto:kaz@globus-tour.ru" class="selfie-travel-link-dark">kaz@globus-tour.ru</a><br />
+                            (тема письма: агентство + ИНН). Оригинал необходимо отправить в течение 14  рабочих дней по адресу:<br />
+                            630091, г. Новосибирск ул.Советская,64 оф.403.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .selfie-travel-section {
+        @include adaptive(margin-top, 80, 40);
+
+        .selfie-travel-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .selfie-travel-title {
+            color: $color-alternate;
+            text-align: center;
+            @include adaptive(margin-bottom, 20, 20);
+        }
+
+        .selfie-travel-intro {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            text-align: center;
+            @include adaptive(max-width, 793, 100%);
+            margin: 0 auto;
+            @include adaptive(margin-bottom, 35, 30);
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-travel-link {
+            @include font-circe-regular;
+            color: $color-alternate;
+            text-decoration: underline;
+            text-decoration-skip-ink: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .selfie-travel-link-dark {
+            @include font-circe-regular;
+            color: $color-alternate;
+            text-decoration: underline;
+            text-decoration-skip-ink: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .divider {
+            @include adaptive(margin-bottom, 41, 30);
+        }
+
+        .selfie-travel-subtitle {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-accent;
+            line-height: 1.2;
+            text-align: center;
+            text-transform: uppercase;
+            @include adaptive(max-width, 812, 100%);
+            margin: 0 auto;
+            @include adaptive(margin-bottom, 70, 50);
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-travel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(column-gap, 50, 30);
+            @include adaptive(row-gap, 80, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .selfie-travel-item {
+            display: flex;
+            @include adaptive(gap, 30, 20);
+            align-items: flex-start;
+        }
+
+        .selfie-travel-icon {
+            @include adaptive(width, 96, 70);
+            @include adaptive(height, 96, 70);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .selfie-travel-content {
+            flex: 1;
+        }
+
+        .selfie-travel-text-block {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 20, 15);
+        }
+
+        .selfie-travel-text {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+
+            @include mobile {
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .selfie-travel-list {
+            @include font-circe-light;
+            @include adaptive(font-size, 26, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            @include adaptive(padding-left, 12, 6);
+            list-style: none;
+            margin: 0;
+
+            li {
+                @include adaptive(margin-bottom, 0, 5);
+                @include adaptive(padding-left, 30, 25);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    @include adaptive(left, 8, 5);
+                    @include adaptive(top, 10, 7);
+                    @include adaptive(width, 12, 10);
+                    @include adaptive(height, 12, 10);
+                    border-radius: 50%;
+                    background-color: $color-accent;
+                    flex-shrink: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                @include mobile {
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+</style>
