@@ -1,0 +1,74 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/best_hotels/hero-1.jpg'
+import heroMobile from '@/assets/images/best_hotels/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section best-hotels-hero">
+    <picture class="hero-bg _overlay-double-gradient">
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Лучшие отели мира' },
+    ]} />
+
+    <div class="hero-content">
+        <h1 class="hero-title">лучшие</h1>
+        <h1 class="hero-title">отели</h1>
+        <h1 class="hero-title">мира</h1>
+        <p class="hero-subtitle">Искусство открывать мир<br />начинается с идеального отеля</p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .best-hotels-hero {
+        @include adaptive(min-height, 964, 894);
+        @include adaptive(padding-top, 608, 370);
+
+        .hero-content {
+            flex-wrap: wrap;
+            flex-direction: row;
+            flex: 0;
+        }
+
+        .hero-title {
+            @include adaptive(padding-right, 60, 12);
+
+            @include desktop {
+                line-height: 1.1;
+            }
+
+            @include mobile {
+                line-height: 1.2;
+            }
+
+            &:nth-child(2) {
+                @include adaptive(width, 60%, auto);
+            }
+
+            &:nth-child(3) {
+                @include adaptive(padding-left, 456, 0);
+            }
+        }
+
+        .hero-subtitle {
+            @include adaptive(font-size, 32, 18);
+            color: $color-main;
+            @include adaptive(padding-top, 36, 16);
+            @include adaptive(padding-left, 20, 0);
+        }
+    }
+</style>

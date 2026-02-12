@@ -126,20 +126,7 @@ const { hotels } = Astro.props
             position: absolute;
             @include adaptive(bottom, 20, 15);
             @include adaptive(left, 20, 15);
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid $color-accent;
-            border-radius: 500px;
-            @include adaptive(padding-top, 13, 10);
-            @include adaptive(padding-bottom, 13, 10);
-            @include adaptive(padding-left, 40, 20);
-            @include adaptive(padding-right, 40, 20);
-
-            span {
-                @include font-circe-regular;
-                @include adaptive(font-size, 20, 16);
-                line-height: 1.21;
-                color: $color-main;
-            }
+            @include adaptive(height, 44, 34);
         }
 
         .hotel-recommended {

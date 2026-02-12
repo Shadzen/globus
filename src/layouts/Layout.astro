@@ -131,16 +131,31 @@ const base = import.meta.env.BASE_URL
         text-align: center;
         @include adaptive(font-size, 60, 38);
         line-height: 1.2;
-        // flex: 1;
 
         @include mobile {
-            // flex: none;
             width: 100%;
         }
     }
 
     p {
         margin: 0;
+    }
+
+    .hotel-badge {
+        @include flex-center;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid $color-accent;
+        border-radius: 500px;
+        @include adaptive(padding-left, 40, 20);
+        @include adaptive(padding-right, 40, 20);
+        @include font-circe-light;
+        color: $color-main;
+        line-height: 1.2;
+        @include adaptive(font-size, 26, 18);
+
+        span {
+            @include adaptive(font-size, 20, 16);
+        }
     }
 
     .bullet {
@@ -313,7 +328,7 @@ const base = import.meta.env.BASE_URL
                 position: relative;
                 @include adaptive(margin-top, 50, 30);
                 @include side-paddings;
-                width: 100%;
+                // width: 100%;
                 @include adaptive(min-height, 360, 231);
 
                 @include desktop {
@@ -353,12 +368,8 @@ const base = import.meta.env.BASE_URL
                 @include adaptive(width, 849, 450);
                 bottom: 0;
                 left: auto;
-                right: 0;
                 @include adaptive(top, 285, 250);
-
-                @include mobile {
-                    @include adaptive(right, 100, 15);
-                }
+                @include adaptive(right, 0, 15);
             }
 
             .hero-content {

@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PartnerHero from '@/components/partner/PartnerHero.astro'
+import Partner from '@/components/partner/Partner.astro'
+import PartnerSelfie from '@/components/partner/PartnerSelfie.astro'
+import PartnerContact from '@/components/partner/PartnerContact.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Партнерство - ${COMPANY_NAME}`} userType="agent">
+    <PartnerHero userType="agent" />
+    <Partner userType="agent" />
+    <PartnerSelfie userType="agent" />
+    <PartnerContact userType="agent" />
+</Layout>
