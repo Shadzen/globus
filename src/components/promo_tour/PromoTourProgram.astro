@@ -1,0 +1,51 @@
+---
+import TwoColumnBulletList from '@/components/common/TwoColumnBulletList.astro'
+
+const programData = [
+    {
+        title: 'Программа тура',
+        items: [
+            {
+                text: '22.07–23.07 Grand Mercure Dubai City (Half Board) - 1 ночь',
+            },
+            {
+                text: '23.07–25.07 IFURU ISLAND (PAI) - 2 ночи',
+            },
+            {
+                text: '25.07–27.07 Centara Mirage Lagoon Maldives (Full Board Plus) – 2 ночи',
+            },
+            {
+                text: '27.07–29.07 Cinnamon Velifushi Maldives (Full Board) - 2 ночи',
+            },
+            {
+                text: '29.07–31.07 OBLU NATURE Helengeli by SENTIDO (All)',
+            },
+            {
+                text: '31.07–01.08(позднее выселение) Aloft Al Mina (BB)',
+            },
+        ],
+    },
+    {
+        title: 'Полетная программа:',
+        items: [
+            {
+                text: '22.07 Новосибирск - Дубай FZ 964 05:20-08:20',
+            },
+            {
+                text: '23.07 Дубай - Мале FZ1207 03:20-08:45',
+            },
+            {
+                text: '31.07 Мале - Дубай FZ1570 23:30-02:50',
+            },
+            {
+                text: '01.08 Дубай - Новосибирск FZ 963 19:45-04:20',
+            },
+        ],
+    },
+] as [
+    { title: string; items: { text: string }[] },
+    { title: string; items: { text: string }[] }
+]
+---
+
+<TwoColumnBulletList columns={programData} dark={true} />

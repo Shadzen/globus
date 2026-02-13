@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PromoTourHero from '@/components/promo_tour/PromoTourHero.astro'
+import PromoTourInfo from '@/components/promo_tour/PromoTourInfo.astro'
+import PromoTourProgram from '@/components/promo_tour/PromoTourProgram.astro'
+import PromoTourIncluded from '@/components/promo_tour/PromoTourIncluded.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Рекламный тур - ${COMPANY_NAME}`} userType="agent">
+    <PromoTourHero userType="agent" />
+    <PromoTourInfo />
+    <PromoTourProgram />
+    <PromoTourIncluded />
+    <ContactsGrid standalone title="Остались вопросы? свяжитесь с нами!" />
+</Layout>

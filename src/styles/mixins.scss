@@ -166,7 +166,7 @@
 
 @mixin button-default {
     @include flex-center;
-    @include adaptive(gap, 20, 12);
+    @include adaptive(column-gap, 20, 12);
     flex-shrink: 0;
     @include font-circe-regular;
     @include adaptive(font-size, 16, 18);

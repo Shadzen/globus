@@ -7,6 +7,9 @@ import hotel2 from '@/assets/images/best_hotels/best-hotel-2.jpg'
 import hotel3 from '@/assets/images/best_hotels/best-hotel-3.jpg'
 import hotel4 from '@/assets/images/best_hotels/best-hotel-4.jpg'
 
+const base = import.meta.env.BASE_URL
+const promoToursUrl = `${base}agent/promo_tour/`
+
 const promoTours: TourItem[] = [
     {
         id: '1',
@@ -14,6 +17,7 @@ const promoTours: TourItem[] = [
         dateRange: '12.11.2025—18.11.2025',
         title: 'Таиланд: Рекламный тур Пхукет',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '2',
@@ -21,18 +25,21 @@ const promoTours: TourItem[] = [
         dateRange: '14.11.2025—25.11.2025',
         title: 'Китай: Рекламный тур на о. Хайнань. Отели 5*',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '3',
         dateRange: '14.09.2025—25.09.2025',
         title: 'Мальдивы: Рекламный тур',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '4',
         imageUrl: hotel4.src,
         dateRange: '02.08.2025—09.18.2025',
         title: 'Азербайджан: Рекламный тур из Новосибирска',
+        url: promoToursUrl,
     },
     {
         id: '5',
@@ -40,12 +47,14 @@ const promoTours: TourItem[] = [
         dateRange: '12.11.2025—18.11.2025',
         title: 'Таиланд: Рекламный тур Пхукет',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '6',
         dateRange: '14.11.2025—25.11.2025',
         title: 'Китай: Рекламный тур на о. Хайнань. Отели 5*',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '7',
@@ -53,6 +62,7 @@ const promoTours: TourItem[] = [
         dateRange: '14.09.2025—25.09.2025',
         title: 'Мальдивы: Рекламный тур',
         isArchived: true,
+        url: promoToursUrl,
     },
     {
         id: '8',
@@ -60,6 +70,7 @@ const promoTours: TourItem[] = [
         dateRange: '02.08.2025—09.18.2025',
         title: 'Азербайджан: Рекламный тур из Новосибирска',
         isArchived: true,
+        url: promoToursUrl,
     },
 ]
 ---

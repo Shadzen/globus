@@ -1,0 +1,159 @@
+---
+import promoTourPhoto from '@/assets/images/promo_tour/promo-tour-photo-1.jpg'
+
+const tourInfo = {
+    title: 'приглашаем в рекламный тур на Мальдивы',
+    image: promoTourPhoto,
+    details: [
+        'Даты: 22.07 - 01.08.2025г.',
+        'Продолжительность: 9 ночей / 10 дней',
+        'Fly Dubai ч/з Дубай, с багажом',
+    ],
+    prices: [
+        {
+            amount: '2 340 $',
+            label: '(с перелетом)',
+        },
+        {
+            amount: '1400 $',
+            label: '(без перелета)',
+        },
+    ],
+}
+---
+
+<section class="promo-tour-info-section">
+    <div class="promo-tour-info-container">
+        <h2 class="promo-tour-info-title">{tourInfo.title}</h2>
+
+        <div class="promo-tour-info-content">
+            <div class="promo-tour-info-image">
+                <img src={tourInfo.image.src} alt={tourInfo.title} />
+            </div>
+
+            <div class="promo-tour-info-details">
+                <div class="promo-tour-info-list">
+                    {
+                        tourInfo.details.map((detail) => (
+                            <div class="promo-tour-info-item">
+                                <span class="bullet" />
+                                <p class="promo-tour-info-text">{detail}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="promo-tour-info-prices">
+                    {
+                        tourInfo.prices.map((price) => (
+                            <div class="promo-tour-price-badge">
+                                <p class="promo-tour-price-amount">{price.amount}</p>
+                                <p class="promo-tour-price-label">{price.label}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .promo-tour-info-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .promo-tour-info-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .promo-tour-info-title {
+            color: $color-alternate;
+        }
+
+        .promo-tour-info-content {
+            @include adaptive(margin-top, 60, 30);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(gap, 90, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .promo-tour-info-image {
+            @include adaptive(height, 377, 231);
+            width: 100%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .promo-tour-info-details {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 50, 30);
+        }
+
+        .promo-tour-info-list {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 25, 20);
+        }
+
+        .promo-tour-info-item {
+            display: flex;
+            @include adaptive(gap, 17, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+                flex-shrink: 0;
+            }
+        }
+
+        .promo-tour-info-text {
+            @include font-circe-light;
+            font-style: normal;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .promo-tour-info-prices {
+            display: flex;
+            @include adaptive(gap, 37, 20);
+            flex-wrap: wrap;
+        }
+
+        .promo-tour-price-badge {
+            @include button-sized;
+            @include button-outline;
+            @include adaptive(min-width, 270, auto);
+            flex-direction: column;
+        }
+
+        .promo-tour-price-amount {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 26);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .promo-tour-price-label {
+            @include font-circe-regular;
+            @include adaptive(font-size, 14, 18);
+            color: $color-alternate;
+            line-height: 1.2;
+            margin: 0;
+        }
+    }
+</style>

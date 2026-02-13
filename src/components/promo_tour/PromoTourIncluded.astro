@@ -1,0 +1,145 @@
+---
+const includedData = {
+    title: 'В стоимость тура входит:',
+    items: [
+        'Авиаперелет Новосибирск - Дубай - Мале - Дубай -Новосибирска (Fly Dubai  с багажом)',
+        'Мед.страховка',
+        'Проживание в отелях 4-5*, 2х местное размещение',
+        'Питание по программе',
+    ],
+    additionalTitle: 'Дополнительно оплачивается:',
+    additionalText: 'Таксы оплачиваются напрямую в отелях  (Green Tax) - 12$ на человека в сутки',
+    bottomText: 'Необходимо отправить скан загранпаспорта и визитку.',
+    contactEmail: 'globus6@globus-tour.ru',
+}
+---
+
+<section class="promo-tour-included-section">
+    <div class="promo-tour-included-container">
+        <h2 class="promo-tour-included-title">{includedData.title}</h2>
+
+        <div class="promo-tour-included-grid">
+            {
+                includedData.items.map((item) => (
+                    <div class="promo-tour-included-item">
+                        <span class="bullet" />
+                        <p class="promo-tour-included-text">{item}</p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="divider promo-tour-divider"></div>
+
+        <div class="promo-tour-additional">
+            <h3 class="promo-tour-additional-title">{includedData.additionalTitle}</h3>
+            <p class="promo-tour-additional-text">{includedData.additionalText}</p>
+        </div>
+
+        <div class="divider promo-tour-divider"></div>
+
+        <p class="promo-tour-contact-text">
+            Заявки на участие в рекламном туре принимаются на почту{' '}
+            <a href={`mailto:${includedData.contactEmail}`}>{includedData.contactEmail}</a>
+            <br />
+            {includedData.bottomText}
+        </p>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .promo-tour-included-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .promo-tour-included-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .promo-tour-included-title {
+            color: $color-alternate;
+        }
+
+        .promo-tour-included-grid {
+            @include adaptive(margin-top, 90, 50);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptive(gap, 32, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .promo-tour-included-item {
+            display: flex;
+            @include adaptive(gap, 17, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 6, 5);
+                flex-shrink: 0;
+            }
+        }
+
+        .promo-tour-included-text {
+            @include font-circe-regular;
+            font-style: normal;
+            color: $color-alternate;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .promo-tour-divider {
+            @include adaptive(margin-top, 60, 40);
+            @include adaptive(margin-bottom, 60, 40);
+        }
+
+        .promo-tour-additional {
+            text-align: center;
+        }
+
+        .promo-tour-additional-title {
+            @include font-kudry-sans;
+            font-style: normal;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 32, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .promo-tour-additional-text {
+            @include font-circe-light;
+            font-style: normal;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            @include adaptive(margin-top, 30, 30);
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .promo-tour-contact-text {
+            @include font-circe-light;
+            font-style: normal;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 18);
+            line-height: 1.2;
+            margin: 0;
+            text-align: center;
+
+            a {
+                color: $color-alternate;
+                text-decoration: underline;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+</style>
