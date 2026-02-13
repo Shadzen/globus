@@ -1,0 +1,137 @@
+---
+interface Props {
+    currentPage?: number
+    totalPages?: number
+    baseUrl?: string
+}
+
+const { currentPage = 1, totalPages = 15, baseUrl = '' } = Astro.props
+
+const generatePageNumbers = (current: number, total: number) => {
+    const pages: (number | string)[] = []
+
+    if (total <= 10) {
+        for (let i = 1; i <= total; i++) {
+            pages.push(i)
+        }
+    } else {
+        for (let i = 1; i <= 8; i++) {
+            pages.push(i)
+        }
+        pages.push('...')
+        for (let i = total - 3; i <= total; i++) {
+            pages.push(i)
+        }
+    }
+
+    return pages
+}
+
+const pageNumbers = generatePageNumbers(currentPage, totalPages)
+---
+
+<section class="pagination-section">
+    <div class="pagination-container">
+        <button class="pagination-load-more-btn" type="button">
+            Загрузить еще
+        </button>
+
+        <nav class="pagination-nav" aria-label="Навигация по страницам">
+            <ul class="pagination-list">
+                {
+                    pageNumbers.map((page) => (
+                        <li class="pagination-item">
+                            {typeof page === 'number' ?
+                                <a
+                                    href={`${baseUrl}?page=${page}`}
+                                    class={`pagination-link ${page === currentPage ? 'active' : ''}`}
+                                    aria-label={`Страница ${page}`}
+                                    aria-current={page === currentPage ? 'page' : undefined}
+                                >
+                                    {page}
+                                </a>
+                            :   <span class="pagination-ellipsis">{page}</span>}
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .pagination-section {
+        @include adaptive(margin-top, 40, 40);
+
+        .pagination-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include adaptive(gap, 60, 40);
+        }
+
+        .pagination-load-more-btn {
+            @include button-sized;
+        }
+
+        .pagination-nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination-list {
+            display: flex;
+            align-items: center;
+            @include adaptive(gap, 33, 20);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-link {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            text-transform: uppercase;
+            color: #667c89;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            @include adaptive(width, 29, 29);
+            @include adaptive(height, 29, 29);
+            @include flex-center;
+            position: relative;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            letter-spacing: 0;
+
+            &:hover {
+                color: $color-alternate;
+            }
+
+            &.active {
+                color: $color-alternate;
+                border-color: $color-alternate;
+            }
+        }
+
+        .pagination-ellipsis {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            text-transform: uppercase;
+            color: #667c89;
+            user-select: none;
+        }
+    }
+</style>

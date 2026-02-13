@@ -1,0 +1,83 @@
+---
+import ToursGrid from '@/components/common/ToursGrid.astro'
+import type { TourItem } from '@/components/common/ToursGrid.astro'
+
+import hotel1 from '@/assets/images/best_hotels/best-hotel-1.jpg'
+import hotel2 from '@/assets/images/best_hotels/best-hotel-2.jpg'
+import hotel3 from '@/assets/images/best_hotels/best-hotel-3.jpg'
+import hotel4 from '@/assets/images/best_hotels/best-hotel-4.jpg'
+
+const promoTours: TourItem[] = [
+    {
+        id: '1',
+        imageUrl: hotel1.src,
+        dateRange: '12.11.2025—18.11.2025',
+        title: 'Таиланд: Рекламный тур Пхукет',
+        isArchived: true,
+    },
+    {
+        id: '2',
+        imageUrl: hotel2.src,
+        dateRange: '14.11.2025—25.11.2025',
+        title: 'Китай: Рекламный тур на о. Хайнань. Отели 5*',
+        isArchived: true,
+    },
+    {
+        id: '3',
+        dateRange: '14.09.2025—25.09.2025',
+        title: 'Мальдивы: Рекламный тур',
+        isArchived: true,
+    },
+    {
+        id: '4',
+        imageUrl: hotel4.src,
+        dateRange: '02.08.2025—09.18.2025',
+        title: 'Азербайджан: Рекламный тур из Новосибирска',
+    },
+    {
+        id: '5',
+        imageUrl: hotel1.src,
+        dateRange: '12.11.2025—18.11.2025',
+        title: 'Таиланд: Рекламный тур Пхукет',
+        isArchived: true,
+    },
+    {
+        id: '6',
+        dateRange: '14.11.2025—25.11.2025',
+        title: 'Китай: Рекламный тур на о. Хайнань. Отели 5*',
+        isArchived: true,
+    },
+    {
+        id: '7',
+        imageUrl: hotel3.src,
+        dateRange: '14.09.2025—25.09.2025',
+        title: 'Мальдивы: Рекламный тур',
+        isArchived: true,
+    },
+    {
+        id: '8',
+        imageUrl: hotel4.src,
+        dateRange: '02.08.2025—09.18.2025',
+        title: 'Азербайджан: Рекламный тур из Новосибирска',
+        isArchived: true,
+    },
+]
+---
+
+<section class="promo-tours-section">
+    <div class="promo-tours-container">
+        <ToursGrid tours={promoTours} />
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .promo-tours-section {
+        @include adaptive(margin-top, 60, 60);
+
+        .promo-tours-container {
+            @include side-paddings;
+            width: 100%;
+        }
+    }
+</style>
+

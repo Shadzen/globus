@@ -375,6 +375,18 @@ const base = import.meta.env.BASE_URL
             .hero-title {
                 text-align: left;
             }
+
+            &._centered {
+                .hero-content {
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                .hero-title {
+                    text-align: center;
+                }
+            }
         }
 
         &._type-two {

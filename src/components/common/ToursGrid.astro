@@ -1,0 +1,125 @@
+---
+export interface TourItem {
+    id: string
+    imageUrl?: string
+    dateRange: string
+    title: string
+    isArchived?: boolean
+    url?: string
+}
+
+interface Props {
+    tours: TourItem[]
+}
+
+const { tours } = Astro.props
+---
+
+<div class="tours-grid">
+    {
+        tours.map((tour) => (
+            <a
+                href={tour.url || '#'}
+                class="tour-card"
+            >
+                <div class="tour-image">
+                    {tour.imageUrl ?
+                        <img src={tour.imageUrl} alt={tour.title} loading="lazy" />
+                    :   <div class="tour-image-placeholder" />}
+
+                    {tour.isArchived && (
+                        <div class="tour-archive-badge hotel-badge">
+                            <span>Архив</span>
+                        </div>
+                    )}
+                </div>
+
+                <div class="tour-info">
+                    <time class="tour-date">{tour.dateRange}</time>
+                    <h3 class="tour-title">{tour.title}</h3>
+                </div>
+            </a>
+        ))
+    }
+</div>
+
+<style lang="scss" is:global>
+    .tours-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        @include adaptive(column-gap, 18, 20);
+        @include adaptive(row-gap, 60, 60);
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+
+        .tour-card {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 20, 15);
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        .tour-image {
+            position: relative;
+            @include adaptive(height, 198, 230);
+            width: 100%;
+            overflow: hidden;
+            display: block;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .tour-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #d9d9d9;
+        }
+
+        .tour-archive-badge {
+            position: absolute;
+            @include adaptive(bottom, 20, 15);
+            @include adaptive(left, 20, 15);
+            @include adaptive(height, 54, 41);
+        }
+
+        .tour-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 8, 8);
+        }
+
+        .tour-date {
+            @include font-circe-regular;
+            @include adaptive(font-size, 16, 18);
+            color: #667c89;
+            line-height: 1.6;
+            text-transform: uppercase;
+            @include adaptive(letter-spacing, 3.2, 3.2);
+        }
+
+        .tour-title {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 24);
+            color: $color-accent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 400;
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>

@@ -1,13 +1,13 @@
 ---
 ---
 
-<section class="webinar-search-section">
-    <div class="webinar-search-container">
-        <form class="webinar-search-form">
-            <div class="webinar-search-field">
-                <label for="country" class="webinar-search-label">Страна</label>
-                <div class="webinar-search-input-wrapper">
-                    <select id="country" name="country" class="webinar-search-select">
+<section class="filter-form-section">
+    <div class="filter-form-container">
+        <form class="filter-form">
+            <div class="filter-form-field">
+                <label for="country" class="filter-form-label">Страна</label>
+                <div class="filter-form-input-wrapper">
+                    <select id="country" name="country" class="filter-form-select" autocomplete="country">
                         <option value="">Все</option>
                         <option value="egypt">Египет</option>
                         <option value="thailand">Таиланд</option>
@@ -16,39 +16,40 @@
                         <option value="india">Индия</option>
                         <option value="bali">Бали</option>
                     </select>
-                    <div class="webinar-search-underline"></div>
+                    <div class="filter-form-underline"></div>
                 </div>
             </div>
 
-            <div class="webinar-search-field">
-                <label for="period" class="webinar-search-label">Период публикации</label>
-                <div class="webinar-search-input-wrapper">
-                    <select id="period" name="period" class="webinar-search-select">
+            <div class="filter-form-field">
+                <label for="period" class="filter-form-label">Период публикации</label>
+                <div class="filter-form-input-wrapper">
+                    <select id="period" name="period" class="filter-form-select" autocomplete="off">
                         <option value="">За всё время</option>
                         <option value="2025">2025</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>
                     </select>
-                    <div class="webinar-search-underline"></div>
+                    <div class="filter-form-underline"></div>
                 </div>
             </div>
 
-            <div class="webinar-search-field">
-                <label for="search" class="webinar-search-label">Поиск</label>
-                <div class="webinar-search-input-wrapper">
+            <div class="filter-form-field">
+                <label for="search" class="filter-form-label">Поиск</label>
+                <div class="filter-form-input-wrapper">
                     <input
                         type="text"
                         id="search"
                         name="search"
                         placeholder="Введите ключевое слово"
-                        class="webinar-search-input"
+                        class="filter-form-input"
+                        autocomplete="off"
                     />
-                    <div class="webinar-search-underline"></div>
+                    <div class="filter-form-underline"></div>
                 </div>
             </div>
 
-            <button type="submit" class="webinar-search-button">
+            <button type="submit" class="filter-form-button">
                 <span>Применить</span>
             </button>
         </form>
@@ -56,18 +57,18 @@
 </section>
 
 <style lang="scss" is:global>
-    .webinar-search-section {
+    .filter-form-section {
         @include adaptive(margin-top, 60, 60);
         background-color: $color-alternate;
         @include adaptive(padding-top, 52, 70);
         @include adaptive(padding-bottom, 52, 70);
 
-        .webinar-search-container {
+        .filter-form-container {
             @include side-paddings;
             width: 100%;
         }
 
-        .webinar-search-form {
+        .filter-form {
             display: flex;
             align-items: flex-end;
             @include adaptive(gap, 50, 45);
@@ -80,7 +81,7 @@
             }
         }
 
-        .webinar-search-field {
+        .filter-form-field {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -91,7 +92,7 @@
             }
         }
 
-        .webinar-search-label {
+        .filter-form-label {
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             color: rgba($color-main, 0.55);
@@ -100,15 +101,15 @@
             @include adaptive(letter-spacing, 3.2, 3.2);
         }
 
-        .webinar-search-input-wrapper {
+        .filter-form-input-wrapper {
             position: relative;
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 12, 10);
         }
 
-        .webinar-search-select,
-        .webinar-search-input {
+        .filter-form-select,
+        .filter-form-input {
             @include font-circe-light;
             @include adaptive(font-size, 26, 26);
             color: $color-main;
@@ -126,24 +127,24 @@
             }
         }
 
-        .webinar-search-input {
+        .filter-form-input {
             cursor: text;
         }
 
-        .webinar-search-select {
+        .filter-form-select {
             option {
                 background-color: $color-alternate;
                 color: $color-main;
             }
         }
 
-        .webinar-search-underline {
+        .filter-form-underline {
             width: 100%;
             height: 1px;
             background-color: $color-accent;
         }
 
-        .webinar-search-button {
+        .filter-form-button {
             @include button-sized;
             align-self: center;
         }

@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PromoToursHero from '@/components/promo_tours/PromoToursHero.astro'
+import FilterForm from '@/components/common/FilterForm.astro'
+import PromoToursGrid from '@/components/promo_tours/PromoToursGrid.astro'
+import PromoToursPagination from '@/components/promo_tours/PromoToursPagination.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Рекламные туры - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <PromoToursHero userType="agent" />
+    <FilterForm />
+    <PromoToursGrid />
+    <PromoToursPagination userType="agent" />
+    <ContactsGrid standalone title="Остались вопросы? свяжитесь с нами!" />
+</Layout>
