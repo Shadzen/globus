@@ -1,0 +1,36 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+    backButtonText?: string
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section fin-guarantees-hero _dark-text _type-one">
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Финансовые гарантии' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Финансовые гарантии</h2>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .fin-guarantees-hero {
+        .hero-content {
+            align-items: center;
+            flex-direction: column !important;
+            gap: 0 !important;
+        }
+
+        .hero-title {
+            text-align: center !important;
+        }
+    }
+</style>

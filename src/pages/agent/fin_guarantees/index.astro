@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import FinGuaranteesHero from '@/components/fin_guarantees/FinGuaranteesHero.astro'
+import FinGuaranteesList from '@/components/fin_guarantees/FinGuaranteesList.astro'
+import CompanyDetails from '@/components/fin_guarantees/CompanyDetails.astro'
+import ContactForm from '@/components/main/ContactForm.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Финансовые гарантии - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <FinGuaranteesHero userType="agent" />
+    <FinGuaranteesList />
+    <CompanyDetails />
+    <ContactForm userType="agent" />
+</Layout>

@@ -1,0 +1,124 @@
+---
+const companyInfo = {
+    title: 'Реквизиты компании',
+    fullName: 'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ ТУРИСТИЧЕСКОЕ АГЕНТСТВО «ГЛОБУС-ТУР»',
+    details: [
+        {
+            text: 'ИНН: 5402129363',
+        },
+        {
+            text: 'Реестровый номер: ',
+            link: {
+                text: 'РТО 001058',
+                url: 'https://tourism.gov.ru/operators/show.php?id=106536',
+            },
+        },
+        {
+            text: 'Адрес, место нахождения: 630091, г. Новосибирск, ул. Советская, 64, оф. 403',
+        },
+    ],
+}
+---
+
+<section class="company-details-section">
+    <div class="company-details-container">
+        <h2 class="company-details-title">{companyInfo.title}</h2>
+
+        <div class="company-details-grid">
+            <div class="company-name">
+                <p>{companyInfo.fullName}</p>
+            </div>
+
+            <div class="company-info">
+                {
+                    companyInfo.details.map((item) => (
+                        <div class="company-info-item">
+                            <span class="bullet" />
+                            <p class="company-info-text">
+                                {item.text}
+                                {item.link && (
+                                    <a href={item.link.url} target="_blank" rel="noopener noreferrer">
+                                        {item.link.text}
+                                    </a>
+                                )}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .company-details-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .company-details-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .company-details-title {
+            color: $color-alternate;
+        }
+
+        .company-details-grid {
+            @include adaptive(margin-top, 90, 50);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(gap, 90, 30);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .company-name {
+            p {
+                @include font-circe-light;
+                font-style: normal;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 20);
+                line-height: 1.2;
+                margin: 0;
+            }
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 25, 20);
+        }
+
+        .company-info-item {
+            display: flex;
+            @include adaptive(gap, 17, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+                flex-shrink: 0;
+            }
+        }
+
+        .company-info-text {
+            @include font-circe-light;
+            font-style: normal;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            margin: 0;
+
+            a {
+                color: $color-alternate;
+                text-decoration: underline;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+</style>

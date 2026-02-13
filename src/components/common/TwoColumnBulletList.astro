@@ -1,0 +1,157 @@
+---
+interface BulletItem {
+    text: string
+}
+
+interface Column {
+    title: string
+    items: BulletItem[]
+}
+
+interface Props {
+    columns: [Column, Column]
+    dark?: boolean
+}
+
+const { columns, dark = true } = Astro.props
+---
+
+<section class="two-column-bullet-list-section" data-dark={dark}>
+    <div class="two-column-bullet-list-container">
+        <div class="columns-grid">
+            {
+                columns.map((column) => (
+                    <div class="column">
+                        <h3 class="column-title">{column.title}</h3>
+                        <div class="column-items">
+                            {column.items.map((item) => (
+                                <div class="column-item">
+                                    <span class="bullet" />
+                                    <p class="column-text">{item.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .two-column-bullet-list-section {
+        @include adaptive(margin-top, 120, 60);
+        background-color: $color-alternate;
+        @include adaptive(padding-top, 85, 60);
+        @include adaptive(padding-bottom, 85, 60);
+
+        &[data-dark='false'] {
+            background-color: transparent;
+            margin-top: 0;
+        }
+
+        .two-column-bullet-list-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .columns-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(gap, 220, 45);
+            position: relative;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1px;
+                height: 100%;
+                background-color: $color-accent;
+
+                @include mobile {
+                    display: none;
+                }
+            }
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 32, 24);
+
+            &::after {
+                content: '';
+                display: none;
+
+                @include mobile {
+                    display: block;
+                    width: 100%;
+                    height: 1px;
+                    background-color: $color-accent;
+                    @include adaptive(margin-top, 0, 15);
+                }
+            }
+
+            &:last-child::after {
+                display: none;
+            }
+        }
+
+        .column-title {
+            @include font-kudry-sans;
+            font-style: normal;
+            font-weight: 300;
+            color: $color-accent;
+            @include adaptive(font-size, 28, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        &[data-dark='false'] {
+            .column-title {
+                color: $color-alternate;
+            }
+        }
+
+        .column-items {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 25, 20);
+        }
+
+        .column-item {
+            display: flex;
+            @include adaptive(gap, 17, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+                flex-shrink: 0;
+            }
+        }
+
+        .column-text {
+            @include font-circe-light;
+            font-style: normal;
+            color: $color-main;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            margin: 0;
+            white-space: pre-line;
+        }
+
+        &[data-dark='false'] {
+            .column-text {
+                color: $color-alternate;
+            }
+        }
+    }
+</style>
