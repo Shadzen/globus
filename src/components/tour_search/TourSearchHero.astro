@@ -1,0 +1,43 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+import TourSearchInfoBar from '@/components/tour_search/TourSearchInfoBar.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+    backButtonText?: string
+    title?: string
+}
+
+const { userType = 'tourist', title } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section tour-search-hero">
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Поиск тура' },
+    ]} />
+
+    <TourSearchInfoBar />
+
+    {title && (
+        <div class="hero-content">
+            <h2 class="hero-title">{title}</h2>
+        </div>
+    )}
+</section>
+
+<style lang="scss" is:global>
+    .tour-search-hero {
+        @include adaptive(padding-top, 260, 110);
+
+        .hero-content {
+            @include adaptive(margin-top, 60, 30);
+        }
+
+        .hero-title {
+            color: $color-alternate;
+            @include adaptive(font-size, 74, 60);
+        }
+    }
+</style>

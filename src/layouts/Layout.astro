@@ -11,9 +11,10 @@ interface Props {
     title: string
     userType?: 'tourist' | 'agent'
     heroTextColor?: 'light' | 'dark'
+    showFooter?: boolean
 }
 
-const { title, userType = 'tourist', heroTextColor = 'light' } = Astro.props
+const { title, userType = 'tourist', heroTextColor = 'light', showFooter = true } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
@@ -33,7 +34,8 @@ const base = import.meta.env.BASE_URL
         <main>
             <slot />
         </main>
-        <Footer userType={userType} />
+        {showFooter && <Footer userType={userType} />}
+        <script src="@/scripts/main.ts"></script>
     </body>
 </html>
 

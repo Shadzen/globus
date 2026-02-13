@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import TourSearchHero from '@/components/tour_search/TourSearchHero.astro'
+import TourSearch from '@/components/tour_search/TourSearch.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Поиск туров - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark" showFooter={false}>
+    <TourSearchHero userType="agent" />
+    <TourSearch mode="search" />
+</Layout>

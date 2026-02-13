@@ -1,0 +1,59 @@
+---
+import tourSearchLoginImg from '@/assets/images/tour_search/tour-search-login.jpg'
+import tourSearchBannerImg from '@/assets/images/tour_search/tour-search-banner.jpg'
+import tourSearchImg from '@/assets/images/tour_search/tour-search.jpg'
+
+interface Props {
+    mode: 'login' | 'search'
+}
+
+const { mode } = Astro.props
+// Плейсхолдер - в будущем здесь будет форма авторизации или поиска
+---
+
+<section class="tour-search-section">
+    <div class="tour-search-container">
+        {mode === 'login' ?
+            <div class="tour-search-placeholder">
+                <img src={tourSearchLoginImg.src} alt="Форма входа" />
+            </div>
+        :   <>
+                <div class="tour-search-placeholder">
+                    <img src={tourSearchBannerImg.src} alt="Баннер поиска туров" />
+                </div>
+                <div class="tour-search-placeholder">
+                    <img src={tourSearchImg.src} alt="Форма поиска туров" />
+                </div>
+            </>
+        }
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-search-section {
+        @include adaptive(margin-top, 60, 30);
+        @include adaptive(padding-bottom, 60, 30);
+
+        .tour-search-container {
+            @include side-paddings;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            @include adaptive(gap, 60, 30);
+        }
+
+        .tour-search-placeholder {
+            @include flex-center;
+            width: 100%;
+            max-width: 1740px;
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+    }
+</style>
