@@ -277,6 +277,12 @@ const base = import.meta.env.BASE_URL
             font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
+
+            &._small {
+                @include adaptive(font-size, 16, 18);
+                text-transform: uppercase;
+                opacity: 0.4;
+            }
         }
 
         .hero-subtitle-link {

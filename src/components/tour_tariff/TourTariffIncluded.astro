@@ -1,0 +1,20 @@
+---
+import BulletList from '@/components/common/BulletList.astro'
+
+const includedItems = [
+    {
+        text: 'Авиаперелет по маршруту\nНовосибирск—Стамбул—Новосибирск (а/к S7)',
+    },
+    {
+        text: 'Проживание в отеле\nс выбранным типом питания.',
+    },
+    {
+        text: 'Авиаперелет по маршруту\nСтамбул—Салоники—Стамбул (а/к Turkish Airlines)',
+    },
+    {
+        text: 'Медицинская страховка',
+    },
+]
+---
+
+<BulletList title="В стоимость тура входит" items={includedItems} dark={true} />

@@ -1,0 +1,48 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+    backButtonText?: string
+}
+
+const { userType = 'tourist', backButtonText = 'Вернуться к описанию страны' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section tour-tariff-hero _dark-text _type-one">
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Страны', href: `${base}${userType}/countries` },
+        { label: 'Халкидики' },
+    ]} backButtonText={backButtonText} />
+
+    <div class="hero-content">
+        <p class="hero-subtitle _small">тариф mini</p>
+        <h2 class="hero-title">Халкидики</h2>
+        <h2 class="hero-title">(через Стамбул)</h2>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-tariff-hero {
+        .hero-content {
+            align-items: center;
+            flex-direction: column !important;
+            gap: 0 !important;
+        }
+
+        .hero-title {
+            text-align: center !important;
+        }
+
+        .hero-subtitle {
+            @include adaptive(margin-bottom, 0, 30);
+            @include adaptive(margin-top, 0, 30);
+
+            @include desktop {
+                transform: translateY(-650%);
+            }
+        }
+    }
+</style>

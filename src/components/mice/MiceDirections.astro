@@ -1,107 +1,24 @@
 ---
+import BulletList from '@/components/common/BulletList.astro'
+
 const directions = [
     {
         title: 'Организация корпоративных мероприятий и инсентив‑туров',
-        description: 'Полный цикл организации выездных мероприятий для мотивации персонала, укрепления командного духа и поощрения лучших сотрудников. Мы разрабатываем уникальные программы, выбираем лучшие площадки и обеспечиваем безупречное исполнение всех элементов мероприятия — от деловой части до развлекательной программы.',
+        text: 'Полный цикл организации выездных мероприятий для мотивации персонала, укрепления командного духа и поощрения лучших сотрудников. Мы разрабатываем уникальные программы, выбираем лучшие площадки и обеспечиваем безупречное исполнение всех элементов мероприятия — от деловой части до развлекательной программы.',
     },
     {
         title: 'Организация бизнес-выставок, конгрессов и конференций',
-        description: 'Комплексное сопровождение вашего участия в международных выставках или организация собственных событий. В наши услуги входит: подбор и аренда выставочных площадок, оформление стендов, организация логистики для оборудования, обеспечение технической поддержки и переводческих услуг.',
+        text: 'Комплексное сопровождение вашего участия в международных выставках или организация собственных событий. В наши услуги входит: подбор и аренда выставочных площадок, оформление стендов, организация логистики для оборудования, обеспечение технической поддержки и переводческих услуг.',
     },
     {
         title: 'Организация деловых поездок и командировок',
-        description: 'Оптимизация бизнес-путешествий ваших сотрудников. Мы предлагаем корпоративные тарифы от ведущих авиаперевозчиков и отельных сетей, что позволяет значительно сократить расходы на командировки. Наша система бронирования прозрачна и удобна для отчётности.',
+        text: 'Оптимизация бизнес-путешествий ваших сотрудников. Мы предлагаем корпоративные тарифы от ведущих авиаперевозчиков и отельных сетей, что позволяет значительно сократить расходы на командировки. Наша система бронирования прозрачна и удобна для отчётности.',
     },
     {
         title: 'Групповые бизнес-туры',
-        description: 'Организация поездок для больших групп сотрудников, партнёров или клиентов на отраслевые мероприятия, фабрики, производственные площадки или для обмена опытом. Мы берём на себя все заботы: визовую поддержку, трансферы, размещение, питание и экскурсионную программу.',
+        text: 'Организация поездок для больших групп сотрудников, партнёров или клиентов на отраслевые мероприятия, фабрики, производственные площадки или для обмена опытом. Мы берём на себя все заботы: визовую поддержку, трансферы, размещение, питание и экскурсионную программу.',
     },
 ]
 ---
 
-<section class="mice-directions-section">
-    <div class="mice-directions-container">
-        <h2 class="directions-title">Направления mice-туризма</h2>
-
-        <div class="directions-grid">
-            {directions.map((direction) => (
-                <div class="direction-item">
-                    <span class="bullet"></span>
-                    <div class="direction-content">
-                        <h3 class="direction-title">{direction.title}</h3>
-                        <p class="direction-description">{direction.description}</p>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-</section>
-
-<style lang="scss" is:global>
-    .mice-directions-section {
-        @include adaptive(margin-top, 120, 60);
-        background-color: $color-alternate;
-        @include adaptive(padding-top, 70, 60);
-        @include adaptive(padding-bottom, 70, 60);
-
-        .mice-directions-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .directions-title {
-            color: $color-main;
-        }
-
-        .directions-grid {
-            @include adaptive(margin-top, 90, 50);
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include adaptive(row-gap, 45, 30);
-            @include adaptive(column-gap, 90, 30);
-
-            @include mobile {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .direction-item {
-            display: flex;
-            @include adaptive(gap, 10, 12);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-            }
-        }
-
-        .direction-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 10, 12);
-        }
-
-        .direction-title {
-            @include font-circe-regular;
-            font-style: normal;
-            color: $color-main;
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-            margin: 0;
-
-            @include desktop {
-                width: 50%;
-            }
-        }
-
-        .direction-description {
-            @include font-circe-regular;
-            font-style: normal;
-            color: #667C89;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            margin: 0;
-        }
-    }
-</style>
+<BulletList title="Направления mice-туризма" items={directions} dark={true} />

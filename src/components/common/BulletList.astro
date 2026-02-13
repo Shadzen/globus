@@ -1,0 +1,134 @@
+---
+interface BulletItem {
+    title?: string
+    text: string
+}
+
+interface Props {
+    title: string
+    items: BulletItem[]
+    dark?: boolean
+    columns?: 1 | 2
+}
+
+const { title, items, dark = true, columns = 2 } = Astro.props
+---
+
+<section class="bullet-list-section" data-dark={dark}>
+    <div class="bullet-list-container">
+        <h2 class="bullet-list-title">{title}</h2>
+
+        <div class="bullet-list-grid" data-columns={columns}>
+            {
+                items.map((item) => (
+                    <div class="bullet-list-item">
+                        <span class="bullet" />
+                        <div class="bullet-list-content">
+                            {item.title && <h3 class="bullet-list-item-title">{item.title}</h3>}
+                            <p class="bullet-list-text">{item.text}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .bullet-list-section {
+        @include adaptive(margin-top, 120, 60);
+        background-color: $color-alternate;
+        @include adaptive(padding-top, 70, 60);
+        @include adaptive(padding-bottom, 70, 60);
+
+        &[data-dark='false'] {
+            background-color: transparent;
+            margin-top: 0;
+        }
+
+        .bullet-list-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .bullet-list-title {
+            color: $color-main;
+        }
+
+        &[data-dark='false'] {
+            .bullet-list-title {
+                color: $color-alternate;
+            }
+        }
+
+        .bullet-list-grid {
+            @include adaptive(margin-top, 90, 50);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            @include adaptive(row-gap, 45, 30);
+            @include adaptive(column-gap, 90, 30);
+
+            &[data-columns='1'] {
+                grid-template-columns: 1fr;
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bullet-list-item {
+            display: flex;
+            @include adaptive(gap, 10, 12);
+            align-items: flex-start;
+
+            .bullet {
+                @include adaptive(margin-top, 8, 6);
+            }
+        }
+
+        .bullet-list-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 10, 12);
+        }
+
+        .bullet-list-item-title {
+            @include font-circe-regular;
+            font-style: normal;
+            color: $color-main;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
+            margin: 0;
+
+            @include desktop {
+                width: 50%;
+            }
+        }
+
+        &[data-dark='false'] {
+            .bullet-list-item-title {
+                color: $color-alternate;
+            }
+        }
+
+        .bullet-list-text {
+            @include font-circe-regular;
+            font-style: normal;
+            color: #667c89;
+            @include adaptive(font-size, 20, 18);
+            line-height: 1.2;
+            margin: 0;
+            white-space: pre-line;
+        }
+
+        &[data-dark='true'] {
+            .bullet-list-text {
+                color: $color-main;
+                @include adaptive(font-size, 26, 20);
+                line-height: 1.2;
+            }
+        }
+    }
+</style>

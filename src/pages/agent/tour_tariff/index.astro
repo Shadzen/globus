@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import TourTariffHero from '@/components/tour_tariff/TourTariffHero.astro'
+import TourTariffIncluded from '@/components/tour_tariff/TourTariffIncluded.astro'
+import TourTariffAdditional from '@/components/tour_tariff/TourTariffAdditional.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Тариф MINI - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <TourTariffHero userType="agent" />
+    <TourTariffIncluded />
+    <TourTariffAdditional />
+    <ContactsGrid standalone title="Остались вопросы? свяжитесь с нами!" />
+</Layout>
