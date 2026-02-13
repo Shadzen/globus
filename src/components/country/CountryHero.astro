@@ -1,0 +1,37 @@
+---
+import HeroNav from '@/components/common/HeroNav.astro'
+
+import heroDesktop from '@/assets/images/visa/hero-1.jpg'
+import heroMobile from '@/assets/images/visa/hero-1-mobile.jpg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+---
+
+<section class="hero-section _dark-text _type-two">
+    <picture class="hero-bg">
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
+        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+    </picture>
+
+    <HeroNav items={[
+        { label: 'Главная', href: `${base}${userType}/` },
+        { label: 'Страны', href: `${base}${userType}/countries` },
+        { label: 'Греция' },
+    ]} />
+
+    <div class="hero-content">
+        <h2 class="hero-title">Греция</h2>
+        <p class="hero-subtitle">На данный момент Греция открывает визы гражданам РФ на даты поездки. Средний срок оформления визы от 4х недель. Подать документы можно по цели поездки туризм и по приглашению от родственников или друзей.</p>
+        <p class="hero-subtitle">Подать документы на визу возможно с понедельника по пятницу по предварительной записи.</p>
+        <div class="hero-buttons">
+            <a href="#" class="hero-button">памятка по стране</a>
+        </div>
+    </div>
+</section>

@@ -1,14 +1,15 @@
 ---
 interface Props {
     title: string
-    containerWidth?: string
+    narrowContainer?: boolean
+    dark?: boolean
 }
 
-const { title, containerWidth = '85%' } = Astro.props
+const { title, narrowContainer = true, dark = false } = Astro.props
 ---
 
-<section class="legal-page-section">
-    <div class="legal-page-container" style={`width: ${containerWidth}`}>
+<section class="legal-page-section" data-dark={dark}>
+    <div class="legal-page-container" data-narrow={narrowContainer}>
         <h2 class="legal-title">{title}</h2>
 
         {
@@ -32,6 +33,11 @@ const { title, containerWidth = '85%' } = Astro.props
 
         .legal-page-container {
             @include side-paddings;
+            width: 100%;
+
+            &[data-narrow='true'] {
+                width: 85%;
+            }
 
             @include mobile {
                 width: 100% !important;
@@ -45,10 +51,6 @@ const { title, containerWidth = '85%' } = Astro.props
                 width: 90%;
                 margin: 0 auto;
             }
-
-            // @include mobile {
-            //     text-align: left;
-            // }
         }
 
         .legal-intro {
@@ -102,6 +104,17 @@ const { title, containerWidth = '85%' } = Astro.props
 
         .legal-content {
             @include adaptive(margin-top, 44, 22);
+        }
+
+        &[data-dark='true'] {
+            background-color: $color-alternate;
+            @include adaptive(padding-top, 60, 30);
+            @include adaptive(padding-bottom, 60, 30);
+            @include adaptive(margin-top, 60, 30);
+
+            .legal-title {
+                color: $color-accent;
+            }
         }
     }
 </style>

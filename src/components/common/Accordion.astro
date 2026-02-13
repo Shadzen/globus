@@ -10,12 +10,14 @@ interface AccordionSection {
 interface Props {
     sections: AccordionSection[]
     type?: 'docs' | string
+    theme?: 'light' | 'dark'
+    largeText?: boolean
 }
 
-const { sections, type } = Astro.props
+const { sections, type, theme = 'dark', largeText = false } = Astro.props
 ---
 
-<div class="accordion" data-type={type}>
+<div class="accordion" data-type={type} data-theme={theme} data-large-text={largeText}>
     {
         sections.map((section) => (
             <div class="accordion-item" data-accordion-item>
@@ -108,6 +110,39 @@ const { sections, type } = Astro.props
                 @include adaptive(font-size, 20, 18);
                 line-height: 1.2;
                 margin: 0;
+            }
+        }
+
+        &[data-theme='light'] {
+            .accordion-title {
+                color: $color-main;
+            }
+
+            .divider {
+                background-color: $color-main;
+            }
+
+            .accordion-content-inner {
+                p {
+                    color: $color-main;
+
+                    a {
+                        color: $color-main;
+                        transition: opacity 0.3s;
+
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+
+        &[data-large-text='true'] {
+            .accordion-content-inner {
+                p {
+                    @include adaptive(font-size, 28, 18);
+                }
             }
         }
     }

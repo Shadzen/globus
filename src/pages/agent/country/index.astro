@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import CountryHero from '@/components/country/CountryHero.astro'
+import CountryRules from '@/components/country/CountryRules.astro'
+import CountryTours from '@/components/country/CountryTours.astro'
+import CountryVIP from '@/components/country/CountryVIP.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Страна Греция - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
+    <CountryHero userType="agent" />
+    <CountryRules userType="agent" />
+    <CountryTours />
+    <CountryVIP userType="agent" />
+    <ContactsGrid standalone title="Остались вопросы? свяжитесь с нами!" />
+</Layout>

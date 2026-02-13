@@ -1,0 +1,38 @@
+---
+import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import Accordion from '@/components/common/Accordion.astro'
+
+const base = import.meta.env.BASE_URL
+
+const toursSections = [
+    {
+        id: 'no-flight',
+        title: 'Без авиаперелета',
+        content: `
+            <p><a href="${base}agent/tour_tariff">ТАРИФ MINI: о.Хайнань (Наземное обслуживание)</a></p>
+            <p><a href="${base}agent/tour_tariff">ТАРИФ MINI: Гуанчжоу (наземное обслуживание)</a></p>
+            <p><a href="${base}agent/tour_tariff">ТАРИФ MINI: Халкидики (через Стамбул)</a></p>
+        `,
+    },
+    {
+        id: 'from-novosibirsk',
+        title: 'Из новосибирска',
+        content: `<p>Содержание раздела о турах из Новосибирска...</p>`,
+    },
+    {
+        id: 'from-irkutsk',
+        title: 'Из Иркутска',
+        content: `<p>Содержание раздела о турах из Иркутска...</p>`,
+    },
+    {
+        id: 'from-vladivostok',
+        title: 'Из Владивостока',
+        content: `<p>Содержание раздела о турах из Владивостока...</p>`,
+    },
+]
+---
+
+<LegalPageLayout title="Описание туров" dark={true} narrowContainer={false}>
+    <Accordion sections={toursSections} theme="light" type="docs" largeText={true} />
+</LegalPageLayout>
+

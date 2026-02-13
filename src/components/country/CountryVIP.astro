@@ -1,0 +1,277 @@
+---
+interface ServiceItem {
+    title: string
+    services: string[]
+    prices: {
+        main: string
+        mainNote: string
+        secondary?: string
+        secondaryNote?: string
+        tertiary?: string
+        tertiaryNote?: string
+    }
+}
+
+const vipServices: ServiceItem[] = [
+    {
+        title: 'SILVER ARV',
+        services: [
+            'Встреча у трапа самолёта с именной табличкой',
+            'Помощь при прохождении паспортного контроля',
+            'Помощь при получении багажа',
+            'Помощь при прохождении таможенного досмотра',
+            'Доставка багажа к встречающей стороне',
+        ],
+        prices: {
+            main: '131 ЕВРО*',
+            mainNote: '(на прилете)',
+            secondary: '57 ЕВРО',
+            secondaryNote: '(дети 2 — 4,99 лет)',
+            tertiary: 'Бесплатно',
+            tertiaryNote: '(младенцы до 2 лет)',
+        },
+    },
+    {
+        title: 'SILVER DEP',
+        services: [
+            'Встреча пассажира и эскорт до стойки регистрации',
+            'Доставка багажа до стойки регистрации',
+            'Экспресс-регистрация на рейс',
+            'Помощь при оформлении и сдаче багажа',
+            'Помощь при прохождении личного досмотра',
+            'Помощь при прохождении паспортного контроля',
+        ],
+        prices: {
+            main: '131 ЕВРО*',
+            mainNote: '(на вылете)',
+            secondary: '57 ЕВРО',
+            secondaryNote: '(дети 2 — 4,99 лет)',
+            tertiary: 'Бесплатно',
+            tertiaryNote: '(младенцы до 2 лет)',
+        },
+    },
+    {
+        title: 'LOUNGE/ Бизнес – зал',
+        services: [
+            'Встреча пассажира и эскорт до стойки регистрации',
+            'Доставка багажа до стойки регистрации',
+            'Экспресс-регистрация на рейс',
+            'Помощь при оформлении и сдаче багажа',
+            'Помощь при прохождении личного досмотра',
+            'Помощь при прохождении паспортного контроля',
+        ],
+        prices: {
+            main: '63 ЕВРО*',
+            mainNote: '(на вылете)',
+            secondary: 'Бесплатно',
+            secondaryNote: '(младенцы до 2 лет)',
+        },
+    },
+]
+---
+
+<section class="country-vip-section">
+    <div class="country-vip-container">
+        <p class="country-vip-subtitle">Дополнительные услуги</p>
+        <h2 class="country-vip-title">VIP SERVICES в аэропорту Салонники</h2>
+
+        <div class="country-vip-list">
+            {
+                vipServices.map((item, index) => (
+                    <>
+                        {index > 0 && <div class="divider" />}
+                        <div class="vip-item">
+                            <h3 class="vip-title">{item.title}</h3>
+                            <div class="vip-content">
+                                <ul class="vip-features">
+                                    {item.services.map((service) => (
+                                        <li>{service}</li>
+                                    ))}
+                                </ul>
+                                <div class="vip-prices">
+                                    <div class="vip-price">
+                                        <span class="vip-price-value">
+                                            {item.prices.main}
+                                        </span>
+                                        <span class="vip-price-note">
+                                            {item.prices.mainNote}
+                                        </span>
+                                    </div>
+                                    {item.prices.secondary && (
+                                        <div class="vip-price">
+                                            <span class="vip-price-value">
+                                                {item.prices.secondary}
+                                            </span>
+                                            <span class="vip-price-note">
+                                                {item.prices.secondaryNote}
+                                            </span>
+                                        </div>
+                                    )}
+                                    {item.prices.tertiary && (
+                                        <div class="vip-price">
+                                            <span class="vip-price-value">
+                                                {item.prices.tertiary}
+                                            </span>
+                                            <span class="vip-price-note">
+                                                {item.prices.tertiaryNote}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        {index === vipServices.length - 1 && <div class="divider" />}
+                    </>
+                ))
+            }
+        </div>
+
+        <div class="country-vip-notes">
+            <p>* Стоимость указана на человека</p>
+            <p>
+                * Для финального подтверждения стоимости и возможности предоставления нужны полетные
+                данные.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .country-vip-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .country-vip-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .country-vip-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 60, 40);
+            line-height: 1.2;
+            text-transform: uppercase;
+            @include adaptive(margin-bottom, 60, 40);
+        }
+
+        .country-vip-subtitle {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-accent;
+            @include adaptive(font-size, 36, 26);
+            line-height: 1.2;
+            text-align: center;
+            text-transform: uppercase;
+            @include adaptive(margin-bottom, 20, 16);
+        }
+
+        .country-vip-list {
+            display: flex;
+            flex-direction: column;
+
+            .divider {
+                @include adaptive(margin-top, 50, 30);
+                @include adaptive(margin-bottom, 50, 30);
+            }
+        }
+
+        .vip-item {
+            display: flex;
+            @include adaptive(gap, 160, 30);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .vip-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 28, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            @include adaptive(width, 563, 100%);
+            flex-shrink: 0;
+        }
+
+        .vip-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 20);
+        }
+
+        .vip-features {
+            list-style: disc;
+            @include adaptive(padding-left, 30, 24);
+            margin: 0;
+
+            li {
+                @include font-circe-regular;
+                color: $color-alternate;
+                @include adaptive(font-size, 20, 18);
+                line-height: 1.2;
+                @include adaptive(margin-bottom, 8, 6);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .vip-prices {
+            display: flex;
+            @include adaptive(gap, 20, 16);
+            flex-wrap: wrap;
+        }
+
+        .vip-price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid $color-accent;
+            border-radius: 390px;
+            @include adaptive(padding-top, 16, 12);
+            @include adaptive(padding-bottom, 16, 12);
+            @include adaptive(padding-left, 50, 30);
+            @include adaptive(padding-right, 50, 30);
+            @include adaptive(height, 61, 64);
+            @include adaptive(min-width, 273, 100%);
+            // @include button-sized;
+            // @include button-outline;
+        }
+
+        .vip-price-value {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 26, 26);
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .vip-price-note {
+            @include font-circe-regular;
+            color: $color-alternate;
+            @include adaptive(font-size, 14, 18);
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .country-vip-notes {
+            // @include adaptive(margin-top, 80, 60);
+            text-align: center;
+
+            p {
+                @include font-circe-light;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 18);
+                line-height: 1.2;
+                margin: 0;
+            }
+        }
+    }
+</style>

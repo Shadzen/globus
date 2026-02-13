@@ -1,0 +1,75 @@
+---
+
+---
+
+<section class="country-rules-section">
+    <div class="country-rules-container">
+        <h2 class="country-rules-title">Правила въезда</h2>
+        <div class="country-rules-content">
+            <p>
+                Греция отменила COVID-ограничения. Для въезда в страну больше не требуется
+                предъявлять сертификат о вакцинации, заполнять анкету PLF, ПЦР-тест до вылета и
+                экспресс-тест по прилёте также отменены.
+            </p>
+            <p>
+                Для посещения Греции гражданам РФ нужна <a
+                    href="https://agency.globus-tour.ru/agencies/strany/greciya/viza-v-greciyu"
+                    target="_blank"
+                    rel="noopener noreferrer">виза</a
+                >.
+            </p>
+            <p>
+                Срок действия загранпаспорта должен быть не менее 3 месяцев со дня возвращения из
+                поездки.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    .country-rules-section {
+        @include adaptive(margin-top, 120, 60);
+
+        .country-rules-container {
+            @include side-paddings;
+            width: 100%;
+        }
+
+        .country-rules-title {
+            @include font-kudry-sans;
+            font-weight: 300;
+            color: $color-alternate;
+            @include adaptive(font-size, 60, 60);
+            line-height: 1.21;
+            text-transform: uppercase;
+            @include adaptive(margin-bottom, 41, 30);
+            text-align: left;
+        }
+
+        .country-rules-content {
+            @include adaptive(max-width, 1187, 100%);
+
+            p {
+                @include font-circe-light;
+                color: $color-alternate;
+                @include adaptive(font-size, 26, 18);
+                line-height: 1.2;
+                @include adaptive(margin-bottom, 20, 16);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    color: $color-alternate;
+                    text-decoration: underline;
+                    transition: opacity 0.3s;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+</style>
