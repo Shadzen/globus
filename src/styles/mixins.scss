@@ -165,6 +165,7 @@
 }
 
 @mixin button-default {
+    position: relative;
     @include flex-center;
     @include adaptive(column-gap, 20, 12);
     flex-shrink: 0;
@@ -182,6 +183,7 @@
     @include adaptive(border-width, 2, 2);
     border-radius: 500px;
     white-space: nowrap;
+    z-index: 2;
 
     img {
         @include adaptive(width, 40, 30);

@@ -1,7 +1,5 @@
 // src/scripts/main.ts
 import './swiper'
-import { initCards } from './main/cards'
-import { initAboutPage } from './main/about'
 import { initHeader } from './main/header'
 import { initSearchForm } from './main/searchForm'
 import { initTourCollections } from './main/tourCollections'
@@ -15,11 +13,8 @@ import { initNewsSlider } from './news/newsSlider'
 import { initCompaniesSlider } from './mice/companiesSlider'
 import { initAccordion } from './common/accordion'
 
-// Запуск при загрузке страницы
 const initAll = () => {
     initHeader()
-    initCards()
-    initAboutPage()
     initSearchForm()
     initTourCollections()
     initGlobusNews()
@@ -39,5 +34,4 @@ if (document.readyState === 'loading') {
     initAll()
 }
 
-// Поддержка переходов Astro (View Transitions)
 document.addEventListener('astro:after-swap', initAll)

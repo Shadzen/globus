@@ -2,43 +2,112 @@
 // src/components/SearchForm.astro
 ---
 
-<section class="search-form">
-    <div class="search-form-container">
+<section class="hero-search-form">
+    <div class="section-container">
         <div class="search-form-header">
             <h2 class="search-form-title">Подбор тура</h2>
-            <button class="search-form-close" type="button" aria-label="Закрыть форму поиска">
+            <button
+                name="close-form"
+                class="hero-search-form-close"
+                type="button"
+                aria-label="Закрыть форму поиска"
+            >
                 <span></span>
                 <span></span>
             </button>
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-field="city">
             <label for="city" class="field-label">Город вылета</label>
-            <input
-                type="text"
-                id="city"
-                name="city"
-                class="field-input"
-                value="Новосибирск"
-                placeholder="Выберите город"
-                autocomplete="off"
-            />
+            <div class="field-dropdown">
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    class="field-input"
+                    value="Новосибирск"
+                    placeholder="Выберите город"
+                    autocomplete="off"
+                    readonly
+                />
+                <div class="dropdown-list">
+                    <input
+                        type="text"
+                        name="city-search"
+                        id="city-search"
+                        class="dropdown-search"
+                        placeholder="Поиск города..."
+                    />
+                    <div class="dropdown-items">
+                        <div class="dropdown-item" data-value="Москва">Москва</div>
+                        <div class="dropdown-item" data-value="Санкт-Петербург">
+                            Санкт-Петербург
+                        </div>
+                        <div class="dropdown-item" data-value="Новосибирск">Новосибирск</div>
+                        <div class="dropdown-item" data-value="Екатеринбург">Екатеринбург</div>
+                        <div class="dropdown-item" data-value="Казань">Казань</div>
+                        <div class="dropdown-item" data-value="Нижний Новгород">
+                            Нижний Новгород
+                        </div>
+                        <div class="dropdown-item" data-value="Челябинск">Челябинск</div>
+                        <div class="dropdown-item" data-value="Самара">Самара</div>
+                        <div class="dropdown-item" data-value="Омск">Омск</div>
+                        <div class="dropdown-item" data-value="Ростов-на-Дону">Ростов-на-Дону</div>
+                        <div class="dropdown-item" data-value="Уфа">Уфа</div>
+                        <div class="dropdown-item" data-value="Красноярск">Красноярск</div>
+                        <div class="dropdown-item" data-value="Воронеж">Воронеж</div>
+                        <div class="dropdown-item" data-value="Пермь">Пермь</div>
+                        <div class="dropdown-item" data-value="Волгоград">Волгоград</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-field="country">
             <label for="country" class="field-label">Страна</label>
-            <input
-                type="text"
-                id="country"
-                name="country"
-                class="field-input"
-                value="ОАЭ"
-                placeholder="Выберите страну"
-                autocomplete="country"
-            />
+            <div class="field-dropdown">
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    class="field-input"
+                    value="ОАЭ"
+                    placeholder="Выберите страну"
+                    autocomplete="off"
+                    readonly
+                />
+                <div class="dropdown-list">
+                    <input
+                        type="text"
+                        name="country-search"
+                        id="country-search"
+                        class="dropdown-search"
+                        placeholder="Поиск страны..."
+                    />
+                    <div class="dropdown-items">
+                        <div class="dropdown-item" data-value="ОАЭ">ОАЭ</div>
+                        <div class="dropdown-item" data-value="Турция">Турция</div>
+                        <div class="dropdown-item" data-value="Египет">Египет</div>
+                        <div class="dropdown-item" data-value="Таиланд">Таиланд</div>
+                        <div class="dropdown-item" data-value="Мальдивы">Мальдивы</div>
+                        <div class="dropdown-item" data-value="Греция">Греция</div>
+                        <div class="dropdown-item" data-value="Кипр">Кипр</div>
+                        <div class="dropdown-item" data-value="Испания">Испания</div>
+                        <div class="dropdown-item" data-value="Италия">Италия</div>
+                        <div class="dropdown-item" data-value="Черногория">Черногория</div>
+                        <div class="dropdown-item" data-value="Индия">Индия</div>
+                        <div class="dropdown-item" data-value="Шри-Ланка">Шри-Ланка</div>
+                        <div class="dropdown-item" data-value="Вьетнам">Вьетнам</div>
+                        <div class="dropdown-item" data-value="Индонезия">Индонезия</div>
+                        <div class="dropdown-item" data-value="Доминикана">Доминикана</div>
+                        <div class="dropdown-item" data-value="Мексика">Мексика</div>
+                        <div class="dropdown-item" data-value="Куба">Куба</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-field="dates">
             <label for="dates" class="field-label">Дата вылета</label>
             <input
                 type="text"
@@ -48,45 +117,119 @@
                 value="16 сен - 25 сен"
                 placeholder="Выберите даты"
                 autocomplete="off"
+                readonly
             />
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-field="nights">
             <label for="nights" class="field-label">Ночей</label>
-            <input
-                type="text"
-                id="nights"
-                name="nights"
-                class="field-input"
-                value="6-14"
-                placeholder="Количество ночей"
-                autocomplete="off"
-            />
+            <div class="field-dropdown">
+                <input
+                    type="text"
+                    id="nights"
+                    name="nights"
+                    class="field-input"
+                    value="6-14"
+                    placeholder="Количество ночей"
+                    autocomplete="off"
+                    readonly
+                />
+                <div class="dropdown-list">
+                    <div class="dropdown-items">
+                        <div class="dropdown-item" data-value="1-3">1-3 ночи</div>
+                        <div class="dropdown-item" data-value="3-5">3-5 ночей</div>
+                        <div class="dropdown-item" data-value="6-9">6-9 ночей</div>
+                        <div class="dropdown-item" data-value="10-14">10-14 ночей</div>
+                        <div class="dropdown-item" data-value="14-21">14-21 ночь</div>
+                        <div class="dropdown-item" data-value="21+">21+ ночей</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-field="tourists">
             <label for="tourists" class="field-label">Туристы</label>
-            <input
-                type="text"
-                id="tourists"
-                name="tourists"
-                class="field-input"
-                value="2 взрослых"
-                placeholder="Количество туристов"
-                autocomplete="off"
-            />
+            <div class="field-dropdown">
+                <input
+                    type="text"
+                    id="tourists"
+                    name="tourists"
+                    class="field-input"
+                    value="2 взрослых"
+                    placeholder="Количество туристов"
+                    autocomplete="off"
+                    readonly
+                />
+                <div class="dropdown-list tourists-dropdown">
+                    <div class="tourists-group">
+                        <div class="tourist-type">
+                            <span class="tourist-label">Взрослые</span>
+                            <div class="tourist-counter">
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="decrease"
+                                    data-type="adults">-</button
+                                >
+                                <span class="counter-value" data-type="adults">2</span>
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="increase"
+                                    data-type="adults">+</button
+                                >
+                            </div>
+                        </div>
+                        <div class="tourist-type">
+                            <span class="tourist-label">Дети (2-12 лет)</span>
+                            <div class="tourist-counter">
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="decrease"
+                                    data-type="children">-</button
+                                >
+                                <span class="counter-value" data-type="children">0</span>
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="increase"
+                                    data-type="children">+</button
+                                >
+                            </div>
+                        </div>
+                        <div class="tourist-type">
+                            <span class="tourist-label">Младенцы (до 2 лет)</span>
+                            <div class="tourist-counter">
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="decrease"
+                                    data-type="infants">-</button
+                                >
+                                <span class="counter-value" data-type="infants">0</span>
+                                <button
+                                    type="button"
+                                    class="counter-btn"
+                                    data-action="increase"
+                                    data-type="infants">+</button
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <button class="search-btn">Найти</button>
+        <button name="search-submit" class="button _sized" type="submit">Найти</button>
     </div>
 </section>
 
 <style lang="scss" is:global>
-    .search-form {
-        background: $color-alternate;
+    .hero-search-form {
+        background: $color-globus-blue;
         @include adaptive(padding-top, 52, 30);
         @include adaptive(padding-bottom, 52, 30);
-        @include side-paddings;
 
         @include mobile {
             position: fixed;
@@ -106,18 +249,13 @@
             }
         }
 
-        .search-form-container {
+        .section-container {
             position: relative;
             width: 100%;
             @include flex-center-between;
             @include adaptive(gap, 38, 44);
-            @include adaptive(padding-left, 70, 15);
-            @include adaptive(padding-right, 70, 15);
-
-            @include mobile {
-                padding-left: 0;
-                padding-right: 0;
-            }
+            @include adaptive(padding-left, 170, 15);
+            @include adaptive(padding-right, 170, 15);
 
             @include mobile {
                 flex-direction: column;
@@ -133,22 +271,19 @@
             @include mobile {
                 display: flex;
                 justify-content: space-between;
-                // align-items: center;
             }
         }
 
         .search-form-title {
             width: auto;
-            color: #fff;
+            color: $color-globus-cream;
         }
 
-        .search-form-close {
+        .hero-search-form-close {
             $btn-size: 38;
             $line-height: 3;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flex-center;
             position: relative;
             @include adaptive(width, $btn-size, $btn-size);
             @include adaptive(height, $btn-size, $btn-size);
@@ -170,7 +305,7 @@
                 display: block;
                 width: 100%;
                 @include adaptive(height, $line-height, $line-height);
-                background-color: $color-main;
+                background-color: $color-globus-cream;
 
                 &:nth-child(1) {
                     transform: translateY(-50%) rotate(45deg);
@@ -182,13 +317,15 @@
             }
         }
 
+        .button {
+            @include adaptive(width, 172, 100%);
+        }
+
         .form-field {
             position: relative;
-            // flex: 1;
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 24, 24);
-            // min-width: 0;
 
             @include mobile {
                 width: 100%;
@@ -199,7 +336,7 @@
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
             opacity: 0.6;
             @include adaptive(letter-spacing, 3, 3);
@@ -209,32 +346,205 @@
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba($color-accent, 0.2);
+            // border-bottom: 1px solid rgba($color-globus-sand, 0.2);
+            border-bottom: 1px solid $color-globus-sand;
             @include adaptive(padding-bottom, 10, 8);
             @include font-circe-regular;
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             outline: none;
             transition: border-color 0.3s;
+            cursor: pointer;
 
             &::placeholder {
-                color: rgba($color-main, 0.3);
+                color: rgba($color-globus-cream, 0.3);
             }
 
-            &:focus {
-                border-bottom-color: rgba($color-accent, 1);
+            // &:focus {
+            //     border-bottom-color: rgba($color-globus-sand, 1);
+            // }
+
+            &[readonly] {
+                cursor: pointer;
             }
         }
 
-        .search-btn {
-            @include adaptive(width, 172, 172);
-            @include adaptive(height, 60, 60);
-            @include button-default;
+        .field-dropdown {
+            position: relative;
+            width: 100%;
 
-            @include mobile {
-                width: 100%;
+            .field-input {
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid $color-globus-cream;
+                    pointer-events: none;
+                }
             }
+        }
+
+        .dropdown-list {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 100%;
+            max-height: 300px;
+            width: 307.875px;
+            min-width: 307.875px;
+            max-width: 307.875px;
+            background: $color-globus-blue;
+            border: 1px solid rgba($color-globus-sand, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transform: translate3d(0, -20px, 0);
+
+            &._active {
+                display: flex;
+                animation: dropdownFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            }
+        }
+
+        @keyframes dropdownFadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -20px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .dropdown-search {
+            width: 100%;
+            background: rgba($color-globus-sand, 0.1);
+            border: none;
+            border-bottom: 1px solid rgba($color-globus-sand, 0.2);
+            padding: 12px 16px;
+            @include font-circe-regular;
+            font-size: 18px;
+            color: $color-globus-cream;
+            outline: none;
+
+            &::placeholder {
+                color: rgba($color-globus-cream, 0.5);
+            }
+        }
+
+        .dropdown-items {
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: $color-globus-sand transparent;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $color-globus-sand;
+                border-radius: 3px;
+            }
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            @include font-circe-regular;
+            font-size: 20px;
+            color: $color-globus-cream;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background: rgba($color-globus-sand, 0.15);
+            }
+
+            &._hidden {
+                display: none;
+            }
+        }
+
+        .tourists-dropdown {
+            max-height: none;
+            padding: 20px;
+        }
+
+        .tourists-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tourist-type {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tourist-label {
+            @include font-circe-regular;
+            font-size: 18px;
+            color: $color-globus-cream;
+            flex: 1;
+        }
+
+        .tourist-counter {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .counter-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid $color-globus-sand;
+            background: transparent;
+            color: $color-globus-cream;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            &:hover {
+                background: rgba($color-globus-sand, 0.2);
+            }
+
+            &:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+        }
+
+        .counter-value {
+            @include font-circe-regular;
+            font-size: 20px;
+            color: $color-globus-cream;
+            min-width: 20px;
+            text-align: center;
         }
     }
 </style>

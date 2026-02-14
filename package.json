@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "astro": "^5.17.1",
+    "flatpickr": "^4.6.13",
     "globby": "^16.1.0",
     "gsap": "^3.14.2",
     "photoswipe": "^5.4.4",

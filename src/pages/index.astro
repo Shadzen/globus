@@ -6,9 +6,10 @@ import TourCollections from '@/components/main/TourCollections.astro'
 import GlobusNews from '@/components/main/GlobusNews.astro'
 import AboutUs from '@/components/main/AboutUs.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Глобус Тур">
+<Layout title={COMPANY_NAME}>
     <MainHero userType="tourist" />
     <SearchForm />
     <TourCollections />
