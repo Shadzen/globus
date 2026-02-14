@@ -71,7 +71,7 @@ const cards: TourCard[] = [
 ---
 
 <section class="tour-collections">
-    <div class="tour-collections-container">
+    <div class="section-container">
         <div class="collections-header">
             <h2 class="collections-title">Коллекция туров</h2>
 
@@ -108,14 +108,13 @@ const cards: TourCard[] = [
 <style lang="scss" is:global>
     .tour-collections {
         background: $color-main;
-        @include adaptive(margin-top, 128, 40);
+        @include adaptive(margin-top, 120, 60);
 
-        .tour-collections-container {
-            position: relative;
-            width: 100%;
+        .section-container {
             @include flex-center;
             flex-direction: column;
-            @include adaptive(gap, 40, 40);
+            @include adaptive(gap, 20, 20);
+            padding: 0;
         }
 
         .collections-header {
@@ -125,17 +124,14 @@ const cards: TourCard[] = [
 
         .collections-nav {
             @include center-y;
-            @include adaptive(right, 100, 15);
-
-            @include mobile {
-                right: 0;
-            }
+            @include adaptive(right, 100, 0);
         }
 
         .collections-grid-wrapper {
             position: relative;
             width: 100%;
             overflow: hidden;
+            @include adaptive(padding-top, 20, 20);
         }
 
         .collections-grid {
@@ -150,15 +146,13 @@ const cards: TourCard[] = [
             position: relative;
             flex-shrink: 0;
             cursor: pointer;
-            transition: transform 0.3s;
             height: auto;
             @include adaptive(max-width, 317, 260);
+            @include hover-card-default;
 
             &:hover {
-                transform: translateY(-8px);
-
                 .card-overlay {
-                    background-color: rgba(0, 0, 0, 0.6) !important;
+                    background-color: rgba($color-globus-blue, 0.6) !important;
                 }
             }
 
@@ -197,7 +191,7 @@ const cards: TourCard[] = [
         .card-title {
             @include center-xy;
             line-height: 1.2;
-            color: #fff;
+            color: $color-globus-cream;
             text-transform: uppercase;
             text-align: center;
             &._font-circle {

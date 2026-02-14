@@ -224,6 +224,14 @@
     }
 }
 
+@mixin hover-card-default {
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-4px);
+    }
+}
+
 @mixin mobile {
     @media screen and (max-width: #{$mobile-width}px) {
         @content;

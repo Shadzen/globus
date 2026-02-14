@@ -44,7 +44,7 @@ const advantages: Advantage[] = [
 ---
 
 <section class="about-us">
-    <div class="about-us-container">
+    <div class="section-container">
         <h2 class="about-title">
             <span>ваш идеальный отдых</span>
             <span>начинается здесь!</span>
@@ -81,7 +81,7 @@ const advantages: Advantage[] = [
                     </p>
                 </div>
                 <br />
-                <a href="#" class="about-button">Подробнее о нас</a>
+                <a href="#" class="button _sized">Подробнее о нас</a>
             </div>
         </div>
 
@@ -105,14 +105,9 @@ const advantages: Advantage[] = [
 
 <style lang="scss" is:global>
     .about-us {
-        background: $color-main;
-        @include adaptive(margin-top, 164, 100);
-        // @include adaptive(padding-bottom, 88, 40);
-        @include side-paddings;
+        @include adaptive(margin-top, 120, 60);
 
-        .about-us-container {
-            position: relative;
-            width: 100%;
+        .section-container {
             @include flex-center;
             flex-direction: column;
             @include adaptive(gap, 64, 40);
@@ -180,21 +175,15 @@ const advantages: Advantage[] = [
 
         .years-title,
         .tourists-title {
-            @include font-kudry-sans;
             @include adaptive(font-size, 60, 38);
-            font-weight: 300;
-            line-height: 1.21;
-            color: $color-accent;
-            text-transform: uppercase;
             @include adaptive(margin-top, 48, 36);
-            margin-bottom: 0;
         }
 
         .about-text {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
-            color: $color-alternate;
+            color: $color-globus-blue;
             font-weight: 400;
             width: 90%;
         }
@@ -202,7 +191,7 @@ const advantages: Advantage[] = [
         .about-image {
             align-self: center;
             width: 100%;
-            @include adaptive(height, 359, 230);
+            @include adaptive(height, 359, 231);
             overflow: hidden;
         }
 
@@ -214,10 +203,8 @@ const advantages: Advantage[] = [
             display: block;
         }
 
-        .about-button {
-            @include adaptive(width, 300, 240);
-            @include adaptive(height, 60, 60);
-            @include button-default;
+        .button {
+            @include adaptive(width, 300, 100%);
         }
 
         .advantages-grid {
@@ -251,7 +238,6 @@ const advantages: Advantage[] = [
             @include mobile {
                 text-align: left;
                 align-items: flex-start;
-                // justify-content: flex-start;
             }
         }
 
@@ -286,16 +272,12 @@ const advantages: Advantage[] = [
             @include font-circe-regular;
             @include adaptive(font-size, 24, 18);
             line-height: 1.2;
-            color: $color-accent;
+            color: $color-globus-sand;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 2.4, 1.8);
             font-weight: 400;
             margin: 0;
-            @include adaptive(min-height, 58, 15);
-
-            @include mobile {
-                min-height: 0;
-            }
+            @include adaptive(min-height, 58, 0);
             @include flex-center;
         }
 
@@ -303,7 +285,7 @@ const advantages: Advantage[] = [
             @include font-circe-regular;
             @include adaptive(font-size, 20, 16);
             line-height: 1.2;
-            color: #667c89;
+            color: $color-globus-light-blue;
             font-weight: 400;
             width: 70%;
         }

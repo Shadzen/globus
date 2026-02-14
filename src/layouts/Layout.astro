@@ -69,11 +69,6 @@ const base = import.meta.env.BASE_URL
         }
     }
 
-    a {
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
     html {
         position: relative;
         height: 100%;
@@ -116,7 +111,8 @@ const base = import.meta.env.BASE_URL
     }
 
     h1,
-    h2 {
+    h2,
+    h3 {
         margin: 0;
         @include font-kudry-sans;
         text-transform: uppercase;
@@ -145,8 +141,19 @@ const base = import.meta.env.BASE_URL
         }
     }
 
+    h3 {
+        color: $color-globus-sand;
+        line-height: 1.2;
+        @include adaptive(font-size, 22, 26);
+    }
+
     p {
         margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        white-space: nowrap;
     }
 
     .button {
@@ -164,12 +171,12 @@ const base = import.meta.env.BASE_URL
     .hotel-badge {
         @include flex-center;
         background: rgba(0, 0, 0, 0.4);
-        border: 1px solid $color-accent;
+        border: 1px solid $color-globus-sand;
         border-radius: 500px;
         @include adaptive(padding-left, 40, 20);
         @include adaptive(padding-right, 40, 20);
         @include font-circe-light;
-        color: $color-main;
+        color: $color-globus-cream;
         line-height: 1.2;
         @include adaptive(font-size, 26, 18);
 
@@ -182,7 +189,7 @@ const base = import.meta.env.BASE_URL
         @include adaptive(width, 12, 10);
         @include adaptive(height, 12, 10);
         border-radius: 50%;
-        background-color: $color-accent;
+        background-color: $color-globus-sand;
         flex-shrink: 0;
     }
 
@@ -202,7 +209,7 @@ const base = import.meta.env.BASE_URL
     .divider {
         width: 100%;
         height: 1px;
-        background-color: $color-accent;
+        background-color: $color-globus-sand;
     }
 
     .swiper {
@@ -307,7 +314,7 @@ const base = import.meta.env.BASE_URL
 
         .hero-subtitle-link {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: $color-globus-blue;
             text-decoration: underline;
             text-decoration-skip-ink: none;
             transition: opacity 0.3s;
@@ -548,7 +555,9 @@ const base = import.meta.env.BASE_URL
             background: $color-globus-grey !important;
             border-color: transparent !important;
             color: $color-globus-cream !important;
-            box-shadow: -5px 0 0 $color-globus-grey, 5px 0 0 $color-globus-grey !important;
+            box-shadow:
+                -5px 0 0 $color-globus-grey,
+                5px 0 0 $color-globus-grey !important;
         }
 
         // &.disabled,

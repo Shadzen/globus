@@ -107,7 +107,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 @include adaptive(padding-top, 110, 110);
                 @include adaptive(padding-bottom, 40, 40);
                 flex-direction: column;
-                background-color: $color-alternate;
+                background-color: $color-globus-blue;
                 z-index: 999;
                 transform: translateX(100%);
                 transition: transform var(--menu-animation-duration) ease-in-out;
@@ -121,9 +121,8 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         .user-type {
             @include flex-center-between;
             border-style: solid;
-            border-color: $color-accent;
+            border-color: $color-globus-sand;
             @include adaptive(border-width, 2, 2);
-            border-radius: 50px;
 
             &._tourist {
                 border-left: none;
@@ -132,6 +131,9 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             &._agent {
                 border-right: none;
             }
+
+            border-radius: 50px;
+            // box-shadow: inset -1px 1px 0px $color-globus-sand, inset 1px -1px 0px $color-globus-sand, inset 1px 1px 0px $color-globus-sand, inset -1px -1px 0px $color-globus-sand;
 
             @include mobile {
                 width: 100%;
@@ -148,13 +150,13 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 18, 22);
             line-height: 1.3;
-            color: $color-main;
+            color: $color-globus-cream;
             background: transparent;
             transition: all 0.3s;
             opacity: 0.4;
 
             &._active {
-                background: $color-accent;
+                background: $color-globus-sand;
                 opacity: 1;
             }
 
@@ -171,10 +173,12 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             position: relative;
             @include flex-center-between;
             @include adaptive(gap, 30, 20);
+            @include adaptive(padding-left, 50, 0);
+            @include adaptive(padding-right, 50, 0);
+            @include adaptive(padding-top, 0, 30);
+            @include adaptive(padding-bottom, 0, 30);
 
             @include desktop {
-                @include adaptive(padding-left, 50, 50);
-                @include adaptive(padding-right, 50, 50);
                 flex: 1;
             }
 
@@ -182,26 +186,21 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 flex-direction: column;
                 align-items: flex-start;
                 width: 100%;
-                @include adaptive(padding-top, 30, 30);
-                @include adaptive(padding-bottom, 30, 30);
-                // @include adaptive(gap, 36, 36);
             }
 
             a {
                 @include font-circe-regular;
                 @include adaptive(font-size, 20, 22);
                 line-height: 1.2;
-                color: $color-main;
+                color: $color-globus-cream;
                 opacity: 0.6;
                 transition: opacity 0.3s;
 
                 @include mobile {
-                    // @include adaptive(font-size, 24, 20);
-                    // text-align: center;
                     width: 100%;
-                    color: #fff;
+                    color: $color-globus-cream;
                     opacity: 1;
-                    border-bottom: 1px solid $color-accent;
+                    border-bottom: 1px solid $color-globus-sand;
                     line-height: 2.2;
                 }
 
@@ -250,16 +249,16 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include adaptive(padding-right, 18, 18);
 
             border-style: solid;
-            border-color: $color-accent;
+            border-color: $color-globus-sand;
             @include adaptive(border-width, 2, 2);
             // @include adaptive(border-radius, 25, 25);
             border-radius: 50px;
 
-            background: $color-accent;
+            background: $color-globus-sand;
             @include font-circe-regular;
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
@@ -282,7 +281,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include adaptive(font-size, 28, 28);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
 
             @include mobile {
@@ -330,7 +329,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 display: block;
                 width: 100%;
                 @include adaptive(height, $line-height, $line-height);
-                background-color: $color-main;
+                background-color: $color-globus-cream;
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
                 transition: background-color var(--menu-animation-duration) ease-in-out;
@@ -425,29 +424,29 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         &._dark-text {
             .user-type-btn {
                 &:not(._active) {
-                    color: $color-alternate;
+                    color: $color-globus-blue;
 
                     @include mobile {
-                        color: $color-main;
+                        color: $color-globus-cream;
                     }
                 }
             }
 
             .nav-menu {
                 a {
-                    color: $color-alternate;
+                    color: $color-globus-blue;
 
                     @include mobile {
-                        color: #fff;
+                        color: $color-globus-cream;
                     }
                 }
             }
 
             .phone {
-                color: $color-alternate;
+                color: $color-globus-blue;
 
                 @include mobile {
-                    color: $color-main;
+                    color: $color-globus-cream;
                 }
             }
 
@@ -455,17 +454,17 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 @include mobile {
                     // Когда меню закрыто - темные полоски
                     span {
-                        background-color: $color-alternate;
+                        background-color: $color-globus-blue;
                     }
 
                     // Когда меню открыто - светлые полоски
                     &._active span {
-                        background-color: $color-main;
+                        background-color: $color-globus-cream;
                     }
 
                     // Когда меню закрывается - обратно темные
                     &._initialized:not(._active) span {
-                        background-color: $color-alternate;
+                        background-color: $color-globus-blue;
                     }
                 }
             }
