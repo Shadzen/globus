@@ -4,28 +4,41 @@ interface BulletItem {
     text: string
 }
 
+type BulletItemOrString = BulletItem | string
+
 interface Props {
     title: string
-    items: BulletItem[]
+    items: BulletItemOrString[]
     dark?: boolean
-    columns?: 1 | 2
+    columns?: 1 | 2 | 3
+    titleSize?: 'h2' | 'h3'
+    compactGap?: boolean
 }
 
-const { title, items, dark = true, columns = 2 } = Astro.props
+const { title, items, dark = true, columns = 2, titleSize = 'h2', compactGap = false } = Astro.props
+
+// Normalize items to always be objects
+const normalizedItems = items.map(item =>
+    typeof item === 'string' ? { text: item } : item,
+)
 ---
 
-<section class="bullet-list-section" data-dark={dark}>
-    <div class="bullet-list-container">
-        <h2 class="bullet-list-title">{title}</h2>
+<section class="bullet-list-section" data-dark={dark} data-title-size={titleSize}>
+    <div class="section-container">
+        {titleSize === 'h2' ? (
+            <h2 class="bullet-list-title">{title}</h2>
+        ) : (
+            <h3 class="bullet-list-title">{title}</h3>
+        )}
 
-        <div class="bullet-list-grid" data-columns={columns}>
+        <div class="bullet-list-grid" data-columns={columns} data-compact-gap={compactGap}>
             {
-                items.map((item) => (
+                normalizedItems.map((item) => (
                     <div class="bullet-list-item">
                         <span class="bullet" />
                         <div class="bullet-list-content">
                             {item.title && <h3 class="bullet-list-item-title">{item.title}</h3>}
-                            <p class="bullet-list-text">{item.text}</p>
+                            <p class="bullet-list-text" set:html={item.text} />
                         </div>
                     </div>
                 ))
@@ -37,7 +50,7 @@ const { title, items, dark = true, columns = 2 } = Astro.props
 <style lang="scss" is:global>
     .bullet-list-section {
         @include adaptive(margin-top, 120, 60);
-        background-color: $color-alternate;
+        background-color: $color-globus-blue;
         @include adaptive(padding-top, 70, 60);
         @include adaptive(padding-bottom, 70, 60);
 
@@ -46,18 +59,20 @@ const { title, items, dark = true, columns = 2 } = Astro.props
             margin-top: 0;
         }
 
-        .bullet-list-container {
-            @include side-paddings;
-            width: 100%;
+        .bullet-list-title {
+            color: $color-globus-cream;
+            text-align: center;
         }
 
-        .bullet-list-title {
-            color: $color-main;
+        &[data-title-size='h3'] {
+            .bullet-list-title {
+                @include adaptive(font-size, 28, 26);
+            }
         }
 
         &[data-dark='false'] {
             .bullet-list-title {
-                color: $color-alternate;
+                color: $color-globus-blue;
             }
         }
 
@@ -68,8 +83,16 @@ const { title, items, dark = true, columns = 2 } = Astro.props
             @include adaptive(row-gap, 45, 30);
             @include adaptive(column-gap, 90, 30);
 
+            &[data-compact-gap='true'] {
+                @include adaptive(row-gap, 20, 20);
+            }
+
             &[data-columns='1'] {
                 grid-template-columns: 1fr;
+            }
+
+            &[data-columns='3'] {
+                grid-template-columns: repeat(3, 1fr);
             }
 
             @include mobile {
@@ -97,7 +120,7 @@ const { title, items, dark = true, columns = 2 } = Astro.props
         .bullet-list-item-title {
             @include font-circe-regular;
             font-style: normal;
-            color: $color-main;
+            color: $color-globus-cream;
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
             margin: 0;
@@ -109,7 +132,7 @@ const { title, items, dark = true, columns = 2 } = Astro.props
 
         &[data-dark='false'] {
             .bullet-list-item-title {
-                color: $color-alternate;
+                color: $color-globus-blue;
             }
         }
 
@@ -121,13 +144,31 @@ const { title, items, dark = true, columns = 2 } = Astro.props
             line-height: 1.2;
             margin: 0;
             white-space: pre-line;
+
+            a {
+                color: inherit;
+                text-decoration: underline;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $color-globus-sand;
+                }
+            }
         }
 
         &[data-dark='true'] {
             .bullet-list-text {
-                color: $color-main;
+                color: $color-globus-cream;
                 @include adaptive(font-size, 26, 20);
                 line-height: 1.2;
+            }
+        }
+
+        &[data-dark='false'] {
+            .bullet-list-text {
+                color: $color-globus-blue;
+                @include adaptive(font-size, 20, 18);
+                font-weight: 400;
             }
         }
     }

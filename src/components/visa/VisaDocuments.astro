@@ -1,123 +1,27 @@
 ---
-const leftColumnDocs = [
+import BulletList from '@/components/common/BulletList.astro'
+
+const visaDocuments = [
     'Действующий загранпаспорт, действительный как минимум 3 месяца после окончания поездки оригинал + копии всех страниц с отметками (штампы, визы). Внимание! В паспорте должны быть как минимум 2 чистые страницы.',
     'Второй действующий загранпаспорт (Если есть) оригинал + копии всех страниц с отметками (штампы, визы).',
     'Аннулированный загранпаспорт (Если в нем есть шенгенские визы за последние 3 года) + копии всех страниц с отметками (штампы, визы)',
     'Две цветные фотографии, на белом фоне, без уголков, размером 3 × 5 мм, лицо должно занимать 70–80% фотографии. Фото должно быть не старше 6 месяцев и не использоваться на ранее выданных визах',
     'Копии всех страниц с отметками внутреннего паспорта (на подачу нужен оригинал)',
     'Справка с места работы на фирменном бланке предприятия с указанием должности, стажа и среднемесячной заработной платы. Срок действия справки — 1 месяц с момента получения.',
-]
-
-const rightColumnDocs = [
     '2-НДФЛ за последний отчётный период.',
     'Выписка из пенсионного и социального страхования за последние 10 лет',
     'Выписка о состоянии банковского счета с движением средств за последние 3 месяца (из расчёта 70 евро на человека в сутки). Справка действительна 1 месяц с момента получения;',
     'Документы по цели поездки:<br />по туризму: ваучер от отеля с подтверждением оплаты + авиабилеты — должен быть весь маршрут из России в Грецию и обратно;<br />по приглашению: приглашение от гражданина Греции + документ, подтверждающий личность приглашающего, выписка из налоговой приглашающего лица, при наличии подтверждение родства с приглашающим + авиабилеты — должен быть весь маршрут из России в Грецию и обратно',
     'Копии всех страниц с отметками внутреннего паспорта (на подачу нужен оригинал)',
+    '<a href="https://docs.google.com/document/d/1ielwICBOAUOkQX-uK68dWVnLglYbKe8B/edit?usp=drive_link&ouid=116904030844060246952&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Опросный лист</a> (Заполняется на русском языке)',
 ]
-
-const specialDoc = '<a href="https://docs.google.com/document/d/1ielwICBOAUOkQX-uK68dWVnLglYbKe8B/edit?usp=drive_link&ouid=116904030844060246952&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="visa-documents-link">Опросный лист</a> (Заполняется на русском языке)'
 ---
 
-<section class="visa-documents-section">
-    <div class="visa-documents-container">
-        <h3 class="visa-documents-title">Список документов на туристическую визу:</h3>
-
-        <div class="visa-documents-columns">
-            <ul class="visa-documents-list">
-                {
-                    leftColumnDocs.map((doc) => (
-                        <li class="visa-documents-item" set:html={doc} />
-                    ))
-                }
-            </ul>
-
-            <ul class="visa-documents-list">
-                {
-                    rightColumnDocs.map((doc) => (
-                        <li class="visa-documents-item" set:html={doc} />
-                    ))
-                }
-                <li class="visa-documents-item" set:html={specialDoc} />
-            </ul>
-        </div>
-    </div>
-</section>
-
-<style lang="scss" is:global>
-    .visa-documents-section {
-        @include adaptive(margin-top, 80, 60);
-
-        .visa-documents-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .visa-documents-title {
-            @include font-kudry-sans;
-            color: $color-alternate;
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            text-align: center;
-            margin: 0;
-            font-weight: 300;
-        }
-
-        .visa-documents-columns {
-            display: grid;
-            @include adaptive(margin-top, 60, 40);
-
-            @include desktop {
-                grid-template-columns: 1fr 1fr;
-                @include adaptive(gap, 80, 60);
-            }
-
-            @include mobile {
-                grid-template-columns: 1fr;
-                @include adaptive(gap, 40, 30);
-            }
-        }
-
-        .visa-documents-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 24, 20);
-        }
-
-        .visa-documents-item {
-            @include font-circe-regular;
-            color: $color-alternate;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            font-weight: 400;
-            position: relative;
-            @include adaptive(padding-left, 35, 20);
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                @include adaptive(top, 7, 6);
-                @include adaptive(width, 12, 10);
-                @include adaptive(height, 12, 10);
-                background-color: $color-accent;
-                border-radius: 50%;
-                flex-shrink: 0;
-            }
-        }
-
-        .visa-documents-link {
-            color: $color-alternate;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: $color-accent;
-            }
-        }
-    }
-</style>
+<BulletList
+    title="Список документов на туристическую визу:"
+    items={visaDocuments}
+    dark={false}
+    columns={2}
+    titleSize="h3"
+    compactGap={true}
+/>
