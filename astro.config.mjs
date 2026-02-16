@@ -7,27 +7,31 @@ import path from 'path'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV !== 'production'
 
-// Интеграция: собираем весь клиентский JS в один файл main.js
-function singleChunkIntegration() {
+// Vite-плагин: собираем весь клиентский JS в один чанк main.js
+// Применяется только к client build (не SSR)
+function singleChunkPlugin() {
+    let isSSR = false
     return {
         name: 'single-chunk',
-        hooks: {
-            'astro:build:setup': ({ vite, target }) => {
-                if (target === 'client') {
-                    vite.build ??= {}
-                    vite.build.rollupOptions ??= {}
-                    vite.build.rollupOptions.output ??= {}
-                    const output = Array.isArray(vite.build.rollupOptions.output)
-                        ? vite.build.rollupOptions.output[0]
-                        : vite.build.rollupOptions.output
-                    output.manualChunks = (id) => {
-                        if (id.includes('\0')) return
-                        if (id.includes('node_modules') || id.includes('src/')) {
-                            return 'main'
-                        }
+        configResolved(config) {
+            isSSR = !!config.build.ssr
+        },
+        outputOptions(options) {
+            if (!isSSR) {
+                options.manualChunks = (id) => {
+                    if (id.includes('\0') || id.includes('?')) return
+                    if (id.includes('src/scripts/')) return 'main'
+                    if (
+                        id.includes('node_modules/swiper') ||
+                        id.includes('node_modules/gsap') ||
+                        id.includes('node_modules/flatpickr') ||
+                        id.includes('node_modules/photoswipe')
+                    ) {
+                        return 'main'
                     }
                 }
-            },
+            }
+            return options
         },
     }
 }
@@ -37,13 +41,13 @@ export default defineConfig({
     devToolbar: {
         enabled: false,
     },
-    integrations: [singleChunkIntegration()],
     base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
     compressHTML: false,
     build: {
         inlineStylesheets: 'never',
     },
     vite: {
+        plugins: [singleChunkPlugin()],
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src'),

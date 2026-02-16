@@ -13,19 +13,11 @@ async function fix() {
     const assetsDir = path.join(distDir, 'assets')
     const base = process.env.GITHUB_ACTIONS ? '/globus/' : '/'
 
-    const files = fs.readdirSync(assetsDir)
-    const mainFile = files.find((f) => f.includes('main') && f.endsWith('.js'))
+    const mainPath = path.join(assetsDir, 'main.js')
 
-    if (!mainFile) {
+    if (!fs.existsSync(mainPath)) {
         console.log('❌ Бандл main.js не найден.')
         return
-    }
-
-    // Переименовываем если нужно
-    if (mainFile !== 'main.js') {
-        if (fs.existsSync(path.join(assetsDir, 'main.js')))
-            fs.unlinkSync(path.join(assetsDir, 'main.js'))
-        fs.renameSync(path.join(assetsDir, mainFile), path.join(assetsDir, 'main.js'))
     }
 
     // Считаем хеши для версионирования
