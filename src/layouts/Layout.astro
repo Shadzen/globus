@@ -258,7 +258,7 @@ const base = import.meta.env.BASE_URL
 
             &._overlay-gradient {
                 &::after {
-                    background: linear-gradient(180deg, #00273f -14.94%, rgba(0, 39, 63, 0) 48.28%);
+                    background: linear-gradient(180deg, #00273f -15%, rgba(0, 39, 63, 0) 50%);
                 }
             }
 
@@ -267,13 +267,13 @@ const base = import.meta.env.BASE_URL
                     background:
                         linear-gradient(
                             180deg,
-                            rgba(0, 39, 63, 0.04) 34.3%,
-                            rgba(0, 39, 63, 0.75) 80.94%
+                            rgba(0, 39, 63, 0.04) 35%,
+                            rgba(0, 39, 63, 0.75) 80%
                         ),
                         linear-gradient(
                             180deg,
-                            rgba(0, 39, 63, 0.46) -14.94%,
-                            rgba(0, 39, 63, 0) 48.28%
+                            rgba(0, 39, 63, 0.46) 0%,
+                            rgba(0, 39, 63, 0) 70%
                         );
                 }
             }
@@ -359,6 +359,18 @@ const base = import.meta.env.BASE_URL
                 .hero-subtitle {
                     color: $color-globus-blue;
                 }
+            }
+        }
+
+        &._type-screen {
+            height: 100dvh;
+
+            .hero-title {
+                line-height: 1.1;
+            }
+
+            .button {
+                margin-top: auto;
             }
         }
 

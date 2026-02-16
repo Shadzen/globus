@@ -64,7 +64,7 @@ const hotels: Hotel[] = [
 ---
 
 <section class="best-hotels">
-    <div class="section-container">
+    <div class="section-container _overflow-cards">
         <div class="best-hotels-header">
             <div class="header-content">
                 <h2 class="section-title">Наши<br />специалисты</h2>
@@ -202,14 +202,19 @@ const hotels: Hotel[] = [
     .best-hotels {
         @include adaptive(margin-top, 70, 60);
 
+        .section-container {
+            gap: 0 !important;
+        }
+
         .best-hotels-header {
+            width: 100%;
             position: relative;
             @include side-paddings;
 
             .header-content {
                 display: flex;
-                @include adaptive(gap, 22, 22);
-                justify-content: space-between;
+                @include adaptive(gap, 66, 22);
+                justify-content: flex-end;
 
                 @include mobile {
                     flex-direction: column;

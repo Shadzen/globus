@@ -62,10 +62,15 @@ const { hotels } = Astro.props
 
 <style lang="scss" is:global>
     .hotels-nav-wrapper {
+        width: 100%;
         display: flex;
         justify-content: flex-end;
         @include adaptive(margin-top, 38, 0);
         @include side-paddings;
+
+        @include mobile {
+            display: none;
+        }
     }
 
     .hotels-slider-wrapper {

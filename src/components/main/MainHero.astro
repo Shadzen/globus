@@ -11,17 +11,15 @@ interface Props {
 const { userType = 'tourist' } = Astro.props
 ---
 
-<section class="hero-section main-hero">
+<section class="hero-section main-hero _type-screen">
     <picture class="hero-bg _overlay-gradient">
         <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
     <div class="hero-content">
-        <div class="hero-title">
-            <h1>искусство</h1>
-            <h1>открывать</h1>
-            <h1>мир</h1>
-        </div>
+        <h1 class="hero-title">искусство</h1>
+        <h1 class="hero-title">открывать</h1>
+        <h1 class="hero-title">мир</h1>
         {userType === 'tourist' && (
             <button class="button _sized" type="button" aria-label="Подобрать тур">
                 Подобрать тур
@@ -32,21 +30,19 @@ const { userType = 'tourist' } = Astro.props
 
 <style lang="scss" is:global>
     .main-hero {
-        @include adaptive(height, 1044, 972);
-        @include adaptive(padding-top, 384, 148);
-        @include adaptive(padding-bottom, 10, 144);
+        @include adaptive(padding-top, 425, 150);
+        @include adaptive(padding-bottom, 0, 75);
 
         .hero-content {
-            @include flex-start-between;
-            h1:nth-child(2) {
+            .hero-title:nth-child(2) {
                 @include adaptive(padding-left, 140, 80);
             }
 
-            h1:nth-child(3) {
+            .hero-title:nth-child(3) {
                 @include adaptive(padding-left, 10, 10);
             }
 
-            h1:nth-child(4) {
+            .hero-title:nth-child(4) {
                 @include adaptive(padding-left, 240, 120);
             }
         }
