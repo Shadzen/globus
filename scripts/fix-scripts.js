@@ -1,60 +1,60 @@
 import fs from 'fs'
 import path from 'path'
+import crypto from 'crypto'
 import { globby } from 'globby'
+
+function fileHash(filePath) {
+    const content = fs.readFileSync(filePath)
+    return crypto.createHash('md5').update(content).digest('hex').slice(0, 8)
+}
 
 async function fix() {
     const distDir = 'dist'
     const assetsDir = path.join(distDir, 'assets')
+    const base = process.env.GITHUB_ACTIONS ? '/globus/' : '/'
 
     const files = fs.readdirSync(assetsDir)
-    const gsapFile = files.find((f) => f.includes('gsap') && f.endsWith('.js'))
     const mainFile = files.find((f) => f.includes('main') && f.endsWith('.js'))
 
-    if (!gsapFile || !mainFile) {
-        console.log('❌ Бандлы не найдены.')
+    if (!mainFile) {
+        console.log('❌ Бандл main.js не найден.')
         return
     }
 
-    // Переименовываем
-    if (gsapFile !== 'gsap.js') {
-        if (fs.existsSync(path.join(assetsDir, 'gsap.js')))
-            fs.unlinkSync(path.join(assetsDir, 'gsap.js'))
-        fs.renameSync(path.join(assetsDir, gsapFile), path.join(assetsDir, 'gsap.js'))
-    }
+    // Переименовываем если нужно
     if (mainFile !== 'main.js') {
         if (fs.existsSync(path.join(assetsDir, 'main.js')))
             fs.unlinkSync(path.join(assetsDir, 'main.js'))
         fs.renameSync(path.join(assetsDir, mainFile), path.join(assetsDir, 'main.js'))
     }
 
+    // Считаем хеши для версионирования
+    const jsHash = fileHash(path.join(assetsDir, 'main.js'))
+    const cssPath = path.join(assetsDir, 'style.css')
+    const cssHash = fs.existsSync(cssPath) ? fileHash(cssPath) : null
+
     // Правим все HTML
     const htmlFiles = await globby(`${distDir}/**/*.html`)
     for (const file of htmlFiles) {
         let content = fs.readFileSync(file, 'utf8')
 
-        // Заменяем ЛЮБЫЕ ссылки на JS в папке assets на наши два файла
+        // Удаляем все script-теги, ссылающиеся на JS из папки assets
         content = content.replace(
-            /<script[^>]*src="[^"]*assets\/[^"]*gsap[^"]*"[^>]*><\/script>/g,
-            ''
-        )
-        content = content.replace(
-            /<script[^>]*src="[^"]*assets\/[^"]*Layout[^"]*"[^>]*><\/script>/g,
-            ''
-        )
-        content = content.replace(
-            /<script[^>]*src="[^"]*assets\/[^"]*Footer[^"]*"[^>]*><\/script>/g,
-            ''
-        )
-        content = content.replace(
-            /<script[^>]*src="[^"]*assets\/[^"]*main[^"]*"[^>]*><\/script>/g,
+            /<script[^>]*src="[^"]*assets\/[^"]*\.js[^"]*"[^>]*><\/script>/g,
             ''
         )
 
-        // Добавляем наши чистые ссылки перед закрывающим тегом body (в футер)
-        const base = process.env.GITHUB_ACTIONS ? '/globus/' : '/'
+        // Добавляем версию к CSS
+        if (cssHash) {
+            content = content.replace(
+                /(<link[^>]*href="[^"]*assets\/style\.css)(")/g,
+                `$1?v=${cssHash}$2`,
+            )
+        }
+
+        // Добавляем единственный скрипт с версией перед закрывающим тегом body
         const cleanScripts = `
-    <script type="module" src="${base}assets/gsap.js"></script>
-    <script type="module" src="${base}assets/main.js"></script>
+    <script type="module" src="${base}assets/main.js?v=${jsHash}"></script>
     </body>`
 
         content = content.replace('</body>', cleanScripts)
@@ -62,17 +62,19 @@ async function fix() {
         fs.writeFileSync(file, content)
     }
 
-    // Чистим папку assets от всех JS кроме наших и удаляем папку astro
+    // Чистим папку assets от всех JS кроме main.js и удаляем папку astro
     fs.readdirSync(assetsDir).forEach((f) => {
         const fullPath = path.join(assetsDir, f)
         if (fs.lstatSync(fullPath).isDirectory()) {
             if (f === 'astro') {
                 fs.rmSync(fullPath, { recursive: true, force: true })
             }
-        } else if (f.endsWith('.js') && f !== 'gsap.js' && f !== 'main.js') {
+        } else if (f.endsWith('.js') && f !== 'main.js') {
             fs.unlinkSync(fullPath)
         }
     })
+
+    console.log(`✅ Готово: main.js?v=${jsHash}` + (cssHash ? `, style.css?v=${cssHash}` : ''))
 }
 
 fix()

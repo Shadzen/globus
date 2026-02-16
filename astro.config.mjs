@@ -7,11 +7,37 @@ import path from 'path'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV !== 'production'
 
+// Интеграция: собираем весь клиентский JS в один файл main.js
+function singleChunkIntegration() {
+    return {
+        name: 'single-chunk',
+        hooks: {
+            'astro:build:setup': ({ vite, target }) => {
+                if (target === 'client') {
+                    vite.build ??= {}
+                    vite.build.rollupOptions ??= {}
+                    vite.build.rollupOptions.output ??= {}
+                    const output = Array.isArray(vite.build.rollupOptions.output)
+                        ? vite.build.rollupOptions.output[0]
+                        : vite.build.rollupOptions.output
+                    output.manualChunks = (id) => {
+                        if (id.includes('\0')) return
+                        if (id.includes('node_modules') || id.includes('src/')) {
+                            return 'main'
+                        }
+                    }
+                }
+            },
+        },
+    }
+}
+
 // https://astro.build/config
 export default defineConfig({
     devToolbar: {
         enabled: false,
     },
+    integrations: [singleChunkIntegration()],
     base: process.env.GITHUB_ACTIONS ? '/globus/' : '/',
     compressHTML: false,
     build: {
@@ -58,15 +84,6 @@ export default defineConfig({
                             return `assets/fonts/[name].[ext]`
                         }
                         return `assets/[name].[ext]`
-                    },
-                    // Принудительно создаем чанки с нужными именами
-                    manualChunks(id) {
-                        if (id.includes('node_modules/gsap') || id.includes('src/scripts/gsap.ts')) {
-                            return 'gsap'
-                        }
-                        if (id.includes('src/scripts/main.ts')) {
-                            return 'main'
-                        }
                     },
                 },
             },
