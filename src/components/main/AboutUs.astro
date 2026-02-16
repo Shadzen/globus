@@ -67,7 +67,7 @@ const advantages: Advantage[] = [
             </div>
 
             <div class="about-item">
-                <div class="about-image">
+                <div class="card-image">
                     <Image src={teamImage} alt="Команда Глобус Тур" loading="lazy" quality={100} />
                 </div>
             </div>
@@ -89,7 +89,7 @@ const advantages: Advantage[] = [
             {
                 advantages.map((advantage) => (
                     <div class="advantage-item">
-                        <div class="advantage-icon">
+                        <div class="svg-icon">
                             <img src={advantage.icon.src} alt="" />
                         </div>
                         <div class="advantage-item-content">
@@ -188,19 +188,9 @@ const advantages: Advantage[] = [
             width: 90%;
         }
 
-        .about-image {
+        .card-image {
             align-self: center;
-            width: 100%;
             @include adaptive(height, 359, 231);
-            overflow: hidden;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
         }
 
         .button {
@@ -244,22 +234,6 @@ const advantages: Advantage[] = [
         .advantage-item {
             @include mobile {
                 flex-direction: row;
-            }
-        }
-
-        .advantage-icon {
-            width: 100%;
-            @include adaptive(height, 80, 60);
-            @include flex-center;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-
-            @include mobile {
-                width: 22%;
             }
         }
 

@@ -87,13 +87,13 @@ const base = import.meta.env.BASE_URL
 ---
 
 <section class="globus-news">
-    <div class="section-container">
-        <h2 class="news-title">Глобус-News</h2>
+    <div class="section-container _overflow-cards">
+        <h2>Глобус-News</h2>
 
-        <div class="news-top-grid">
+        <div class="cards-top-grid">
             {
                 topCards.map((card) => (
-                    <a href="#" class="news-card news-card-top">
+                    <a href="#" class="card _interactive">
                         <span class="card-image">
                             <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
                         </span>
@@ -106,16 +106,16 @@ const base = import.meta.env.BASE_URL
             }
         </div>
 
-        <div class="news-dark-section">
-            <div class="news-dark-background">
-                <SwiperNavButtons containerClass="news-nav" />
+        <div class="stripe-section">
+            <div class="dark-stripe">
+                <SwiperNavButtons />
             </div>
 
-            <div class="news-bottom-grid-wrapper swiper">
-                <div class="news-bottom-grid swiper-wrapper">
+            <div class="cards-bottom-grid-wrapper swiper">
+                <div class="cards-bottom-grid swiper-wrapper">
                     {
                         bottomCards.map((card) => (
-                            <a href="#" class="news-card news-card-bottom swiper-slide">
+                            <a href="#" class="card _interactive _second swiper-slide">
                                 <span class="card-image">
                                     <Image
                                         src={card.image}
@@ -135,7 +135,7 @@ const base = import.meta.env.BASE_URL
             </div>
         </div>
 
-        <div class="news-button-wrapper">
+        <div class="button-wrapper">
             <a href={`${base}${userType}/news`} class="button _sized">Открыть глобус-news</a>
         </div>
     </div>
@@ -145,146 +145,49 @@ const base = import.meta.env.BASE_URL
     .globus-news {
         @include adaptive(margin-top, 120, 60);
 
-        .section-container {
-            @include flex-center;
-            flex-direction: column;
-            @include adaptive(gap, 72, 40);
-            padding: 0;
-        }
-
-        .news-top-grid {
-            @include side-paddings;
-            position: relative;
-            width: 100%;
-            display: flex;
-            @include adaptive(column-gap, 84, 15);
-            flex-wrap: wrap;
-            align-items: flex-start;
-            z-index: 10;
-
-            @include mobile {
-                flex-direction: column;
-                column-gap: 0;
-                @include adaptive(row-gap, 50, 50);
-            }
-        }
-
-        .news-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            white-space: normal;
-            flex-shrink: 0;
-            @include hover-card-default;
-        }
-
-        .news-card-top {
-            @include adaptive(gap, 22, 22);
-
-            .card-content {
-                @include adaptive(gap, 14, 20);
-            }
-
-            &:nth-child(1) {
-                @include adaptive(width, 54%, 100%);
-            }
-            &:nth-child(2) {
-                @include adaptive(width, 41.11%, 100%);
-                @include adaptive(margin-top, 80, 0);
-            }
-            &:nth-child(3) {
-                @include adaptive(width, 38.1%, 100%);
-                @include adaptive(margin-top, -48, 0);
-                @include adaptive(margin-left, 274, 0);
-
-                .card-category {
-                    color: $color-main;
+        .cards-top-grid {
+            .card {
+                &:nth-child(1) {
+                    @include adaptive(width, 54%, 100%);
                 }
+                &:nth-child(2) {
+                    @include adaptive(width, 41.11%, 100%);
+                    @include adaptive(margin-top, 80, 0);
+                }
+                &:nth-child(3) {
+                    @include adaptive(width, 38.1%, 100%);
+                    @include adaptive(margin-top, -48, 0);
+                    @include adaptive(margin-left, 274, 0);
 
-                .card-title {
-                    color: $color-main;
+                    .card-category {
+                        color: $color-main;
+                    }
+
+                    .card-title {
+                        color: $color-main;
+                    }
                 }
             }
         }
 
-        .news-card-bottom {
-            @include adaptive(gap, 22, 20);
+        .card._second {
             @include adaptive(max-width, 418, 351);
-
-            .card-content {
-                @include adaptive(gap, 22, 20);
-            }
         }
 
-        .card-image {
-            position: relative;
-            width: 100%;
-            @include adaptive(height, auto, 231);
-            overflow: hidden;
-
-            img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-        }
-
-        .card-content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-category {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 18);
-            line-height: 1.6;
-            color: $color-globus-light-blue;
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 2);
-            font-weight: 400;
-        }
-
-        .card-title {
-            @include adaptive(font-size, 28, 26);
-            color: $color-globus-blue;
-        }
-
-        .news-dark-section {
-            position: relative;
-            width: 100%;
+        .stripe-section {
             @include adaptive(margin-top, -376, -250);
-            overflow: hidden;
         }
 
-        .news-dark-background {
-            position: relative;
-            width: 100%;
+        .dark-stripe {
             @include adaptive(height, 630, 470);
-            background: $color-globus-blue;
-            @include side-paddings;
             @include flex-center-end;
         }
 
-        .news-bottom-grid-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            z-index: 10;
-            @include adaptive(padding-top, 20, 10);
+        .cards-bottom-grid-wrapper {
             @include adaptive(margin-top, -238, -210);
         }
 
-        .news-bottom-grid {
-            position: relative;
-            width: 100%;
-            display: flex;
-        }
-
-        .news-button-wrapper {
+        .button-wrapper {
             position: relative;
             width: 100%;
             @include flex-center;

@@ -3,7 +3,7 @@ import { initSlider } from '../swiperHelpers'
 
 export const initAboutInfo = () => {
     return initSlider({
-        containerSelector: '.team-grid-wrapper',
+        containerSelector: '.cards-bottom-grid-wrapper',
         parentSelector: '.about-info',
     })
 }

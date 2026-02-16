@@ -141,15 +141,14 @@ const tabs: ContactTab[] = [
             ))}
         </div>
 
-        <hr class="contacts-divider" />
+        <div class="divider"></div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .about-contacts {
-        background: $color-alternate;
+        background: $color-globus-blue;
         @include adaptive(padding-top, 80, 40);
-        // @include adaptive(padding-bottom, 80, 60);
 
         ~ .contact-form-section {
             margin-top: 0;
@@ -163,10 +162,8 @@ const tabs: ContactTab[] = [
 
         .about-contacts-title {
             text-align: left;
-            color: #fff;
+            color: $color-globus-cream;
         }
-
-        // ─── Табы ───
 
         .contacts-tabs-wrapper {
             position: relative;
@@ -175,7 +172,6 @@ const tabs: ContactTab[] = [
             flex-wrap: wrap;
             @include adaptive(margin-top, 26, 28);
 
-            // Labels всегда идут первыми через order
             .contacts-tab-label[data-order='1'] { order: 1; }
             .contacts-tab-label[data-order='2'] { order: 2; }
             .contacts-tab-label[data-order='3'] { order: 3; }
@@ -205,7 +201,7 @@ const tabs: ContactTab[] = [
             @include adaptive(padding-left, 48, 64);
             @include adaptive(padding-right, 48, 64);
             border-radius: 50px;
-            border: 1px solid $color-accent;
+            border: 1px solid $color-globus-sand;
             background: transparent;
             cursor: pointer;
             transition: all 0.3s;
@@ -216,32 +212,30 @@ const tabs: ContactTab[] = [
             @include adaptive(letter-spacing, 2.2, 3.6);
             text-transform: uppercase;
             text-align: center;
-            color: $color-accent;
+            color: $color-globus-sand;
 
             @include mobile {
                 width: 100%;
             }
 
             &:hover {
-                background: rgba($color-accent, 0.1);
+                background: rgba($color-globus-sand, 0.1);
             }
         }
 
-        // Активные состояния — label
         #contacts-tab-managers:checked ~ .contacts-tab-label[for='contacts-tab-managers'],
         #contacts-tab-visa:checked ~ .contacts-tab-label[for='contacts-tab-visa'],
         #contacts-tab-booking:checked ~ .contacts-tab-label[for='contacts-tab-booking'],
         #contacts-tab-leadership:checked ~ .contacts-tab-label[for='contacts-tab-leadership'] {
-            background: $color-accent;
-            color: white;
+            background: $color-globus-sand;
+            color: $color-globus-cream;
 
             &:hover {
-                background: $color-accent;
+                background: $color-globus-sand;
                 opacity: 0.9;
             }
         }
 
-        // Активные состояния — контент
         #contacts-tab-managers:checked ~ .contacts-tab-content[data-tab='managers'],
         #contacts-tab-visa:checked ~ .contacts-tab-content[data-tab='visa'],
         #contacts-tab-booking:checked ~ .contacts-tab-content[data-tab='booking'],
@@ -257,20 +251,15 @@ const tabs: ContactTab[] = [
             @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
-            color: $color-alternate;
+            color: $color-globus-blue;
             opacity: 0.5;
             text-align: center;
             @include adaptive(padding, 80, 60);
             width: 100%;
         }
 
-        // ─── Разделитель ───
-
-        .contacts-divider {
-            border: none;
-            border-top: 1px solid $color-accent;
-            @include adaptive(margin-top, 20, 40);
-            width: 100%;
+        .divider {
+            @include adaptive(margin-top, 20, 20);
         }
     }
 </style>

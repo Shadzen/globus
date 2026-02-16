@@ -109,7 +109,7 @@ const { userType = 'tourist' } = Astro.props
                     </label>
                 </div>
 
-                <button type="submit" class="form-submit">Отправить</button>
+                <button type="submit" class="button _sized">Отправить</button>
             </form>
         </div>
     </div>
@@ -118,17 +118,17 @@ const { userType = 'tourist' } = Astro.props
             <h2 class="contact-title">Открываем мир</h2>
 
             <div class="contact-agent-buttons">
-                <a href="tel:880020006578" class="contact-agent-btn">
+                <a href="tel:880020006578" class="button _sized _outline">
                     <img src={phoneIcon.src} alt="" />
                     <span>8 800 2000 6578</span>
                 </a>
 
-                <a href="mailto:info@globus-tour.ru" class="contact-agent-btn">
+                <a href="mailto:info@globus-tour.ru" class="button _sized _outline">
                     <img src={mailIcon.src} alt="" />
                     <span>info@globus-tour.ru</span>
                 </a>
 
-                <a href="#" class="contact-agent-btn">
+                <a href="#" class="button _sized _outline">
                     <img src={telegramIcon.src} alt="" />
                     <span>Группа в ТГ</span>
                 </a>
@@ -165,7 +165,7 @@ const { userType = 'tourist' } = Astro.props
 
 <style lang="scss" is:global>
     .contact-form-section {
-        background: $color-alternate;
+        background: $color-globus-blue;
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 98, 60);
         @include adaptive(padding-bottom, 98, 60);
@@ -193,12 +193,8 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-title {
-            color: #fff;
-            text-align: left;
-
-            @include mobile {
-                text-align: center;
-            }
+            color: $color-globus-cream;
+            @include adaptive(text-align, left, center);
         }
 
         .contact-info {
@@ -210,10 +206,9 @@ const { userType = 'tourist' } = Astro.props
         .contact-item {
             @include flex-center-start;
             @include adaptive(gap, 36, 14);
-            width: 74%;
+            @include adaptive(width, 74%, 100%);
 
             @include mobile {
-                width: 100%;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -235,10 +230,9 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-separator {
-            // width: 100%;
             height: 1px;
             flex: 1;
-            background: #CCA870;
+            background: $color-globus-sand;
 
             @include mobile {
                 display: none;
@@ -250,7 +244,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
             text-decoration: none;
             transition: opacity 0.3s;
@@ -267,8 +261,8 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .social-icon {
-            @include adaptive(width, 40, 32);
-            @include adaptive(height, 40, 32);
+            @include adaptive(width, 40, 45);
+            @include adaptive(height, 40, 45);
             display: block;
             transition: transform 0.3s;
 
@@ -287,16 +281,14 @@ const { userType = 'tourist' } = Astro.props
             position: relative;
             display: flex;
             align-items: center;
-            @include adaptive(width, 500, 500);
+            @include adaptive(width, 500, 100%);
             @include adaptive(height, 60, 64);
-            border: 1px solid $color-accent;
+            border-style: solid;
+            border-color: $color-globus-sand;
+            @include adaptive(border-width, 2, 2);
             border-right: none;
-            border-radius: 50px;
+            border-radius: 500px;
             overflow: hidden;
-
-            @include mobile {
-                width: 100%;
-            }
         }
 
         .newsletter-input {
@@ -309,21 +301,21 @@ const { userType = 'tourist' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             outline: none;
 
             &::placeholder {
-                color: #969696;
+                color: $color-globus-grey;
             }
         }
 
         .newsletter-btn {
             @include adaptive(width, 60, 64);
             @include adaptive(height, 60, 64);
-            background: $color-accent;
-            border: 1px solid $color-accent;
+            background: $color-globus-sand;
+            border: 1px solid $color-globus-sand;
             border-radius: 50%;
             @include flex-center;
             cursor: pointer;
@@ -358,7 +350,6 @@ const { userType = 'tourist' } = Astro.props
             width: 100%;
             display: flex;
             flex-direction: column;
-            // @include adaptive(gap, 28, 24);
         }
 
         .form-title {
@@ -366,7 +357,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
             opacity: 0.4;
             margin: 0;
@@ -380,7 +371,6 @@ const { userType = 'tourist' } = Astro.props
             position: relative;
             display: flex;
             flex-direction: column;
-            // @include adaptive(gap, 8, 6);
             @include adaptive(margin-top, 32, 32);
         }
 
@@ -388,7 +378,7 @@ const { userType = 'tourist' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: $color-main;
+            color: $color-globus-cream;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
@@ -397,29 +387,23 @@ const { userType = 'tourist' } = Astro.props
         .form-input {
             background: transparent;
             border: none;
-            border-bottom: 1px solid $color-main;
-            // @include adaptive(padding-bottom, 10, 8);
+            border-bottom: 1px solid $color-globus-cream;
             @include font-kudry-sans;
             @include adaptive(font-size, 20, 16);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             outline: none;
             transition: border-color 0.3s;
 
             &::placeholder {
-                color: rgba($color-main, 0.3);
+                color: $color-globus-grey;
             }
 
             &:focus {
-                border-bottom-color: $color-accent;
+                border-bottom-color: $color-globus-sand;
             }
         }
-
-        // .form-textarea {
-        //     resize: vertical;
-        //     min-height: 40px;
-        // }
 
         .form-checkbox {
             display: flex;
@@ -432,16 +416,15 @@ const { userType = 'tourist' } = Astro.props
                 @include adaptive(height, 15, 15);
                 flex-shrink: 0;
                 appearance: none;
-                border: 1px solid $color-accent;
+                border: 1px solid $color-globus-sand;
                 @include adaptive(border-radius, 4, 4);
                 cursor: pointer;
                 transition: all 0.3s;
-                // @include adaptive(margin-top, 4, 2);
                 margin: 0;
 
                 &:checked {
-                    background: $color-accent;
-                    border-color: $color-accent;
+                    background: $color-globus-sand;
+                    border-color: $color-globus-sand;
                 }
 
                 &:hover {
@@ -453,18 +436,16 @@ const { userType = 'tourist' } = Astro.props
                 @include font-circe-regular;
                 @include adaptive(font-size, 16, 20);
                 line-height: 1;
-                color: $color-main;
+                color: $color-globus-cream;
                 opacity: 0.4;
                 cursor: pointer;
                 @include adaptive(letter-spacing, -0.32, -0.32);
             }
         }
 
-        .form-submit {
+        &:not(._agent) .button {
             @include adaptive(margin-top, 32, 32);
-            @include adaptive(width, 200, 180);
-            @include adaptive(height, 60, 60);
-            @include button-default;
+            @include adaptive(width, 200, 100%);
             align-self: flex-start;
         }
     }
@@ -479,7 +460,7 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-title {
-            color: $color-main;
+            color: $color-globus-cream;
         }
 
         .contact-agent-buttons {
@@ -495,49 +476,12 @@ const { userType = 'tourist' } = Astro.props
             }
         }
 
-        .contact-agent-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            @include adaptive(gap, 20, 15);
-            @include adaptive(padding-left, 40, 30);
-            @include adaptive(padding-right, 40, 30);
-            @include adaptive(padding-top, 12, 13);
-            @include adaptive(padding-bottom, 12, 13);
-            border: 1px solid $color-accent;
-            border-radius: 50px;
-            background-color: transparent;
-            transition: all 0.3s ease;
-
-            @include mobile {
-                width: 100%;
-            }
-
-            img, svg {
-                flex-shrink: 0;
-                @include adaptive(width, 34, 36);
-                @include adaptive(height, 34, 36);
-            }
-
-            span {
-                @include font-circe-regular;
-                @include adaptive(font-size, 24, 18);
-                line-height: 1.2;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: $color-accent;
-                white-space: nowrap;
-            }
-
-            &:hover {
-                background-color: rgba($color-accent, 0.1);
-            }
+        .button {
+            @include adaptive(font-size, 24, 18);
         }
 
         .newsletter-form {
-            @include desktop {
-                @include adaptive(width, 416, 416);
-            }
+            @include adaptive(width, 416, auto);
         }
     }
 </style>

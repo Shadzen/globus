@@ -71,9 +71,9 @@ const cards: TourCard[] = [
 ---
 
 <section class="tour-collections">
-    <div class="section-container">
-        <div class="collections-header">
-            <h2 class="collections-title">Коллекция туров</h2>
+    <div class="section-container _overflow-cards">
+        <div class="section-header">
+            <h2>Коллекция туров</h2>
 
             <SwiperNavButtons containerClass="collections-nav" />
         </div>
@@ -107,7 +107,6 @@ const cards: TourCard[] = [
 
 <style lang="scss" is:global>
     .tour-collections {
-        background: $color-main;
         @include adaptive(margin-top, 120, 60);
 
         .section-container {
@@ -115,11 +114,6 @@ const cards: TourCard[] = [
             flex-direction: column;
             @include adaptive(gap, 20, 20);
             padding: 0;
-        }
-
-        .collections-header {
-            position: relative;
-            width: 100%;
         }
 
         .collections-nav {

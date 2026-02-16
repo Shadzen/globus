@@ -172,20 +172,20 @@
     @include font-circe-regular;
     @include adaptive(font-size, 16, 18);
     line-height: 1.2;
-    color: $color-main;
+    color: $color-globus-cream;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     @include adaptive(letter-spacing, 3, 3);
-    background: $color-accent;
+    background: $color-globus-sand;
     border-style: solid;
-    border-color: $color-accent;
+    border-color: $color-globus-sand;
     @include adaptive(border-width, 2, 2);
     border-radius: 500px;
     white-space: nowrap;
     z-index: 2;
 
-    img {
+    img, svg {
         @include adaptive(width, 40, 30);
         @include adaptive(height, 40, 30);
         flex-shrink: 0;
@@ -216,11 +216,11 @@
 
 @mixin button-outline {
     background: transparent;
-    color: $color-accent;
-    border-color: $color-accent;
+    color: $color-globus-sand;
+    border-color: $color-globus-sand;
 
     &:hover {
-        background: rgba($color-accent, 0.1);
+        background: rgba($color-globus-sand, 0.1);
     }
 }
 

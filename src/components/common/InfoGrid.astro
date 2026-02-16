@@ -3,7 +3,7 @@
 ---
 
 <section class="info-grid-section">
-    <div class="info-grid-container">
+    <div class="section-container">
         <div class="info-grid">
             <slot />
         </div>
@@ -13,11 +13,6 @@
 <style lang="scss" is:global>
     .info-grid-section {
         @include adaptive(margin-top, 120, 60);
-
-        .info-grid-container {
-            @include side-paddings;
-            width: 100%;
-        }
 
         .info-grid {
             display: flex;

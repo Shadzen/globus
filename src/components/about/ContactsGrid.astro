@@ -17,7 +17,6 @@ interface Props {
     title?: string
 }
 
-// Дефолтные контакты
 const defaultPeople: ContactPerson[] = [
     {
         name: 'Лавренчук Олеся',
@@ -83,7 +82,7 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         grid-template-columns: repeat(3, 1fr);
         @include adaptive(column-gap, 60, 30);
         @include adaptive(row-gap, 80, 50);
-        background-color: $color-alternate;
+        background-color: $color-globus-blue;
 
         &._standalone {
             @include side-paddings;
@@ -96,7 +95,7 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
     }
 
     .contacts-grid-title {
-        color: $color-main;
+        color: $color-globus-cream;
         text-align: center;
         grid-column: 1 / -1;
     }
@@ -138,7 +137,7 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         @include adaptive(font-size, 28, 26);
         font-weight: 300;
         line-height: 1.2;
-        color: #cca770;
+        color: $color-globus-sand;
         text-transform: uppercase;
         margin: 0;
         width: 50%;
@@ -167,7 +166,7 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         @include font-circe-light;
         @include adaptive(font-size, 26, 18);
         line-height: 1.2;
-        color: $color-main;
+        color: $color-globus-cream;
         text-decoration: none;
         transition: opacity 0.3s;
 

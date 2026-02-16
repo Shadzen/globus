@@ -3,7 +3,7 @@ import { initSlider } from '../swiperHelpers'
 
 export const initGlobusNews = () => {
     return initSlider({
-        containerSelector: '.news-bottom-grid-wrapper',
+        containerSelector: '.cards-bottom-grid-wrapper',
         parentSelector: '.globus-news',
     })
 }

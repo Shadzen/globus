@@ -135,7 +135,7 @@ const slides: TimelineSlide[] = [
 
 <style lang="scss" is:global>
     .about-timeline {
-        background: $color-alternate;
+        background: $color-globus-blue;
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 10);
@@ -166,7 +166,6 @@ const slides: TimelineSlide[] = [
             display: none;
             width: 100%;
             @include adaptive(gap, 72, 30);
-            // opacity: 0;
             transition: opacity 0.5s ease;
 
             .timeline-dot {
@@ -213,7 +212,6 @@ const slides: TimelineSlide[] = [
             @include mobile {
                 display: flex;
                 flex-direction: row;
-                // align-items: flex-start;
                 @include adaptive(margin-top, -4, -4);
                 @include adaptive(padding-top, 16, 16);
                 @include adaptive(padding-left, 12, 12);
@@ -235,7 +233,7 @@ const slides: TimelineSlide[] = [
                 transition:
                     opacity 0.3s ease,
                     max-height 0.5s ease;
-                border-left: 2px solid $color-main;
+                border-left: 2px solid $color-globus-cream;
 
                 .slide-images,
                 .slide-text {
@@ -257,7 +255,7 @@ const slides: TimelineSlide[] = [
         }
 
         .slide-title {
-            color: $color-main;
+            color: $color-globus-cream;
             text-align: left;
         }
 
@@ -265,7 +263,7 @@ const slides: TimelineSlide[] = [
             @include font-circe-light;
             @include adaptive(font-size, 26, 18);
             line-height: 1.21;
-            color: $color-main;
+            color: $color-globus-cream;
             opacity: 0.6;
             width: 94%;
 
@@ -292,6 +290,7 @@ const slides: TimelineSlide[] = [
         .slide-image {
             position: relative;
             overflow: hidden;
+            @include adaptive(max-width, auto, 272);
 
             img {
                 width: 100%;
@@ -310,11 +309,6 @@ const slides: TimelineSlide[] = [
 
             &._pos-top-1 {
                 @include adaptive(margin-top, 150, 0);
-            }
-
-            @include mobile {
-                @include adaptive(max-width, 272, 272);
-                // @include adaptive(max-height, 152, 152);
             }
         }
 
@@ -336,7 +330,7 @@ const slides: TimelineSlide[] = [
             @include adaptive(top, 13, 13);
             width: 96%;
             height: 2px;
-            background: $color-main;
+            background: $color-globus-cream;
         }
 
         .timeline-dot {
@@ -362,13 +356,13 @@ const slides: TimelineSlide[] = [
                 pointer-events: none;
                 cursor: default;
                 .dot-circle {
-                    background: $color-accent;
-                    border-color: $color-accent;
+                    background: $color-globus-sand;
+                    border-color: $color-globus-sand;
                 }
 
                 .dot-year {
                     opacity: 1;
-                    color: $color-accent;
+                    color: $color-globus-sand;
                 }
             }
         }
@@ -377,8 +371,8 @@ const slides: TimelineSlide[] = [
             @include adaptive(width, 28, 26);
             @include adaptive(height, 28, 26);
             border-radius: 50%;
-            background: $color-alternate;
-            border: 2px solid $color-main;
+            background: $color-globus-blue;
+            border: 2px solid $color-globus-cream;
             transition: all 0.3s ease;
         }
 
@@ -386,7 +380,7 @@ const slides: TimelineSlide[] = [
             @include font-circe-light;
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             opacity: 0.6;
             transition: all 0.3s ease;
             white-space: nowrap;

@@ -103,10 +103,28 @@ const base = import.meta.env.BASE_URL
         position: relative;
         @include adaptive(width, 1920, 480);
 
+        &._section-margins {
+            @include adaptive(margin-top, 120, 60);
+        }
+
+        .section-header {
+            position: relative;
+            width: 100%;
+        }
+
         .section-container {
             position: relative;
             width: 100%;
-            @include side-paddings;
+
+            &:not(._overflow-cards):not(._alt-paddings) {
+                @include side-paddings;
+            }
+
+            &._overflow-cards {
+                @include flex-center;
+                flex-direction: column;
+                @include adaptive(gap, 72, 40);
+            }
         }
     }
 
@@ -449,6 +467,114 @@ const base = import.meta.env.BASE_URL
                 @include adaptive(font-size, 60, 60);
             }
         }
+    }
+
+    .cards-top-grid {
+        @include side-paddings;
+        position: relative;
+        width: 100%;
+        display: flex;
+        @include adaptive(column-gap, 84, 0);
+        @include adaptive(row-gap, 0, 50);
+        flex-wrap: wrap;
+        align-items: flex-start;
+        z-index: 10;
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    .stripe-section {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .dark-stripe-title {
+        color: $color-globus-cream;
+        flex: 1;
+    }
+
+    .dark-stripe {
+        position: relative;
+        width: 100%;
+        background: $color-globus-blue;
+        @include side-paddings;
+    }
+
+    .cards-bottom-grid-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        z-index: 10;
+        @include adaptive(padding-top, 20, 10);
+    }
+
+    .cards-bottom-grid {
+        position: relative;
+        width: 100%;
+        display: flex;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        white-space: normal;
+        flex-shrink: 0;
+        @include adaptive(gap, 22, 22);
+
+        &._interactive {
+            @include hover-card-default;
+            cursor: pointer;
+        }
+    }
+
+    .card-content {
+        width: 100%;
+        @include adaptive(gap, 14, 20);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-image {
+        position: relative;
+        width: 100%;
+        @include adaptive(height, auto, 231);
+        overflow: hidden;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .card-category {
+        @include font-circe-regular;
+        @include adaptive(font-size, 16, 18);
+        line-height: 1.6;
+        color: $color-globus-light-blue;
+        text-transform: uppercase;
+        @include adaptive(letter-spacing, 3.2, 2);
+        font-weight: 400;
+    }
+
+    .card-title {
+        @include adaptive(font-size, 28, 26);
+        color: $color-globus-blue;
+    }
+
+    .card-description {
+        @include font-circe-regular;
+        @include adaptive(font-size, 20, 18);
+        line-height: 1.2;
+        color: $color-globus-light-blue;
+        margin: 0;
     }
 
     // Стили для календаря flatpickr

@@ -7,9 +7,10 @@ import AboutTimeline from '@/components/about/AboutTimeline.astro'
 import AboutMap from '@/components/about/AboutMap.astro'
 import AboutContacts from '@/components/about/AboutContacts.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="О нас - Глобус Тур" userType="agent">
+<Layout title={`О нас - ${COMPANY_NAME}`} userType="agent">
     <AboutHero userType="agent" />
     <AboutInfo />
     <AboutStats />
