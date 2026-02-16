@@ -12,7 +12,7 @@ const { title, description } = Astro.props
 ---
 
 <section class="contact-cta">
-    <div class="contact-cta-container">
+    <div class="section-container">
         {title && (
             <h2 class="contact-cta-title" set:html={title} />
         )}
@@ -22,30 +22,29 @@ const { title, description } = Astro.props
         )}
 
         <div class="contact-cta-buttons">
-            <a href="https://t.me/+79130637716" class="contact-btn-outline" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/+79130637716" class="button _sized _outline" target="_blank" rel="noopener noreferrer">
                 <img src={telegramIcon.src} alt="Telegram" />
                 <span>8 913 063 7716</span>
             </a>
 
-            <a href="tel:+73832000500" class="contact-btn-outline">
+            <a href="tel:+73832000500" class="button _sized _outline">
                 <img src={phoneIcon.src} alt="Телефон" />
                 <span>8 (383) 2000-500</span>
             </a>
 
-            <button type="button" class="contact-btn">Оставить заявку</button>
+            <button type="button" class="button _sized">Оставить заявку</button>
         </div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .contact-cta {
-        background: $color-alternate;
+        background: $color-globus-blue;
         @include adaptive(margin-top, 90, 60);
         @include adaptive(padding-top, 90, 60);
         @include adaptive(padding-bottom, 90, 60);
 
-        .contact-cta-container {
-            @include side-paddings;
+        .section-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -53,7 +52,7 @@ const { title, description } = Astro.props
         }
 
         .contact-cta-title {
-            color: $color-main;
+            color: $color-globus-cream;
 
             @include desktop {
                 width: 90%;
@@ -87,13 +86,7 @@ const { title, description } = Astro.props
             }
         }
 
-        .contact-btn {
-            @include button-sized;
-        }
-
-        .contact-btn-outline {
-            @include button-sized;
-            @include button-outline;
+        .button._outline {
             @include adaptive(font-size, 24, 18);
         }
     }

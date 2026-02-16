@@ -6,9 +6,10 @@ import NewsGrid from '@/components/news/NewsGrid.astro'
 import NewsPagination from '@/components/news/NewsPagination.astro'
 import NewsSlider from '@/components/news/NewsSlider.astro'
 import ContactForm from '@/components/main/ContactForm.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости - Прототип" userType="tourist" heroTextColor="dark">
+<Layout title={`Новости - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
     <NewsHero userType="tourist" />
     <NewsFilter />
     <NewsGrid userType="tourist" />

@@ -3,7 +3,7 @@
 ---
 
 <section class="news-filter">
-    <div class="container">
+    <div class="section-container">
         <div class="filter-content">
             <div class="filter-field">
                 <label class="filter-label" for="filter-topic">тема</label>
@@ -45,21 +45,16 @@
                 </div>
             </div>
 
-            <button class="filter-btn" type="button"> Найти </button>
+            <button class="button _sized" type="button"> Найти </button>
         </div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .news-filter {
-        background-color: $color-alternate;
+        background-color: $color-globus-blue;
         @include adaptive(padding-top, 52, 32);
         @include adaptive(padding-bottom, 52, 32);
-
-        .container {
-            @include side-paddings;
-            width: 100%;
-        }
 
         .filter-content {
             display: flex;
@@ -90,7 +85,7 @@
             line-height: 1.6;
             @include adaptive(letter-spacing, 3.2, 2.8);
             text-transform: uppercase;
-            color: $color-main;
+            color: $color-globus-cream;
             opacity: 0.55;
         }
 
@@ -105,7 +100,7 @@
             @include font-circe-light;
             @include adaptive(font-size, 26, 22);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             background: transparent;
             border: none;
             outline: none;
@@ -117,7 +112,7 @@
 
             option {
                 background-color: $color-alternate;
-                color: $color-main;
+                color: $color-globus-cream;
             }
 
             &.search-input {
@@ -131,24 +126,8 @@
 
         .filter-underline {
             height: 1px;
-            background-color: $color-accent;
+            background-color: $color-globus-sand;
             width: 100%;
-        }
-
-        .filter-btn {
-            @include button-default;
-            @include adaptive(height, 60, 50);
-            @include adaptive(padding-left, 50, 32);
-            @include adaptive(padding-right, 50, 32);
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            white-space: nowrap;
-            flex-shrink: 0;
-
-            @include mobile {
-                width: 100%;
-                @include adaptive(margin-top, 16, 16);
-            }
         }
 
         // Убираем стрелку у select в разных браузерах

@@ -31,8 +31,8 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
 ---
 
 <section class="pagination-section">
-    <div class="pagination-container">
-        <button class="pagination-load-more-btn" type="button">
+    <div class="section-container">
+        <button class="button _sized" type="button">
             Загрузить еще
         </button>
 
@@ -61,19 +61,13 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
 
 <style lang="scss" is:global>
     .pagination-section {
-        @include adaptive(margin-top, 40, 40);
+        @include adaptive(margin-top, 60, 60);
 
-        .pagination-container {
-            @include side-paddings;
-            width: 100%;
+        .section-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            @include adaptive(gap, 60, 40);
-        }
-
-        .pagination-load-more-btn {
-            @include button-sized;
+            @include adaptive(gap, 40, 40);
         }
 
         .pagination-nav {

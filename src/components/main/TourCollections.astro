@@ -75,7 +75,7 @@ const cards: TourCard[] = [
         <div class="section-header">
             <h2>Коллекция туров</h2>
 
-            <SwiperNavButtons containerClass="collections-nav" />
+            <SwiperNavButtons />
         </div>
 
         <div class="collections-grid-wrapper swiper">
@@ -116,9 +116,9 @@ const cards: TourCard[] = [
             padding: 0;
         }
 
-        .collections-nav {
+        .swiper-nav {
             @include center-y;
-            @include adaptive(right, 100, 0);
+            @include adaptive(right, 100, 15);
         }
 
         .collections-grid-wrapper {
