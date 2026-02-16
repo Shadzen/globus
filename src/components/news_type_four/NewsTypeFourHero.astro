@@ -4,6 +4,8 @@ import HeroNav from '@/components/common/HeroNav.astro'
 import heroDesktop from '@/assets/images/news_type_four/hero-1.jpg'
 import heroMobile from '@/assets/images/news_type_four/hero-1-mobile.jpg'
 
+import { BREAKPOINTS } from '@/scripts/utils'
+
 interface Props {
     userType?: 'tourist' | 'agent'
 }
@@ -12,9 +14,9 @@ const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="hero-section news-type-four-hero _dark-text">
+<section class="hero-section news-type-four-hero _dark-text _type-one">
     <picture class="hero-bg _overlay-darker">
-        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
         <p class="hero-subtitle">
             Мы подготовили для вас подборку лучших спецпредложений от отелей на Мальдивах, которые
@@ -38,14 +40,10 @@ const base = import.meta.env.BASE_URL
 
 <style lang="scss" is:global>
     .news-type-four-hero {
-        @include adaptive(height, 1104, 686);
-        @include adaptive(padding-top, 423, 244);
-
         .hero-bg {
-            @include adaptive(height, 416, 231);
-            @include adaptive(width, 1716, 450);
-            bottom: 0;
-            @include adaptive(left, 100, 15);
+            @include mobile {
+                order: 2 !important;
+            }
 
             .hero-subtitle {
                 color: $color-main;
@@ -54,26 +52,27 @@ const base = import.meta.env.BASE_URL
                 text-align: center;
                 width: 80%;
             }
-
-            top: auto;
         }
 
         .hero-content {
-            z-index: 2;
-            flex-wrap: wrap;
-            flex-direction: row;
-            flex: 0;
+            flex-direction: column !important;
+            gap: 0 !important;
+
+            @include mobile {
+                order: 1 !important;
+            }
         }
 
         .hero-title {
             width: 100%;
+            text-align: center !important;
 
             @include desktop {
                 margin: 0 auto;
             }
 
             @include mobile {
-                text-align: left;
+                text-align: left !important;
             }
         }
 

@@ -4,9 +4,10 @@ import NewsTypeTwoHero from '@/components/news_type_two/NewsTypeTwoHero.astro'
 import NewsTypeTwoOffers from '@/components/news_type_two/NewsTypeTwoOffers.astro'
 import NewsTypeTwoHotelsSlider from '@/components/news_type_two/NewsTypeTwoHotelsSlider.astro'
 import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости Тип 2 - Прототип" userType="tourist" heroTextColor="dark">
+<Layout title={`Новости Тип 2 - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
     <NewsTypeTwoHero userType="tourist" />
     <NewsTypeTwoOffers userType="tourist" />
     <NewsTypeTwoHotelsSlider userType="tourist" />

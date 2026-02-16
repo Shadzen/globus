@@ -4,6 +4,8 @@ import HeroNav from '@/components/common/HeroNav.astro'
 import heroDesktop from '@/assets/images/news_type_one/hero-1.jpg'
 import heroMobile from '@/assets/images/news_type_one/hero-1-mobile.jpg'
 
+import { BREAKPOINTS } from '@/scripts/utils'
+
 interface Props {
     userType?: 'tourist' | 'agent'
 }
@@ -14,7 +16,7 @@ const base = import.meta.env.BASE_URL
 
 <section class="hero-section news-type-one-hero _dark-text">
     <picture class="hero-bg">
-        <source media="(max-width: 480px)" srcset={heroMobile.src} />
+        <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile.src} />
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
 
@@ -34,24 +36,16 @@ const base = import.meta.env.BASE_URL
 
 <style lang="scss" is:global>
     .news-type-one-hero {
-        @include adaptive(height, 894, 736);
+        @include adaptive(min-height, 894, 736);
         @include adaptive(padding-top, 518, 518);
 
         .hero-bg {
             @include adaptive(height, 607, 231);
             @include adaptive(width, 849, 450);
             bottom: 0;
-            @include adaptive(right, 2, 15);
             left: auto;
-
-            @include desktop {
-                top: auto;
-                right: 0;
-            }
-
-            @include mobile {
-                @include adaptive(top, 250, 250);
-            }
+            @include adaptive(right, 0, 15);
+            @include adaptive(top, auto, 250);
         }
 
         .hero-content {

@@ -55,7 +55,7 @@ const categories: PriceCategory[] = [
 ---
 
 <section class="news-type-three-pricing-section">
-    <div class="news-type-three-pricing-container">
+    <div class="section-container">
         {categories.map((category, index) => (
             <>
                 <div class="pricing-category">
@@ -64,25 +64,24 @@ const categories: PriceCategory[] = [
                             <h3 class="category-title">{category.title}</h3>
                             <p class="category-subtitle">{category.subtitle}</p>
                         </div>
-                        <button class="btn-booking">Забронировать</button>
                     </div>
 
                     <div class="category-content">
                         <p class="category-description">{category.description}</p>
-                        
+
                         <div class="category-prices">
                             <div class="price-badge">
                                 <p class="price-main">{category.prices.adult}</p>
                                 <p class="price-note">{category.prices.adultNote}</p>
                             </div>
-                            
+
                             {category.prices.child && (
                                 <div class="price-badge">
                                     <p class="price-main">{category.prices.child}</p>
                                     <p class="price-note">{category.prices.childNote}</p>
                                 </div>
                             )}
-                            
+
                             {category.prices.infant && (
                                 <div class="price-badge">
                                     <p class="price-main">{category.prices.infant}</p>
@@ -91,32 +90,33 @@ const categories: PriceCategory[] = [
                             )}
                         </div>
                     </div>
+
+                    <button class="button _sized">Забронировать</button>
                 </div>
 
-                {index < categories.length - 1 && <hr class="category-divider" />}
+                {index < categories.length - 1 && <div class="divider" />}
             </>
         ))}
 
-        <hr class="final-divider" />
+        <div class="divider" />
 
         <p class="pricing-note">
             Стоимость билетов указана для гостей ATLANTIS THE PALM DUBAI 5* ATLANTIS THE ROYAL 5*, проживающих в отеле в новогодний период. Желающие посетить концерт без проживания в отеле, могут приобрести билеты на концерт отдельно (стоимость по запросу).
         </p>
+
+        <div class="divider" />
     </div>
 </section>
 
 <style lang="scss" is:global>
     .news-type-three-pricing-section {
-        @include adaptive(margin-top, 100, 50);
-
-        .news-type-three-pricing-container {
-            @include side-paddings;
-            width: 100%;
-        }
+        @include adaptive(margin-top, 120, 60);
 
         .pricing-category {
             display: flex;
-            @include adaptive(gap, 47, 20);
+            flex-wrap: wrap;
+            @include adaptive(column-gap, 50, 0);
+            @include adaptive(row-gap, 0, 20);
 
             @include mobile {
                 flex-direction: column;
@@ -139,39 +139,24 @@ const categories: PriceCategory[] = [
         }
 
         .category-title {
-            @include font-kudry-sans;
             color: $color-alternate;
-            @include adaptive(font-size, 28, 22);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
-            @include adaptive(margin-bottom, 5, 3);
+            @include adaptive(font-size, 28, 26);
+            @include adaptive(margin-bottom, 10, 5);
         }
 
         .category-subtitle {
             @include font-circe-regular;
             color: $color-globus-light-blue;
             opacity: 0.6;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            letter-spacing: 3.2px;
+            @include adaptive(letter-spacing, 3.2, 3.6);
             text-transform: uppercase;
-            margin: 0;
         }
 
-        .btn-booking {
-            @include button-default;
-            @include adaptive(padding-top, 18, 14);
-            @include adaptive(padding-bottom, 18, 14);
-            @include adaptive(padding-left, 60, 40);
-            @include adaptive(padding-right, 60, 40);
-            @include adaptive(font-size, 16, 14);
-            white-space: nowrap;
-            width: fit-content;
-
-            @include mobile {
-                width: 100%;
-            }
+        .button {
+            @include adaptive(width, 273, 100%);
+            @include adaptive(margin-top, -60, 0);
         }
 
         .category-content {
@@ -179,14 +164,17 @@ const categories: PriceCategory[] = [
             flex-direction: column;
             @include adaptive(gap, 30, 20);
             flex: 1;
+
+            @include desktop {
+                min-width: 50%;
+            }
         }
 
         .category-description {
             @include font-circe-regular;
             color: $color-alternate;
-            @include adaptive(font-size, 20, 16);
+            @include adaptive(font-size, 20, 18);
             line-height: 1.2;
-            margin: 0;
         }
 
         .category-prices {
@@ -196,66 +184,49 @@ const categories: PriceCategory[] = [
         }
 
         .price-badge {
-            border: 2px solid #CCA870;
+            border: 2px solid $color-globus-sand;
             border-radius: 390px;
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
             @include adaptive(padding-left, 50, 30);
             @include adaptive(padding-right, 50, 30);
-            display: flex;
+            @include adaptive(height, 61, 64);
+            @include flex-center;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             text-align: center;
-            @include adaptive(min-width, 273, 200);
-
-            @include mobile {
-                flex: 1;
-                min-width: calc(50% - 7.5px);
-            }
+            @include adaptive(width, 273, 100%);
         }
 
         .price-main {
             @include font-circe-regular;
             color: $color-alternate;
-            @include adaptive(font-size, 26, 20);
+            @include adaptive(font-size, 26, 26);
             line-height: 1.2;
-            margin: 0;
         }
 
         .price-note {
             @include font-circe-regular;
             color: $color-alternate;
-            @include adaptive(font-size, 14, 12);
+            @include adaptive(font-size, 14, 18);
             line-height: 1.2;
-            margin: 0;
             @include adaptive(margin-top, 2, 2);
         }
 
-        .category-divider {
-            border: none;
-            border-top: 1px solid #CCA870;
-            @include adaptive(margin-top, 50, 30);
-            @include adaptive(margin-bottom, 50, 30);
-        }
+        .divider {
+            @include adaptive(margin-top, 50, 50);
+            @include adaptive(margin-bottom, 50, 50);
 
-        .final-divider {
-            border: none;
-            border-top: 1px solid #CCA870;
-            @include adaptive(margin-top, 60, 40);
-            @include adaptive(margin-bottom, 40, 30);
+            &:last-child {
+                @include adaptive(margin-bottom, 0, 0);
+            }
         }
 
         .pricing-note {
             @include font-circe-regular;
             color: $color-alternate;
-            @include adaptive(font-size, 20, 16);
+            @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             text-align: center;
-            margin: 0;
-            max-width: 831px;
-            margin-left: auto;
-            margin-right: auto;
+            @include adaptive(max-width, 830, 100%);
+            margin: 0 auto;
         }
     }
 </style>

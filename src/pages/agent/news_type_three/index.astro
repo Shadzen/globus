@@ -5,9 +5,10 @@ import NewsTypeThreeInfo from '@/components/news_type_three/NewsTypeThreeInfo.as
 import NewsTypeThreePricing from '@/components/news_type_three/NewsTypeThreePricing.astro'
 import NewsTypeThreeHotels from '@/components/news_type_three/NewsTypeThreeHotels.astro'
 import ContactCTA from '@/components/common/ContactCTA.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости Тип 3 - Прототип" userType="agent" heroTextColor="dark">
+<Layout title={`Новости Тип 3 - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
     <NewsTypeThreeHero userType="agent" />
     <NewsTypeThreeInfo userType="agent" />
     <NewsTypeThreePricing userType="agent" />

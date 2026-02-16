@@ -6,9 +6,10 @@ import NewsTypeOneGallery from '@/components/news_type_one/NewsTypeOneGallery.as
 import NewsTypeOneTours from '@/components/news_type_one/NewsTypeOneTours.astro'
 import NewsTypeOneInfo from '@/components/news_type_one/NewsTypeOneInfo.astro'
 import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости Тип 1 - Прототип" userType="tourist" heroTextColor="dark">
+<Layout title={`Новости Тип 1 - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
     <NewsTypeOneHero userType="tourist" />
     <NewsTypeOneSchedule userType="tourist" />
     <NewsTypeOneGallery userType="tourist" />

@@ -186,26 +186,6 @@ const base = import.meta.env.BASE_URL
         }
     }
 
-    .hotel-badge, .card-badge {
-        @include flex-center;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid $color-globus-sand;
-        border-radius: 500px;
-        @include adaptive(padding-left, 40, 20);
-        @include adaptive(padding-right, 40, 20);
-        @include adaptive(padding-top, 14, 10);
-        @include adaptive(padding-bottom, 14, 10);
-        @include font-circe-light;
-        color: $color-globus-cream;
-        line-height: 1.2;
-        @include adaptive(font-size, 26, 18);
-        z-index: 2;
-
-        span {
-            @include adaptive(font-size, 20, 16);
-        }
-    }
-
     .bullet {
         @include adaptive(width, 12, 10);
         @include adaptive(height, 12, 10);
@@ -393,9 +373,12 @@ const base = import.meta.env.BASE_URL
             .hero-bg {
                 position: relative;
                 @include adaptive(margin-top, 50, 30);
-                @include side-paddings;
+                margin-left: auto;
+                margin-right: auto;
+                // @include side-paddings;
                 // width: 100%;
                 @include adaptive(min-height, 360, 231);
+                @include adaptive(max-width, 1726, 450);
 
                 @include desktop {
                     order: 2;
@@ -557,7 +540,8 @@ const base = import.meta.env.BASE_URL
         }
     }
 
-    .card-category, .card-date {
+    .card-category,
+    .card-date {
         @include font-circe-regular;
         @include adaptive(font-size, 16, 18);
         line-height: 1.6;
@@ -578,6 +562,34 @@ const base = import.meta.env.BASE_URL
         line-height: 1.2;
         color: $color-globus-light-blue;
         margin: 0;
+    }
+
+    .card-price {
+        @include font-circe-regular;
+        @include adaptive(font-size, 26, 26);
+        line-height: 1.2;
+        color: $color-globus-sand;
+    }
+
+    .hotel-badge,
+    .card-badge {
+        @include flex-center;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid $color-globus-sand;
+        border-radius: 500px;
+        @include adaptive(padding-left, 40, 20);
+        @include adaptive(padding-right, 40, 20);
+        @include adaptive(padding-top, 14, 10);
+        @include adaptive(padding-bottom, 14, 10);
+        @include font-circe-light;
+        color: $color-globus-cream;
+        line-height: 1.2;
+        @include adaptive(font-size, 26, 18);
+        z-index: 2;
+
+        span {
+            @include adaptive(font-size, 20, 16);
+        }
     }
 
     // Стили для календаря flatpickr

@@ -1,4 +1,6 @@
 ---
+import arrowIcon from '@/assets/icons/arrow-14-accent.svg'
+
 interface InclusionItem {
     text: string
 }
@@ -23,7 +25,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 ---
 
 <section class:list={['tour-inclusions-section', { 'dark-theme': darkTheme }]}>
-    <div class="tour-inclusions-container">
+    <div class="section-container">
         <h2 class="section-title">В стоимость тура входит:</h2>
 
         {useGrid ? (
@@ -59,12 +61,12 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
                 {additionalContent.map((content) => (
                     <>
                         {content.type === 'link' && content.data.link && (
-                            <div class="additional-item">
-                                <img src="/src/assets/icons/arrow-14-accent.svg" alt="" class="arrow-icon" />
-                                <a href={content.data.link.href} class="visa-link">
-                                    {content.data.link.text}
-                                </a>
-                            </div>
+                            <a href="#" class="additional-link">
+                                <span class="svg-icon">
+                                    <img src={arrowIcon.src} alt="" />
+                                </span>
+                                <span class="additional-text">Виза в Садовскую Аравию</span>
+                            </a>
                         )}
                         {content.type === 'text' && content.data.text && (
                             <p class="additional-text" set:html={content.data.text}></p>
@@ -95,10 +97,10 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
                 Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
             </p>
             <div class="bottom-buttons">
-                <button class="request-btn" type="button">
+                <button class="button _sized _outline" type="button">
                     запрос на поиск
                 </button>
-                <button class="search-btn" type="button">
+                <button class="button _sized" type="button">
                     перейти в поиск туров
                 </button>
             </div>
@@ -112,34 +114,22 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         @include adaptive(padding-bottom, 80, 50);
 
         &.dark-theme {
-            background: #00273F;
+            background: $color-globus-blue;
 
             .section-title,
             .subsection-title,
             .info-text,
             .inclusion-text,
             .bottom-text {
-                color: #FFFDF8;
+                color: $color-globus-cream;
             }
 
             .additional-text {
-                color: #FFFDF8;
+                color: $color-globus-cream;
             }
         }
 
-        .tour-inclusions-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
         .section-title {
-            @include font-kudry-sans;
-            color: $color-alternate;
-            @include adaptive(font-size, 60, 38);
-            line-height: 1.21;
-            text-align: center;
-            text-transform: uppercase;
-            margin: 0;
             @include adaptive(margin-bottom, 50, 30);
         }
 
@@ -169,8 +159,8 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .inclusion-text {
             @include font-circe-regular;
-            color: $color-alternate;
-            @include adaptive(font-size, 20, 16);
+            color: $color-globus-blue;
+            @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;
         }
@@ -207,7 +197,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .info-text {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: $color-globus-blue;
             @include adaptive(font-size, 20, 16);
             line-height: 1.2;
             margin: 0;
@@ -215,48 +205,34 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         }
 
         .divider {
-            border: none;
-            border-top: 1px solid #CCA870;
             @include adaptive(margin-top, 50, 30);
             @include adaptive(margin-bottom, 40, 25);
         }
 
         .subsection-title {
-            @include font-kudry-sans;
             color: $color-alternate;
             @include adaptive(font-size, 32, 24);
-            line-height: 1.2;
             text-align: center;
-            text-transform: uppercase;
-            margin: 0;
             @include adaptive(margin-bottom, 40, 25);
         }
 
         .additional-section {
             display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 30, 20);
+            @include adaptive(gap, 260, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
         }
 
-        .additional-item {
+        .additional-link {
             display: flex;
-            @include adaptive(gap, 14, 10);
             align-items: center;
-        }
-
-        .arrow-icon {
-            @include adaptive(width, 14, 12);
-            @include adaptive(height, 14, 12);
-            flex-shrink: 0;
-        }
-
-        .visa-link {
-            @include font-circe-regular;
-            color: $color-accent;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            text-decoration: none;
             transition: opacity 0.3s ease;
+
+            .additional-text {
+                text-decoration: underline;
+            }
 
             &:hover {
                 opacity: 0.8;
@@ -265,8 +241,8 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .additional-text {
             @include font-circe-regular;
-            color: $color-alternate;
-            @include adaptive(font-size, 20, 16);
+            color: $color-globus-blue;
+            @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             margin: 0;
         }
@@ -285,7 +261,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .bottom-text {
             @include font-circe-light;
-            color: $color-alternate;
+            color: $color-globus-blue;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             margin: 0;
@@ -295,57 +271,12 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .bottom-buttons {
             display: flex;
-            @include adaptive(gap, 15, 10);
+            @include adaptive(gap, 20, 20);
             flex-shrink: 0;
 
             @include mobile {
                 width: 100%;
                 flex-direction: column;
-            }
-        }
-
-        .search-btn {
-            @include button-default;
-            @include adaptive(padding-top, 18, 14);
-            @include adaptive(padding-bottom, 18, 14);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(font-size, 16, 14);
-            white-space: nowrap;
-
-            @include mobile {
-                width: 100%;
-                white-space: normal;
-            }
-        }
-
-        .request-btn {
-            @include adaptive(padding-top, 18, 14);
-            @include adaptive(padding-bottom, 18, 14);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(font-size, 16, 14);
-            font-family: inherit;
-            @include font-circe-regular;
-            text-transform: uppercase;
-            letter-spacing: 3.2px;
-            line-height: 1.6;
-            color: #CCA870;
-            background: transparent;
-            border: 1px solid #CCA870;
-            border-radius: 390px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-
-            &:hover {
-                background: #CCA870;
-                color: white;
-            }
-
-            @include mobile {
-                width: 100%;
-                white-space: normal;
             }
         }
     }

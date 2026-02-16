@@ -30,7 +30,7 @@ const scheduleData: ScheduleRow[] = [
 ---
 
 <section class="news-schedule-section">
-    <div class="news-schedule-container">
+    <div class="section-container">
         <h2 class="schedule-title">Полетная программа Москва-Эр-Рияд:</h2>
 
         <div class="schedule-table">
@@ -71,21 +71,10 @@ const scheduleData: ScheduleRow[] = [
 
 <style lang="scss" is:global>
     .news-schedule-section {
-        @include adaptive(margin-top, 64, 40);
-
-        .news-schedule-container {
-            @include side-paddings;
-            width: 100%;
-        }
+        @include adaptive(margin-top, 60, 40);
 
         .schedule-title {
-            @include font-kudry-sans;
             @include adaptive(font-size, 28, 22);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: $color-alternate;
-            text-align: center;
-            font-weight: 300;
             @include adaptive(margin-bottom, 40, 24);
         }
 

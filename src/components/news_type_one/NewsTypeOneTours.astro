@@ -26,8 +26,8 @@ const tours: TourCard[] = [
 ---
 
 <section class="news-tours-section">
-    <div class="news-tours-container">
-        {tours.map((tour, index) => (
+    <div class="section-container">
+        {tours.map((tour) => (
             <div class="tour-card">
                 <h2 class="tour-title">{tour.title}</h2>
 
@@ -48,12 +48,12 @@ const tours: TourCard[] = [
                         <p class="detail-price">{tour.price}</p>
                     </div>
 
-                    <button class="tour-btn" type="button">
+                    <button class="button _sized" type="button">
                         Найти
                     </button>
                 </div>
 
-                {index === 0 && <div class="tour-divider"></div>}
+                <div class="divider"></div>
             </div>
         ))}
     </div>
@@ -63,12 +63,10 @@ const tours: TourCard[] = [
     .news-tours-section {
         @include adaptive(margin-top, 80, 50);
 
-        .news-tours-container {
-            @include side-paddings;
-            width: 100%;
+        .section-container {
             display: flex;
             flex-direction: column;
-            @include adaptive(gap, 64, 40);
+            @include adaptive(gap, 100, 60);
         }
 
         .tour-card {
@@ -76,6 +74,12 @@ const tours: TourCard[] = [
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 32, 24);
+
+            &:last-child {
+                .divider {
+                    display: none;
+                }
+            }
         }
 
         .tour-title {
@@ -144,26 +148,15 @@ const tours: TourCard[] = [
             margin: 0;
         }
 
-        .tour-btn {
-            @include button-default;
-            @include adaptive(height, 60, 50);
-            @include adaptive(padding-left, 50, 32);
-            @include adaptive(padding-right, 50, 32);
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-
-            @include mobile {
-                width: 100%;
-            }
+        .button {
+            @include adaptive(width, 224, 100%);
         }
 
-        .tour-divider {
+        .divider {
             position: absolute;
             left: 0;
             right: 0;
-            @include adaptive(bottom, -32, -20);
-            height: 1px;
-            background-color: $color-alternate;
+            @include adaptive(bottom, -50, -30);
         }
     }
 </style>

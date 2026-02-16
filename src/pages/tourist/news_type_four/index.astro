@@ -4,9 +4,10 @@ import NewsTypeFourHero from '@/components/news_type_four/NewsTypeFourHero.astro
 import NewsTypeFourOffers from '@/components/news_type_four/NewsTypeFourOffers.astro'
 import NewsTypeFourInclusions from '@/components/news_type_four/NewsTypeFourInclusions.astro'
 import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости Тип 4 - Прототип" userType="tourist" heroTextColor="dark">
+<Layout title={`Новости Тип 4 - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
     <NewsTypeFourHero userType="tourist" />
     <NewsTypeFourOffers userType="tourist" />
     <NewsTypeFourInclusions userType="tourist" />

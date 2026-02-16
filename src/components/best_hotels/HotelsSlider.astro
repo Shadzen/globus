@@ -31,15 +31,15 @@ const { hotels } = Astro.props
         {
             hotels.map((hotel) => (
                 <div class="hotel-card swiper-slide">
-                    <a href={hotel.href} class="hotel-card-link">
-                        <div class="hotel-image">
+                    <a href={hotel.href} class="card _interactive">
+                        <div class="card-image">
                             <Image
                                 src={hotel.image}
                                 alt={hotel.name}
                                 loading="lazy"
                                 quality={100}
                             />
-                            <div class="hotel-badge">
+                            <div class="card-badge">
                                 <span>{hotel.badge}</span>
                             </div>
                             {hotel.isRecommended && (
@@ -48,12 +48,12 @@ const { hotels } = Astro.props
                                 </div>
                             )}
                         </div>
-                        <div class="hotel-info">
-                            <h3 class="hotel-name" set:html={hotel.name} />
-                            <p class="hotel-price">{hotel.price}</p>
+                        <div class="card-content">
+                            <h3 class="card-title" set:html={hotel.name} />
+                            <p class="card-price">{hotel.price}</p>
                         </div>
                     </a>
-                    <button class="hotel-book-btn">Забронировать</button>
+                    <button class="button _sized">Забронировать</button>
                 </div>
             ))
         }
@@ -94,35 +94,11 @@ const { hotels } = Astro.props
             @include adaptive(gap, 32, 40);
         }
 
-        .hotel-card-link {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            width: 100%;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            white-space: normal;
-
-            &:hover {
-                transform: translateY(-8px);
-            }
-        }
-
-        .hotel-image {
-            position: relative;
+        .card-image {
             @include adaptive(height, 280, 216);
-            overflow: hidden;
-            width: 100%;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
         }
 
-        .hotel-badge {
+        .card-badge {
             position: absolute;
             @include adaptive(bottom, 20, 15);
             @include adaptive(left, 20, 15);
@@ -143,42 +119,14 @@ const { hotels } = Astro.props
             }
         }
 
-        .hotel-info {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 14, 10);
-            @include adaptive(margin-top, 24, 18);
-            width: 100%;
-        }
-
-        .hotel-name {
-            @include font-kudry-sans;
-            font-weight: 300;
-            @include adaptive(font-size, 28, 22);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: $color-alternate;
-            margin: 0;
+        .card-title {
             @include adaptive(min-height, 67, 53);
         }
 
-        .hotel-price {
-            @include font-circe-regular;
-            font-weight: 300;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-accent;
-            margin: 0;
-        }
-
-        .hotel-book-btn {
-            @include button-default;
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
+        .button {
             width: auto;
             align-self: flex-start;
+            @include adaptive(width, 278, auto);
         }
     }
 </style>

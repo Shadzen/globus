@@ -102,7 +102,7 @@ const includedItems: IncludedItem[] = [
         <ul class="included-list">
             {includedItems.map((item) => (
                 <li class="included-item">
-                    <span class="included-bullet"></span>
+                    <span class="bullet"></span>
                     <p class="included-text">{item.text}</p>
                 </li>
             ))}
@@ -124,7 +124,7 @@ const includedItems: IncludedItem[] = [
 
         .included-title {
             @include font-kudry-sans;
-            @include adaptive(font-size, 28, 22);
+            @include adaptive(font-size, 28, 26);
             line-height: 1.2;
             text-transform: uppercase;
             color: $color-alternate;
@@ -154,18 +154,13 @@ const includedItems: IncludedItem[] = [
             align-items: flex-start;
         }
 
-        .included-bullet {
-            @include adaptive(width, 12, 10);
-            @include adaptive(height, 12, 10);
-            @include adaptive(min-width, 12, 10);
-            border-radius: 50%;
-            background-color: $color-accent;
+        .bullet {
             @include adaptive(margin-top, 8, 6);
         }
 
         .included-text {
             @include font-circe-regular;
-            @include adaptive(font-size, 20, 16);
+            @include adaptive(font-size, 20, 26);
             line-height: 1.2;
             color: $color-alternate;
             white-space: pre-line;

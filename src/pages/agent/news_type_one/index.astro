@@ -5,9 +5,10 @@ import NewsTypeOneSchedule from '@/components/news_type_one/NewsTypeOneSchedule.
 import NewsTypeOneGallery from '@/components/news_type_one/NewsTypeOneGallery.astro'
 import NewsTypeOneTours from '@/components/news_type_one/NewsTypeOneTours.astro'
 import NewsTypeOneInfo from '@/components/news_type_one/NewsTypeOneInfo.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
-<Layout title="Новости Тип 1 - Прототип" userType="agent" heroTextColor="dark">
+<Layout title={`Новости Тип 1 - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
     <NewsTypeOneHero userType="agent" />
     <NewsTypeOneSchedule userType="agent" />
     <NewsTypeOneGallery userType="agent" />

@@ -10,6 +10,7 @@ import { initAboutInfo } from './about/aboutInfo'
 import { initAboutTimeline } from './about/aboutTimeline'
 import { initAboutMap } from './about/aboutMap'
 import { initNewsSlider } from './news/newsSlider'
+import { initNewsTypeTwoSlider } from './news_type_two/newsTypeTwoSlider'
 import { initCompaniesSlider } from './mice/companiesSlider'
 import { initAccordion } from './common/accordion'
 
@@ -24,6 +25,7 @@ const initAll = () => {
     initAboutTimeline()
     initAboutMap()
     initNewsSlider()
+    initNewsTypeTwoSlider()
     initCompaniesSlider()
     initAccordion()
 }
