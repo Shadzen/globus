@@ -74,7 +74,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             </div>
 
             <!-- Кнопка поиска -->
-            <button class="search-button">Найти</button>
+            <button class="button _sized">Найти</button>
         </div>
 
         <!-- Фильтры -->
@@ -304,29 +304,6 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 @include adaptive(width, 15, 12);
                 @include adaptive(height, 14, 12);
                 display: block;
-            }
-        }
-
-        .search-button {
-            grid-area: button;
-            background-color: $color-accent;
-            border: 1px solid $color-accent;
-            border-radius: 500px;
-            @include adaptive(height, 60, 50);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
-            line-height: 1.6;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #FFFDF8;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            align-self: end;
-
-            &:hover {
-                // background-color: darken(#CCA870, 10%);
             }
         }
 

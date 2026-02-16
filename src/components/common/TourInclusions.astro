@@ -266,7 +266,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
             line-height: 1.2;
             margin: 0;
             flex: 1;
-            max-width: 693px;
+            @include adaptive(max-width, 693, 100%);
         }
 
         .bottom-buttons {

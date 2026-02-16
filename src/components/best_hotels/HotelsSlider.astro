@@ -85,6 +85,12 @@ const { hotels } = Astro.props
         }
     }
 
+    .hotels-slider-wrapper {
+        .card-image {
+            @include adaptive(height, 280, 216);
+        }
+    }
+
     .hotels-slider-wrapper,
     .hotels-grid {
         .hotel-card {
@@ -92,10 +98,6 @@ const { hotels } = Astro.props
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 32, 40);
-        }
-
-        .card-image {
-            @include adaptive(height, 280, 216);
         }
 
         .card-badge {

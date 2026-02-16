@@ -2,7 +2,7 @@
 ---
 
 <section class="filter-form-section">
-    <div class="filter-form-container">
+    <div class="section-container">
         <form class="filter-form">
             <div class="filter-form-field">
                 <label for="country" class="filter-form-label">Страна</label>
@@ -59,14 +59,9 @@
 <style lang="scss" is:global>
     .filter-form-section {
         @include adaptive(margin-top, 60, 60);
-        background-color: $color-alternate;
+        background-color: $color-globus-blue;
         @include adaptive(padding-top, 52, 70);
         @include adaptive(padding-bottom, 52, 70);
-
-        .filter-form-container {
-            @include side-paddings;
-            width: 100%;
-        }
 
         .filter-form {
             display: flex;
@@ -95,7 +90,7 @@
         .filter-form-label {
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
-            color: rgba($color-main, 0.55);
+            color: $color-globus-cream;
             line-height: 1.6;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
@@ -112,7 +107,7 @@
         .filter-form-input {
             @include font-circe-light;
             @include adaptive(font-size, 26, 26);
-            color: $color-main;
+            color: $color-globus-cream;
             line-height: 1.2;
             background: transparent;
             border: none;
@@ -123,7 +118,7 @@
             @include adaptive(height, 28, 24);
 
             &::placeholder {
-                color: rgba($color-main, 0.3);
+                color: $color-globus-grey;
             }
         }
 
@@ -133,15 +128,15 @@
 
         .filter-form-select {
             option {
-                background-color: $color-alternate;
-                color: $color-main;
+                background-color: $color-globus-blue;
+                color: $color-globus-cream;
             }
         }
 
         .filter-form-underline {
             width: 100%;
             height: 1px;
-            background-color: $color-accent;
+            background-color: $color-globus-sand;
         }
 
         .filter-form-button {

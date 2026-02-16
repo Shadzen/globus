@@ -64,7 +64,7 @@ const hotels: Hotel[] = [
 ---
 
 <section class="best-hotels">
-    <div class="best-hotels-container">
+    <div class="section-container">
         <div class="best-hotels-header">
             <div class="header-content">
                 <h2 class="section-title">Наши<br />специалисты</h2>
@@ -161,7 +161,7 @@ const hotels: Hotel[] = [
                 </div>
             </div>
 
-            <button type="submit" class="search-submit-btn">Подобрать</button>
+            <button type="submit" class="button _sized">Подобрать</button>
         </form>
     </div>
 
@@ -169,15 +169,15 @@ const hotels: Hotel[] = [
         {
             hotels.map((hotel) => (
                 <div class="hotel-card">
-                    <a href={hotel.href} class="hotel-card-link">
-                        <div class="hotel-image">
+                    <a href={hotel.href} class="card _interactive">
+                        <div class="card-image">
                             <Image
                                 src={hotel.image}
                                 alt={hotel.name}
                                 loading="lazy"
                                 quality={100}
                             />
-                            <div class="hotel-badge">
+                            <div class="card-badge">
                                 <span>{hotel.badge}</span>
                             </div>
                             {hotel.isRecommended && (
@@ -186,12 +186,12 @@ const hotels: Hotel[] = [
                                 </div>
                             )}
                         </div>
-                        <div class="hotel-info">
-                            <h3 class="hotel-name" set:html={hotel.name} />
-                            <p class="hotel-price">{hotel.price}</p>
+                        <div class="card-content">
+                            <h3 class="card-title" set:html={hotel.name} />
+                            <p class="card-price">{hotel.price}</p>
                         </div>
                     </a>
-                    <button class="hotel-book-btn">Забронировать</button>
+                    <button class="button _sized">Забронировать</button>
                 </div>
             ))
         }
@@ -201,11 +201,6 @@ const hotels: Hotel[] = [
 <style lang="scss" is:global>
     .best-hotels {
         @include adaptive(margin-top, 70, 60);
-
-        .best-hotels-container {
-            position: relative;
-            width: 100%;
-        }
 
         .best-hotels-header {
             position: relative;
@@ -231,7 +226,7 @@ const hotels: Hotel[] = [
             font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
-            color: $color-alternate;
+            color: $color-globus-blue;
 
             p {
                 margin: 0;
@@ -247,102 +242,8 @@ const hotels: Hotel[] = [
     .hotel-search-results {
         @include adaptive(margin-top, 120, 60);
 
-        .hotel-card {
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 32, 40);
-        }
-
-        .hotel-card-link {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            width: 100%;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            white-space: normal;
-
-            &:hover {
-                transform: translateY(-8px);
-            }
-        }
-
-        .hotel-image {
-            position: relative;
-            @include adaptive(height, 280, 216);
-            overflow: hidden;
-            width: 100%;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-        }
-
-        .hotel-badge {
-            position: absolute;
-            @include adaptive(bottom, 20, 15);
-            @include adaptive(left, 20, 15);
-            @include adaptive(height, 44, 34);
-        }
-
-        .hotel-recommended {
-            position: absolute;
-            @include adaptive(top, 4, 2);
-            @include adaptive(right, 4, 2);
-            @include adaptive(width, 125, 70);
-            @include adaptive(height, 125, 70);
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-        }
-
-        .hotel-info {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 14, 10);
-            @include adaptive(margin-top, 24, 18);
-            width: 100%;
-        }
-
-        .hotel-name {
-            @include font-kudry-sans;
-            font-weight: 300;
-            @include adaptive(font-size, 28, 22);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: $color-alternate;
-            margin: 0;
-            @include adaptive(min-height, 67, 53);
-        }
-
-        .hotel-price {
-            @include font-circe-regular;
-            font-weight: 300;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-accent;
-            margin: 0;
-        }
-
-        .hotel-book-btn {
-            @include button-default;
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            width: auto;
-            align-self: flex-start;
-        }
-
         .search-form-wrapper {
-            background: $color-alternate;
+            background: $color-globus-blue;
             @include adaptive(padding-top, 54, 40);
             @include adaptive(padding-bottom, 54, 40);
             @include side-paddings;
@@ -357,6 +258,10 @@ const hotels: Hotel[] = [
             @include mobile {
                 flex-direction: column;
                 align-items: stretch;
+            }
+
+            .button {
+                @include adaptive(margin-top, 0, 30);
             }
         }
 
@@ -378,7 +283,7 @@ const hotels: Hotel[] = [
             line-height: 1.6;
             @include adaptive(letter-spacing, 3.2, 2);
             text-transform: uppercase;
-            color: $color-main;
+            color: $color-globus-cream;
             opacity: 0.55;
         }
 
@@ -394,7 +299,7 @@ const hotels: Hotel[] = [
             font-weight: 300;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
-            color: $color-main;
+            color: $color-globus-cream;
             background: transparent;
             border: none;
             outline: none;
@@ -404,15 +309,15 @@ const hotels: Hotel[] = [
             appearance: none;
 
             &::placeholder {
-                color: $color-main;
+                color: $color-globus-grey;
                 opacity: 1;
             }
         }
 
         .search-select {
             option {
-                background: $color-alternate;
-                color: $color-main;
+                background: $color-globus-blue;
+                color: $color-globus-cream;
             }
         }
 
@@ -444,28 +349,14 @@ const hotels: Hotel[] = [
         .search-underline {
             width: 100%;
             height: 1px;
-            background: $color-accent;
-        }
-
-        .search-submit-btn {
-            @include button-default;
-            @include adaptive(padding-top, 16, 14);
-            @include adaptive(padding-bottom, 16, 14);
-            @include adaptive(padding-left, 50, 40);
-            @include adaptive(padding-right, 50, 40);
-            flex-shrink: 0;
-
-            @include mobile {
-                width: 100%;
-                @include adaptive(margin-top, 30, 30);
-            }
+            background: $color-globus-sand;
         }
 
         .hotels-grid {
             display: flex;
             flex-wrap: wrap;
             @include adaptive(column-gap, 16, 12);
-            @include adaptive(row-gap, 32, 24);
+            @include adaptive(row-gap, 40, 40);
             @include adaptive(margin-top, 74, 60);
             @include side-paddings;
 

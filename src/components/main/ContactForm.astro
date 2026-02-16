@@ -288,7 +288,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(border-width, 2, 2);
             border-right: none;
             border-radius: 500px;
-            overflow: hidden;
+            // overflow: hidden;
         }
 
         .newsletter-input {
@@ -328,7 +328,7 @@ const { userType = 'tourist' } = Astro.props
             }
 
             &:hover {
-                opacity: 0.8;
+                // opacity: 0.8;
                 transform: scale(1.05);
             }
 
@@ -387,7 +387,7 @@ const { userType = 'tourist' } = Astro.props
         .form-input {
             background: transparent;
             border: none;
-            border-bottom: 1px solid $color-globus-cream;
+            border-bottom: 1px solid rgba($color-globus-sand, 0.5);
             @include font-kudry-sans;
             @include adaptive(font-size, 20, 16);
             font-weight: 300;

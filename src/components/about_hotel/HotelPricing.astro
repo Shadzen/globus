@@ -59,7 +59,7 @@ const pricingData = [
                 />
             </div>
 
-            <button class="search-button">Найти</button>
+            <button class="button _sized">Найти</button>
         </div>
     </div>
 
@@ -80,14 +80,14 @@ const pricingData = [
                         <div class="pricing-cell">{item.accommodation}</div>
                         <div class="pricing-cell">{item.meal}</div>
                         <div class="pricing-cell pricing-cell-price">
-                            <button class="price-button">{item.price}</button>
+                            <button class="button _sized _outline">{item.price}</button>
                         </div>
                     </div>
                 ))
             }
         </div>
 
-        <button class="contact-manager-button">написать менеджеру</button>
+        <button class="button _sized">написать менеджеру</button>
     </div>
 </section>
 
@@ -98,6 +98,10 @@ const pricingData = [
             background: $color-alternate;
             @include adaptive(padding-top, 64, 40);
             @include adaptive(padding-bottom, 64, 40);
+
+            .button {
+                @include adaptive(margin-top, 0, 30);
+            }
         }
 
         .pricing-search-container {
@@ -128,7 +132,7 @@ const pricingData = [
 
         .search-label {
             @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
+            @include adaptive(font-size, 16, 18);
             line-height: 1.6;
             @include adaptive(letter-spacing, 3.2, 2.8);
             text-transform: uppercase;
@@ -139,12 +143,12 @@ const pricingData = [
         .search-input {
             @include font-circe-regular;
             font-weight: 300;
-            @include adaptive(font-size, 26, 20);
+            @include adaptive(font-size, 26, 26);
             line-height: 1.2;
             color: $color-main;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba($color-main, 0.3);
+            border-bottom: 1px solid rgba($color-globus-sand, 0.5);
             @include adaptive(padding-bottom, 12, 10);
             outline: none;
             cursor: pointer;
@@ -152,22 +156,7 @@ const pricingData = [
 
             &:hover,
             &:focus {
-                border-bottom-color: rgba($color-main, 0.6);
-            }
-        }
-
-        .search-button {
-            @include button-default;
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(padding-top, 16, 14);
-            @include adaptive(padding-bottom, 16, 14);
-            @include adaptive(height, 60, 50);
-            flex-shrink: 0;
-
-            @include mobile {
-                width: 100%;
-                margin-top: 10px;
+                border-bottom-color: $color-globus-sand;
             }
         }
 
@@ -175,6 +164,12 @@ const pricingData = [
         .pricing-table-container {
             @include side-paddings;
             @include adaptive(padding-top, 80, 50);
+
+            > .button {
+                @include adaptive(margin-top, 60, 40);
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         .pricing-table {
@@ -184,32 +179,30 @@ const pricingData = [
 
         .pricing-header {
             display: flex;
-            @include adaptive(padding-bottom, 40, 30);
-            border-bottom: 1px solid $color-accent;
-
-            @include mobile {
-                display: none;
-            }
+            @include adaptive(padding-bottom, 30, 15);
+            @include adaptive(padding-left, 54, 0);
+            @include adaptive(padding-right, 54, 0);
+            border-bottom: 1px solid $color-globus-sand;
         }
 
         .header-cell {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
-            color: $color-alternate;
+            color: $color-globus-blue;
             opacity: 0.6;
-            flex: 1;
 
             &:nth-child(1) {
-                flex: 1.2;
+                @include adaptive(width, 44%, 36%);
             }
 
             &:nth-child(2) {
-                flex: 1;
+                @include adaptive(width, 35%, 24%);
             }
 
             &:nth-child(3) {
-                flex: 1.2;
+                flex: 1;
+                @include adaptive(padding-right, 7%, 14%);
                 text-align: right;
             }
         }
@@ -217,113 +210,45 @@ const pricingData = [
         .pricing-row {
             display: flex;
             align-items: center;
-            @include adaptive(padding-top, 56, 30);
-            @include adaptive(padding-bottom, 56, 30);
-            border-bottom: 1px solid rgba($color-alternate, 0.2);
+            @include adaptive(padding-top, 32, 17);
+            @include adaptive(padding-bottom, 32, 17);
+            @include adaptive(padding-left, 54, 0);
+            @include adaptive(padding-right, 54, 0);
+            border-bottom: 1px solid $color-globus-sand;
 
-            @include mobile {
-                flex-wrap: wrap;
-                @include adaptive(gap, 16, 12);
-            }
-
-            &:last-child {
-                border-bottom: none;
+            .button {
+                @include adaptive(font-size, 26, 26);
+                color: $color-globus-blue;
+                @include adaptive(min-width, 273, 172);
+                text-transform: none;
+                letter-spacing: normal;
             }
         }
 
         .pricing-cell {
             @include font-circe-regular;
             font-weight: 300;
-            @include adaptive(font-size, 26, 20);
+            @include adaptive(font-size, 26, 26);
             line-height: 1.2;
-            color: $color-alternate;
-            flex: 1;
+            color: $color-globus-blue;
 
             &:nth-child(1) {
-                flex: 1.2;
-
-                @include mobile {
-                    flex: none;
-                    width: 100%;
-                    font-weight: 400;
-                }
+                @include adaptive(width, 44%, 36%);
             }
 
             &:nth-child(2) {
-                flex: 1;
-
-                @include mobile {
-                    flex: none;
-                    width: auto;
-
-                    &::before {
-                        content: 'Питание: ';
-                        opacity: 0.6;
-                    }
-                }
+                @include adaptive(width, 35%, 24%);
+                @include adaptive(padding-left, 1.5%, 4%);
             }
 
             &:nth-child(3) {
-                flex: 1.2;
-
-                @include mobile {
-                    flex: none;
-                    width: 100%;
-                }
+                flex: 1;
             }
         }
 
         .pricing-cell-price {
             display: flex;
             justify-content: flex-end;
-
-            @include mobile {
-                justify-content: flex-start;
-            }
-        }
-
-        .price-button {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: $color-alternate;
-            background: transparent;
-            border: 2px solid $color-accent;
-            border-radius: 50px;
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(padding-top, 16, 14);
-            @include adaptive(padding-bottom, 16, 14);
-            @include adaptive(height, 61, 50);
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-
-            &:hover {
-                background: rgba($color-accent, 0.1);
-                transform: translateY(-2px);
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        .contact-manager-button {
-            @include button-default;
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(padding-top, 16, 14);
-            @include adaptive(padding-bottom, 16, 14);
-            @include adaptive(height, 61, 50);
-            @include adaptive(margin-top, 60, 40);
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
         }
     }
 </style>
