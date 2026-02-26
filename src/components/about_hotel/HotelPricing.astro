@@ -1,4 +1,6 @@
 ---
+import SearchForm from '@/components/main/SearchForm.astro'
+
 const pricingData = [
     {
         accommodation: 'Комфорт',
@@ -34,34 +36,17 @@ const pricingData = [
 ---
 
 <section class="hotel-pricing">
-    <!-- Search Form -->
-    <div class="pricing-search-form">
-        <div class="pricing-search-container">
-            <div class="search-field">
-                <label for="departure-date" class="search-label">Дата вылета</label>
-                <input
-                    type="text"
-                    id="departure-date"
-                    name="departure-date"
-                    class="search-input"
-                    placeholder="16 сен - 25 сен"
-                />
-            </div>
-
-            <div class="search-field">
-                <label for="tourists" class="search-label">Туристы</label>
-                <input
-                    type="text"
-                    id="tourists"
-                    name="tourists"
-                    class="search-input"
-                    placeholder="2 взрослых"
-                />
-            </div>
-
-            <button class="button _sized">Найти</button>
-        </div>
-    </div>
+    <!-- Search Form (те же поля, что на главной: дата вылета + туристы) -->
+    <SearchForm
+        variant="inline"
+        fields={{
+            city: false,
+            country: false,
+            dates: true,
+            nights: false,
+            tourists: true,
+        }}
+    />
 
     <!-- Pricing Table -->
     <div class="pricing-table-container">
@@ -93,80 +78,13 @@ const pricingData = [
 
 <style lang="scss" is:global>
     .hotel-pricing {
-        // Search Form
-        .pricing-search-form {
-            background: $color-alternate;
-            @include adaptive(padding-top, 64, 40);
-            @include adaptive(padding-bottom, 64, 40);
-
-            .button {
-                @include adaptive(margin-top, 0, 30);
-            }
-        }
-
-        .pricing-search-container {
-            @include side-paddings;
-            display: flex;
-            align-items: flex-end;
-            @include adaptive(gap, 40, 20);
-            flex-wrap: wrap;
-
-            @include mobile {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        .search-field {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 12, 10);
-            flex: 1;
-            min-width: 0;
-
-            @include mobile {
-                flex: none;
-                width: 100%;
-            }
-        }
-
-        .search-label {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 18);
-            line-height: 1.6;
-            @include adaptive(letter-spacing, 3.2, 2.8);
-            text-transform: uppercase;
-            color: $color-main;
-            opacity: 0.55;
-        }
-
-        .search-input {
-            @include font-circe-regular;
-            font-weight: 300;
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-            color: $color-main;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba($color-globus-sand, 0.5);
-            @include adaptive(padding-bottom, 12, 10);
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.3s;
-
-            &:hover,
-            &:focus {
-                border-bottom-color: $color-globus-sand;
-            }
-        }
-
         // Pricing Table
         .pricing-table-container {
             @include side-paddings;
-            @include adaptive(padding-top, 80, 50);
+            @include adaptive(padding-top, 52, 30);
 
             > .button {
-                @include adaptive(margin-top, 60, 40);
+                @include adaptive(margin-top, 24, 30);
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -179,7 +97,7 @@ const pricingData = [
 
         .pricing-header {
             display: flex;
-            @include adaptive(padding-bottom, 30, 15);
+            @include adaptive(padding-bottom, 12, 6);
             @include adaptive(padding-left, 54, 0);
             @include adaptive(padding-right, 54, 0);
             border-bottom: 1px solid $color-globus-sand;
@@ -202,7 +120,7 @@ const pricingData = [
 
             &:nth-child(3) {
                 flex: 1;
-                @include adaptive(padding-right, 7%, 14%);
+                @include adaptive(padding-right, 5%, 14%);
                 text-align: right;
             }
         }
@@ -210,8 +128,8 @@ const pricingData = [
         .pricing-row {
             display: flex;
             align-items: center;
-            @include adaptive(padding-top, 32, 17);
-            @include adaptive(padding-bottom, 32, 17);
+            @include adaptive(padding-top, 12, 12);
+            @include adaptive(padding-bottom, 12, 12);
             @include adaptive(padding-left, 54, 0);
             @include adaptive(padding-right, 54, 0);
             border-bottom: 1px solid $color-globus-sand;
@@ -219,7 +137,8 @@ const pricingData = [
             .button {
                 @include adaptive(font-size, 26, 26);
                 color: $color-globus-blue;
-                @include adaptive(min-width, 273, 172);
+                @include adaptive(min-width, 200, 140);
+                @include adaptive(height, 40, 40);
                 text-transform: none;
                 letter-spacing: normal;
             }

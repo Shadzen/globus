@@ -1,11 +1,83 @@
 import { defineConfig } from 'astro/config'
 import autoprefixer from 'autoprefixer'
+import sortMediaQueries from 'postcss-sort-media-queries'
 import cssnano from 'cssnano'
+import postcss from 'postcss'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV !== 'production'
+
+// PostCSS-плагин: убирает дублирующиеся условия в медиа-запросах
+// @media screen and (max-width:480px) and (max-width:480px) → @media screen and (max-width:480px)
+function deduplicateMediaConditions() {
+    return {
+        postcssPlugin: 'postcss-deduplicate-media-conditions',
+        AtRule: {
+            media(atRule) {
+                const parts = atRule.params.split(/\s+and\s+/)
+                const seen = new Set()
+                const unique = []
+                for (const part of parts) {
+                    const normalized = part.trim()
+                    if (!seen.has(normalized)) {
+                        seen.add(normalized)
+                        unique.push(normalized)
+                    }
+                }
+                if (unique.length < parts.length) {
+                    atRule.params = unique.join(' and ')
+                }
+            },
+        },
+    }
+}
+deduplicateMediaConditions.postcss = true
+
+// PostCSS-плагин: удаляет невозможные медиа-запросы
+// (min-width:481px) and (max-width:480px) — никогда не сработает
+function removeImpossibleMediaQueries() {
+    return {
+        postcssPlugin: 'postcss-remove-impossible-media',
+        AtRule: {
+            media(atRule) {
+                const minMatch = atRule.params.match(/min-width:\s*(\d+)px/)
+                const maxMatch = atRule.params.match(/max-width:\s*(\d+)px/)
+                if (minMatch && maxMatch) {
+                    const minW = parseInt(minMatch[1])
+                    const maxW = parseInt(maxMatch[1])
+                    if (minW > maxW) {
+                        atRule.remove()
+                    }
+                }
+            },
+        },
+    }
+}
+removeImpossibleMediaQueries.postcss = true
+
+// Vite-плагин: объединяет одинаковые @media в финальном CSS-бандле
+// PostCSS работает покомпонентно, а этот плагин — на собранном файле
+function mergeMediaQueriesPlugin() {
+    return {
+        name: 'merge-media-queries',
+        enforce: 'post',
+        async generateBundle(_options, bundle) {
+            for (const [filename, asset] of Object.entries(bundle)) {
+                if (asset.type === 'asset' && filename.endsWith('.css')) {
+                    const result = await postcss([
+                        deduplicateMediaConditions(),
+                        removeImpossibleMediaQueries(),
+                        sortMediaQueries(),
+                        cssnano(),
+                    ]).process(asset.source, { from: undefined })
+                    asset.source = result.css
+                }
+            }
+        },
+    }
+}
 
 // Vite-плагин: собираем весь клиентский JS в один чанк main.js
 // Применяется только к client build (не SSR)
@@ -47,7 +119,7 @@ export default defineConfig({
         inlineStylesheets: 'never',
     },
     vite: {
-        plugins: [singleChunkPlugin()],
+        plugins: [singleChunkPlugin(), ...(!isDev ? [mergeMediaQueriesPlugin()] : [])],
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src'),
@@ -65,7 +137,7 @@ export default defineConfig({
             },
             postcss: {
                 plugins: [
-                    ...(!isDev ? [autoprefixer(), cssnano()] : []),
+                    ...(!isDev ? [autoprefixer(), deduplicateMediaConditions()] : []),
                 ],
             },
         },

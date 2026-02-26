@@ -13,13 +13,18 @@ export const initSearchForm = () => {
     const searchTourBtn = document.querySelector('.main-hero .button')
     const searchFormClose = document.querySelector('.hero-search-form-close')
 
-    if (!searchForm || !searchTourBtn) return
+    if (!searchForm) return
 
-    // Открытие/закрытие формы
-    searchTourBtn.addEventListener('click', () => {
-        searchForm.classList.add('_active')
-        document.body.classList.add('_disable-scrolling')
-    })
+    // Открытие/закрытие формы (только если есть кнопка на главной)
+    if (searchTourBtn) {
+        searchTourBtn.addEventListener('click', () => {
+            searchForm.classList.add('_active')
+            document.body.classList.add('_disable-scrolling')
+        })
+    }
+
+    // Закрытие по кнопке и по клику вне формы — только для hero (на главной). Inline (страница отеля) всегда видима
+    const isInlineForm = searchForm.classList.contains('_inline')
 
     if (searchFormClose) {
         searchFormClose.addEventListener('click', () => {
@@ -28,12 +33,14 @@ export const initSearchForm = () => {
         })
     }
 
-    searchForm.addEventListener('click', (e) => {
-        if (e.target === searchForm) {
-            searchForm.classList.remove('_active')
-            document.body.classList.remove('_disable-scrolling')
-        }
-    })
+    if (!isInlineForm) {
+        searchForm.addEventListener('click', (e) => {
+            if (e.target === searchForm) {
+                searchForm.classList.remove('_active')
+                document.body.classList.remove('_disable-scrolling')
+            }
+        })
+    }
 
     // Инициализация дропдаунов
     initDropdowns()

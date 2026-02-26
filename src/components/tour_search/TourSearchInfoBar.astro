@@ -59,7 +59,7 @@ const buttons = [
         <div class="tour-search-info-buttons">
             {
                 buttons.map((button) => (
-                    <a href={button.href} class="tour-search-info-button">
+                    <a href={button.href} class="button _sized _outline">
                         {button.label}
                     </a>
                 ))
@@ -163,12 +163,6 @@ const buttons = [
                 flex-direction: column;
                 width: 100%;
             }
-        }
-
-        .tour-search-info-button {
-            @include button-sized;
-            @include button-outline;
-            color: $color-main;
         }
     }
 </style>

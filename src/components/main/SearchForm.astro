@@ -1,9 +1,37 @@
 ---
 // src/components/SearchForm.astro
+
+export interface SearchFormFields {
+    city?: boolean
+    country?: boolean
+    dates?: boolean
+    nights?: boolean
+    tourists?: boolean
+}
+
+interface Props {
+    // Какие поля показывать (по умолчанию все true)
+    fields?: SearchFormFields
+    // hero = форма на главной с заголовком и оверлеем; inline = встроенная без заголовка
+    variant?: 'hero' | 'inline'
+}
+
+const {
+    fields = {},
+    variant = 'hero',
+} = Astro.props
+
+const showCity = fields.city !== false
+const showCountry = fields.country !== false
+const showDates = fields.dates !== false
+const showNights = fields.nights !== false
+const showTourists = fields.tourists !== false
+const isInline = variant === 'inline'
 ---
 
-<section class="hero-search-form">
+<section class="hero-search-form" class:list={{ _inline: isInline }}>
     <div class="section-container _alt-paddings">
+        {!isInline && (
         <div class="search-form-header">
             <h2 class="search-form-title">Подбор тура</h2>
             <button
@@ -16,7 +44,9 @@
                 <span></span>
             </button>
         </div>
+        )}
 
+        {showCity && (
         <div class="form-field" data-field="city">
             <label for="city" class="field-label">Город вылета</label>
             <div class="field-dropdown">
@@ -62,7 +92,9 @@
                 </div>
             </div>
         </div>
+        )}
 
+        {showCountry && (
         <div class="form-field" data-field="country">
             <label for="country" class="field-label">Страна</label>
             <div class="field-dropdown">
@@ -106,7 +138,9 @@
                 </div>
             </div>
         </div>
+        )}
 
+        {showDates && (
         <div class="form-field" data-field="dates">
             <label for="dates" class="field-label">Дата вылета</label>
             <input
@@ -120,7 +154,9 @@
                 readonly
             />
         </div>
+        )}
 
+        {showNights && (
         <div class="form-field" data-field="nights">
             <label for="nights" class="field-label">Ночей</label>
             <div class="field-dropdown">
@@ -146,7 +182,9 @@
                 </div>
             </div>
         </div>
+        )}
 
+        {showTourists && (
         <div class="form-field" data-field="tourists">
             <label for="tourists" class="field-label">Туристы</label>
             <div class="field-dropdown">
@@ -217,9 +255,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
+        </div>
+        )}
 
         <button name="search-submit" class="button _sized" type="submit">Найти</button>
     </div>
@@ -231,21 +270,33 @@
         @include adaptive(padding-top, 52, 30);
         @include adaptive(padding-bottom, 52, 30);
 
+        // Мобильная версия: только variant="hero" скрыта по умолчанию и открывается по кнопке
+        // variant="inline" (страница отеля и т.п.) всегда видима, кнопки показа нет
         @include mobile {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100dvw;
-            height: 100dvh;
-            z-index: 1000;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-in-out;
-            overflow-y: auto;
-            @include adaptive(padding-top, 20, 20);
+            &:not(._inline) {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100dvw;
+                height: 100dvh;
+                z-index: 1000;
+                transform: translateY(100%);
+                transition: transform 0.3s ease-in-out;
+                overflow-y: auto;
+                @include adaptive(padding-top, 20, 20);
 
-            &._active {
-                transform: translateY(0);
+                &._active {
+                    transform: translateY(0);
+                }
+            }
+
+            &._inline {
+                position: static;
+                width: auto;
+                height: auto;
+                transform: none;
+                overflow-y: visible;
             }
         }
 
