@@ -8,6 +8,18 @@ function fileHash(filePath) {
     return crypto.createHash('md5').update(content).digest('hex').slice(0, 8)
 }
 
+// Match CSS hrefs: /assets/... or /globus/assets/... (GitHub Pages base)
+function matchCssHrefs(html) {
+    return [...html.matchAll(/<link[^>]*href="([^"]*\/assets\/[^"]+\.css)"[^>]*\/?>/g)].map((m) => m[1])
+}
+
+function hrefToAssetPath(href) {
+    // "/assets/foo.css" or "/globus/assets/foo.css" -> "assets/foo.css"
+    const withoutLeading = href.replace(/^\//, '')
+    const withoutBase = withoutLeading.replace(/^globus\/?/, '')
+    return withoutBase
+}
+
 async function fix() {
     const distDir = 'dist'
     const assetsDir = path.join(distDir, 'assets')
@@ -37,12 +49,11 @@ async function fix() {
     let agentPagesCssHash = null
     if (agentPagesExist) {
         const firstAgentHtml = fs.readFileSync(agentPagePaths[0], 'utf8')
-        const agentCssHrefs = [...firstAgentHtml.matchAll(/<link[^>]*href="(\/assets\/[^"]+\.css)"[^>]*\/?>/g)]
-            .map((m) => m[1])
+        const agentCssHrefs = matchCssHrefs(firstAgentHtml)
         if (agentCssHrefs.length > 0) {
             const mergedCss = agentCssHrefs
                 .map((href) => {
-                    const filePath = path.join(distDir, href.slice(1))
+                    const filePath = path.join(distDir, hrefToAssetPath(href))
                     return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : ''
                 })
                 .filter(Boolean)
@@ -72,7 +83,7 @@ async function fix() {
     const mainCssHrefs = new Set()
     for (const file of mainSiteHtmlFiles) {
         const content = fs.readFileSync(file, 'utf8')
-        const hrefs = [...content.matchAll(/<link[^>]*href="(\/assets\/[^"]+\.css)"[^>]*\/?>/g)].map((m) => m[1])
+        const hrefs = matchCssHrefs(content)
         hrefs.forEach((h) => mainCssHrefs.add(h))
     }
     let mainCssHash = null
@@ -80,7 +91,7 @@ async function fix() {
         const sortedHrefs = [...mainCssHrefs].sort()
         const mergedMainCss = sortedHrefs
             .map((href) => {
-                const filePath = path.join(distDir, href.slice(1))
+                const filePath = path.join(distDir, hrefToAssetPath(href))
                 return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : ''
             })
             .filter(Boolean)
