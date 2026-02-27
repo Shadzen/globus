@@ -92,6 +92,8 @@ function singleChunkPlugin() {
             if (!isSSR) {
                 options.manualChunks = (id) => {
                     if (id.includes('\0') || id.includes('?')) return
+                    // Agent pages: separate chunk so other domain gets only header/menu logic
+                    if (id.includes('src/scripts/agent-main') || id.includes('src/scripts/main/header')) return 'agent'
                     if (id.includes('src/scripts/')) return 'main'
                     if (
                         id.includes('node_modules/swiper') ||
@@ -143,7 +145,8 @@ export default defineConfig({
         },
         build: {
             emptyOutDir: true,
-            cssCodeSplit: false,
+            // true: agent pages (AgentLayout) get a separate CSS chunk for use on another domain
+            cssCodeSplit: true,
             rollupOptions: {
                 output: {
                     // Настраиваем имена для итоговых файлов
