@@ -7,7 +7,7 @@ export const initHeader = () => {
 
     if (mobileMenuBtn && headerActions) {
         mobileMenuBtn.addEventListener('click', () => {
-            // Добавляем класс, что кнопка использовалась (для включения анимации)
+            // Mark button as used (enables animation)
             mobileMenuBtn.classList.add('_initialized')
             
             const isActive = mobileMenuBtn.classList.contains('_active')
@@ -15,13 +15,13 @@ export const initHeader = () => {
             mobileMenuBtn.classList.toggle('_active')
             headerActions.classList.toggle('_active')
             
-            // Используем существующий класс для блокировки скролла
+            // Use existing class to lock scroll
             document.body.classList.toggle('_disable-scrolling')
 
-            // Переключение логотипа для мобильного меню
+            // Toggle logo for mobile menu
             if (logoWrapper) {
                 if (!isActive) {
-                    // Открываем меню - сохраняем оригинальный цвет и переключаем на светлый
+                    // Open menu — save original color and switch to light
                     if (!logoWrapper.hasAttribute('data-original-color')) {
                         const currentColor = logoWrapper.classList.contains('_dark') ? 'dark' : 'light'
                         logoWrapper.setAttribute('data-original-color', currentColor)
@@ -29,7 +29,7 @@ export const initHeader = () => {
                     logoWrapper.classList.remove('_dark')
                     logoWrapper.classList.add('_light')
                 } else {
-                    // Закрываем меню - возвращаем исходный цвет
+                    // Close menu — restore original color
                     if (logoWrapper.hasAttribute('data-original-color')) {
                         const originalColor = logoWrapper.getAttribute('data-original-color')
                         logoWrapper.classList.remove('_light', '_dark')
@@ -41,7 +41,7 @@ export const initHeader = () => {
             }
         })
 
-        // Закрытие меню при клике на ссылку
+        // Close menu on link click
         const menuLinks = headerActions.querySelectorAll('a')
         menuLinks.forEach((link) => {
             link.addEventListener('click', () => {
@@ -49,7 +49,7 @@ export const initHeader = () => {
                 headerActions.classList.remove('_active')
                 document.body.classList.remove('_disable-scrolling')
 
-                // Возвращаем оригинальный цвет логотипа
+                // Restore original logo color
                 if (logoWrapper && logoWrapper.hasAttribute('data-original-color')) {
                     const originalColor = logoWrapper.getAttribute('data-original-color')
                     logoWrapper.classList.remove('_light', '_dark')

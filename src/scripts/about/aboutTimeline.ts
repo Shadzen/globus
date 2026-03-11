@@ -8,9 +8,9 @@ export const initAboutTimeline = () => {
     const navDesktop = container.querySelector('.timeline-nav-desktop')
     if (!navDesktop) return
 
-    // Создаём десктопные кнопки динамически на основе слайдов
+    // Create desktop buttons dynamically from slides
     slides.forEach((slide, index) => {
-        // Клонируем мобильную кнопку
+        // Clone mobile button
         const mobileBtn = slide.querySelector('.timeline-dot')
         if (!mobileBtn) return
 
@@ -21,7 +21,7 @@ export const initAboutTimeline = () => {
     })
 
     const switchSlide = (index: number) => {
-        // Удаляем активный класс со всех точек и слайдов
+        // Remove active class from all dots and slides
         const dotsDesktop = container.querySelectorAll('.timeline-nav-desktop .timeline-dot')
         const dotsMobile = container.querySelectorAll('.timeline-slide .timeline-dot')
 
@@ -29,13 +29,13 @@ export const initAboutTimeline = () => {
         dotsMobile.forEach((dot) => dot.classList.remove('_active'))
         slides.forEach((slide) => slide.classList.remove('_active'))
 
-        // Добавляем активный класс к выбранным элементам
+        // Add active class to selected elements
         dotsDesktop[index]?.classList.add('_active')
         dotsMobile[index]?.classList.add('_active')
         slides[index]?.classList.add('_active')
     }
 
-    // Обработчики клика на десктопные точки (динамически созданные)
+    // Click handlers for desktop dots (dynamically created)
     const dotsDesktop = container.querySelectorAll('.timeline-nav-desktop .timeline-dot')
     dotsDesktop.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -43,7 +43,7 @@ export const initAboutTimeline = () => {
         })
     })
 
-    // Обработчики клика на мобильные точки
+    // Click handlers for mobile dots
     const dotsMobile = container.querySelectorAll('.timeline-slide .timeline-dot')
     dotsMobile.forEach((dot, index) => {
         dot.addEventListener('click', () => {

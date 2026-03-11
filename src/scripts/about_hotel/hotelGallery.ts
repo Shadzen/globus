@@ -17,13 +17,13 @@ export const initHotelGallery = () => {
 
     if (!swiperContainer) return
 
-    // Получаем данные галереи из data-атрибута
+    // Get gallery data from data attribute
     const galleryData: GalleryImage[] = JSON.parse(swiperContainer.dataset.gallery || '[]')
 
     const getSpaceBetween = () => adaptive(16, 16)
     const getSlidesOffset = () => adaptive(100, 15)
 
-    // Инициализация Swiper
+    // Init Swiper
     const swiper = new Swiper('.about-hotel-gallery', {
         slidesPerView: 'auto',
         spaceBetween: getSpaceBetween(),
@@ -32,7 +32,7 @@ export const initHotelGallery = () => {
         grabCursor: true,
     })
 
-    // Инициализация PhotoSwipe
+    // Init PhotoSwipe
     const lightbox = new PhotoSwipeLightbox({
         dataSource: galleryData.map((img) => ({
             src: img.full,
@@ -46,28 +46,28 @@ export const initHotelGallery = () => {
 
     lightbox.init()
 
-    // Получаем элементы модального окна
+    // Get modal elements
     const galleryModal = document.getElementById('galleryModal')
     const modalOverlay = galleryModal?.querySelector('.gallery-modal-overlay')
     const modalContent = galleryModal?.querySelector('.gallery-modal-content')
     const modalClose = galleryModal?.querySelector('.gallery-modal-close')
     const modalItems = galleryModal?.querySelectorAll('.gallery-modal-item')
 
-    // Функция открытия модального окна
+    // Open modal
     const openModal = () => {
         if (!galleryModal) return
         galleryModal.classList.add('is-active')
         document.body.style.overflow = 'hidden'
     }
 
-    // Функция закрытия модального окна
+    // Close modal
     const closeModal = () => {
         if (!galleryModal) return
         galleryModal.classList.remove('is-active')
         document.body.style.overflow = ''
     }
 
-    // Обработка кликов на слайды в превью
+    // Click handlers for preview slides
     const galleryItems = document.querySelectorAll('.about-hotel-gallery .about-hotel-gallery-item')
     galleryItems.forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -76,46 +76,46 @@ export const initHotelGallery = () => {
             const isAllPhotos = item.classList.contains('about-hotel-gallery-item-all')
 
             if (isAllPhotos) {
-                // Открываем модальное окно со всеми превьюшками
+                // Open modal with all thumbnails
                 openModal()
             } else {
-                // Открываем PhotoSwipe сразу
+                // Open PhotoSwipe directly
                 lightbox.loadAndOpen(index)
             }
         })
     })
 
-    // Обработка кликов на превьюшки в модальном окне
+    // Click handlers for thumbnails in modal
     modalItems?.forEach((item) => {
         item.addEventListener('click', () => {
             const index = parseInt((item as HTMLElement).dataset.index || '0', 10)
             closeModal()
-            // Небольшая задержка для плавности
+            // Short delay for smooth transition
             setTimeout(() => {
                 lightbox.loadAndOpen(index)
             }, 100)
         })
     })
 
-    // Закрытие модального окна
+    // Close modal
     modalOverlay?.addEventListener('click', closeModal)
     modalClose?.addEventListener('click', closeModal)
 
-    // Закрытие при клике на пустое место (не на превьюшки)
+    // Close on click on empty area (not on thumbnails)
     modalContent?.addEventListener('click', (e) => {
         if (e.target === modalContent) {
             closeModal()
         }
     })
 
-    // Закрытие по ESC
+    // Close on ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && galleryModal?.classList.contains('is-active')) {
             closeModal()
         }
     })
 
-    // Адаптивность Swiper при ресайзе
+    // Swiper resize handling
     let resizeTimeout: NodeJS.Timeout
     window.addEventListener('resize', () => {
         if (swiper.destroyed) return

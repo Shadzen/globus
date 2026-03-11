@@ -1,13 +1,13 @@
 import { gsap } from 'gsap'
 
-// Расширяем Window для TS
+// Extend Window for TS
 declare global {
   interface Window {
     gsap: typeof gsap
   }
 }
 
-// Инициализация GSAP в глобальной области
+// Expose GSAP on window for global use
 if (typeof window !== 'undefined') {
   window.gsap = gsap
   // @ts-expect-error - gsap is not on globalThis by default

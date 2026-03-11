@@ -15,7 +15,7 @@ export const initSearchForm = () => {
 
     if (!searchForm) return
 
-    // Открытие/закрытие формы (только если есть кнопка на главной)
+    // Open/close form (only when hero button exists)
     if (searchTourBtn) {
         searchTourBtn.addEventListener('click', () => {
             searchForm.classList.add('_active')
@@ -23,7 +23,7 @@ export const initSearchForm = () => {
         })
     }
 
-    // Закрытие по кнопке и по клику вне формы — только для hero (на главной). Inline (страница отеля) всегда видима
+    // Close on button click and click outside — hero only. Inline (hotel page) is always visible
     const isInlineForm = searchForm.classList.contains('_inline')
 
     if (searchFormClose) {
@@ -42,17 +42,17 @@ export const initSearchForm = () => {
         })
     }
 
-    // Инициализация дропдаунов
+    // Init dropdowns
     initDropdowns()
 
-    // Инициализация календаря
+    // Init date picker
     initDatePicker()
 
-    // Инициализация счётчика туристов
+    // Init tourists counter
     initTouristsCounter()
 }
 
-// Дропдауны для города, страны и ночей
+// Dropdowns for city, country and nights
 function initDropdowns() {
     const dropdowns = document.querySelectorAll('.field-dropdown')
 
@@ -64,7 +64,7 @@ function initDropdowns() {
 
         if (!input || !dropdownList) return
 
-        // Открытие/закрытие дропдауна
+        // Open/close dropdown
         input.addEventListener('click', (e) => {
             e.stopPropagation()
             closeAllDropdowns()
@@ -76,7 +76,7 @@ function initDropdowns() {
             }
         })
 
-        // Выбор элемента
+        // Select item
         items.forEach((item) => {
             item.addEventListener('click', () => {
                 const value = item.getAttribute('data-value')
@@ -87,7 +87,7 @@ function initDropdowns() {
             })
         })
 
-        // Поиск (если есть)
+        // Search (if present)
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 const query = (e.target as HTMLInputElement).value.toLowerCase()
@@ -100,7 +100,7 @@ function initDropdowns() {
         }
     })
 
-    // Закрытие при клике вне дропдауна
+    // Close on click outside dropdown
     document.addEventListener('click', () => {
         closeAllDropdowns()
     })
@@ -123,7 +123,7 @@ function filterItems(items: NodeListOf<Element>, query: string) {
     })
 }
 
-// Календарь для выбора дат
+// Date picker
 function initDatePicker() {
     const datesInput = document.querySelector('#dates') as HTMLInputElement
     if (!datesInput) return
@@ -140,7 +140,7 @@ function initDatePicker() {
                 const end = selectedDates[1]
                 const nights = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
                 
-                // Обновляем поле "Ночей"
+                // Update nights field
                 const nightsInput = document.querySelector('#nights') as HTMLInputElement
                 if (nightsInput) {
                     nightsInput.value = `${nights}`
@@ -150,7 +150,7 @@ function initDatePicker() {
     })
 }
 
-// Счётчик туристов
+// Tourists counter
 function initTouristsCounter() {
     const touristsField = document.querySelector('[data-field="tourists"]')
     if (!touristsField) return
@@ -167,14 +167,14 @@ function initTouristsCounter() {
         infants: 0,
     }
 
-    // Открытие/закрытие
+    // Open/close
     input.addEventListener('click', (e) => {
         e.stopPropagation()
         closeAllDropdowns()
         dropdownList.classList.add('_active')
     })
 
-    // Кнопки увеличения/уменьшения
+    // Increment/decrement buttons
     counterBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             const action = btn.getAttribute('data-action')
@@ -185,7 +185,7 @@ function initTouristsCounter() {
             if (action === 'increase') {
                 counts[type]++
             } else if (action === 'decrease' && counts[type] > 0) {
-                // Взрослых должно быть минимум 1
+                // Adults must be at least 1
                 if (type === 'adults' && counts[type] <= 1) return
                 counts[type]--
             }
@@ -196,7 +196,7 @@ function initTouristsCounter() {
         })
     })
 
-    // Обновление отображения счётчика
+    // Update counter display
     function updateCounterDisplay(type: keyof TouristCounts, value: number) {
         const counter = touristsField?.querySelector(`[data-type="${type}"]`) as HTMLElement
         if (counter) {
@@ -204,7 +204,7 @@ function initTouristsCounter() {
         }
     }
 
-    // Обновление текста в инпуте
+    // Update input text
     function updateTouristsInputValue(counts: TouristCounts, input: HTMLInputElement) {
         const parts: string[] = []
 
@@ -226,7 +226,7 @@ function initTouristsCounter() {
         input.value = parts.join(', ')
     }
 
-    // Правильная форма слова для русского языка
+    // Russian word form (singular/plural)
     function getWordForm(num: number, forms: [string, string, string]): string {
         const mod10 = num % 10
         const mod100 = num % 100
@@ -246,7 +246,7 @@ function initTouristsCounter() {
         return forms[2]
     }
 
-    // Отключение кнопок при достижении лимитов
+    // Disable buttons at min/max limits
     function updateButtonStates() {
         counterBtns.forEach((btn) => {
             const action = btn.getAttribute('data-action')
@@ -266,10 +266,10 @@ function initTouristsCounter() {
         })
     }
 
-    // Инициализация начального состояния
+    // Init initial state
     updateButtonStates()
 
-    // Закрытие при клике вне
+    // Close on click outside
     document.addEventListener('click', (e) => {
         if (!touristsField?.contains(e.target as Node)) {
             dropdownList.classList.remove('_active')

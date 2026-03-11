@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
 import { globby } from 'globby'
+import * as esbuild from 'esbuild'
 
 function fileHash(filePath) {
     const content = fs.readFileSync(filePath)
@@ -13,6 +14,13 @@ function matchCssHrefs(html) {
     return [...html.matchAll(/<link[^>]*href="([^"]*\/assets\/[^"]+\.css)"[^>]*\/?>/g)].map((m) => m[1])
 }
 
+// Match script src: /assets/... or /_astro/... (Astro 6) or /globus/...
+function matchScriptSrcs(html) {
+    return [
+        ...html.matchAll(/<script[^>]*src="([^"]*(?:\/assets\/|\/_astro\/)[^"]+\.js)[^"]*"[^>]*><\/script>/g),
+    ].map((m) => m[1])
+}
+
 function hrefToAssetPath(href) {
     // "/assets/foo.css" or "/globus/assets/foo.css" -> "assets/foo.css"
     const withoutLeading = href.replace(/^\//, '')
@@ -20,22 +28,72 @@ function hrefToAssetPath(href) {
     return withoutBase
 }
 
+// href "/_astro/foo.js" or "/globus/_astro/foo.js" -> "dist/_astro/foo.js"
+function scriptHrefToDistPath(href, distDir) {
+    const withoutLeading = href.replace(/^\//, '')
+    const withoutBase = withoutLeading.replace(/^globus\/?/, '')
+    return path.join(distDir, withoutBase)
+}
+
+/** Bundle _astro/Layout.*.js and _astro/AgentLayout.*.js into assets/main.js and assets/agent.js via esbuild */
+async function bundleAstroScriptsToAssets(distDir, assetsDir, astroDir) {
+    const layoutFiles = fs.readdirSync(astroDir).filter((f) => f.startsWith('Layout.astro') && f.endsWith('.js'))
+    const agentLayoutFiles = fs
+        .readdirSync(astroDir)
+        .filter((f) => f.startsWith('AgentLayout.astro') && f.endsWith('.js'))
+    if (layoutFiles.length === 0 || agentLayoutFiles.length === 0) {
+        console.log('❌ Layout.*.js and/or AgentLayout.*.js not found in _astro.')
+        return null
+    }
+    const layoutEntry = path.join(astroDir, layoutFiles[0])
+    const agentEntry = path.join(astroDir, agentLayoutFiles[0])
+    const outMain = path.join(assetsDir, 'main.js')
+    const outAgent = path.join(assetsDir, 'agent.js')
+    await esbuild.build({
+        entryPoints: [layoutEntry],
+        bundle: true,
+        format: 'esm',
+        outfile: outMain,
+        minify: true,
+        logLevel: 'silent',
+    })
+    await esbuild.build({
+        entryPoints: [agentEntry],
+        bundle: true,
+        format: 'esm',
+        outfile: outAgent,
+        minify: true,
+        logLevel: 'silent',
+    })
+    return { mainPath: outMain, agentPath: outAgent }
+}
+
 async function fix() {
     const distDir = 'dist'
     const assetsDir = path.join(distDir, 'assets')
+    const astroDir = path.join(distDir, '_astro')
     const base = process.env.GITHUB_ACTIONS ? '/globus/' : '/'
 
     const mainPath = path.join(assetsDir, 'main.js')
     const agentPath = path.join(assetsDir, 'agent.js')
+    let legacyMode = fs.existsSync(mainPath)
 
-    if (!fs.existsSync(mainPath)) {
-        console.log('❌ Бандл main.js не найден.')
-        return
+    let jsHash, agentJsHash
+    if (legacyMode) {
+        jsHash = fileHash(mainPath)
+        agentJsHash = fs.existsSync(agentPath) ? fileHash(agentPath) : null
+    } else {
+        // Astro 6: bundle _astro/*.js into assets/main.js and assets/agent.js
+        if (!fs.existsSync(astroDir)) {
+            console.log('❌ _astro folder not found (expected Astro 6 scripts).')
+            return
+        }
+        const bundled = await bundleAstroScriptsToAssets(distDir, assetsDir, astroDir)
+        if (!bundled) return
+        jsHash = fileHash(bundled.mainPath)
+        agentJsHash = fileHash(bundled.agentPath)
+        legacyMode = true
     }
-
-    // Считаем хеши для версионирования
-    const jsHash = fileHash(mainPath)
-    const agentJsHash = fs.existsSync(agentPath) ? fileHash(agentPath) : null
 
     const agentPagePaths = [
         path.join(distDir, 'agent', 'tour_search', 'index.html'),
@@ -58,10 +116,10 @@ async function fix() {
                 })
                 .filter(Boolean)
                 .join('\n')
-            const agentPagesCssPath = path.join(assetsDir, 'agent-pages.css')
+            const agentPagesCssPath = path.join(assetsDir, 'agent.css')
             fs.writeFileSync(agentPagesCssPath, mergedCss)
             agentPagesCssHash = fileHash(agentPagesCssPath)
-            const agentCssLink = `<link rel="stylesheet" href="${base}assets/agent-pages.css?v=${agentPagesCssHash}" />`
+            const agentCssLink = `<link rel="stylesheet" href="${base}assets/agent.css?v=${agentPagesCssHash}" />`
             for (const htmlPath of agentPagePaths) {
                 let content = fs.readFileSync(htmlPath, 'utf8')
                 for (const href of agentCssHrefs) {
@@ -114,50 +172,54 @@ async function fix() {
         }
     }
 
-    // 3) Правим все HTML (scripts)
+    // 3) Fix all HTML (scripts): single main.js or agent.js
     for (const file of htmlFiles) {
         let content = fs.readFileSync(file, 'utf8')
-
-        // Удаляем все script-теги, ссылающиеся на JS из папки assets
+        // Remove all script tags (assets and _astro)
         content = content.replace(
-            /<script[^>]*src="[^"]*assets\/[^"]*\.js[^"]*"[^>]*><\/script>/g,
+            /<script[^>]*src="[^"]*(?:assets\/|\/_astro\/)[^"]*\.js[^"]*"[^>]*><\/script>/g,
             ''
         )
-
-        // Agent pages: one script (agent.js). Others: main.js
         const isAgentPage = isAgentPagePath(file)
         const scriptSrc =
             isAgentPage && agentJsHash
                 ? `${base}assets/agent.js?v=${agentJsHash}`
                 : `${base}assets/main.js?v=${jsHash}`
-        const cleanScripts = `
+        content = content.replace(
+            '</body>',
+            `
     <script type="module" src="${scriptSrc}"></script>
     </body>`
-
-        content = content.replace('</body>', cleanScripts)
-
+        )
         fs.writeFileSync(file, content)
     }
 
-    // Чистим assets: только main.js, agent.js, main.css, agent-pages.css
-    fs.readdirSync(assetsDir).forEach((f) => {
-        const fullPath = path.join(assetsDir, f)
-        if (fs.lstatSync(fullPath).isDirectory()) {
-            if (f === 'astro') {
-                fs.rmSync(fullPath, { recursive: true, force: true })
+    // Clean assets: keep only main.js, agent.js, main.css, agent.css
+    if (fs.existsSync(assetsDir)) {
+        fs.readdirSync(assetsDir).forEach((f) => {
+            const fullPath = path.join(assetsDir, f)
+            if (fs.lstatSync(fullPath).isDirectory()) {
+                if (f === 'astro') {
+                    fs.rmSync(fullPath, { recursive: true, force: true })
+                }
+            } else if (f.endsWith('.js') && f !== 'main.js' && f !== 'agent.js') {
+                fs.unlinkSync(fullPath)
+            } else if (f.endsWith('.css') && f !== 'main.css' && f !== 'agent.css') {
+                fs.unlinkSync(fullPath)
             }
-        } else if (f.endsWith('.js') && f !== 'main.js' && f !== 'agent.js') {
-            fs.unlinkSync(fullPath)
-        } else if (f.endsWith('.css') && f !== 'main.css' && f !== 'agent-pages.css') {
-            fs.unlinkSync(fullPath)
-        }
-    })
+        })
+    }
 
+    // Remove _astro folder entirely — scripts are already in assets/main.js and assets/agent.js
+    if (fs.existsSync(astroDir)) {
+        fs.rmSync(astroDir, { recursive: true, force: true })
+    }
+
+    const scriptInfo = `main.js?v=${jsHash}` + (agentJsHash ? `, agent.js?v=${agentJsHash}` : '')
     console.log(
-        `✅ Готово: main.js?v=${jsHash}` +
-            (agentJsHash ? `, agent.js?v=${agentJsHash}` : '') +
+        `✅ Done: ${scriptInfo}` +
             (mainCssHash ? `, main.css?v=${mainCssHash}` : '') +
-            (agentPagesCssHash ? `, agent-pages.css?v=${agentPagesCssHash}` : '')
+            (agentPagesCssHash ? `, agent.css?v=${agentPagesCssHash}` : '')
     )
 }
 

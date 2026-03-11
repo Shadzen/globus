@@ -7,7 +7,7 @@ export const initAboutMap = () => {
     const mapContainer = document.getElementById('about-yandex-map')
     if (!mapContainer) return
 
-    // Не инициализировать повторно
+    // Do not init twice
     if (mapContainer.children.length > 0) return
 
     const lat = parseFloat(mapContainer.dataset.lat || '0')

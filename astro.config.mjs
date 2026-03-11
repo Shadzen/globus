@@ -9,7 +9,7 @@ import path from 'path'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isDev = process.env.NODE_ENV !== 'production'
 
-// PostCSS-плагин: убирает дублирующиеся условия в медиа-запросах
+// PostCSS plugin: deduplicate conditions in media queries
 // @media screen and (max-width:480px) and (max-width:480px) → @media screen and (max-width:480px)
 function deduplicateMediaConditions() {
     return {
@@ -35,8 +35,8 @@ function deduplicateMediaConditions() {
 }
 deduplicateMediaConditions.postcss = true
 
-// PostCSS-плагин: удаляет невозможные медиа-запросы
-// (min-width:481px) and (max-width:480px) — никогда не сработает
+// PostCSS plugin: remove impossible media queries
+// (min-width:481px) and (max-width:480px) — can never match
 function removeImpossibleMediaQueries() {
     return {
         postcssPlugin: 'postcss-remove-impossible-media',
@@ -57,8 +57,8 @@ function removeImpossibleMediaQueries() {
 }
 removeImpossibleMediaQueries.postcss = true
 
-// Vite-плагин: объединяет одинаковые @media в финальном CSS-бандле
-// PostCSS работает покомпонентно, а этот плагин — на собранном файле
+// Vite plugin: merge duplicate @media in final CSS bundle
+// PostCSS runs per-component; this plugin runs on the final bundle
 function mergeMediaQueriesPlugin() {
     return {
         name: 'merge-media-queries',
@@ -79,8 +79,8 @@ function mergeMediaQueriesPlugin() {
     }
 }
 
-// Vite-плагин: собираем весь клиентский JS в один чанк main.js
-// Применяется только к client build (не SSR)
+// Vite plugin: bundle all client JS into main.js chunk
+// Applied only to client build (not SSR)
 function singleChunkPlugin() {
     let isSSR = false
     return {
@@ -148,8 +148,18 @@ export default defineConfig({
             // true: agent pages (AgentLayout) get a separate CSS chunk for use on another domain
             cssCodeSplit: true,
             rollupOptions: {
+                onwarn(warning, warn) {
+                    // Unused imports inside Astro package — cosmetic, not our code
+                    if (
+                        warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+                        String(warning.exporter || '').includes('@astrojs/internal-helpers/remote')
+                    ) {
+                        return
+                    }
+                    warn(warning)
+                },
                 output: {
-                    // Настраиваем имена для итоговых файлов
+                    // Output file names
                     entryFileNames: 'assets/[name].js',
                     chunkFileNames: 'assets/[name].js',
                     assetFileNames: (assetInfo) => {

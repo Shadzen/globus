@@ -1,14 +1,14 @@
 import Swiper from 'swiper'
 import { Navigation } from 'swiper/modules'
 
-// Расширяем Window для TS
+// Extend Window for TS
 declare global {
     interface Window {
         Swiper: typeof Swiper
     }
 }
 
-// Инициализация Swiper в глобальной области
+// Expose Swiper on window for global use
 if (typeof window !== 'undefined') {
     window.Swiper = Swiper
     // @ts-expect-error - Swiper is not on globalThis by default

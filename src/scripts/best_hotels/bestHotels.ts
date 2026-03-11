@@ -45,7 +45,7 @@ const initHotelSearchForm = () => {
         })
     })
 
-    // Инициализация с текущим значением
+    // Init with current value
     const initialRating = parseInt(ratingInput.value || '4')
     updateStars(initialRating)
 }
