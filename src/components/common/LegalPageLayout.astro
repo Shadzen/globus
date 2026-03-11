@@ -65,13 +65,13 @@ const { title, narrowContainer = true, dark = false } = Astro.props
 
             p {
                 @include font-circe-regular;
-                color: $color-alternate;
+                color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
                 line-height: 1.2;
                 margin: 0;
 
                 a {
-                    color: $color-alternate;
+                    color: var(--color-globus-blue);
                     text-decoration: none;
                     transition: opacity 0.3s ease;
 
@@ -93,7 +93,7 @@ const { title, narrowContainer = true, dark = false } = Astro.props
 
                 li {
                     @include font-circe-regular;
-                    color: $color-alternate;
+                    color: var(--color-globus-blue);
                     @include adaptive(font-size, 20, 18);
                     line-height: 1.2;
                     @include adaptive(margin-top, 12, 12);
@@ -107,13 +107,13 @@ const { title, narrowContainer = true, dark = false } = Astro.props
         }
 
         &[data-dark='true'] {
-            background-color: $color-alternate;
+            background-color: var(--color-globus-blue);
             @include adaptive(padding-top, 60, 30);
             @include adaptive(padding-bottom, 60, 30);
             @include adaptive(margin-top, 60, 30);
 
             .legal-title {
-                color: $color-accent;
+                color: var(--color-globus-sand);
             }
         }
     }

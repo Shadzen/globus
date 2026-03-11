@@ -89,7 +89,7 @@ const scheduleData: ScheduleRow[] = [
             grid-template-columns: 1fr 1fr 1fr 1fr;
             @include adaptive(gap, 45, 20);
             @include adaptive(padding-bottom, 24, 16);
-            border-bottom: 1px solid $color-accent;
+            border-bottom: 1px solid var(--color-globus-sand);
 
             @include mobile {
                 display: none;
@@ -102,7 +102,7 @@ const scheduleData: ScheduleRow[] = [
             @include adaptive(gap, 45, 20);
             @include adaptive(padding-top, 24, 20);
             @include adaptive(padding-bottom, 24, 20);
-            border-bottom: 1px solid $color-accent;
+            border-bottom: 1px solid var(--color-globus-sand);
 
             @include mobile {
                 grid-template-columns: 1fr;
@@ -119,7 +119,7 @@ const scheduleData: ScheduleRow[] = [
             @include font-circe-regular;
             @include adaptive(font-size, 20, 16);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             opacity: 0.6;
         }
 
@@ -145,7 +145,7 @@ const scheduleData: ScheduleRow[] = [
             @include font-circe-light;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
 
             @include mobile {
                 position: relative;

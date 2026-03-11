@@ -59,7 +59,7 @@ const { items, dark = false, title } = Astro.props
         @include adaptive(padding-bottom, 80, 40);
 
         &._dark {
-            background-color: $color-alternate;
+            background-color: var(--color-globus-blue);
         }
 
         .info-list-container {
@@ -114,7 +114,7 @@ const { items, dark = false, title } = Astro.props
         .info-list-label {
             @include font-circe-regular;
             font-weight: 400;
-            color: $color-accent;
+            color: var(--color-globus-sand);
             @include adaptive(font-size, 24, 20);
             line-height: 1.2;
             text-transform: uppercase;
@@ -129,7 +129,7 @@ const { items, dark = false, title } = Astro.props
 
         .info-list-value {
             @include font-circe-light;
-            color: $color-main;
+            color: var(--color-globus-cream);
             @include adaptive(font-size, 26, 22);
             line-height: 1.2;
             margin: 0;
@@ -138,7 +138,7 @@ const { items, dark = false, title } = Astro.props
 
         .info-list-description {
             @include font-circe-regular;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;
@@ -156,7 +156,7 @@ const { items, dark = false, title } = Astro.props
 
         .info-list-ul-item {
             @include font-circe-regular;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             font-weight: 400;
@@ -170,7 +170,7 @@ const { items, dark = false, title } = Astro.props
                 @include adaptive(top, 7, 6);
                 @include adaptive(width, 8, 6);
                 @include adaptive(height, 8, 6);
-                background-color: $color-accent;
+                background-color: var(--color-globus-sand);
                 border-radius: 50%;
             }
         }

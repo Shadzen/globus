@@ -146,7 +146,7 @@ const cards: TourCard[] = [
 
             &:hover {
                 .tour-card-overlay {
-                    background-color: rgba($color-globus-blue, 0.6) !important;
+                    background-color: color-mix(in srgb, var(--color-globus-blue) 60%, transparent) !important;
                 }
             }
 
@@ -185,7 +185,7 @@ const cards: TourCard[] = [
         .tour-card-title {
             @include center-xy;
             line-height: 1.2;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             text-align: center;
             &._font-circle {

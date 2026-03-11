@@ -71,7 +71,7 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
         .accordion-title {
             @include font-kudry-sans;
             font-weight: 300;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 28, 26);
             line-height: 1.2;
             text-transform: uppercase;
@@ -106,7 +106,7 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
 
             p {
                 @include font-circe-regular;
-                color: $color-alternate;
+                color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
                 line-height: 1.2;
                 margin: 0;
@@ -115,19 +115,19 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
 
         &[data-theme='light'] {
             .accordion-title {
-                color: $color-main;
+                color: var(--color-globus-cream);
             }
 
             .divider {
-                background-color: $color-main;
+                background-color: var(--color-globus-cream);
             }
 
             .accordion-content-inner {
                 p {
-                    color: $color-main;
+                    color: var(--color-globus-cream);
 
                     a {
-                        color: $color-main;
+                        color: var(--color-globus-cream);
                         transition: opacity 0.3s;
 
                         &:hover {

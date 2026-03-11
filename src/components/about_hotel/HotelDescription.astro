@@ -105,7 +105,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
     .hotel-description {
         @include adaptive(padding-top, 240, 200);
         // @include adaptive(padding-bottom, 80, 60);
-        // background: $color-main;
+        // background: var(--color-globus-cream);
 
         &-container {
             @include side-paddings;
@@ -118,7 +118,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             width: 76%;
 
             @include mobile {
@@ -130,7 +130,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             opacity: 0.5;
             text-align: center;
             @include adaptive(padding, 80, 60);
@@ -200,7 +200,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 border-radius: 50px;
                 border-width: 1px;
                 border-style: solid;
-                border-color: $color-accent;
+                border-color: var(--color-globus-sand);
                 background: transparent;
 
                 @include font-circe-regular;
@@ -208,10 +208,10 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 line-height: 1.2;
                 @include adaptive(letter-spacing, 2.2, 1.8);
                 text-transform: uppercase;
-                color: $color-accent;
+                color: var(--color-globus-sand);
 
                 &:hover {
-                    background: rgba($color-accent, 0.1);
+                    background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
                 }
 
                 .tab-label-icon {
@@ -224,18 +224,18 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 @include flex-center-between;
                 @include adaptive(padding-top, 1, 24);
                 @include adaptive(padding-bottom, 1, 24);
-                border-bottom: 1px solid $color-accent;
+                border-bottom: 1px solid var(--color-globus-sand);
 
                 @include font-kudry-sans;
                 font-weight: 300;
                 @include adaptive(font-size, 1, 25.6);
                 line-height: 1.2;
                 text-transform: uppercase;
-                color: $color-alternate;
+                color: var(--color-globus-blue);
                 width: 100%;
 
                 &:first-of-type {
-                    border-top: 1px solid $color-accent;
+                    border-top: 1px solid var(--color-globus-sand);
                 }
 
                 .tab-label-text {
@@ -263,7 +263,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             // Мобильный: контент сразу после заголовка
             @include mobile {
                 @include adaptive(padding-bottom, 1, 40);
-                border-bottom: 1px solid $color-accent;
+                border-bottom: 1px solid var(--color-globus-sand);
             }
         }
 
@@ -275,11 +275,11 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
         #tab-other:checked ~ .tab-label[for='tab-other'] {
             // Десктоп: активный таб
             @include desktop {
-                background: $color-accent;
+                background: var(--color-globus-sand);
                 color: white;
 
                 &:hover {
-                    background: $color-accent;
+                    background: var(--color-globus-sand);
                     opacity: 0.9;
                 }
             }

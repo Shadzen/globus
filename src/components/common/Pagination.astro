@@ -98,7 +98,7 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
             @include adaptive(font-size, 16, 14);
             line-height: 1.6;
             text-transform: uppercase;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             text-decoration: none;
             transition: color 0.3s ease;
             @include adaptive(width, 29, 29);
@@ -110,12 +110,12 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
             letter-spacing: 0;
 
             &:hover {
-                color: $color-alternate;
+                color: var(--color-globus-blue);
             }
 
             &.active {
-                color: $color-alternate;
-                border-color: $color-alternate;
+                color: var(--color-globus-blue);
+                border-color: var(--color-globus-blue);
             }
         }
 
@@ -124,7 +124,7 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
             @include adaptive(font-size, 16, 14);
             line-height: 1.6;
             text-transform: uppercase;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             user-select: none;
         }
     }

@@ -165,7 +165,7 @@ const { userType = 'tourist' } = Astro.props
 
 <style lang="scss" is:global>
     .contact-form-section {
-        background: $color-globus-blue;
+        background: var(--color-globus-blue);
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 98, 60);
         @include adaptive(padding-bottom, 98, 60);
@@ -193,7 +193,7 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-title {
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             @include adaptive(text-align, left, center);
         }
 
@@ -218,7 +218,7 @@ const { userType = 'tourist' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: $color-main;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
@@ -232,7 +232,7 @@ const { userType = 'tourist' } = Astro.props
         .contact-separator {
             height: 1px;
             flex: 1;
-            background: $color-globus-sand;
+            background: var(--color-globus-sand);
 
             @include mobile {
                 display: none;
@@ -244,7 +244,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             text-decoration: none;
             transition: opacity 0.3s;
@@ -284,7 +284,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(width, 500, 100%);
             @include adaptive(height, 60, 64);
             border-style: solid;
-            border-color: $color-globus-sand;
+            border-color: var(--color-globus-sand);
             @include adaptive(border-width, 2, 2);
             border-right: none;
             border-radius: 500px;
@@ -301,21 +301,21 @@ const { userType = 'tourist' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             outline: none;
 
             &::placeholder {
-                color: $color-globus-grey;
+                color: var(--color-globus-grey);
             }
         }
 
         .newsletter-btn {
             @include adaptive(width, 60, 64);
             @include adaptive(height, 60, 64);
-            background: $color-globus-sand;
-            border: 1px solid $color-globus-sand;
+            background: var(--color-globus-sand);
+            border: 1px solid var(--color-globus-sand);
             border-radius: 50%;
             @include flex-center;
             cursor: pointer;
@@ -357,7 +357,7 @@ const { userType = 'tourist' } = Astro.props
             @include adaptive(font-size, 28, 26);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             opacity: 0.4;
             margin: 0;
@@ -378,7 +378,7 @@ const { userType = 'tourist' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
@@ -387,21 +387,21 @@ const { userType = 'tourist' } = Astro.props
         .form-input {
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba($color-globus-sand, 0.5);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-globus-sand) 50%, transparent);
             @include font-kudry-sans;
             @include adaptive(font-size, 20, 16);
             font-weight: 300;
             line-height: 1.2;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             outline: none;
             transition: border-color 0.3s;
 
             &::placeholder {
-                color: $color-globus-grey;
+                color: var(--color-globus-grey);
             }
 
             &:focus {
-                border-bottom-color: $color-globus-sand;
+                border-bottom-color: var(--color-globus-sand);
             }
         }
 
@@ -416,15 +416,15 @@ const { userType = 'tourist' } = Astro.props
                 @include adaptive(height, 15, 15);
                 flex-shrink: 0;
                 appearance: none;
-                border: 1px solid $color-globus-sand;
+                border: 1px solid var(--color-globus-sand);
                 @include adaptive(border-radius, 4, 4);
                 cursor: pointer;
                 transition: all 0.3s;
                 margin: 0;
 
                 &:checked {
-                    background: $color-globus-sand;
-                    border-color: $color-globus-sand;
+                    background: var(--color-globus-sand);
+                    border-color: var(--color-globus-sand);
                 }
 
                 &:hover {
@@ -436,7 +436,7 @@ const { userType = 'tourist' } = Astro.props
                 @include font-circe-regular;
                 @include adaptive(font-size, 16, 20);
                 line-height: 1;
-                color: $color-globus-cream;
+                color: var(--color-globus-cream);
                 opacity: 0.4;
                 cursor: pointer;
                 @include adaptive(letter-spacing, -0.32, -0.32);
@@ -460,7 +460,7 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-title {
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
         }
 
         .contact-agent-buttons {

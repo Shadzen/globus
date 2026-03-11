@@ -139,14 +139,14 @@ const categories: PriceCategory[] = [
         }
 
         .category-title {
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 28, 26);
             @include adaptive(margin-bottom, 10, 5);
         }
 
         .category-subtitle {
             @include font-circe-regular;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             opacity: 0.6;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
@@ -172,7 +172,7 @@ const categories: PriceCategory[] = [
 
         .category-description {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
         }
@@ -184,7 +184,7 @@ const categories: PriceCategory[] = [
         }
 
         .price-badge {
-            border: 2px solid $color-globus-sand;
+            border: 2px solid var(--color-globus-sand);
             border-radius: 390px;
             @include adaptive(padding-left, 50, 30);
             @include adaptive(padding-right, 50, 30);
@@ -197,14 +197,14 @@ const categories: PriceCategory[] = [
 
         .price-main {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
         }
 
         .price-note {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 14, 18);
             line-height: 1.2;
             @include adaptive(margin-top, 2, 2);
@@ -221,7 +221,7 @@ const categories: PriceCategory[] = [
 
         .pricing-note {
             @include font-circe-regular;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             text-align: center;

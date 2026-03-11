@@ -51,7 +51,7 @@ const coverageItems = [
 
 <style lang="scss" is:global>
     .insurance-coverage-section {
-        background-color: $color-alternate;
+        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 70, 60);
         @include adaptive(padding-bottom, 70, 60);
 
@@ -61,7 +61,7 @@ const coverageItems = [
         }
 
         .coverage-title {
-            color: $color-main;
+            color: var(--color-globus-cream);
         }
 
         .coverage-grid {
@@ -96,7 +96,7 @@ const coverageItems = [
         .coverage-item-title {
             @include font-circe-regular;
             font-style: normal;
-            color: $color-main;
+            color: var(--color-globus-cream);
             @include adaptive(font-size, 26, 22);
             line-height: 1.2;
             margin: 0;
@@ -105,7 +105,7 @@ const coverageItems = [
         .coverage-description {
             @include font-circe-regular;
             font-style: normal;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;

@@ -39,7 +39,7 @@ const { title, description } = Astro.props
 
 <style lang="scss" is:global>
     .contact-cta {
-        background: $color-globus-blue;
+        background: var(--color-globus-blue);
         @include adaptive(margin-top, 90, 60);
         @include adaptive(padding-top, 90, 60);
         @include adaptive(padding-bottom, 90, 60);
@@ -52,7 +52,7 @@ const { title, description } = Astro.props
         }
 
         .contact-cta-title {
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
 
             @include desktop {
                 width: 90%;
@@ -64,7 +64,7 @@ const { title, description } = Astro.props
             font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             text-align: center;
             margin: 0;
 

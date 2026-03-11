@@ -177,7 +177,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
         .section-title {
             @include font-kudry-sans;
             font-weight: 300;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 28, 26);
             line-height: 1.2;
             text-transform: uppercase;
@@ -192,7 +192,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
 
             p {
                 @include font-circe-regular;
-                color: $color-alternate;
+                color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
                 line-height: 1.2;
                 margin: 0;
@@ -205,7 +205,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
 
                 li {
                     @include font-circe-regular;
-                    color: $color-alternate;
+                    color: var(--color-globus-blue);
                     @include adaptive(font-size, 20, 18);
                     line-height: 1.2;
                     @include adaptive(margin-top, 12, 12);
@@ -228,7 +228,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
 
         .contact-label {
             @include font-circe-regular;
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;
@@ -237,13 +237,13 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
         .contact-value {
             @include font-circe-light;
             font-weight: 350;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 22);
             line-height: 1.2;
             margin: 0;
 
             a {
-                color: $color-alternate;
+                color: var(--color-globus-blue);
                 text-decoration: underline;
                 transition: opacity 0.3s ease;
 

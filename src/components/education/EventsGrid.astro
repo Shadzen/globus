@@ -108,7 +108,7 @@ const { events } = Astro.props
         .event-date {
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             line-height: 1.6;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
@@ -117,7 +117,7 @@ const { events } = Astro.props
         .event-title {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 24);
-            color: $color-accent;
+            color: var(--color-globus-sand);
             line-height: 1.2;
             text-transform: uppercase;
             margin: 0;
@@ -155,7 +155,7 @@ const { events } = Astro.props
         .event-material-text {
             @include font-circe-regular;
             @include adaptive(font-size, 18, 16);
-            color: $color-accent;
+            color: var(--color-globus-sand);
             line-height: 1.2;
             text-transform: uppercase;
             white-space: normal;

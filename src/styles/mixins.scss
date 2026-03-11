@@ -168,14 +168,14 @@
     @include font-circe-regular;
     @include adaptive(font-size, 16, 18);
     line-height: 1.2;
-    color: $color-globus-cream;
+    color: var(--color-globus-cream);
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     @include adaptive(letter-spacing, 3, 3);
-    background: $color-globus-sand;
+    background: var(--color-globus-sand);
     border-style: solid;
-    border-color: $color-globus-sand;
+    border-color: var(--color-globus-sand);
     @include adaptive(border-width, 2, 2);
     border-radius: 500px;
     white-space: nowrap;
@@ -212,11 +212,11 @@
 
 @mixin button-outline {
     background: transparent;
-    color: $color-globus-sand;
-    border-color: $color-globus-sand;
+    color: var(--color-globus-sand);
+    border-color: var(--color-globus-sand);
 
     &:hover {
-        background: rgba($color-globus-sand, 0.1);
+        background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
     }
 }
 

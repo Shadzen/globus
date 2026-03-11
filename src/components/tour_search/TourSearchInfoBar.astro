@@ -70,7 +70,7 @@ const buttons = [
 
 <style lang="scss" is:global>
     .tour-search-info-bar {
-        background-color: $color-alternate;
+        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 44, 140);
         @include adaptive(padding-bottom, 44, 30);
         width: 100%;
@@ -115,7 +115,7 @@ const buttons = [
         .tour-search-info-label {
             @include font-circe-regular;
             @include adaptive(font-size, 16, 14);
-            color: rgba($color-main, 0.55);
+            color: color-mix(in srgb, var(--color-globus-cream) 55%, transparent);
             line-height: 1.6;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 2.8);
@@ -136,7 +136,7 @@ const buttons = [
         .tour-search-info-value {
             @include font-circe-light;
             @include adaptive(font-size, 26, 22);
-            color: $color-main;
+            color: var(--color-globus-cream);
             line-height: 1.2;
             margin: 0;
         }
@@ -150,7 +150,7 @@ const buttons = [
         .tour-search-info-underline {
             width: 100%;
             height: 1px;
-            background-color: $color-accent;
+            background-color: var(--color-globus-sand);
         }
 
         .tour-search-info-buttons {

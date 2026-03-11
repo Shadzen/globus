@@ -139,7 +139,7 @@ const { videos, textColor = 'main' } = Astro.props
         .video-date {
             @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
-            color: $color-globus-light-blue;
+            color: var(--color-globus-light-blue);
             line-height: 1.6;
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
@@ -148,7 +148,7 @@ const { videos, textColor = 'main' } = Astro.props
         .video-title {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 24);
-            color: $color-accent;
+            color: var(--color-globus-sand);
             line-height: 1.2;
             text-transform: uppercase;
             margin: 0;
@@ -167,7 +167,7 @@ const { videos, textColor = 'main' } = Astro.props
         .video-material-link {
             @include font-circe-regular;
             @include adaptive(font-size, 18, 18);
-            color: $color-main;
+            color: var(--color-globus-cream);
             line-height: 1.2;
             text-decoration: none;
             transition: opacity 0.3s;
@@ -181,7 +181,7 @@ const { videos, textColor = 'main' } = Astro.props
         .video-material-text {
             @include font-circe-regular;
             @include adaptive(font-size, 18, 18);
-            color: $color-main;
+            color: var(--color-globus-cream);
             line-height: 1.2;
             margin: 0;
             white-space: normal;
@@ -190,7 +190,7 @@ const { videos, textColor = 'main' } = Astro.props
         &[data-text-color='alternate'] {
             .video-material-link,
             .video-material-text {
-                color: $color-alternate;
+                color: var(--color-globus-blue);
             }
         }
     }

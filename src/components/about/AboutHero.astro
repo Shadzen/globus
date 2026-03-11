@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL
     .about-hero {
         @include adaptive(height, 1100, 844);
         @include adaptive(padding-top, 502, 510);
-        background-color: $color-globus-blue;
+        background-color: var(--color-globus-blue);
 
         .hero-bg {
             @include adaptive(height, 810, 231);
@@ -68,7 +68,7 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-subtitle {
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             @include adaptive(padding-top, 12, 16);
             @include adaptive(padding-left, 248, 0);
 

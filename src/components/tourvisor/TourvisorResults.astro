@@ -181,7 +181,7 @@ const hotels: Hotel[] = [
             @include adaptive(font-size, 28, 24);
             line-height: 1.2;
             text-transform: uppercase;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             font-weight: 300;
             margin: 0;
         }
@@ -198,7 +198,7 @@ const hotels: Hotel[] = [
             @include font-circe-light;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             margin: 0;
             max-width: 993px;
         }
@@ -213,7 +213,7 @@ const hotels: Hotel[] = [
             @include adaptive(height, 54, 44);
             @include adaptive(padding-left, 45, 30);
             @include adaptive(padding-right, 45, 30);
-            border: 2px solid $color-accent;
+            border: 2px solid var(--color-globus-sand);
             border-radius: 500px;
             background-color: transparent;
             @include font-circe-regular;
@@ -221,7 +221,7 @@ const hotels: Hotel[] = [
             line-height: 1.6;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             cursor: pointer;
             transition: all 0.3s ease;
 
@@ -256,7 +256,7 @@ const hotels: Hotel[] = [
             @include font-circe-light;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
         }
 
         .rating-value {
@@ -288,7 +288,7 @@ const hotels: Hotel[] = [
             @include font-circe-light;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
         }
 
         .price-value-row {
@@ -319,12 +319,12 @@ const hotels: Hotel[] = [
             @include font-circe-light;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
         }
 
         .book-button {
-            background-color: $color-accent;
-            border: 1px solid $color-accent;
+            background-color: var(--color-globus-sand);
+            border: 1px solid var(--color-globus-sand);
             border-radius: 500px;
             @include adaptive(height, 60, 50);
             @include adaptive(padding-left, 50, 30);
@@ -356,7 +356,7 @@ const hotels: Hotel[] = [
                 content: '';
                 display: block;
                 height: 100%;
-                background-color: $color-accent;;
+                background-color: var(--color-globus-sand);
             }
         }
     }

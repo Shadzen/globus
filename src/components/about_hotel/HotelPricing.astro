@@ -100,14 +100,14 @@ const pricingData = [
             @include adaptive(padding-bottom, 12, 6);
             @include adaptive(padding-left, 54, 0);
             @include adaptive(padding-right, 54, 0);
-            border-bottom: 1px solid $color-globus-sand;
+            border-bottom: 1px solid var(--color-globus-sand);
         }
 
         .header-cell {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             opacity: 0.6;
 
             &:nth-child(1) {
@@ -132,11 +132,11 @@ const pricingData = [
             @include adaptive(padding-bottom, 12, 12);
             @include adaptive(padding-left, 54, 0);
             @include adaptive(padding-right, 54, 0);
-            border-bottom: 1px solid $color-globus-sand;
+            border-bottom: 1px solid var(--color-globus-sand);
 
             .button {
                 @include adaptive(font-size, 26, 26);
-                color: $color-globus-blue;
+                color: var(--color-globus-blue);
                 @include adaptive(min-width, 200, 140);
                 @include adaptive(height, 40, 40);
                 text-transform: none;
@@ -149,7 +149,7 @@ const pricingData = [
             font-weight: 300;
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
 
             &:nth-child(1) {
                 @include adaptive(width, 44%, 36%);

@@ -121,14 +121,14 @@ const hotels: Hotel[] = [
 
         .info-title {
             @include font-kudry-sans;
-            color: $color-globus-sand;
+            color: var(--color-globus-sand);
             @include adaptive(font-size, 28, 26);
             @include adaptive(margin-bottom, 10, 8);
         }
 
         .info-text {
             @include font-circe-light;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             @include adaptive(width, 70%, 100%);

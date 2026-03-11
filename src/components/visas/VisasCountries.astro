@@ -95,7 +95,7 @@ const regions = [
         .region-title {
             @include font-circe-regular;
             font-weight: 400;
-            color: $color-accent;
+            color: var(--color-globus-sand);
             @include adaptive(font-size, 24, 31);
             line-height: 1.2;
             text-transform: uppercase;
@@ -119,7 +119,7 @@ const regions = [
 
         .region-link {
             @include font-circe-light;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
             font-weight: 350;
@@ -128,7 +128,7 @@ const regions = [
             display: inline-block;
 
             &:hover {
-                color: $color-accent;
+                color: var(--color-globus-sand);
             }
         }
     }

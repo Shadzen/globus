@@ -27,7 +27,7 @@ const base = import.meta.env.BASE_URL
 <style lang="scss" is:global>
     .education-videos-section {
         @include adaptive(margin-top, 120, 60);
-        background-color: $color-alternate;
+        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
 
@@ -37,7 +37,7 @@ const base = import.meta.env.BASE_URL
         }
 
         .education-videos-title {
-            color: $color-main;
+            color: var(--color-globus-cream);
             text-align: center;
             @include adaptive(margin-bottom, 60, 30);
         }

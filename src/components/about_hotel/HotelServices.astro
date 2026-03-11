@@ -150,7 +150,7 @@ const services = {
     .hotel-services {
         @include adaptive(padding-top, 120, 60);
         @include adaptive(padding-bottom, 120, 60);
-        background: $color-main;
+        background: var(--color-globus-cream);
 
         &-container {
             @include side-paddings;
@@ -191,7 +191,7 @@ const services = {
             // flex-direction: column;
             @include adaptive(gap, 20, 16);
             @include adaptive(padding-bottom, 40, 30);
-            border-bottom: 1px solid $color-accent;
+            border-bottom: 1px solid var(--color-globus-sand);
 
             &:last-child {
                 border-bottom: none;
@@ -209,7 +209,7 @@ const services = {
             line-height: 1.2;
             @include adaptive(letter-spacing, 2.4, 2);
             text-transform: uppercase;
-            color: $color-accent;
+            color: var(--color-globus-sand);
             font-weight: 400;
             width: 400px;
             @include adaptive(width, 400, 240);
@@ -236,7 +236,7 @@ const services = {
             @include font-circe-regular;
             @include adaptive(font-size, 26, 18);
             line-height: 1.21;
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             font-weight: 300;
 
             &::before {
@@ -247,7 +247,7 @@ const services = {
                 @include adaptive(width, 12, 10);
                 @include adaptive(height, 12, 10);
                 border-radius: 50%;
-                background-color: $color-accent;
+                background-color: var(--color-globus-sand);
             }
         }
     }

@@ -147,7 +147,7 @@ const tabs: ContactTab[] = [
 
 <style lang="scss" is:global>
     .about-contacts {
-        background: $color-globus-blue;
+        background: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 40);
 
         ~ .contact-form-section {
@@ -162,7 +162,7 @@ const tabs: ContactTab[] = [
 
         .about-contacts-title {
             text-align: left;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
         }
 
         .contacts-tabs-wrapper {
@@ -201,7 +201,7 @@ const tabs: ContactTab[] = [
             @include adaptive(padding-left, 48, 64);
             @include adaptive(padding-right, 48, 64);
             border-radius: 50px;
-            border: 1px solid $color-globus-sand;
+            border: 1px solid var(--color-globus-sand);
             background: transparent;
             cursor: pointer;
             transition: all 0.3s;
@@ -212,14 +212,14 @@ const tabs: ContactTab[] = [
             @include adaptive(letter-spacing, 2.2, 3.6);
             text-transform: uppercase;
             text-align: center;
-            color: $color-globus-sand;
+            color: var(--color-globus-sand);
 
             @include mobile {
                 width: 100%;
             }
 
             &:hover {
-                background: rgba($color-globus-sand, 0.1);
+                background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
             }
         }
 
@@ -227,11 +227,11 @@ const tabs: ContactTab[] = [
         #contacts-tab-visa:checked ~ .contacts-tab-label[for='contacts-tab-visa'],
         #contacts-tab-booking:checked ~ .contacts-tab-label[for='contacts-tab-booking'],
         #contacts-tab-leadership:checked ~ .contacts-tab-label[for='contacts-tab-leadership'] {
-            background: $color-globus-sand;
-            color: $color-globus-cream;
+            background: var(--color-globus-sand);
+            color: var(--color-globus-cream);
 
             &:hover {
-                background: $color-globus-sand;
+                background: var(--color-globus-sand);
                 opacity: 0.9;
             }
         }
@@ -251,7 +251,7 @@ const tabs: ContactTab[] = [
             @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             opacity: 0.5;
             text-align: center;
             @include adaptive(padding, 80, 60);

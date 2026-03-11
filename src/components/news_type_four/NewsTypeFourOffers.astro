@@ -110,24 +110,24 @@ const hotels: Hotel[] = [
 
 <style lang="scss" is:global>
     .news-type-four-offers-section {
-        background: $color-globus-blue;
+        background: var(--color-globus-blue);
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
 
         .offers-title {
             @include font-kudry-sans;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             @include adaptive(margin-bottom, 30, 20);
         }
 
         .offers-badge {
             @include font-circe-light;
-            color: $color-globus-sand;
+            color: var(--color-globus-sand);
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
             text-align: center;
-            border: 1px solid $color-globus-sand;
+            border: 1px solid var(--color-globus-sand);
             border-radius: 390px;
             @include adaptive(padding-top, 16, 12);
             @include adaptive(padding-bottom, 16, 12);
@@ -163,7 +163,7 @@ const hotels: Hotel[] = [
         }
 
         .card-title {
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             @include adaptive(margin-bottom, 10, 8);
         }
 
@@ -200,7 +200,7 @@ const hotels: Hotel[] = [
 
         .feature-label {
             @include font-circe-regular;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             opacity: 0.6;
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
@@ -208,7 +208,7 @@ const hotels: Hotel[] = [
 
         .feature-value {
             @include font-circe-regular;
-            color: $color-globus-cream;
+            color: var(--color-globus-cream);
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
         }
@@ -249,7 +249,7 @@ const hotels: Hotel[] = [
 
         .divider {
             // border: none;
-            // border-top: 1px solid $color-globus-sand;
+            // border-top: 1px solid var(--color-globus-sand);
             @include adaptive(margin-top, 80, 40);
             @include adaptive(margin-bottom, 80, 40);
             // width: 100%;

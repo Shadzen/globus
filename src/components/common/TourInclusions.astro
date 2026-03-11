@@ -114,18 +114,18 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         @include adaptive(padding-bottom, 80, 50);
 
         &.dark-theme {
-            background: $color-globus-blue;
+            background: var(--color-globus-blue);
 
             .section-title,
             .subsection-title,
             .info-text,
             .inclusion-text,
             .bottom-text {
-                color: $color-globus-cream;
+                color: var(--color-globus-cream);
             }
 
             .additional-text {
-                color: $color-globus-cream;
+                color: var(--color-globus-cream);
             }
         }
 
@@ -159,7 +159,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .inclusion-text {
             @include font-circe-regular;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 20, 18);
             line-height: 1.2;
             margin: 0;
@@ -197,7 +197,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .info-text {
             @include font-circe-regular;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 20, 16);
             line-height: 1.2;
             margin: 0;
@@ -210,7 +210,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         }
 
         .subsection-title {
-            color: $color-alternate;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 32, 24);
             text-align: center;
             @include adaptive(margin-bottom, 40, 25);
@@ -241,7 +241,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .additional-text {
             @include font-circe-regular;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             margin: 0;
@@ -261,7 +261,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         .bottom-text {
             @include font-circe-light;
-            color: $color-globus-blue;
+            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             margin: 0;
