@@ -8,7 +8,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
 
 <section class="tour-search-form-section">
     <div class="tour-search-form-container">
-        <!-- Переключатель: Туры с перелетом / Отели -->
+        <!-- Toggle: Tours with flight / Hotels -->
         <div class="search-tabs">
             <div class="search-tab active">
                 <div class="tab-radio"></div>
@@ -20,9 +20,9 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             </div>
         </div>
 
-        <!-- Основная форма поиска -->
+        <!-- Main search form -->
         <div class="search-form-main">
-            <!-- Город вылета -->
+            <!-- Departure city -->
             <div class="form-field city-field">
                 <div class="field-content">
                     <p class="field-value">Из Новосибирска</p>
@@ -33,7 +33,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 </div>
             </div>
 
-            <!-- Страна -->
+            <!-- Country -->
             <div class="form-field country-field">
                 <label class="field-label">страна</label>
                 <div class="field-content">
@@ -46,7 +46,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 </div>
             </div>
 
-            <!-- Дата вылета -->
+            <!-- Departure date -->
             <div class="form-field date-field">
                 <label class="field-label">Дата вылета</label>
                 <div class="field-content">
@@ -55,7 +55,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 </div>
             </div>
 
-            <!-- Ночей -->
+            <!-- Nights -->
             <div class="form-field nights-field">
                 <label class="field-label">Ночей</label>
                 <div class="field-content">
@@ -64,7 +64,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 </div>
             </div>
 
-            <!-- Туристы -->
+            <!-- Travellers -->
             <div class="form-field tourists-field">
                 <label class="field-label">Туристы</label>
                 <div class="field-content">
@@ -73,13 +73,13 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 </div>
             </div>
 
-            <!-- Кнопка поиска -->
+            <!-- Search button -->
             <button class="button _sized">Найти</button>
         </div>
 
-        <!-- Фильтры -->
+        <!-- Filters -->
         <div class="search-filters">
-            <!-- Класс отеля -->
+            <!-- Hotel class -->
             <div class="filter-field hotel-class-field">
                 <label class="filter-label">Класс отеля</label>
                 <div class="star-rating">
@@ -92,7 +92,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 <div class="filter-divider"></div>
             </div>
 
-            <!-- Питание -->
+            <!-- Board basis -->
             <div class="filter-field">
                 <label class="filter-label">Питание</label>
                 <div class="filter-icon">
@@ -101,7 +101,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 <div class="filter-divider"></div>
             </div>
 
-            <!-- Рейтинг -->
+            <!-- Rating -->
             <div class="filter-field">
                 <label class="filter-label">Рейтинг</label>
                 <div class="filter-icon">
@@ -110,7 +110,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 <div class="filter-divider"></div>
             </div>
 
-            <!-- Услуги отеля -->
+            <!-- Hotel services -->
             <div class="filter-field">
                 <label class="filter-label">Услуги отеля</label>
                 <div class="filter-icon">
@@ -119,7 +119,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
                 <div class="filter-divider"></div>
             </div>
 
-            <!-- Кнопки сортировки -->
+            <!-- Sort buttons -->
             <div class="sort-buttons">
                 <button class="sort-button price-sort">
                     <img src={arrowsUpDown.src} alt="" />
@@ -134,7 +134,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             </div>
         </div>
 
-        <!-- Дополнительные опции -->
+        <!-- Additional options -->
         <div class="additional-options">
             <div class="option-item">
                 <img src={groupIcon.src} alt="" class="option-icon" />
@@ -169,7 +169,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             flex-direction: column;
         }
 
-        // Переключатель табов
+        // Tab toggle
         .search-tabs {
             background-color: var(--color-globus-blue);
             @include adaptive(padding-top, 38, 30);
@@ -219,7 +219,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             }
         }
 
-        // Основная форма
+        // Main form
         .search-form-main {
             background-color: var(--color-globus-blue);
             @include adaptive(padding-bottom, 75, 50);
@@ -307,7 +307,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             }
         }
 
-        // Фильтры
+        // Filters
         .search-filters {
             background-color: #FFFDF8;
             @include adaptive(padding-top, 30, 25);
@@ -419,7 +419,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             }
         }
 
-        // Дополнительные опции
+        // Additional options
         .additional-options {
             background-color: var(--color-globus-blue);
             @include adaptive(padding-top, 50, 40);
@@ -476,7 +476,6 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             line-height: 1.2;
             text-transform: uppercase;
             color: #FFFDF8;
-            font-weight: 300;
             margin: 0;
         }
 

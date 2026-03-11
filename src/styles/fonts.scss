@@ -11,5 +11,9 @@
     }
 }
 
-@include fontFace('circe_regular');
-@include fontFace('kudry_sans-headline');
+// One @font-face per weight: browser only uses the file that matches the requested weight.
+// Right now we only have one file per family, so only that weight (e.g. 400) will look correct.
+// To support 300 (Light), 700 (Bold) etc., add the font files and more @include fontFace() calls
+// with the right weight (e.g. fontFace('circe_light', 300) for Light).
+@include fontFace('circe_regular', 400);
+@include fontFace('kudry_sans-headline', 400);

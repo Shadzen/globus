@@ -15,7 +15,7 @@ interface Props {
 
 const { userType = 'tourist' } = Astro.props
 
-// Все менеджеры
+// All managers
 const allManagers: ContactPerson[] = [
     {
         name: 'Лавренчук Олеся',
@@ -107,7 +107,7 @@ const tabs: ContactTab[] = [
         <h2 class="about-contacts-title">Контакты</h2>
 
         <div class="contacts-tabs-wrapper">
-            <!-- Radio inputs (скрытые) -->
+            <!-- Radio inputs (hidden) -->
             {tabs.map((tab, i) => (
                 <input
                     type="radio"
@@ -118,7 +118,7 @@ const tabs: ContactTab[] = [
                 />
             ))}
 
-            <!-- Табы и контент -->
+            <!-- Tabs and content -->
             {tabs.map((tab, i) => (
                 <>
                     <label

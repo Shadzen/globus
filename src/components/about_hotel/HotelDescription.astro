@@ -2,16 +2,16 @@
 import locationIcon from '@/assets/icons/location-pin.svg'
 import chevronIcon from '@/assets/icons/chevron-down.svg'
 
-// Название и место отеля
+// Hotel name and location
 const hotelName = 'Grand Park Kodhipparu, Maldives'
 
-// Вариант 1: По названию отеля (самый надежный, Google сам найдет точное место)
+// Option 1: By hotel name (most reliable, Google will find the exact place)
 const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(hotelName)}&hl=ru&z=15&output=embed`
 
-// Вариант 2: Если вы нашли точные координаты в Google Maps, замените название на координаты:
-// Например: const mapEmbedUrlSimple = `https://maps.google.com/maps?q=4.326789,73.512345&hl=ru&z=15&output=embed`
+// Option 2: If you have exact coordinates from Google Maps, replace the name with coordinates:
+// E.g.: const mapEmbedUrlSimple = `https://maps.google.com/maps?q=4.326789,73.512345&hl=ru&z=15&output=embed`
 
-// Вариант 3: С API ключом для дополнительных возможностей (Place ID будет точнее):
+// Option 3: With API key for extra features (Place ID is more precise):
 // const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(hotelName)}&zoom=15`
 ---
 
@@ -20,7 +20,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
         <h2 class="hotel-description-title">Описание отеля</h2>
 
         <div class="hotel-tabs-wrapper">
-            <!-- Radio inputs (скрытые) -->
+            <!-- Radio inputs (hidden) -->
             <input
                 type="radio"
                 name="hotel-tab"
@@ -33,7 +33,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             <input type="radio" name="hotel-tab" id="tab-restaurants" class="hotel-tab-input" />
             <input type="radio" name="hotel-tab" id="tab-other" class="hotel-tab-input" />
 
-            <!-- Местоположение отеля -->
+            <!-- Hotel location -->
             <label for="tab-location" class="tab-label" data-order="1">
                 <span class="tab-label-text">Местоположение отеля</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
@@ -58,7 +58,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 </div>
             </div>
 
-            <!-- Номера -->
+            <!-- Rooms -->
             <label for="tab-rooms" class="tab-label" data-order="2">
                 <span class="tab-label-text">Номера</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
@@ -67,7 +67,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 <p class="hotel-description-placeholder">Информация о номерах скоро появится</p>
             </div>
 
-            <!-- Удобства -->
+            <!-- Amenities -->
             <label for="tab-amenities" class="tab-label" data-order="3">
                 <span class="tab-label-text">Удобства</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
@@ -76,7 +76,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 <p class="hotel-description-placeholder">Информация об удобствах скоро появится</p>
             </div>
 
-            <!-- Кафе и рестораны -->
+            <!-- Cafe and restaurants -->
             <label for="tab-restaurants" class="tab-label" data-order="4">
                 <span class="tab-label-text">Кафе и рестораны</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
@@ -87,7 +87,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 </p>
             </div>
 
-            <!-- Другое -->
+            <!-- Other -->
             <label for="tab-other" class="tab-label" data-order="5">
                 <span class="tab-label-text">Другое</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
@@ -115,7 +115,6 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 
         &-text {
             @include font-circe-regular;
-            font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             color: var(--color-globus-blue);
@@ -144,9 +143,9 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             @include adaptive(gap, 16, 1);
             @include adaptive(margin-top, 24, 60);
 
-            // Десктоп: все labels собираем вверху
+            // Desktop: all labels at the top
             @include desktop {
-                // Labels идут первыми (order 1-5)
+                // Labels first (order 1-5)
                 .tab-label[data-order='1'] {
                     order: 1;
                 }
@@ -163,33 +162,33 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                     order: 5;
                 }
 
-                // Контент идет после (order 100)
+                // Content after (order 100)
                 .tab-content {
                     order: 100;
                     width: 100%;
                 }
             }
 
-            // Мобильный: каждая пара label+content идет по порядку
+            // Mobile: each label+content pair in order
             @include mobile {
                 flex-direction: column;
                 gap: 0;
             }
         }
 
-        // Скрываем radio inputs
+        // Hide radio inputs
         .hotel-tab-input {
             position: absolute;
             opacity: 0;
             pointer-events: none;
         }
 
-        // Стили для labels (табов на десктопе, заголовков accordion на мобильном)
+        // Styles for labels (tabs on desktop, accordion headers on mobile)
         .tab-label {
             cursor: pointer;
             transition: all 0.3s;
 
-            // Десктоп: стили табов
+            // Desktop: tab styles
             @include desktop {
                 @include flex-center;
                 @include adaptive(height, 61, 50);
@@ -219,7 +218,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 }
             }
 
-            // Мобильный: стили заголовков accordion
+            // Mobile: accordion header styles
             @include mobile {
                 @include flex-center-between;
                 @include adaptive(padding-top, 1, 24);
@@ -227,7 +226,6 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 border-bottom: 1px solid var(--color-globus-sand);
 
                 @include font-kudry-sans;
-                font-weight: 300;
                 @include adaptive(font-size, 1, 25.6);
                 line-height: 1.2;
                 text-transform: uppercase;
@@ -251,29 +249,29 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             }
         }
 
-        // Стили для контента
+        // Content styles
         .tab-content {
             display: none;
 
-            // Десктоп: контент под всеми табами
+            // Desktop: content below all tabs
             @include desktop {
                 @include adaptive(margin-top, 66, 1);
             }
 
-            // Мобильный: контент сразу после заголовка
+            // Mobile: content right after header
             @include mobile {
                 @include adaptive(padding-bottom, 1, 40);
                 border-bottom: 1px solid var(--color-globus-sand);
             }
         }
 
-        // Активные состояния
+        // Active states
         #tab-location:checked ~ .tab-label[for='tab-location'],
         #tab-rooms:checked ~ .tab-label[for='tab-rooms'],
         #tab-amenities:checked ~ .tab-label[for='tab-amenities'],
         #tab-restaurants:checked ~ .tab-label[for='tab-restaurants'],
         #tab-other:checked ~ .tab-label[for='tab-other'] {
-            // Десктоп: активный таб
+            // Desktop: active tab
             @include desktop {
                 background: var(--color-globus-sand);
                 color: white;

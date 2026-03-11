@@ -279,7 +279,6 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         .phone {
             @include font-kudry-sans;
             @include adaptive(font-size, 28, 28);
-            font-weight: 300;
             line-height: 1.2;
             color: var(--color-globus-cream);
             text-transform: uppercase;
@@ -290,13 +289,13 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         }
 
         .mobile-menu-btn {
-            // Размеры для расчёта
+            // Dimensions for calculation
             $btn-height: 50;
             $btn-padding: 10;
             $line-height: 3;
             $lines-count: 3;
 
-            // Автоматический расчёт смещения
+            // Auto-calculate offset
             $content-height: $btn-height - ($btn-padding * 2); // 30
             $total-lines-height: $line-height * $lines-count; // 9
             $gap-space: $content-height - $total-lines-height; // 21
@@ -313,7 +312,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             cursor: pointer;
             z-index: 1001;
 
-            // Сброс стилей кнопки
+            // Reset button styles
             background: none;
             border: none;
 
@@ -339,7 +338,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 }
             }
 
-            // Состояние когда меню открыто
+            // State when menu is open
             &._active {
                 span:nth-child(1) {
                     animation: topLineToX var(--menu-animation-duration) ease-in-out forwards;
@@ -355,7 +354,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 }
             }
 
-            // Состояние закрытия (анимация назад) - только если кнопка уже использовалась
+            // Close state (reverse animation) - only if button was already used
             &._initialized:not(._active) {
                 span:nth-child(1) {
                     animation: topLineFromX var(--menu-animation-duration) ease-in-out forwards;
@@ -420,7 +419,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             }
         }
 
-        // Темный цвет текста для страниц со светлым фоном hero
+        // Dark text color for pages with light hero background
         &._dark-text {
             .user-type-btn {
                 &:not(._active) {
@@ -452,17 +451,17 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 
             .mobile-menu-btn {
                 @include mobile {
-                    // Когда меню закрыто - темные полоски
+                    // When menu closed - dark stripes
                     span {
                         background-color: var(--color-globus-blue);
                     }
 
-                    // Когда меню открыто - светлые полоски
+                    // When menu open - light stripes
                     &._active span {
                         background-color: var(--color-globus-cream);
                     }
 
-                    // Когда меню закрывается - обратно темные
+                    // When menu closing - dark again
                     &._initialized:not(._active) span {
                         background-color: var(--color-globus-blue);
                     }

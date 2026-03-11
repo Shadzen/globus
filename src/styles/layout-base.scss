@@ -30,6 +30,7 @@
     -ms-overflow-style: none;
     touch-action: manipulation;
     scrollbar-width: none;
+
     &::-webkit-scrollbar {
         display: none;
     }
@@ -101,7 +102,6 @@ h3 {
     @include font-kudry-sans;
     text-transform: uppercase;
     font-style: normal;
-    font-weight: 300;
 }
 
 h1 {
@@ -250,7 +250,6 @@ a {
 
     .hero-subtitle {
         @include font-circe-regular;
-        font-weight: 300;
         @include adaptive(font-size, 26, 18);
         line-height: 1.2;
 

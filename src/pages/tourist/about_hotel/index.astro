@@ -10,13 +10,13 @@ import heroDesktop from '@/assets/images/about_hotel/hero-1.jpg'
 import heroMobile from '@/assets/images/about_hotel/hero-1-mobile.jpg'
 import starIcon from '@/assets/icons/star-accent.svg'
 
-// Превью для отображения на странице
+// Preview images for the page
 import gallery1 from '@/assets/images/about_hotel/hero-gallery-1.jpg'
 import gallery2 from '@/assets/images/about_hotel/hero-gallery-2.jpg'
 import gallery3 from '@/assets/images/about_hotel/hero-gallery-3.jpg'
 import gallery4 from '@/assets/images/about_hotel/hero-gallery-4.jpg'
 
-// Полноразмерные версии для лайтбокса
+// Full-size versions for the lightbox
 import gallery1Full from '@/assets/images/about_hotel/hero-gallery-1-full.jpg'
 import gallery2Full from '@/assets/images/about_hotel/hero-gallery-2-full.jpg'
 import gallery3Full from '@/assets/images/about_hotel/hero-gallery-3-full.jpg'
@@ -29,7 +29,7 @@ const fullSize = {
     height: 1241,
 }
 
-// Полная галерея - все фотки для лайтбокса
+// Full gallery - all images for the lightbox
 const gallery = [
     {
         thumbnail: gallery1.src,
@@ -59,7 +59,7 @@ const gallery = [
         height: fullSize.height,
         alt: 'Гости отеля',
     },
-    // Плейсхолдеры для тестирования большой галереи
+    // Placeholders for testing a large gallery
     {
         thumbnail: 'https://placehold.co/418x247?text=5',
         full: 'https://placehold.co/2100x1241?text=5',
@@ -83,7 +83,7 @@ const gallery = [
     },
 ]
 
-// Только первые 4 фотки для отображения на странице
+// Only the first 4 images are shown on the page
 const galleryPreview = gallery.slice(0, 4)
 ---
 
@@ -117,11 +117,11 @@ const galleryPreview = gallery.slice(0, 4)
         </div>
 
         <div class="hotel-gallery-container">
-            <!-- data-gallery содержит ВСЕ фотки для лайтбокса -->
+            <!-- data-gallery holds ALL images for the lightbox -->
             <div class="about-hotel-gallery swiper" data-gallery={JSON.stringify(gallery)}>
                 <div class="hotel-gallery-wrapper swiper-wrapper">
                     {
-                        // На странице показываем только первые 4 фотки
+                        // Page shows only the first 4 images
                         galleryPreview.map((image, index) => (
                             <div
                                 class={`about-hotel-gallery-item swiper-slide ${index === 3 ? 'about-hotel-gallery-item-all' : ''}`}
@@ -144,7 +144,7 @@ const galleryPreview = gallery.slice(0, 4)
         </div>
     </section>
 
-    <!-- Модальное окно с полноэкранной галереей всех превьюшек -->
+    <!-- Modal with fullscreen gallery of all preview images -->
     <div class="gallery-modal" id="galleryModal">
         <div class="gallery-modal-overlay"></div>
         <div class="gallery-modal-content">
@@ -178,7 +178,6 @@ const galleryPreview = gallery.slice(0, 4)
 
         .hotel-title {
             @include font-kudry-sans;
-            font-weight: 300;
             @include adaptive(font-size, 60, 58);
             line-height: 1.2;
             text-transform: uppercase;
@@ -199,7 +198,6 @@ const galleryPreview = gallery.slice(0, 4)
 
         .hotel-location {
             @include font-circe-regular;
-            font-weight: 300;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             color: var(--color-globus-cream);
@@ -261,7 +259,7 @@ const galleryPreview = gallery.slice(0, 4)
         .gallery-text {
             @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
-            line-height: 1.21;
+            line-height: 1.2;
             @include adaptive(letter-spacing, 2.6, 2);
             text-transform: uppercase;
             color: white;
@@ -269,7 +267,7 @@ const galleryPreview = gallery.slice(0, 4)
         }
     }
 
-    // Модальное окно галереи
+    // Gallery modal
     .gallery-modal {
         position: fixed;
         top: 0;
