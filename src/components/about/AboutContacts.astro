@@ -123,12 +123,11 @@ const tabs: ContactTab[] = [
                 <>
                     <label
                         for={`contacts-tab-${tab.id}`}
-                        class="contacts-tab-label"
-                        data-order={i + 1}
+                        class={`contacts-tab-label _order-${i + 1}`}
                     >
                         {tab.label}
                     </label>
-                    <div class="contacts-tab-content" data-tab={tab.id}>
+                    <div class={`contacts-tab-content _tab-${tab.id}`}>
                         {tab.id === 'managers' && userType === 'agent' ? (
                             <ContactsGrid />
                         ) : tab.people.length > 0 ? (
@@ -170,10 +169,11 @@ const tabs: ContactTab[] = [
             flex-wrap: wrap;
             @include adaptive(margin-top, 26, 28);
 
-            .contacts-tab-label[data-order='1'] { order: 1; }
-            .contacts-tab-label[data-order='2'] { order: 2; }
-            .contacts-tab-label[data-order='3'] { order: 3; }
-            .contacts-tab-label[data-order='4'] { order: 4; }
+            @for $i from 1 through 4 {
+                .contacts-tab-label._order-#{$i} {
+                    order: $i;
+                }
+            }
 
             .contacts-tab-content {
                 order: 100;
@@ -221,10 +221,10 @@ const tabs: ContactTab[] = [
             }
         }
 
-        #contacts-tab-managers:checked ~ .contacts-tab-label[for='contacts-tab-managers'],
-        #contacts-tab-visa:checked ~ .contacts-tab-label[for='contacts-tab-visa'],
-        #contacts-tab-booking:checked ~ .contacts-tab-label[for='contacts-tab-booking'],
-        #contacts-tab-leadership:checked ~ .contacts-tab-label[for='contacts-tab-leadership'] {
+        #contacts-tab-managers:checked ~ .contacts-tab-label._order-1,
+        #contacts-tab-visa:checked ~ .contacts-tab-label._order-2,
+        #contacts-tab-booking:checked ~ .contacts-tab-label._order-3,
+        #contacts-tab-leadership:checked ~ .contacts-tab-label._order-4 {
             background: var(--color-globus-sand);
             color: var(--color-globus-cream);
 
@@ -234,10 +234,10 @@ const tabs: ContactTab[] = [
             }
         }
 
-        #contacts-tab-managers:checked ~ .contacts-tab-content[data-tab='managers'],
-        #contacts-tab-visa:checked ~ .contacts-tab-content[data-tab='visa'],
-        #contacts-tab-booking:checked ~ .contacts-tab-content[data-tab='booking'],
-        #contacts-tab-leadership:checked ~ .contacts-tab-content[data-tab='leadership'] {
+        #contacts-tab-managers:checked ~ .contacts-tab-content._tab-managers,
+        #contacts-tab-visa:checked ~ .contacts-tab-content._tab-visa,
+        #contacts-tab-booking:checked ~ .contacts-tab-content._tab-booking,
+        #contacts-tab-leadership:checked ~ .contacts-tab-content._tab-leadership {
             display: block;
         }
 

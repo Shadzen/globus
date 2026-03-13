@@ -44,8 +44,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                     title="Карта местоположения отеля"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    allowfullscreen
-                ></iframe>
+                    allowfullscreen></iframe>
                 <div class="tab-content-info">
                     <img src={locationIcon.src} alt="Местоположение" class="location-icon" />
                     <p>
@@ -79,9 +78,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content _tab-restaurants">
-                <p>
-                    Информация о кафе и ресторанах скоро появится
-                </p>
+                <p>Информация о кафе и ресторанах скоро появится</p>
             </div>
 
             <label for="tab-other" class="tab-label _order-5">
@@ -89,9 +86,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content _tab-other">
-                <p>
-                    Дополнительная информация скоро появится
-                </p>
+                <p>Дополнительная информация скоро появится</p>
             </div>
         </div>
     </div>
@@ -114,23 +109,25 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             @include adaptive(gap, 16, 0);
             @include adaptive(margin-top, 24, 60);
 
-            // Desktop: all labels at the top
-            @include desktop {
-                // Labels first (order 1-5)
-                @for $i from 1 through 5 {
-                    .tab-label._order-#{$i} {
-                        order: $i;
-                    }
-                }
+            @for $i from 1 through 5 {
+                .tab-label._order-#{$i} {
+                    order: $i;
 
-                // Content after (order 100)
-                .tab-content {
-                    order: 100;
-                    width: 100%;
+                    @include mobile {
+                        order: unset !important;
+                    }
                 }
             }
 
-            // Mobile: each label+content pair in order
+            .tab-content {
+                order: 100;
+                width: 100%;
+
+                @include mobile {
+                    order: unset !important;
+                }
+            }
+
             @include mobile {
                 flex-direction: column;
             }
