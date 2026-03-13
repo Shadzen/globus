@@ -76,7 +76,7 @@ const promoTours: TourItem[] = [
 ---
 
 <section class="promo-tours-section">
-    <div class="promo-tours-container">
+    <div class="section-container">
         <ToursGrid tours={promoTours} />
     </div>
 </section>
@@ -84,11 +84,6 @@ const promoTours: TourItem[] = [
 <style lang="scss" is:global>
     .promo-tours-section {
         @include adaptive(margin-top, 60, 60);
-
-        .promo-tours-container {
-            @include side-paddings;
-            width: 100%;
-        }
     }
 </style>
 

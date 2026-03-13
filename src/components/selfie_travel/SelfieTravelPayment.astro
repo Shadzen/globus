@@ -1,29 +1,31 @@
 ---
+
 ---
 
-<section class="selfie-payment-section">
-    <div class="selfie-payment-container">
-        <h2 class="selfie-payment-title">
-            Как оплатить забронированный тур:
-        </h2>
+<section class="selfie-payment-section _dark">
+    <div class="section-container">
+        <h2>Как оплатить забронированный тур:</h2>
 
         <div class="selfie-payment-content">
-            <div class="selfie-payment-divider _desktop-hidden"></div>
+            <div class="divider _desktop-hidden"></div>
 
             <div class="selfie-payment-important">
-                <h3 class="selfie-payment-important-title">Важно</h3>
-                <p class="selfie-payment-important-text">
-                    В связи с высокой волатильностью валют, стоимость в рублях по заявке в системе ТОО «SelfieTravel (Селфи Трэвел)» меняется каждый день из-за конвертации валют. Изначальная заявка будет заведена в валюте тура (USD) в сумме на момент заведения.
+                <h3>Важно</h3>
+                <p>
+                    В связи с высокой волатильностью валют, стоимость в рублях по заявке в системе
+                    ТОО «SelfieTravel (Селфи Трэвел)» меняется каждый день из-за конвертации валют.
+                    Изначальная заявка будет заведена в валюте тура (USD) в сумме на момент
+                    заведения.
                 </p>
             </div>
 
-            <div class="selfie-payment-divider"></div>
+            <div class="divider"></div>
 
             <div class="selfie-payment-steps">
                 <div class="selfie-payment-step">
-                    <span class="selfie-payment-step-number">1</span>
+                    <h4>1</h4>
                     <div class="selfie-payment-step-content">
-                        <p class="selfie-payment-step-text">
+                        <p>
                             СУБАГЕНТ самостоятельно проверяет подтверждение заявки<br />
                             на сайте selfietravel.kz (b2b.selfietravel.kz). Вход по логину и паролю СУБАГЕНТА.
                         </p>
@@ -31,25 +33,31 @@
                 </div>
 
                 <div class="selfie-payment-step">
-                    <span class="selfie-payment-step-number">2</span>
+                    <h4>2</h4>
                     <div class="selfie-payment-step-content">
                         <div class="selfie-payment-step-text-block">
-                            <p class="selfie-payment-step-text">
-                                После подтверждения заявки необходимо запросить счёт по адресу:<br />
-                                oplatakaz@globus-tour.ru (Тема: № заявки). Актуальный счёт в рублях необходимо запросить в день оплаты до 14:00 (НСК) и прислать подтверждение оплаты до 16:00 (НСК) на oplatakaz@globus-tour.ru (Тема: № заявки, приложить платёжное поручение с отметкой банка).
+                            <p>
+                                После подтверждения заявки необходимо запросить счёт по адресу:<br
+                                />
+                                oplatakaz@globus-tour.ru (Тема: № заявки). Актуальный счёт в рублях необходимо
+                                запросить в день оплаты до 14:00 (НСК) и прислать подтверждение оплаты
+                                до 16:00 (НСК) на oplatakaz@globus-tour.ru (Тема: № заявки, приложить
+                                платёжное поручение с отметкой банка).
                             </p>
-                            <p class="selfie-payment-step-text">
-                                Внимание! Если подтверждение об оплате не выслано, оплата не будет зачтена.
+                            <p>
+                                Внимание! Если подтверждение об оплате не выслано, оплата не будет
+                                зачтена.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="selfie-payment-step">
-                    <span class="selfie-payment-step-number">3</span>
+                    <h4>3</h4>
                     <div class="selfie-payment-step-content">
-                        <p class="selfie-payment-step-text">
-                            СУБАГЕНТ обязан информировать туристов о том, что авиабилеты реализуются на чартерные рейсы по невозвратному тарифу
+                        <p>
+                            СУБАГЕНТ обязан информировать туристов о том, что авиабилеты реализуются
+                            на чартерные рейсы по невозвратному тарифу
                         </p>
                     </div>
                 </div>
@@ -61,18 +69,10 @@
 <style lang="scss" is:global>
     .selfie-payment-section {
         @include adaptive(margin-top, 120, 60);
-        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
 
-        .selfie-payment-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .selfie-payment-title {
-            color: var(--color-globus-cream);
-            text-align: center;
+        h2 {
             @include adaptive(margin-bottom, 74, 50);
         }
 
@@ -92,52 +92,33 @@
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 28, 20);
-        }
 
-        .selfie-payment-important-title {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 60, 38);
-            line-height: 1.2;
-            color: var(--color-globus-sand);
-            text-transform: uppercase;
-            margin: 0;
-
-            @include mobile {
-                text-align: center;
-            }
-        }
-
-        .selfie-payment-important-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            margin: 0 auto;
-
-            @include mobile {
-                text-align: center;
-                width: 80%;
-            }
-        }
-
-        .selfie-payment-divider {
-            // width: 1px;
-            @include adaptive(width, 1, 100%);
-            @include adaptive(height, 503, 1);
-            background-color: var(--color-globus-sand);
-            flex-shrink: 0;
-
-            @include mobile {
-                width: 100%;
-                height: 1px;
-            }
-
-            &._desktop-hidden {
-                display: none;
+            h3 {
+                @include adaptive(font-size, 60, 38);
+                color: var(--color-globus-sand);
 
                 @include mobile {
-                    display: block;
+                    text-align: center;
                 }
+            }
+
+            p {
+                margin: 0 auto;
+
+                @include mobile {
+                    text-align: center;
+                    width: 80%;
+                }
+            }
+        }
+
+        .divider {
+            @include adaptive(width, 1, 100%);
+            @include adaptive(height, 503, 1);
+            flex-shrink: 0;
+
+            &._desktop-hidden {
+                @include adaptive(display, none, block);
             }
         }
 
@@ -152,14 +133,13 @@
             display: flex;
             @include adaptive(gap, 56, 30);
             align-items: flex-start;
-        }
 
-        .selfie-payment-step-number {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 74, 60);
-            color: var(--color-globus-sand);
-            line-height: 1.2;
-            flex-shrink: 0;
+            h4 {
+                @include font-kudry-sans;
+                @include adaptive(font-size, 74, 60);
+                color: var(--color-globus-sand);
+                flex-shrink: 0;
+            }
         }
 
         .selfie-payment-step-content {
@@ -171,20 +151,6 @@
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 20, 15);
-        }
-
-        .selfie-payment-step-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            margin: 0;
-
-            @include mobile {
-                br {
-                    display: none;
-                }
-            }
         }
     }
 </style>

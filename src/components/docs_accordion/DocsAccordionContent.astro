@@ -1,5 +1,5 @@
 ---
-import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import AccordionSection from '@/components/common/AccordionSection.astro'
 import Accordion from '@/components/common/Accordion.astro'
 import downloadIcon from '@/assets/icons/arrow-18-accent.svg'
 
@@ -99,9 +99,9 @@ const accordionSections = docsSections.map((section) => ({
 }))
 ---
 
-<LegalPageLayout title="Документы" narrowContainer={false}>
+<AccordionSection title="Документы" narrowContainer={false}>
     <Accordion sections={accordionSections} type="docs" />
-</LegalPageLayout>
+</AccordionSection>
 
 <style lang="scss" is:global>
     .accordion {
@@ -144,7 +144,7 @@ const accordionSections = docsSections.map((section) => ({
         }
 
         .docs-link-text {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 18);
             color: var(--color-globus-blue);
             line-height: 1.2;

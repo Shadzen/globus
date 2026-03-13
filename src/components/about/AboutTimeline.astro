@@ -45,7 +45,10 @@ const slides: TimelineSlide[] = [
                 src: 'https://placehold.co/414x309/CCA870/00273F?text=2009-1',
                 modifier: '_pos-top-1',
             },
-            { src: 'https://placehold.co/390x240/CCA870/00273F?text=2009-2', modifier: '_pos-right' },
+            {
+                src: 'https://placehold.co/390x240/CCA870/00273F?text=2009-2',
+                modifier: '_pos-right',
+            },
             {
                 src: 'https://placehold.co/300x200/CCA870/00273F?text=2009-3',
                 modifier: '_pos-center',
@@ -86,8 +89,8 @@ const slides: TimelineSlide[] = [
 ]
 ---
 
-<section class="about-timeline">
-    <div class="timeline-container">
+<section class="about-timeline _dark">
+    <div class="section-container">
         <div class="timeline-content">
             {
                 slides.map((slide, index) => (
@@ -118,8 +121,8 @@ const slides: TimelineSlide[] = [
                                 ))}
                             </div>
                             <div class="slide-text">
-                                <h2 class="slide-title">{slide.title}</h2>
-                                <p class="slide-description">{slide.description}</p>
+                                <h2>{slide.title}</h2>
+                                <p>{slide.description}</p>
                             </div>
                         </div>
                     </div>
@@ -135,16 +138,12 @@ const slides: TimelineSlide[] = [
 
 <style lang="scss" is:global>
     .about-timeline {
-        background: var(--color-globus-blue);
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 10);
         overflow: hidden;
 
-        .timeline-container {
-            position: relative;
-            width: 100%;
-            @include side-paddings;
+        .section-container {
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 60, 40);
@@ -254,21 +253,14 @@ const slides: TimelineSlide[] = [
             }
         }
 
-        .slide-title {
-            color: var(--color-globus-cream);
-            text-align: left;
-        }
+        .slide-content .slide-text {
+            h2 {
+                text-align: left;
+            }
 
-        .slide-description {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
-            opacity: 0.6;
-            width: 94%;
-
-            @include mobile {
-                width: 100%;
+            p {
+                color: var(--color-globus-light-blue);
+                @include adaptive(width, 94%, 100%);
             }
         }
 
@@ -377,7 +369,7 @@ const slides: TimelineSlide[] = [
         }
 
         .dot-year {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
             color: var(--color-globus-cream);

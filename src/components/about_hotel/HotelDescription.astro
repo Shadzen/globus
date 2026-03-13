@@ -16,8 +16,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 ---
 
 <section class="hotel-description">
-    <div class="hotel-description-container">
-        <h2 class="hotel-description-title">Описание отеля</h2>
+    <div class="section-container">
+        <h2>Описание отеля</h2>
 
         <div class="hotel-tabs-wrapper">
             <!-- Radio inputs (hidden) -->
@@ -33,9 +33,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             <input type="radio" name="hotel-tab" id="tab-restaurants" class="hotel-tab-input" />
             <input type="radio" name="hotel-tab" id="tab-other" class="hotel-tab-input" />
 
-            <!-- Hotel location -->
             <label for="tab-location" class="tab-label" data-order="1">
-                <span class="tab-label-text">Местоположение отеля</span>
+                <span>Местоположение отеля</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="location">
@@ -45,10 +44,11 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                     title="Карта местоположения отеля"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    allowfullscreen></iframe>
+                    allowfullscreen
+                ></iframe>
                 <div class="tab-content-info">
                     <img src={locationIcon.src} alt="Местоположение" class="location-icon" />
-                    <p class="hotel-description-text">
+                    <p>
                         Grand Park Kodhipparu (Куда-Ваттару) находится на пляже, в пределах лёгкой
                         доступности от следующих достопримечательностей и объектов: Пляж Angsana
                         Beach и Пляж Vabbininfaru Beach. Этот 5-звездочный курорт находится в одном
@@ -58,42 +58,38 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 </div>
             </div>
 
-            <!-- Rooms -->
             <label for="tab-rooms" class="tab-label" data-order="2">
-                <span class="tab-label-text">Номера</span>
+                <span>Номера</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="rooms">
-                <p class="hotel-description-placeholder">Информация о номерах скоро появится</p>
+                <p>Информация о номерах скоро появится</p>
             </div>
 
-            <!-- Amenities -->
             <label for="tab-amenities" class="tab-label" data-order="3">
-                <span class="tab-label-text">Удобства</span>
+                <span>Удобства</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="amenities">
-                <p class="hotel-description-placeholder">Информация об удобствах скоро появится</p>
+                <p>Информация об удобствах скоро появится</p>
             </div>
 
-            <!-- Cafe and restaurants -->
             <label for="tab-restaurants" class="tab-label" data-order="4">
-                <span class="tab-label-text">Кафе и рестораны</span>
+                <span>Кафе и рестораны</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="restaurants">
-                <p class="hotel-description-placeholder">
+                <p>
                     Информация о кафе и ресторанах скоро появится
                 </p>
             </div>
 
-            <!-- Other -->
             <label for="tab-other" class="tab-label" data-order="5">
-                <span class="tab-label-text">Другое</span>
+                <span>Другое</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
             <div class="tab-content" data-tab="other">
-                <p class="hotel-description-placeholder">
+                <p>
                     Дополнительная информация скоро появится
                 </p>
             </div>
@@ -104,42 +100,17 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 <style lang="scss" is:global>
     .hotel-description {
         @include adaptive(padding-top, 240, 200);
-        // @include adaptive(padding-bottom, 80, 60);
-        // background: var(--color-globus-cream);
 
-        &-container {
-            @include side-paddings;
+        .section-container {
             @include flex-start-between;
             flex-direction: column;
-        }
-
-        &-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            width: 76%;
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        &-placeholder {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.5;
-            text-align: center;
-            @include adaptive(padding, 80, 60);
-            width: 100%;
         }
 
         .hotel-tabs-wrapper {
             position: relative;
             display: flex;
             flex-wrap: wrap;
+            width: 100%;
             @include adaptive(gap, 16, 1);
             @include adaptive(margin-top, 24, 60);
 
@@ -188,6 +159,19 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             cursor: pointer;
             transition: all 0.3s;
 
+            * {
+                color: inherit;
+                font-size: inherit;
+            }
+
+            span {
+                flex: 1;
+            }
+
+            .tab-label-icon {
+                display: none;
+            }
+
             // Desktop: tab styles
             @include desktop {
                 @include flex-center;
@@ -196,7 +180,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 @include adaptive(padding-right, 50, 30);
                 @include adaptive(padding-top, 16, 12);
                 @include adaptive(padding-bottom, 16, 12);
-                border-radius: 50px;
+                border-radius: 500px;
                 border-width: 1px;
                 border-style: solid;
                 border-color: var(--color-globus-sand);
@@ -211,10 +195,6 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 
                 &:hover {
                     background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
-                }
-
-                .tab-label-icon {
-                    display: none;
                 }
             }
 
@@ -236,11 +216,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                     border-top: 1px solid var(--color-globus-sand);
                 }
 
-                .tab-label-text {
-                    flex: 1;
-                }
-
                 .tab-label-icon {
+                    display: block;
                     @include adaptive(width, 1, 18.876);
                     @include adaptive(height, 1, 13.111);
                     flex-shrink: 0;
@@ -253,14 +230,19 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
         .tab-content {
             display: none;
 
+            p {
+                @include adaptive(width, 76%, 100%);
+            }
+
             // Desktop: content below all tabs
             @include desktop {
-                @include adaptive(margin-top, 66, 1);
+                @include adaptive(margin-top, 66, 0);
+                order: 100;
             }
 
             // Mobile: content right after header
             @include mobile {
-                @include adaptive(padding-bottom, 1, 40);
+                @include adaptive(padding-bottom, 0, 40);
                 border-bottom: 1px solid var(--color-globus-sand);
             }
         }
@@ -274,7 +256,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             // Desktop: active tab
             @include desktop {
                 background: var(--color-globus-sand);
-                color: white;
+                color: var(--color-globus-cream);
 
                 &:hover {
                     background: var(--color-globus-sand);
@@ -283,6 +265,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             }
 
             @include mobile {
+                border-bottom: none;
+
                 .tab-label-icon {
                     transform: rotate(180deg);
                 }

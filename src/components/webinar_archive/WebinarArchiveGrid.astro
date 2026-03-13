@@ -18,7 +18,7 @@ const videos = [
 ---
 
 <section class="webinar-archive-grid-section">
-    <div class="webinar-archive-grid-container">
+    <div class="section-container">
         <VideosGrid videos={videos} userType={userType} textColor="alternate" />
     </div>
 </section>
@@ -26,10 +26,5 @@ const videos = [
 <style lang="scss" is:global>
     .webinar-archive-grid-section {
         @include adaptive(margin-top, 60, 60);
-
-        .webinar-archive-grid-container {
-            @include side-paddings;
-            width: 100%;
-        }
     }
 </style>

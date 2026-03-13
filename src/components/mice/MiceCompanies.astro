@@ -18,9 +18,9 @@ const companies = [
 ---
 
 <section class="mice-companies-section">
-    <div class="mice-companies-container">
+    <div class="section-container _alt-paddings">
         <div class="companies-header">
-            <h2 class="companies-title">Мы работаем с лидерами рынка</h2>
+            <h2>Мы работаем с лидерами рынка</h2>
             <SwiperNavButtons containerClass="companies-nav" />
         </div>
 
@@ -42,10 +42,6 @@ const companies = [
     .mice-companies-section {
         @include adaptive(margin-top, 60, 50);
 
-        .mice-companies-container {
-            width: 100%;
-        }
-
         .companies-header {
             display: flex;
             align-items: center;
@@ -57,17 +53,6 @@ const companies = [
             @include mobile {
                 flex-direction: column;
             }
-        }
-
-        .companies-title {
-            @include font-kudry-sans;
-            text-transform: uppercase;
-            font-style: normal;
-            color: var(--color-globus-blue);
-            text-align: center;
-            @include adaptive(font-size, 60, 38);
-            line-height: 1.2;
-            margin: 0;
         }
 
         .companies-nav {

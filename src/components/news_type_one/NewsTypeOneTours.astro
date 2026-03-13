@@ -29,7 +29,7 @@ const tours: TourCard[] = [
     <div class="section-container">
         {tours.map((tour) => (
             <div class="tour-card">
-                <h2 class="tour-title">{tour.title}</h2>
+                <h2>{tour.title}</h2>
 
                 <div class="tour-features">
                     {tour.features.map((feature) => (
@@ -40,7 +40,7 @@ const tours: TourCard[] = [
                 <div class="tour-details">
                     <div class="tour-detail">
                         <span class="detail-label">даты</span>
-                        <p class="detail-value">{tour.dates}</p>
+                        <p>{tour.dates}</p>
                     </div>
 
                     <div class="tour-detail">
@@ -82,7 +82,7 @@ const tours: TourCard[] = [
             }
         }
 
-        .tour-title {
+        h2 {
             text-align: left;
         }
 
@@ -93,10 +93,7 @@ const tours: TourCard[] = [
         }
 
         .tour-feature {
-            @include font-circe-light;
             @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
             border: 2px solid var(--color-globus-sand);
             @include adaptive(padding-left, 45, 24);
             @include adaptive(padding-right, 45, 24);
@@ -124,28 +121,18 @@ const tours: TourCard[] = [
         }
 
         .detail-label {
-            @include font-circe-regular;
             @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.6;
+            color: var(--color-globus-light-blue);
         }
 
-        .detail-value {
-            @include font-circe-light;
+        p {
             @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
             white-space: pre-line;
-            margin: 0;
         }
 
         .detail-price {
-            @include font-circe-light;
             @include adaptive(font-size, 26, 22);
-            line-height: 1.2;
             color: var(--color-globus-sand);
-            margin: 0;
         }
 
         .button {

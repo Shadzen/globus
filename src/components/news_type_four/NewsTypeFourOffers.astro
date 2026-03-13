@@ -41,7 +41,9 @@ const hotels: Hotel[] = [
             { label: 'Период бронирования', value: 'до 23.12.25' },
             { label: 'Период проживания', value: 'до 23.12.25' },
             { value: 'До 30% на проживание до 30.11.25' },
-            { value: 'Бесплатный трансфер в обе стороны, при проживании от 7 ночей (01.10.25–31.10.25)' },
+            {
+                value: 'Бесплатный трансфер в обе стороны, при проживании от 7 ночей (01.10.25–31.10.25)',
+            },
         ],
     },
     {
@@ -61,49 +63,49 @@ const hotels: Hotel[] = [
 ]
 ---
 
-<section class="news-type-four-offers-section">
+<section class="news-type-four-offers-section _dark">
     <div class="section-container">
-        <h2 class="offers-title">Стоимость проживания</h2>
+        <h2>Стоимость проживания</h2>
         <div class="offers-badge">с трансфером с 6.09 на 7 ночей</div>
 
         <div class="hotels-list">
-            {hotels.map((hotel, index) => (
-                <>
-                    <div class="hotel-item">
-                        <div class="hotel-info">
-                            {hotel.link ? (
-                                <a href={hotel.link} class="card-title" target="_blank" rel="noopener noreferrer">
-                                    {hotel.name}
-                                </a>
-                            ) : (
-                                <h3 class="card-title">{hotel.name}</h3>
-                            )}
-                            <p class="card-price">{hotel.price}</p>
+            {
+                hotels.map((hotel, index) => (
+                    <>
+                        <div class="hotel-item">
+                            <div class="hotel-info">
+                                <h3>{hotel.name}</h3>
+                                <span class="card-price">{hotel.price}</span>
 
-                            <ul class="hotel-features">
-                                {hotel.features.map((feature) => (
-                                    <li class="feature-item">
-                                        <div class="bullet"></div>
-                                        <div class="feature-content">
-                                            {feature.label && <p class="feature-label">{feature.label}</p>}
-                                            <p class="feature-value">{feature.value}</p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
+                                <ul>
+                                    {hotel.features.map((feature) => (
+                                        <li>
+                                            {feature.label && (
+                                                <span>{feature.label}</span>
+                                            )}
+                                            <p>{feature.value}</p>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <button class="button _sized">Забронировать</button>
+                                <button class="button _sized">Забронировать</button>
+                            </div>
+
+                            <div class="hotel-image">
+                                <img
+                                    src={hotel.image}
+                                    alt={hotel.name}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                                <div class="card-badge">{hotel.badge}</div>
+                            </div>
                         </div>
 
-                        <div class="hotel-image">
-                            <img src={hotel.image} alt={hotel.name} loading="lazy" decoding="async" />
-                            <div class="card-badge">{hotel.badge}</div>
-                        </div>
-                    </div>
-
-                    {index < hotels.length - 1 && <div class="divider" />}
-                </>
-            ))}
+                        {index < hotels.length - 1 && <div class="divider" />}
+                    </>
+                ))
+            }
         </div>
     </div>
 </section>
@@ -115,14 +117,8 @@ const hotels: Hotel[] = [
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
 
-        .offers-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-cream);
-            @include adaptive(margin-bottom, 30, 20);
-        }
-
         .offers-badge {
-            @include font-circe-light;
+            @include font-circe-regular;
             color: var(--color-globus-sand);
             @include adaptive(font-size, 26, 26);
             line-height: 1.2;
@@ -133,8 +129,10 @@ const hotels: Hotel[] = [
             @include adaptive(padding-bottom, 16, 12);
             @include adaptive(padding-left, 50, 30);
             @include adaptive(padding-right, 50, 30);
-            margin: 0 auto;
+            @include adaptive(margin-top, 30, 20);
             @include adaptive(margin-bottom, 60, 40);
+            margin-left: auto;
+            margin-right: auto;
             width: fit-content;
         }
 
@@ -160,57 +158,36 @@ const hotels: Hotel[] = [
             @include mobile {
                 order: 2;
             }
-        }
 
-        .card-title {
-            color: var(--color-globus-cream);
-            @include adaptive(margin-bottom, 10, 8);
-        }
+            h3 {
+                @include adaptive(font-size, 28, 20);
+            }
 
-        .card-price {
-            @include adaptive(margin-bottom, 40, 25);
-        }
+            .card-price {
+                @include adaptive(margin-top, 16, 8);
+                @include adaptive(margin-bottom, 40, 25);
+                @include adaptive(font-size, 26, 20);
+                color: var(--color-globus-sand);
+            }
 
-        .hotel-features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 33, 20);
-            @include adaptive(margin-bottom, 40, 30);
-        }
+            ul {
+                display: flex;
+                flex-direction: column;
+                @include adaptive(gap, 33, 20);
+                @include adaptive(margin-bottom, 40, 30);
 
-        .feature-item {
-            display: flex;
-            @include adaptive(gap, 10, 8);
-            align-items: flex-start;
-        }
+                li {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    @include adaptive(gap, 8, 5);
 
-        .bullet {
-            @include adaptive(margin-top, 8, 6);
-        }
-
-        .feature-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 8, 5);
-        }
-
-        .feature-label {
-            @include font-circe-regular;
-            color: var(--color-globus-cream);
-            opacity: 0.6;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-        }
-
-        .feature-value {
-            @include font-circe-regular;
-            color: var(--color-globus-cream);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
+                    span {
+                        opacity: 0.6;
+                        @include adaptive(font-size, 20, 18);
+                    }
+                }
+            }
         }
 
         .button {
@@ -220,7 +197,7 @@ const hotels: Hotel[] = [
         .hotel-image {
             position: relative;
             overflow: hidden;
-            @include adaptive(width, 970, 970);
+            @include adaptive(width, 970, 100%);
             @include adaptive(height, 560, 300);
 
             @include desktop {
@@ -228,7 +205,6 @@ const hotels: Hotel[] = [
             }
 
             @include mobile {
-                width: 100%;
                 order: 1;
             }
 
@@ -248,11 +224,8 @@ const hotels: Hotel[] = [
         }
 
         .divider {
-            // border: none;
-            // border-top: 1px solid var(--color-globus-sand);
             @include adaptive(margin-top, 80, 40);
             @include adaptive(margin-bottom, 80, 40);
-            // width: 100%;
         }
     }
 </style>

@@ -3,7 +3,7 @@ const base = import.meta.env.BASE_URL
 ---
 
 <section class="partner-selfie-section">
-    <div class="partner-selfie-container">
+    <div class="section-container">
         <h2>Сотрудничество с Selfie Travel</h2>
 
         <div class="partner-selfie-content">
@@ -22,18 +22,10 @@ const base = import.meta.env.BASE_URL
     .partner-selfie-section {
         @include adaptive(margin-top, 80, 60);
 
-        .partner-selfie-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
         .partner-selfie-content {
             @include adaptive(margin-top, 34, 30);
             @include adaptive(padding-left, 145, 0);
             @include adaptive(padding-right, 145, 0);
-            // margin-left: auto;
-            // margin-right: auto;
-            // width: 80%;
             @include flex-center;
             @include adaptive(gap, 60, 60);
             flex-wrap: wrap;
@@ -45,10 +37,8 @@ const base = import.meta.env.BASE_URL
         }
 
         .partner-selfie-text {
-            @include font-circe-light;
             @include adaptive(font-size, 26, 18);
             color: var(--color-globus-blue);
-            line-height: 1.2;
             flex: 1;
 
             @include mobile {

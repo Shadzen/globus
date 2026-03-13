@@ -44,10 +44,8 @@ const defaultPeople: ContactPerson[] = [
 const { people = defaultPeople, standalone = false, title } = Astro.props
 ---
 
-<div class:list={['contacts-grid', { '_standalone': standalone }]}>
-    {title && (
-        <h2 class="contacts-grid-title" set:html={title} />
-    )}
+<section class:list={['contacts-grid _dark', { _standalone: standalone }]}>
+    {title && <h2 set:html={title} />}
 
     {
         people.map((person) => (
@@ -57,14 +55,14 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
                 </div>
                 <div class="contact-info">
                     <div class="contact-info-top">
-                        <h3 class="contact-name">{person.name}</h3>
-                        <p class="contact-position">{person.position}</p>
+                        <h3>{person.name}</h3>
+                        <p>{person.position}</p>
                     </div>
                     <div class="contact-links">
-                        <a href={`mailto:${person.email}`} class="contact-link">
+                        <a href={`mailto:${person.email}`}>
                             {person.email}
                         </a>
-                        <a href={`tel:${person.phone}`} class="contact-link">
+                        <a href={`tel:${person.phone}`}>
                             {person.phone}
                         </a>
                     </div>
@@ -72,7 +70,7 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
             </div>
         ))
     }
-</div>
+</section>
 
 <style lang="scss" is:global>
     .contacts-grid {
@@ -82,7 +80,6 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         grid-template-columns: repeat(3, 1fr);
         @include adaptive(column-gap, 60, 30);
         @include adaptive(row-gap, 80, 50);
-        background-color: var(--color-globus-blue);
 
         &._standalone {
             @include side-paddings;
@@ -92,12 +89,10 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         @include mobile {
             grid-template-columns: 1fr;
         }
-    }
 
-    .contacts-grid-title {
-        color: var(--color-globus-cream);
-        text-align: center;
-        grid-column: 1 / -1;
+        h2 {
+            grid-column: 1 / -1;
+        }
     }
 
     .contact-card {
@@ -125,52 +120,37 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         flex-direction: column;
         @include adaptive(gap, 24, 24);
         flex: 1;
-    }
 
-    .contact-info-top {
-        display: flex;
-        flex-direction: column;
-    }
+        .contact-info-top {
+            display: flex;
+            flex-direction: column;
 
-    .contact-name {
-        @include font-kudry-sans;
-        @include adaptive(font-size, 28, 26);
-        line-height: 1.2;
-        color: var(--color-globus-sand);
-        text-transform: uppercase;
-        margin: 0;
-        width: 50%;
+            h3 {
+                @include adaptive(font-size, 28, 26);
+                color: var(--color-globus-sand);
+                width: 50%;
 
-        @include mobile {
-            width: 100%;
+                @include mobile {
+                    width: 100%;
+                }
+            }
+
+            p {
+                @include adaptive(font-size, 26, 18);
+                color: var(--color-globus-light-blue);
+            }
         }
-    }
 
-    .contact-position {
-        @include font-circe-light;
-        @include adaptive(font-size, 26, 18);
-        line-height: 1.2;
-        color: var(--color-globus-light-blue);
-        margin: 0;
-    }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 5, 5);
+            margin-top: auto;
 
-    .contact-links {
-        display: flex;
-        flex-direction: column;
-        @include adaptive(gap, 5, 5);
-        margin-top: auto;
-    }
-
-    .contact-link {
-        @include font-circe-light;
-        @include adaptive(font-size, 26, 18);
-        line-height: 1.2;
-        color: var(--color-globus-cream);
-        text-decoration: none;
-        transition: opacity 0.3s;
-
-        &:hover {
-            opacity: 0.7;
+            a {
+                color: var(--color-globus-cream);
+                text-decoration: none;
+            }
         }
     }
 </style>

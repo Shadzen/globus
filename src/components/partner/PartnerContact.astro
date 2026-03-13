@@ -4,39 +4,39 @@ import telegramIcon from '@/assets/icons/telegram-accent-borderless.svg'
 import phoneIcon from '@/assets/icons/phone-accent.svg'
 ---
 
-<section class="partner-contact-section">
-    <div class="partner-contact-container">
+<section class="partner-contact-section _dark">
+    <div class="section-container">
         <div class="partner-contact-card">
             <div class="partner-contact-avatar">
                 <img src={managerPhoto.src} alt="Бубер Анастасия" loading="lazy" />
             </div>
 
             <div class="partner-contact-info">
-                <h3 class="partner-contact-name">
+                <h3>
                     Бубер<br />
                     Анастасия
                 </h3>
-                <p class="partner-contact-position">
+                <p>
                     Руководитель отдела по работе с агентствами
                 </p>
             </div>
         </div>
 
         <div class="partner-contact-buttons">
-            <a href="tel:+79130637730" class="partner-contact-btn-outline">
+            <a href="tel:+79130637730" class="button _sized _outline">
                 <img src={telegramIcon.src} alt="Telegram" />
                 <span>8 913 063 77 30</span>
             </a>
 
-            <a href="tel:+73833340586" class="partner-contact-btn-outline">
+            <a href="tel:+73833340586" class="button _sized _outline">
                 <img src={phoneIcon.src} alt="Телефон" />
-                <span class="partner-contact-phone-numbers">
+                <span class="button-numbers">
                     <span>+7 (383) 334-05-86,</span>
                     <span>334-05-89 доб. 725</span>
                 </span>
             </a>
 
-            <a href="mailto:dogovor@globus-tour.ru" class="partner-contact-btn">
+            <a href="mailto:dogovor@globus-tour.ru" class="button _sized">
                 <span>dogovor@globus-tour.ru</span>
             </a>
         </div>
@@ -48,11 +48,8 @@ import phoneIcon from '@/assets/icons/phone-accent.svg'
         @include adaptive(margin-top, 80, 60);
         @include adaptive(padding-top, 80, 40);
         @include adaptive(padding-bottom, 80, 40);
-        background-color: var(--color-globus-blue);
 
-        .partner-contact-container {
-            @include side-paddings;
-            width: 100%;
+        .section-container {
             @include flex-center;
             @include adaptive(gap, 60, 40);
             flex-wrap: wrap;
@@ -98,23 +95,11 @@ import phoneIcon from '@/assets/icons/phone-accent.svg'
                 text-align: center;
                 width: 65%;
             }
-        }
 
-        .partner-contact-name {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            color: var(--color-globus-sand);
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .partner-contact-position {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
-            margin: 0;
+            h3 {
+                @include adaptive(font-size, 28, 26);
+                color: var(--color-globus-sand);
+            }
         }
 
         .partner-contact-buttons {
@@ -126,25 +111,10 @@ import phoneIcon from '@/assets/icons/phone-accent.svg'
                 flex-direction: column;
                 width: 100%;
             }
-        }
 
-        .partner-contact-btn {
-            @include button-sized;
-        }
-
-        .partner-contact-btn-outline {
-            @include button-sized;
-            @include button-outline;
-            @include adaptive(font-size, 24, 18);
-            @include adaptive(letter-spacing, 2.4, 2.4);
-        }
-
-        .partner-contact-phone-numbers {
-            display: flex;
-            @include adaptive(gap, 5, 0);
-
-            @include mobile {
-                flex-direction: column;
+            .button._sized._outline {
+                @include adaptive(font-size, 24, 18);
+                @include adaptive(letter-spacing, 2.4, 2.4);
             }
         }
     }

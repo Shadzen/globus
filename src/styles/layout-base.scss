@@ -50,9 +50,11 @@ body {
     font-family: system-ui, sans-serif;
     background: var(--color-globus-blue);
     margin: 0;
+
     &._disable-scrolling {
         overflow: hidden;
     }
+
     @media (min-aspect-ratio: 21/9) {
         padding: 0 12.5%;
     }
@@ -72,6 +74,29 @@ section {
 
     &._section-margins {
         @include adaptive(margin-top, 120, 60);
+    }
+
+    &._dark {
+        background-color: var(--color-globus-blue);
+
+        a {
+            color: var(--color-globus-sand);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--color-globus-cream);
+        }
+
+        p,
+        span,
+        ul,
+        ol,
+        li {
+            color: var(--color-globus-cream);
+        }
     }
 
     .section-header {
@@ -102,6 +127,13 @@ h3 {
     @include font-kudry-sans;
     text-transform: uppercase;
     font-style: normal;
+
+    span {
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        line-height: inherit;
+    }
 }
 
 h1 {
@@ -131,13 +163,127 @@ h3 {
     @include adaptive(font-size, 22, 26);
 }
 
-p {
+h4 {
+    color: var(--color-globus-sand);
     margin: 0;
+    line-height: 1.2;
+    @include adaptive(font-size, 26, 18);
+
+    @include mobile {
+        br {
+            display: none;
+        }
+    }
+}
+
+p,
+span,
+a,
+ul,
+ol,
+li {
+    margin: 0;
+    @include font-circe-regular;
+    @include adaptive(font-size, 26, 18);
+    line-height: 1.2;
+    color: var(--color-globus-blue);
+
+    @include mobile {
+        br {
+            display: none;
+        }
+    }
 }
 
 a {
-    text-decoration: none;
     white-space: nowrap;
+    transition: opacity 0.3s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+ol {
+    padding-left: 0;
+    list-style-position: inside;
+
+    li {
+        @include adaptive(margin-bottom, 10, 8);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @include mobile {
+            br {
+                display: none;
+            }
+        }
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    @include adaptive(gap, 14, 12);
+
+    li {
+        position: relative;
+        @include adaptive(padding-left, 22, 20);
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            // em = relative to li font-size, scales with text
+            top: 0.35em;
+            @include adaptive(width, 12, 10);
+            @include adaptive(height, 12, 10);
+            border-radius: 50%;
+            background-color: var(--color-globus-sand);
+        }
+
+        @include mobile {
+            br {
+                display: none;
+            }
+        }
+    }
+}
+
+.list-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    @include adaptive(gap, 30, 20);
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+
+    li {
+        @include adaptive(font-size, 20, 18);
+    }
+}
+
+.list-columns {
+    display: flex;
+    @include adaptive(gap, 55, 20);
+
+    @include mobile {
+        flex-direction: column;
+    }
+
+    ul {
+        @include adaptive(gap, 30, 20);
+
+        li {
+            @include adaptive(font-size, 20, 18);
+        }
+    }
 }
 
 .button {
@@ -150,14 +296,6 @@ a {
     &._outline {
         @include button-outline;
     }
-}
-
-.bullet {
-    @include adaptive(width, 12, 10);
-    @include adaptive(height, 12, 10);
-    border-radius: 50%;
-    background-color: var(--color-globus-sand);
-    flex-shrink: 0;
 }
 
 .svg-icon {
@@ -177,6 +315,64 @@ a {
     width: 100%;
     height: 1px;
     background-color: var(--color-globus-sand);
+}
+
+._light-text {
+    h1,
+    h2,
+    h3,
+    h4,
+    a,
+    p,
+    span,
+    ul,
+    ol,
+    li {
+        color: var(--color-globus-cream);
+    }
+
+    .hero-nav {
+        .breadcrumb {
+
+            a,
+            span {
+                color: var(--color-globus-cream) !important;
+            }
+        }
+
+        .back-text {
+            color: var(--color-globus-cream) !important;
+        }
+    }
+}
+
+._dark-text {
+    h1,
+    h2,
+    h3,
+    h4,
+    a,
+    p,
+    span,
+    ul,
+    ol,
+    li {
+        color: var(--color-globus-blue);
+    }
+
+    .hero-nav {
+        .breadcrumb {
+
+            a,
+            span {
+                color: var(--color-globus-blue) !important;
+            }
+        }
+
+        .back-text {
+            color: var(--color-globus-blue) !important;
+        }
+    }
 }
 
 .hero-section {
@@ -214,26 +410,20 @@ a {
         &._overlay-double-gradient {
             &::after {
                 background:
-                    linear-gradient(
-                        180deg,
+                    linear-gradient(180deg,
                         rgba(0, 39, 63, 0.04) 35%,
-                        rgba(0, 39, 63, 0.75) 80%
-                    ),
-                    linear-gradient(
-                        180deg,
+                        rgba(0, 39, 63, 0.75) 80%),
+                    linear-gradient(180deg,
                         rgba(0, 39, 63, 0.46) 0%,
-                        rgba(0, 39, 63, 0) 70%
-                    );
+                        rgba(0, 39, 63, 0) 70%);
             }
         }
 
         &._overlay-darker {
             &::after {
-                background: linear-gradient(
-                    0deg,
-                    rgba(0, 39, 63, 0.7) 0%,
-                    rgba(0, 39, 63, 0.7) 100%
-                );
+                background: linear-gradient(0deg,
+                        rgba(0, 39, 63, 0.7) 0%,
+                        rgba(0, 39, 63, 0.7) 100%);
             }
         }
     }
@@ -249,26 +439,12 @@ a {
     }
 
     .hero-subtitle {
-        @include font-circe-regular;
         @include adaptive(font-size, 26, 18);
-        line-height: 1.2;
 
         &._small {
             @include adaptive(font-size, 16, 18);
             text-transform: uppercase;
             opacity: 0.4;
-        }
-    }
-
-    .hero-subtitle-link {
-        @include font-circe-regular;
-        color: var(--color-globus-blue);
-        text-decoration: underline;
-        text-decoration-skip-ink: none;
-        transition: opacity 0.3s;
-
-        &:hover {
-            opacity: 0.7;
         }
     }
 
@@ -284,28 +460,6 @@ a {
 
         .button {
             @include adaptive(font-size, 22, 18);
-        }
-    }
-
-    &._dark-text {
-        .hero-nav {
-            .breadcrumb {
-                a,
-                span {
-                    color: var(--color-globus-blue);
-                }
-            }
-
-            .back-text {
-                color: var(--color-globus-blue);
-            }
-        }
-
-        .hero-content {
-            .hero-title,
-            .hero-subtitle {
-                color: var(--color-globus-blue);
-            }
         }
     }
 

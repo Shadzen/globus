@@ -7,7 +7,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
 ---
 
 <section class="tour-search-form-section">
-    <div class="tour-search-form-container">
+    <div class="section-container _alt-paddings">
         <!-- Toggle: Tours with flight / Hotels -->
         <div class="search-tabs">
             <div class="search-tab active">
@@ -163,8 +163,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
     .tour-search-form-section {
         @include adaptive(margin-top, 0, 0);
 
-        .tour-search-form-container {
-            width: 100%;
+        .section-container {
             display: flex;
             flex-direction: column;
         }
@@ -209,7 +208,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
         }
 
         .tab-label {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
             color: #FFFDF8;
@@ -273,7 +272,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
         }
 
         .field-value {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
             color: #FFFDF8;
@@ -412,7 +411,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
             }
 
             span {
-                @include font-circe-light;
+                @include font-circe-regular;
                 @include adaptive(font-size, 26, 18);
                 line-height: 1.2;
                 color: var(--color-globus-blue);
@@ -447,7 +446,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
         }
 
         .option-text {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             color: #FFFDF8;
@@ -480,7 +479,7 @@ import arrowRightFilled from '@/assets/icons/arrow-15-accent-filled.svg'
         }
 
         .cta-text {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;
             color: #FFFDF8;

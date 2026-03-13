@@ -16,21 +16,18 @@ interface Props {
 const { columns, dark = true } = Astro.props
 ---
 
-<section class="two-column-bullet-list-section" data-dark={dark}>
-    <div class="two-column-bullet-list-container">
+<section class:list={['two-column-bullet-list-section', { _dark: dark }]}>
+    <div class="section-container">
         <div class="columns-grid">
             {
                 columns.map((column) => (
                     <div class="column">
-                        <h3 class="column-title">{column.title}</h3>
-                        <div class="column-items">
+                        <h3>{column.title}</h3>
+                        <ul>
                             {column.items.map((item) => (
-                                <div class="column-item">
-                                    <span class="bullet" />
-                                    <p class="column-text">{item.text}</p>
-                                </div>
+                                <li set:html={item.text} />
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 ))
             }
@@ -40,19 +37,11 @@ const { columns, dark = true } = Astro.props
 
 <style lang="scss" is:global>
     .two-column-bullet-list-section {
-        @include adaptive(margin-top, 120, 60);
-        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 85, 60);
         @include adaptive(padding-bottom, 85, 60);
 
-        &[data-dark='false'] {
-            background-color: transparent;
-            margin-top: 0;
-        }
-
-        .two-column-bullet-list-container {
-            @include side-paddings;
-            width: 100%;
+        &._dark {
+            @include adaptive(margin-top, 120, 60);
         }
 
         .columns-grid {
@@ -104,52 +93,19 @@ const { columns, dark = true } = Astro.props
             }
         }
 
-        .column-title {
-            @include font-kudry-sans;
-            font-style: normal;
-            color: var(--color-globus-sand);
+        h3 {
             @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
         }
 
-        &[data-dark='false'] {
-            .column-title {
-                color: var(--color-globus-blue);
-            }
+        &._dark h3 {
+            color: var(--color-globus-sand);
         }
 
-        .column-items {
-            display: flex;
-            flex-direction: column;
+        ul {
             @include adaptive(gap, 25, 20);
-        }
 
-        .column-item {
-            display: flex;
-            @include adaptive(gap, 17, 12);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-                flex-shrink: 0;
-            }
-        }
-
-        .column-text {
-            @include font-circe-light;
-            font-style: normal;
-            color: var(--color-globus-cream);
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            margin: 0;
-            white-space: pre-line;
-        }
-
-        &[data-dark='false'] {
-            .column-text {
-                color: var(--color-globus-blue);
+            li {
+                @include adaptive(font-size, 26, 20);
             }
         }
     }

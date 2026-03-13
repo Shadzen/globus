@@ -1,5 +1,5 @@
 ---
-import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import AccordionSection from '@/components/common/AccordionSection.astro'
 import Accordion from '@/components/common/Accordion.astro'
 
 const accordionSections = [
@@ -55,7 +55,7 @@ const accordionSections = [
 ]
 ---
 
-<LegalPageLayout title="Пользовательское соглашение">
+<AccordionSection title="Пользовательское соглашение">
     <div slot="intro">
         <p>Настоящее Пользовательское соглашение (далее - Соглашение) разработано в целях:</p>
         <ul>
@@ -75,4 +75,4 @@ const accordionSections = [
     </div>
 
     <Accordion sections={accordionSections} />
-</LegalPageLayout>
+</AccordionSection>

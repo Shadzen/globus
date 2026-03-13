@@ -3,8 +3,8 @@
 ---
 
 <section class="country-rules-section">
-    <div class="country-rules-container">
-        <h2 class="country-rules-title">Правила въезда</h2>
+    <div class="section-container">
+        <h2>Правила въезда</h2>
         <div class="country-rules-content">
             <p>
                 Греция отменила COVID-ограничения. Для въезда в страну больше не требуется
@@ -26,21 +26,12 @@
     </div>
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
     .country-rules-section {
         @include adaptive(margin-top, 120, 60);
 
-        .country-rules-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .country-rules-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-blue);
+        h2 {
             @include adaptive(font-size, 60, 60);
-            line-height: 1.2;
-            text-transform: uppercase;
             @include adaptive(margin-bottom, 41, 30);
             text-align: left;
         }
@@ -49,24 +40,10 @@
             @include adaptive(max-width, 1187, 100%);
 
             p {
-                @include font-circe-light;
-                color: var(--color-globus-blue);
-                @include adaptive(font-size, 26, 18);
-                line-height: 1.2;
                 @include adaptive(margin-bottom, 20, 16);
 
                 &:last-child {
                     margin-bottom: 0;
-                }
-
-                a {
-                    color: var(--color-globus-blue);
-                    text-decoration: underline;
-                    transition: opacity 0.3s;
-
-                    &:hover {
-                        opacity: 0.7;
-                    }
                 }
             }
         }

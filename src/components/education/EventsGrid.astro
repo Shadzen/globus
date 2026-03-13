@@ -35,14 +35,13 @@ const { events } = Astro.props
                     {event.materialUrl && (
                         <a
                             href={event.materialUrl}
-                            class="event-material-link"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <div class="event-material-icon">
                                 <img src={arrowIcon.src} alt="" />
                             </div>
-                            <span class="event-material-text">
+                            <span>
                                 {event.materialLabel || 'Скачать материалы семинара'}
                             </span>
                         </a>
@@ -117,47 +116,35 @@ const { events } = Astro.props
         .event-title {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 24);
-            color: var(--color-globus-sand);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
             white-space: normal;
         }
 
-        .event-material-link {
+        a {
             display: flex;
             align-items: center;
             @include adaptive(gap, 18, 18);
             text-decoration: none;
-            transition: opacity 0.3s;
 
-            &:hover {
-                opacity: 0.7;
+            span {
+                @include adaptive(font-size, 18, 16);
+                color: var(--color-globus-sand);
+                text-transform: uppercase;
+                white-space: normal;
+                @include adaptive(width, 70%, 100%);
             }
         }
 
         .event-material-icon {
+            @include flex-center;
             @include adaptive(width, 75, 60);
             @include adaptive(height, 75, 60);
             flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
-        }
-
-        .event-material-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 18, 16);
-            color: var(--color-globus-sand);
-            line-height: 1.2;
-            text-transform: uppercase;
-            white-space: normal;
         }
     }
 </style>

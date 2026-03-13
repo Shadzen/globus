@@ -2,7 +2,7 @@
 // Компонент фильтра новостей
 ---
 
-<section class="news-filter">
+<section class="news-filter _dark">
     <div class="section-container">
         <div class="filter-content">
             <div class="filter-field">
@@ -52,7 +52,6 @@
 
 <style lang="scss" is:global>
     .news-filter {
-        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 52, 32);
         @include adaptive(padding-bottom, 52, 32);
 
@@ -97,7 +96,7 @@
         }
 
         .filter-input {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 26, 22);
             line-height: 1.2;
             color: var(--color-globus-cream);
@@ -130,7 +129,6 @@
             width: 100%;
         }
 
-        // Убираем стрелку у select в разных браузерах
         select.filter-input {
             background-image: none;
 

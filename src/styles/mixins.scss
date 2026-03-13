@@ -151,10 +151,6 @@
     font-family: 'circe_regular', Arial, sans-serif;
 }
 
-@mixin font-circe-light {
-    font-family: 'circe_regular', Arial, sans-serif;
-}
-
 @mixin font-kudry-sans {
     font-family: 'kudry_sans-headline', Arial, sans-serif;
 }
@@ -169,6 +165,7 @@
     line-height: 1.2;
     color: var(--color-globus-cream);
     text-transform: uppercase;
+    text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
     @include adaptive(letter-spacing, 3, 3);
@@ -179,6 +176,11 @@
     border-radius: 500px;
     white-space: nowrap;
     z-index: 2;
+
+    * {
+        color: inherit;
+        font-size: inherit;
+    }
 
     img, svg {
         @include adaptive(width, 40, 30);
@@ -199,6 +201,15 @@
     &:active {
         transform: translateY(0);
     }
+
+    .button-numbers {
+        display: flex;
+        @include adaptive(gap, 5, 0);
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
 }
 
 @mixin button-sized {
@@ -213,6 +224,11 @@
     background: transparent;
     color: var(--color-globus-sand);
     border-color: var(--color-globus-sand);
+
+    * {
+        color: inherit;
+        font-size: inherit;
+    }
 
     &:hover {
         background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);

@@ -37,7 +37,7 @@ const base = import.meta.env.BASE_URL
 ---
 
 <section class="tour-additional-section">
-    <div class="tour-additional-container">
+    <div class="section-container">
         <div class="divider"></div>
 
         <h2 class="tour-additional-title">Дополнительно оплачивается:</h2>
@@ -114,11 +114,6 @@ const base = import.meta.env.BASE_URL
     .tour-additional-section {
         @include adaptive(margin-top, 120, 60);
 
-        .tour-additional-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
         .divider {
             @include adaptive(margin-top, 40, 20);
             @include adaptive(margin-bottom, 40, 20);
@@ -147,10 +142,8 @@ const base = import.meta.env.BASE_URL
         }
 
         .tour-additional-service-text {
-            @include font-circe-light;
             color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
             margin: 0;
             white-space: pre-line;
         }
@@ -187,7 +180,7 @@ const base = import.meta.env.BASE_URL
         }
 
         .tour-additional-link-text {
-            @include font-circe-light;
+            @include font-circe-regular;
             color: var(--color-globus-sand);
             @include adaptive(font-size, 26, 20);
             line-height: 1.2;
@@ -252,7 +245,7 @@ const base = import.meta.env.BASE_URL
         }
 
         .tour-flights-text {
-            @include font-circe-light;
+            @include font-circe-regular;
             color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 18);
             line-height: 1.2;

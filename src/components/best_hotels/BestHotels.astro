@@ -227,13 +227,10 @@ const hotels: Hotel[] = [
         }
 
         .section-description {
-            @include font-circe-regular;
             @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
             color: var(--color-globus-blue);
 
             p {
-                margin: 0;
                 @include adaptive(margin-bottom, 20, 16);
 
                 &:last-child {

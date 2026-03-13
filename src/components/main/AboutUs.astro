@@ -45,21 +45,21 @@ const advantages: Advantage[] = [
 
 <section class="about-us">
     <div class="section-container">
-        <h2 class="about-title">
-            <span>ваш идеальный отдых</span>
-            <span>начинается здесь!</span>
+        <h2>
+            ваш идеальный отдых <br />
+            начинается здесь!
         </h2>
 
         <div class="about-content">
             <div class="about-item">
                 <div class="about-item-content">
-                    <h3 class="years-title">30 лет</h3>
-                    <p class="about-text">
+                    <h3>30 лет</h3>
+                    <p>
                         мы создаём путешествия мечты, и дарим возможность открывать мир с комфортом
                         и удовольствием
                     </p>
                     <br />
-                    <p class="about-text">
+                    <p>
                         Как самый крупный туроператор Сибири, мы знаем, что важно для вас:
                         безупречный сервис, внимание к деталям и полная уверенность в своём отдыхе
                     </p>
@@ -74,8 +74,8 @@ const advantages: Advantage[] = [
 
             <div class="about-item">
                 <div class="about-item-content">
-                    <h3 class="tourists-title">Более 500 000</h3>
-                    <p class="about-text">
+                    <h3>Более 500 000</h3>
+                    <p>
                         счастливых туристов доверили нам свои впечатления – и мы сделали их
                         путешествия по‑настоящему незабываемыми
                     </p>
@@ -93,8 +93,8 @@ const advantages: Advantage[] = [
                             <img src={advantage.icon.src} alt="" />
                         </div>
                         <div class="advantage-item-content">
-                            <h4 class="advantage-title">{advantage.title}</h4>
-                            <p class="advantage-description">{advantage.description}</p>
+                            <h4>{advantage.title}</h4>
+                            <p>{advantage.description}</p>
                         </div>
                     </div>
                 ))
@@ -111,11 +111,6 @@ const advantages: Advantage[] = [
             @include flex-center;
             flex-direction: column;
             @include adaptive(gap, 64, 40);
-        }
-
-        .about-title {
-            display: flex;
-            flex-direction: column;
         }
 
         .about-content {
@@ -171,20 +166,16 @@ const advantages: Advantage[] = [
         .about-item-content {
             position: relative;
             width: 100%;
-        }
 
-        .years-title,
-        .tourists-title {
-            @include adaptive(font-size, 60, 38);
-            @include adaptive(margin-top, 48, 36);
-        }
+            h3 {
+                @include adaptive(font-size, 60, 38);
+                @include adaptive(margin-top, 48, 36);
+            }
 
-        .about-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            width: 90%;
+            p {
+                @include adaptive(font-size, 20, 18);
+                width: 90%;
+            }
         }
 
         .card-image {
@@ -218,7 +209,8 @@ const advantages: Advantage[] = [
             }
         }
 
-        .advantage-item, .advantage-item-content {
+        .advantage-item,
+        .advantage-item-content {
             @include flex-center-start;
             flex-direction: column;
             text-align: center;
@@ -239,26 +231,20 @@ const advantages: Advantage[] = [
         .advantage-item-content {
             position: relative;
             width: 100%;
-        }
 
-        .advantage-title {
-            @include font-circe-regular;
-            @include adaptive(font-size, 24, 18);
-            line-height: 1.2;
-            color: var(--color-globus-sand);
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 2.4, 1.8);
-            margin: 0;
-            @include adaptive(min-height, 58, 0);
-            @include flex-center;
-        }
+            h4 {
+                @include font-circe-regular;
+                @include adaptive(font-size, 24, 18);
+                text-transform: uppercase;
+                @include adaptive(letter-spacing, 2.4, 1.8);
+                @include adaptive(min-height, 58, 0);
+                @include flex-center;
+            }
 
-        .advantage-description {
-            @include font-circe-regular;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            color: var(--color-globus-light-blue);
-            width: 70%;
+            p {
+                @include adaptive(font-size, 20, 18);
+                width: 70%;
+            }
         }
     }
 </style>

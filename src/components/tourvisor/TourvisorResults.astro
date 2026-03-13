@@ -53,7 +53,7 @@ const hotels: Hotel[] = [
 ---
 
 <section class="tour-results-section">
-    <div class="tour-results-container">
+    <div class="section-container">
         {hotels.map((hotel) => (
             <div class="hotel-card">
                 <div class="hotel-image">
@@ -114,11 +114,7 @@ const hotels: Hotel[] = [
 <style lang="scss" is:global>
     .tour-results-section {
         // @include adaptive(margin-top, 0, 0);
-        background-color: #FFFDF8;
-
-        .tour-results-container {
-            width: 100%;
-        }
+        // background-color: #FFFDF8;
 
         .hotel-card {
             @include side-paddings;
@@ -186,17 +182,13 @@ const hotels: Hotel[] = [
         }
 
         .hotel-location {
-            @include font-circe-light;
             @include adaptive(font-size, 18, 16);
-            line-height: 1.2;
             color: #8C9DA4;
             margin: 0;
         }
 
         .hotel-description {
-            @include font-circe-light;
             @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
             color: var(--color-globus-blue);
             margin: 0;
             max-width: 993px;
@@ -252,7 +244,7 @@ const hotels: Hotel[] = [
         }
 
         .rating-label {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
             color: var(--color-globus-blue);
@@ -283,7 +275,7 @@ const hotels: Hotel[] = [
         }
 
         .price-label {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
             color: var(--color-globus-blue);
@@ -312,7 +304,7 @@ const hotels: Hotel[] = [
         }
 
         .price-note {
-            @include font-circe-light;
+            @include font-circe-regular;
             @include adaptive(font-size, 18, 16);
             line-height: 1.2;
             color: var(--color-globus-blue);

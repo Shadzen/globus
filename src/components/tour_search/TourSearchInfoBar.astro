@@ -23,7 +23,7 @@ const buttons = [
 ---
 
 <div class="tour-search-info-bar">
-    <div class="tour-search-info-bar-container">
+    <div class="section-container _alt-paddings">
         <div class="tour-search-info-items">
             <div class="tour-search-info-field">
                 <span class="tour-search-info-label">Дата</span>
@@ -75,10 +75,9 @@ const buttons = [
         @include adaptive(padding-bottom, 44, 30);
         width: 100%;
 
-        .tour-search-info-bar-container {
+        .section-container {
             @include adaptive(padding-left, 440, 15);
             @include adaptive(padding-right, 100, 15);
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -134,10 +133,8 @@ const buttons = [
         }
 
         .tour-search-info-value {
-            @include font-circe-light;
             @include adaptive(font-size, 26, 22);
             color: var(--color-globus-cream);
-            line-height: 1.2;
             margin: 0;
         }
 

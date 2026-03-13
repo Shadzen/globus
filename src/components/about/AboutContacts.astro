@@ -102,9 +102,9 @@ const tabs: ContactTab[] = [
 ]
 ---
 
-<section class="about-contacts">
-    <div class="about-contacts-container">
-        <h2 class="about-contacts-title">Контакты</h2>
+<section class="about-contacts _dark">
+    <div class="section-container">
+        <h2>Контакты</h2>
 
         <div class="contacts-tabs-wrapper">
             <!-- Radio inputs (hidden) -->
@@ -134,7 +134,7 @@ const tabs: ContactTab[] = [
                         ) : tab.people.length > 0 ? (
                             <ContactsGrid people={tab.people} />
                         ) : (
-                            <p class="contacts-placeholder">Информация скоро появится</p>
+                            <p>Информация скоро появится</p>
                         )}
                     </div>
                 </>
@@ -147,25 +147,23 @@ const tabs: ContactTab[] = [
 
 <style lang="scss" is:global>
     .about-contacts {
-        background: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 40);
 
         ~ .contact-form-section {
             margin-top: 0;
         }
 
-        .about-contacts-container {
-            @include side-paddings;
+        .section-container {
             display: flex;
             flex-direction: column;
         }
 
-        .about-contacts-title {
+        h2 {
             text-align: left;
-            color: var(--color-globus-cream);
         }
 
         .contacts-tabs-wrapper {
+            overflow: hidden;
             position: relative;
             display: flex;
             justify-content: space-between;
@@ -245,17 +243,6 @@ const tabs: ContactTab[] = [
 
         .contacts-tab-content {
             display: none;
-        }
-
-        .contacts-placeholder {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.5;
-            text-align: center;
-            @include adaptive(padding, 80, 60);
-            width: 100%;
         }
 
         .divider {

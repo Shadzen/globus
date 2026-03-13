@@ -34,22 +34,22 @@ const mainDescription = `мы создаём путешествия мечты, 
 ---
 
 <section class="about-stats">
-    <div class="about-stats-container">
+    <div class="section-container">
         <div class="stats-main">
             <span class="stats-large-number" aria-hidden="true">98</span>
             <h2 class="stats-title">доступных<br />стран</h2>
         </div>
 
         <div class="stats-content">
-            <p class="stats-description">{mainDescription}</p>
-            <p class="stats-description">{mainDescription}</p>
+            <p>{mainDescription}</p>
+            <p>{mainDescription}</p>
 
             <div class="stats-grid">
                 {
                     stats.map((stat) => (
                         <div class:list={['stat-item', { '_mobile-only': stat.id === 4 }]}>
                             <span class="stat-number">{stat.number}</span>
-                            <p class="stat-description">{stat.description}</p>
+                            <p>{stat.description}</p>
                         </div>
                     ))
                 }
@@ -62,10 +62,7 @@ const mainDescription = `мы создаём путешествия мечты, 
     .about-stats {
         @include adaptive(margin-top, 120, 60);
 
-        .about-stats-container {
-            position: relative;
-            width: 100%;
-            @include side-paddings;
+        .section-container {
             display: flex;
             @include adaptive(gap, 262, 40);
             align-items: flex-start;
@@ -96,25 +93,20 @@ const mainDescription = `мы создаём путешествия мечты, 
             text-align: left;
         }
 
+        p {
+            color: var(--color-globus-light-blue);
+        }
+
         .stats-content {
             position: relative;
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 30, 20);
             flex: 1;
-        }
 
-        .stats-description {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.6;
-            width: 85%;
-
-            @include mobile {
-                width: 100%;
-                order: 2;
+            > p {
+                @include adaptive(width, 85%, 100%);
+                @include adaptive(order, 1, 2);
             }
         }
 
@@ -170,14 +162,6 @@ const mainDescription = `мы создаём путешествия мечты, 
             line-height: 1;
             color: var(--color-globus-sand);
             text-transform: uppercase;
-        }
-
-        .stat-description {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.6;
         }
     }
 </style>

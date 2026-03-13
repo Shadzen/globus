@@ -1,5 +1,5 @@
 ---
-import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import AccordionSection from '@/components/common/AccordionSection.astro'
 import Accordion from '@/components/common/Accordion.astro'
 
 const base = import.meta.env.BASE_URL
@@ -32,7 +32,7 @@ const toursSections = [
 ]
 ---
 
-<LegalPageLayout title="Описание туров" dark={true} narrowContainer={false}>
-    <Accordion sections={toursSections} theme="light" type="docs" largeText={true} />
-</LegalPageLayout>
+<AccordionSection title="Описание туров" dark={true} narrowContainer={false}>
+    <Accordion sections={toursSections} theme="dark" type="docs" largeText={true} />
+</AccordionSection>
 

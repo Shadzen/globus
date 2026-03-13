@@ -1,7 +1,7 @@
 ---
 ---
 
-<section class="partner-section">
+<section class="partner-section _dark">
     <div class="partner-container">
         <h2 class="partner-title">Заключение договора</h2>
         <p class="partner-description">
@@ -12,8 +12,8 @@
             <div class="partner-step">
                 <span class="step-number">1</span>
                 <div class="step-content">
-                    <p class="step-text">
-                        Выполнить вход в личном кабинете (вкладка <a href="https://pro.globus-tour.ru/agreement" class="step-link">"Печать договора"</a>), скачать файлы (документы автоматически заполняются для Вас)
+                    <p>
+                        Выполнить вход в личном кабинете (вкладка <a href="https://pro.globus-tour.ru/agreement">"Печать договора"</a>), скачать файлы (документы автоматически заполняются для Вас)
                     </p>
                 </div>
             </div>
@@ -23,10 +23,10 @@
             <div class="partner-step">
                 <span class="step-number">2</span>
                 <div class="step-content">
-                    <p class="step-text">
+                    <p>
                         Подписать, поставить печать со стороны "Турагента" на странице с реквизитами в договорах:
                     </p>
-                    <ol class="step-list">
+                    <ol>
                         <li>Договор на доступ к системе бронирования</li>
                         <li>Субагентский с 15.01.2020</li>
                         <li>Субагентский на продажу авиационных перевозок</li>
@@ -39,8 +39,8 @@
             <div class="partner-step">
                 <span class="step-number">3</span>
                 <div class="step-content">
-                    <p class="step-text">
-                        Отсканировать подписанные документы и загрузить их на сайт через вкладку <a href="https://pro.globus-tour.ru/agreement" class="step-link-alt">"Печать договора"</a> ИЛИ отправить сканы 1 и последней страницы на почту <a href="mailto:dogovor@globus-tour.ru" class="step-link-alt">dogovor@globus-tour.ru</a>.
+                    <p>
+                        Отсканировать подписанные документы и загрузить их на сайт через вкладку <a href="https://pro.globus-tour.ru/agreement">"Печать договора"</a> ИЛИ отправить сканы 1 и последней страницы на почту <a href="mailto:dogovor@globus-tour.ru" class="step-link-alt">dogovor@globus-tour.ru</a>.
                     </p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="partner-step">
                 <span class="step-number">4</span>
                 <div class="step-content">
-                    <p class="step-text">
+                    <p>
                         Если все документы загружены и оформлены верно, то Вам активируют личный кабинет.
                     </p>
                 </div>
@@ -61,18 +61,18 @@
             <div class="partner-step">
                 <span class="step-number">5</span>
                 <div class="step-content">
-                    <p class="step-text">
+                    <p>
                         После активации личного кабинета, в течение 14 календарных дней Вам необходимо выслать оригиналы договоров по адресу:
                         630091, г. Новосибирск, ул. Советская, 64, оф. 403
                         (все страницы договора в двух экземплярах)
                         и копии документов по списку:
                     </p>
 
-                    <div class="partner-documents">
-                        <div class="documents-title">
-                            Список документов (копии или сканы на почту <a href="mailto:dogovor@globus-tour.ru" class="documents-link">dogovor@globus-tour.ru</a>) :
-                        </div>
-                        <ol class="documents-list">
+                    <div class="partner-col">
+                        <h4>
+                            Список документов (копии или сканы на почту <a href="mailto:dogovor@globus-tour.ru">dogovor@globus-tour.ru</a>) :
+                        </h4>
+                        <ol>
                             <li>Копия свидетельства о внесении записи в единый государственный реестр юридических лиц</li>
                             <li>Копия свидетельства о постановке на учет в налоговом органе</li>
                             <li>Выписка ЕГРЮЛ</li>
@@ -85,10 +85,10 @@
         <div class="divider"></div>
 
         <div class="partner-footer">
-            <p class="footer-text">
+            <p>
                 Если у вас есть электронная система документооборота СБИС или ДИАДОК, можно подписать документы электронно!*
             </p>
-            <p class="footer-note">
+            <p>
                 * Если Вы подгрузили документы в Сбис или Диадок (отправили приглашение), просим отправить письмо с информацией: в какую систему Вы подгрузили документы, Ваш ИНН и официальное название. Уведомление отправлять на почту бухгалтерии globus31@globus-tour.ru.
             </p>
         </div>
@@ -97,7 +97,6 @@
 
 <style lang="scss" is:global>
     .partner-section {
-        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 50, 44);
         @include adaptive(padding-bottom, 50, 44);
 
@@ -107,20 +106,15 @@
         }
 
         .partner-title {
-            color: var(--color-globus-cream);
             text-align: center;
         }
 
         .partner-description {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
             text-align: center;
             @include adaptive(margin-top, 20, 40);
             @include adaptive(width, 33%, 100%);
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.2;
         }
 
         .partner-steps {
@@ -154,119 +148,31 @@
             @include mobile {
                 flex-direction: column;
             }
-        }
 
-        .step-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            @include adaptive(width, 50%, 100%);
-            flex-shrink: 0;
-        }
-
-        .step-link {
-            @include font-circe-regular;
-            color: var(--color-globus-cream);
-            text-decoration: none;
-            transition: opacity 0.3s;
-
-            &:hover {
-                opacity: 0.7;
+            p {
+                @include adaptive(width, 50%, 100%);
+                flex-shrink: 0;
             }
-        }
 
-        .step-link-alt {
-            @include font-circe-regular;
-            color: var(--color-globus-sand);
-            text-decoration: underline;
-            text-decoration-skip-ink: none;
-            transition: opacity 0.3s;
-
-            &:hover {
-                opacity: 0.7;
+            h4 {
+                @include font-circe-regular;
+                text-transform: uppercase;
+                @include adaptive(margin-bottom, 26, 12);
             }
-        }
 
-        .step-list {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            margin: 0;
-            padding-left: 0;
-            list-style-position: inside;
-
-            li {
-                @include adaptive(margin-bottom, 10, 8);
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
-        .partner-documents {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .documents-title {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-sand);
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .documents-link {
-            @include font-circe-regular;
-            color: var(--color-globus-sand);
-            text-decoration: underline;
-            text-decoration-skip-ink: none;
-            transition: opacity 0.3s;
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        .documents-list {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            padding-left: 0;
-            list-style-position: inside;
-            @include adaptive(margin-top, 26, 12);
-            margin-bottom: 0;
-
-            li {
-                @include adaptive(margin-bottom, 10, 8);
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
+            .partner-col {
+                display: flex;
+                flex-direction: column;
             }
         }
 
         .partner-footer {
             @include adaptive(padding-top, 46, 30);
-        }
 
-        .footer-text {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-        }
-
-        .footer-note {
-            @include font-circe-light;
-            @include adaptive(font-size, 20, 16);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
-            @include adaptive(margin-top, 12, 6);
+            *:last-child {
+                @include adaptive(font-size, 20, 16);
+                @include adaptive(margin-top, 12, 6);
+            }
         }
     }
 </style>

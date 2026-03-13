@@ -45,49 +45,49 @@ const services = {
 ---
 
 <section class="hotel-services">
-    <div class="hotel-services-container">
-        <h2 class="hotel-services-title">Услуги в отеле</h2>
+    <div class="section-container">
+        <h2>Услуги в отеле</h2>
 
         <div class="services-grid">
             <!-- Left column -->
             <div class="services-column">
                 <!-- General -->
                 <div class="service-category">
-                    <h3 class="category-title">Общее</h3>
-                    <ul class="service-list">
-                        {services.general.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Общее</h3>
+                    <ul>
+                        {services.general.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Pool and beach -->
                 <div class="service-category">
-                    <h3 class="category-title">Бассейн<br />и пляж</h3>
-                    <ul class="service-list">
-                        {services.pool.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Бассейн<br />и пляж</h3>
+                    <ul>
+                        {services.pool.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- In rooms -->
                 <div class="service-category">
-                    <h3 class="category-title">В номерах</h3>
-                    <ul class="service-list">
-                        {services.rooms.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>В номерах</h3>
+                    <ul>
+                        {services.rooms.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Internet -->
                 <div class="service-category">
-                    <h3 class="category-title">Интернет</h3>
-                    <ul class="service-list">
-                        {services.internet.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Интернет</h3>
+                    <ul>
+                        {services.internet.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Kids -->
                 <div class="service-category">
-                    <h3 class="category-title">Дети</h3>
-                    <ul class="service-list">
-                        {services.kids.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Дети</h3>
+                    <ul>
+                        {services.kids.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
             </div>
@@ -96,49 +96,49 @@ const services = {
             <div class="services-column">
                 <!-- Sports -->
                 <div class="service-category">
-                    <h3 class="category-title">Спорт</h3>
-                    <ul class="service-list">
-                        {services.sport.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Спорт</h3>
+                    <ul>
+                        {services.sport.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Services and amenities -->
                 <div class="service-category">
-                    <h3 class="category-title">Услуги<br />и удобства</h3>
-                    <ul class="service-list">
-                        {services.amenities.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Услуги<br />и удобства</h3>
+                    <ul>
+                        {services.amenities.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Dining -->
                 <div class="service-category">
-                    <h3 class="category-title">Питание</h3>
-                    <ul class="service-list">
-                        {services.dining.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Питание</h3>
+                    <ul>
+                        {services.dining.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Beauty and wellness -->
                 <div class="service-category">
-                    <h3 class="category-title">Красота<br />и здоровье</h3>
-                    <ul class="service-list">
-                        {services.beauty.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Красота<br />и здоровье</h3>
+                    <ul>
+                        {services.beauty.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Entertainment -->
                 <div class="service-category">
-                    <h3 class="category-title">Развлечение</h3>
-                    <ul class="service-list">
-                        {services.entertainment.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Развлечение</h3>
+                    <ul>
+                        {services.entertainment.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
 
                 <!-- Business -->
                 <div class="service-category">
-                    <h3 class="category-title">Бизнес</h3>
-                    <ul class="service-list">
-                        {services.business.map((item) => <li class="service-item">{item}</li>)}
+                    <h3>Бизнес</h3>
+                    <ul>
+                        {services.business.map((item) => <li>{item}</li>)}
                     </ul>
                 </div>
             </div>
@@ -150,13 +150,8 @@ const services = {
     .hotel-services {
         @include adaptive(padding-top, 120, 60);
         @include adaptive(padding-bottom, 120, 60);
-        background: var(--color-globus-cream);
 
-        &-container {
-            @include side-paddings;
-        }
-
-        &-title {
+        h2 {
             @include desktop {
                 text-align: left;
             }
@@ -170,6 +165,18 @@ const services = {
 
             @include mobile {
                 flex-direction: column;
+            }
+
+            h3 {
+                @include font-circe-regular;
+                @include adaptive(font-size, 24, 20);
+                @include adaptive(letter-spacing, 2.4, 2);
+                @include adaptive(width, 400, 240);
+                flex-shrink: 0;
+
+                @include mobile {
+                    width: 100%;
+                }
             }
         }
 
@@ -200,51 +207,6 @@ const services = {
 
             @include mobile {
                 flex-direction: column;
-            }
-        }
-
-        .category-title {
-            @include font-circe-regular;
-            @include adaptive(font-size, 24, 20);
-            line-height: 1.2;
-            @include adaptive(letter-spacing, 2.4, 2);
-            text-transform: uppercase;
-            color: var(--color-globus-sand);
-            width: 400px;
-            @include adaptive(width, 400, 240);
-            margin: 0;
-            flex-shrink: 0;
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        .service-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 14, 12);
-        }
-
-        .service-item {
-            position: relative;
-            @include adaptive(padding-left, 28, 22);
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                @include adaptive(top, 8, 4);
-                @include adaptive(width, 12, 10);
-                @include adaptive(height, 12, 10);
-                border-radius: 50%;
-                background-color: var(--color-globus-sand);
             }
         }
     }

@@ -8,34 +8,34 @@ interface Props {
 const { title, narrowContainer = true, dark = false } = Astro.props
 ---
 
-<section class="legal-page-section" data-dark={dark}>
-    <div class="legal-page-container" data-narrow={narrowContainer}>
-        <h2 class="legal-title">{title}</h2>
+<section class:list={['accordion-section', { _dark: dark }]}>
+    <div class:list={['section-container', { _narrow: narrowContainer }]}>
+        <h2>{title}</h2>
 
         {
             Astro.slots.has('intro') && (
-                <div class="legal-intro">
+                <div class="accordion-section-intro">
                     <slot name="intro" />
                 </div>
             )
         }
 
-        <div class="legal-content">
+        <div class="accordion-section-content">
             <slot />
         </div>
     </div>
 </section>
 
 <style lang="scss" is:global>
-    .legal-page-section {
+    .accordion-section {
         @include adaptive(margin-top, 40, 40);
         @include flex-center;
 
-        .legal-page-container {
+        .section-container {
             @include side-paddings;
             width: 100%;
 
-            &[data-narrow='true'] {
+            &._narrow {
                 width: 85%;
             }
 
@@ -44,16 +44,14 @@ const { title, narrowContainer = true, dark = false } = Astro.props
             }
         }
 
-        .legal-title {
-            @include adaptive(font-size, 60, 34);
-
+        h2 {
             @include desktop {
                 width: 90%;
                 margin: 0 auto;
             }
         }
 
-        .legal-intro {
+        .accordion-section-intro {
             @include adaptive(margin-top, 78, 40);
             margin-left: auto;
             margin-right: auto;
@@ -64,27 +62,13 @@ const { title, narrowContainer = true, dark = false } = Astro.props
             }
 
             p {
-                @include font-circe-regular;
-                color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
-                line-height: 1.2;
-                margin: 0;
-
-                a {
-                    color: var(--color-globus-blue);
-                    text-decoration: none;
-                    transition: opacity 0.3s ease;
-
-                    &:hover {
-                        opacity: 0.7;
-                    }
-                }
             }
 
             ul {
                 list-style: disc;
                 @include adaptive(padding-left, 30, 24);
-                margin: 0;
+                gap: 0;
                 width: 70%;
 
                 @include mobile {
@@ -92,27 +76,28 @@ const { title, narrowContainer = true, dark = false } = Astro.props
                 }
 
                 li {
-                    @include font-circe-regular;
-                    color: var(--color-globus-blue);
                     @include adaptive(font-size, 20, 18);
-                    line-height: 1.2;
-                    @include adaptive(margin-top, 12, 12);
-                    @include adaptive(margin-bottom, 12, 12);
+                    padding: 0;
+                    @include adaptive(margin-top, 6, 6);
+                    @include adaptive(margin-bottom, 6, 6);
+
+                    &::before {
+                        display: none;
+                    }
                 }
             }
         }
 
-        .legal-content {
+        .accordion-section-content {
             @include adaptive(margin-top, 44, 22);
         }
 
-        &[data-dark='true'] {
-            background-color: var(--color-globus-blue);
+        &._dark {
             @include adaptive(padding-top, 60, 30);
             @include adaptive(padding-bottom, 60, 30);
             @include adaptive(margin-top, 60, 30);
 
-            .legal-title {
+            h2 {
                 color: var(--color-globus-sand);
             }
         }

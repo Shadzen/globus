@@ -92,20 +92,15 @@ const includedItems: IncludedItem[] = [
 ---
 
 <section class="news-hotels-section">
-    <div class="news-hotels-container">
-        <h2 class="section-main-title">Лучшие предложения с вылетом<br />из Новосибирска 22.10 на 9 ночей:</h2>
+    <div class="section-container _alt-paddings">
+        <h2>Лучшие предложения с вылетом<br />из Новосибирска 22.10 на 9 ночей:</h2>
 
         <HotelsSlider hotels={hotels} />
 
-        <h3 class="included-title">В стоимость тура на 1 человека<br />при двухместном размещении входит:</h3>
+        <h3>В стоимость тура на 1 человека<br />при двухместном размещении входит:</h3>
 
-        <ul class="included-list">
-            {includedItems.map((item) => (
-                <li class="included-item">
-                    <span class="bullet"></span>
-                    <p class="included-text">{item.text}</p>
-                </li>
-            ))}
+        <ul>
+            {includedItems.map((item) => <li>{item.text}</li>)}
         </ul>
     </div>
 </section>
@@ -114,29 +109,17 @@ const includedItems: IncludedItem[] = [
     .news-hotels-section {
         @include adaptive(margin-top, 120, 60);
 
-        .news-hotels-container {
-            width: 100%;
+        .section-container {
+            > h3 {
+                @include adaptive(font-size, 28, 26);
+                color: var(--color-globus-blue);
+                text-align: center;
+                @include adaptive(margin-top, 100, 60);
+                @include adaptive(margin-bottom, 48, 32);
+            }
         }
 
-        .section-main-title {
-            @include adaptive(margin-bottom, 60, 40);
-        }
-
-        .included-title {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            color: var(--color-globus-blue);
-            text-align: center;
-            @include adaptive(margin-top, 100, 60);
-            @include adaptive(margin-bottom, 48, 32);
-        }
-
-        .included-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        ul {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             @include adaptive(gap, 40, 24);
@@ -145,24 +128,13 @@ const includedItems: IncludedItem[] = [
             @include mobile {
                 grid-template-columns: 1fr;
             }
-        }
 
-        .included-item {
-            display: flex;
-            @include adaptive(gap, 18, 12);
-            align-items: flex-start;
-        }
-
-        .bullet {
-            @include adaptive(margin-top, 8, 6);
-        }
-
-        .included-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 20, 26);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            white-space: pre-line;
+            li {
+                // display: flex;
+                // @include adaptive(gap, 18, 12);
+                // align-items: flex-start;
+                @include adaptive(font-size, 20, 20);
+            }
         }
     }
 </style>

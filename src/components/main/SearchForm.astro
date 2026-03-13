@@ -29,11 +29,11 @@ const showTourists = fields.tourists !== false
 const isInline = variant === 'inline'
 ---
 
-<section class="hero-search-form" class:list={{ _inline: isInline }}>
-    <div class="section-container _alt-paddings">
+<section class="hero-search-form _dark" class:list={{ _inline: isInline }}>
+    <div class="hero-search-form-container">
         {!isInline && (
         <div class="search-form-header">
-            <h2 class="search-form-title">Подбор тура</h2>
+            <h2>Подбор тура</h2>
             <button
                 name="close-form"
                 class="hero-search-form-close"
@@ -266,12 +266,9 @@ const isInline = variant === 'inline'
 
 <style lang="scss" is:global>
     .hero-search-form {
-        background: var(--color-globus-blue);
         @include adaptive(padding-top, 52, 30);
         @include adaptive(padding-bottom, 52, 30);
 
-        // Мобильная версия: только variant="hero" скрыта по умолчанию и открывается по кнопке
-        // variant="inline" (страница отеля и т.п.) всегда видима, кнопки показа нет
         @include mobile {
             &:not(._inline) {
                 position: fixed;
@@ -300,7 +297,7 @@ const isInline = variant === 'inline'
             }
         }
 
-        .section-container {
+        .hero-search-form-container {
             position: relative;
             width: 100%;
             @include flex-center-between;
@@ -323,11 +320,10 @@ const isInline = variant === 'inline'
                 display: flex;
                 justify-content: space-between;
             }
-        }
 
-        .search-form-title {
-            width: auto;
-            color: var(--color-globus-cream);
+            h2 {
+                width: auto;
+            }
         }
 
         .hero-search-form-close {

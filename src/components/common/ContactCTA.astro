@@ -11,18 +11,19 @@ interface Props {
 const { title, description } = Astro.props
 ---
 
-<section class="contact-cta">
+<section class="contact-cta _dark">
     <div class="section-container">
-        {title && (
-            <h2 class="contact-cta-title" set:html={title} />
-        )}
+        {title && <h2 set:html={title} />}
 
-        {description && (
-            <p class="contact-cta-description" set:html={description} />
-        )}
+        {description && <p set:html={description} />}
 
         <div class="contact-cta-buttons">
-            <a href="https://t.me/+79130637716" class="button _sized _outline" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://t.me/+79130637716"
+                class="button _sized _outline"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <img src={telegramIcon.src} alt="Telegram" />
                 <span>8 913 063 7716</span>
             </a>
@@ -39,7 +40,6 @@ const { title, description } = Astro.props
 
 <style lang="scss" is:global>
     .contact-cta {
-        background: var(--color-globus-blue);
         @include adaptive(margin-top, 90, 60);
         @include adaptive(padding-top, 90, 60);
         @include adaptive(padding-bottom, 90, 60);
@@ -49,26 +49,20 @@ const { title, description } = Astro.props
             flex-direction: column;
             align-items: center;
             @include adaptive(gap, 30, 30);
-        }
 
-        .contact-cta-title {
-            color: var(--color-globus-cream);
-
-            @include desktop {
-                width: 90%;
+            h2 {
+                @include desktop {
+                    width: 90%;
+                }
             }
-        }
 
-        .contact-cta-description {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            color: var(--color-globus-light-blue);
-            text-align: center;
-            margin: 0;
+            p {
+                color: var(--color-globus-light-blue) !important;
+                text-align: center;
 
-            @include desktop {
-                width: 58%;
+                @include desktop {
+                    width: 58%;
+                }
             }
         }
 

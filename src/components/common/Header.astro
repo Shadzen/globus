@@ -75,6 +75,10 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             padding: 0 12.5%;
         }
 
+        a {
+            text-decoration: none;
+        }
+
         .header-container {
             position: relative;
             width: 100%;
@@ -150,13 +154,13 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 18, 22);
             line-height: 1.3;
-            color: var(--color-globus-cream);
+            color: var(--color-globus-cream) !important;
             background: transparent;
             transition: all 0.3s;
             opacity: 0.4;
 
             &._active {
-                background: var(--color-globus-sand);
+                background: var(--color-globus-sand) !important;
                 opacity: 1;
             }
 
@@ -191,7 +195,6 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             a {
                 @include font-circe-regular;
                 @include adaptive(font-size, 20, 22);
-                line-height: 1.2;
                 color: var(--color-globus-cream);
                 opacity: 0.6;
                 transition: opacity 0.3s;
@@ -257,8 +260,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             background: var(--color-globus-sand);
             @include font-circe-regular;
             @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
+            color: var(--color-globus-cream) !important;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
@@ -279,7 +281,6 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         .phone {
             @include font-kudry-sans;
             @include adaptive(font-size, 28, 28);
-            line-height: 1.2;
             color: var(--color-globus-cream);
             text-transform: uppercase;
 
@@ -423,10 +424,10 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         &._dark-text {
             .user-type-btn {
                 &:not(._active) {
-                    color: var(--color-globus-blue);
+                    color: var(--color-globus-blue) !important;
 
                     @include mobile {
-                        color: var(--color-globus-cream);
+                        color: var(--color-globus-cream) !important;
                     }
                 }
             }

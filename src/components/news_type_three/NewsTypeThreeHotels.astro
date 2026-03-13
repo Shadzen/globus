@@ -32,32 +32,43 @@ const hotels: Hotel[] = [
 
 <section class="news-type-three-hotels-section">
     <div class="section-container">
-        <h2 class="hotels-main-title">Стоимость проживания на 7 ночей с 28.12:</h2>
+        <h2>Стоимость проживания на 7 ночей с 28.12:</h2>
 
         <div class="hotels-grid">
-            {hotels.map((hotel) => (
-                <div class="card">
-                    <div class="card-image">
-                        <img src={hotel.image} alt={hotel.name} loading="lazy" decoding="async" />
-                        <div class="card-badge">{hotel.badge}</div>
+            {
+                hotels.map((hotel) => (
+                    <div class="card">
+                        <div class="card-image">
+                            <img
+                                src={hotel.image}
+                                alt={hotel.name}
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <div class="card-badge">{hotel.badge}</div>
+                        </div>
+                        <h3 class="card-title">{hotel.name}</h3>
+                        <p class="card-price">{hotel.price}</p>
+                        <a href="#" class="button _sized">
+                            Забронировать
+                        </a>
                     </div>
-                    <h3 class="card-title">{hotel.name}</h3>
-                    <p class="card-price">{hotel.price}</p>
-                    <button class="button _sized">Забронировать</button>
-                </div>
-            ))}
+                ))
+            }
         </div>
 
-        <div class="divider" />
+        <div class="divider"></div>
 
         <div class="info-grid">
             <div class="info-item">
-                <h3 class="info-title">В стоимость тура включено:</h3>
-                <p class="info-text">проживание с завтраками</p>
+                <h3>В стоимость тура включено:</h3>
+                <p>проживание с завтраками</p>
             </div>
             <div class="info-item">
-                <h3 class="info-title">Дополнительно оплачивается:</h3>
-                <p class="info-text">перелет в Дубай, билеты на концерт с ужином и трансфер аэропорт-отель-аэропорт.</p>
+                <h3>Дополнительно оплачивается:</h3>
+                <p>
+                    перелет в Дубай, билеты на концерт с ужином и трансфер аэропорт-отель-аэропорт.
+                </p>
             </div>
         </div>
     </div>
@@ -67,7 +78,7 @@ const hotels: Hotel[] = [
     .news-type-three-hotels-section {
         @include adaptive(margin-top, 120, 60);
 
-        .hotels-main-title {
+        h2 {
             @include adaptive(font-size, 32, 26);
             @include adaptive(margin-bottom, 50, 30);
         }
@@ -117,21 +128,15 @@ const hotels: Hotel[] = [
 
         .info-item {
             flex: 1;
-        }
 
-        .info-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-sand);
-            @include adaptive(font-size, 28, 26);
-            @include adaptive(margin-bottom, 10, 8);
-        }
+            h3 {
+                @include adaptive(font-size, 28, 26);
+                @include adaptive(margin-bottom, 10, 8);
+            }
 
-        .info-text {
-            @include font-circe-light;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            @include adaptive(width, 70%, 100%);
+            p {
+                @include adaptive(width, 70%, 100%);
+            }
         }
     }
 </style>

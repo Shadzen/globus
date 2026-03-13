@@ -10,14 +10,14 @@ const { userType = 'agent' } = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
-<section class="education-videos-section">
-    <div class="education-videos-container">
-        <h2 class="education-videos-title">Записи вебинаров</h2>
+<section class="education-videos-section _dark">
+    <div class="section-container">
+        <h2>Записи вебинаров</h2>
 
         <VideosGrid videos={webinarsData} userType={userType} />
 
         <div class="education-videos-footer">
-            <a href={`${base}${userType}/webinar_archive/`} class="education-videos-button">
+            <a href={`${base}${userType}/webinar_archive/`} class="button _sized">
                 <span>Архив вебинаров</span>
             </a>
         </div>
@@ -27,18 +27,10 @@ const base = import.meta.env.BASE_URL
 <style lang="scss" is:global>
     .education-videos-section {
         @include adaptive(margin-top, 120, 60);
-        background-color: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
 
-        .education-videos-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .education-videos-title {
-            color: var(--color-globus-cream);
-            text-align: center;
+        h2 {
             @include adaptive(margin-bottom, 60, 30);
         }
 
@@ -46,10 +38,6 @@ const base = import.meta.env.BASE_URL
             display: flex;
             justify-content: center;
             @include adaptive(margin-top, 60, 60);
-        }
-
-        .education-videos-button {
-            @include button-sized;
         }
     }
 </style>

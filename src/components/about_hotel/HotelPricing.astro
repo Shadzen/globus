@@ -49,7 +49,7 @@ const pricingData = [
     />
 
     <!-- Pricing Table -->
-    <div class="pricing-table-container">
+    <div class="section-container">
         <div class="pricing-table">
             <!-- Table Header -->
             <div class="pricing-header">
@@ -65,34 +65,34 @@ const pricingData = [
                         <div class="pricing-cell">{item.accommodation}</div>
                         <div class="pricing-cell">{item.meal}</div>
                         <div class="pricing-cell pricing-cell-price">
-                            <button class="button _sized _outline">{item.price}</button>
+                            <a href="#" class="button _sized _outline">{item.price}</a>
                         </div>
                     </div>
                 ))
             }
         </div>
 
-        <button class="button _sized">написать менеджеру</button>
+        <a href="#" class="button _sized">написать менеджеру</a>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .hotel-pricing {
         // Pricing Table
-        .pricing-table-container {
-            @include side-paddings;
+        .section-container {
+            @include flex-center;
+            flex-direction: column;
             @include adaptive(padding-top, 52, 30);
 
             > .button {
                 @include adaptive(margin-top, 24, 30);
-                margin-left: auto;
-                margin-right: auto;
             }
         }
 
         .pricing-table {
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         .pricing-header {

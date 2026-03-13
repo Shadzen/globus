@@ -17,7 +17,8 @@ const categories: PriceCategory[] = [
     {
         title: 'Премиум-места',
         subtitle: '(PREMIUM SEATING)',
-        description: 'Вас встретят шампанским и канапе, после чего вы сможете танцевать всю ночь напролет под живую музыку в исполнении оркестра из 30 человек и наслаждаться непрерывными развлечениями. Премиум-места включают в себя полный доступ к гала-ужину с богатым шведским столом, предлагающим изысканные деликатесы от омаров до икры и все те удовольствия, которые вы только пожелаете.',
+        description:
+            'Вас встретят шампанским и канапе, после чего вы сможете танцевать всю ночь напролет под живую музыку в исполнении оркестра из 30 человек и наслаждаться непрерывными развлечениями. Премиум-места включают в себя полный доступ к гала-ужину с богатым шведским столом, предлагающим изысканные деликатесы от омаров до икры и все те удовольствия, которые вы только пожелаете.',
         prices: {
             adult: 'от 1960 $',
             adultNote: '(от 14 лет и старше)',
@@ -30,7 +31,8 @@ const categories: PriceCategory[] = [
     {
         title: 'Красный круг',
         subtitle: '(ROUGE CIRCLE)',
-        description: 'Насладитесь эксклюзивными местами в Rouge Circle, откуда открывается прекрасный вид всего в нескольких шагах от сцены. Начните с приветственного бокала шампанского и канапе, а затем насладитесь неограниченным доступом к элегантному банкету "шведский стол" на гала-ужине.',
+        description:
+            'Насладитесь эксклюзивными местами в Rouge Circle, откуда открывается прекрасный вид всего в нескольких шагах от сцены. Начните с приветственного бокала шампанского и канапе, а затем насладитесь неограниченным доступом к элегантному банкету "шведский стол" на гала-ужине.',
         prices: {
             adult: 'от 2560 $',
             adultNote: '(14 лет и старше)',
@@ -43,7 +45,8 @@ const categories: PriceCategory[] = [
     {
         title: 'Золотой круг',
         subtitle: '(GOLDEN CIRCLE)',
-        description: 'Окунитесь в Золотой круг, чтобы получить самые эксклюзивные впечатления, с прекрасными видами прямо перед сценой. Насладитесь персональной коробкой с икорной, неограниченным обслуживанием белыми трюфелями и премиальными напитками в течение всего вечера. В ваш билет также входит полный доступ к роскошному фуршету Гала-ужина.',
+        description:
+            'Окунитесь в Золотой круг, чтобы получить самые эксклюзивные впечатления, с прекрасными видами прямо перед сценой. Насладитесь персональной коробкой с икорной, неограниченным обслуживанием белыми трюфелями и премиальными напитками в течение всего вечера. В ваш билет также входит полный доступ к роскошному фуршету Гала-ужина.',
         prices: {
             adult: 'от 3770 $',
             adultNote: '(14 лет и старше)',
@@ -56,61 +59,76 @@ const categories: PriceCategory[] = [
 
 <section class="news-type-three-pricing-section">
     <div class="section-container">
-        {categories.map((category, index) => (
-            <>
-                <div class="pricing-category">
-                    <div class="category-header">
-                        <div class="category-titles">
-                            <h3 class="category-title">{category.title}</h3>
-                            <p class="category-subtitle">{category.subtitle}</p>
-                        </div>
-                    </div>
-
-                    <div class="category-content">
-                        <p class="category-description">{category.description}</p>
-
-                        <div class="category-prices">
-                            <div class="price-badge">
-                                <p class="price-main">{category.prices.adult}</p>
-                                <p class="price-note">{category.prices.adultNote}</p>
+        {
+            categories.map((category, index) => (
+                <>
+                    <div class="pricing-category">
+                        <div class="category-header">
+                            <div class="category-titles">
+                                <h3>{category.title}</h3>
+                                <p>{category.subtitle}</p>
                             </div>
-
-                            {category.prices.child && (
-                                <div class="price-badge">
-                                    <p class="price-main">{category.prices.child}</p>
-                                    <p class="price-note">{category.prices.childNote}</p>
-                                </div>
-                            )}
-
-                            {category.prices.infant && (
-                                <div class="price-badge">
-                                    <p class="price-main">{category.prices.infant}</p>
-                                    <p class="price-note">{category.prices.infantNote}</p>
-                                </div>
-                            )}
                         </div>
+
+                        <div class="category-content">
+                            <p>{category.description}</p>
+
+                            <div class="category-prices">
+                                <a href="#" class="button _sized _outline">
+                                    <span class="price-main">{category.prices.adult}</span>
+                                    <span class="price-note">{category.prices.adultNote}</span>
+                                </a>
+
+                                {category.prices.child && (
+                                    <a href="#" class="button _sized _outline">
+                                        <span class="price-main">{category.prices.child}</span>
+                                        <span class="price-note">{category.prices.childNote}</span>
+                                    </a>
+                                )}
+
+                                {category.prices.infant && (
+                                    <a href="#" class="button _sized _outline">
+                                        <span class="price-main">{category.prices.infant}</span>
+                                        <span class="price-note">{category.prices.infantNote}</span>
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+
+                        <a href="#" class="button _sized">
+                            Забронировать
+                        </a>
                     </div>
 
-                    <button class="button _sized">Забронировать</button>
-                </div>
+                    {index < categories.length - 1 && <div class="divider" />}
+                </>
+            ))
+        }
 
-                {index < categories.length - 1 && <div class="divider" />}
-            </>
-        ))}
+        <div class="divider"></div>
 
-        <div class="divider" />
-
-        <p class="pricing-note">
-            Стоимость билетов указана для гостей ATLANTIS THE PALM DUBAI 5* ATLANTIS THE ROYAL 5*, проживающих в отеле в новогодний период. Желающие посетить концерт без проживания в отеле, могут приобрести билеты на концерт отдельно (стоимость по запросу).
+        <p>
+            Стоимость билетов указана для гостей ATLANTIS THE PALM DUBAI 5* ATLANTIS THE ROYAL 5*,
+            проживающих в отеле в новогодний период. Желающие посетить концерт без проживания в
+            отеле, могут приобрести билеты на концерт отдельно (стоимость по запросу).
         </p>
 
-        <div class="divider" />
+        <div class="divider"></div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .news-type-three-pricing-section {
         @include adaptive(margin-top, 120, 60);
+
+        .section-container {
+            > p {
+                @include adaptive(font-size, 20, 18);
+                text-align: center;
+                @include adaptive(max-width, 830, 100%);
+                margin: 0 auto;
+            }
+        }
 
         .pricing-category {
             display: flex;
@@ -120,6 +138,11 @@ const categories: PriceCategory[] = [
 
             @include mobile {
                 flex-direction: column;
+            }
+
+            > .button {
+                @include adaptive(width, 273, 100%);
+                @include adaptive(margin-top, -60, 0);
             }
         }
 
@@ -136,27 +159,20 @@ const categories: PriceCategory[] = [
 
         .category-titles {
             flex: 1;
-        }
 
-        .category-title {
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 28, 26);
-            @include adaptive(margin-bottom, 10, 5);
-        }
+            h3 {
+                color: var(--color-globus-blue);
+                @include adaptive(font-size, 28, 26);
+                @include adaptive(margin-bottom, 10, 5);
+            }
 
-        .category-subtitle {
-            @include font-circe-regular;
-            color: var(--color-globus-light-blue);
-            opacity: 0.6;
-            @include adaptive(font-size, 16, 18);
-            line-height: 1.6;
-            @include adaptive(letter-spacing, 3.2, 3.6);
-            text-transform: uppercase;
-        }
-
-        .button {
-            @include adaptive(width, 273, 100%);
-            @include adaptive(margin-top, -60, 0);
+            p {
+                color: var(--color-globus-light-blue);
+                @include adaptive(font-size, 16, 18);
+                line-height: 1.6;
+                @include adaptive(letter-spacing, 3.2, 3.6);
+                text-transform: uppercase;
+            }
         }
 
         .category-content {
@@ -168,46 +184,34 @@ const categories: PriceCategory[] = [
             @include desktop {
                 min-width: 50%;
             }
-        }
 
-        .category-description {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
+            p {
+                color: var(--color-globus-blue);
+                @include adaptive(font-size, 20, 18);
+                @include adaptive(width, 72%, 100%);
+            }
         }
 
         .category-prices {
             display: flex;
             @include adaptive(gap, 20, 15);
             flex-wrap: wrap;
-        }
 
-        .price-badge {
-            border: 2px solid var(--color-globus-sand);
-            border-radius: 390px;
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(height, 61, 64);
-            @include flex-center;
-            flex-direction: column;
-            text-align: center;
-            @include adaptive(width, 273, 100%);
-        }
+            .button {
+                @include adaptive(width, 273, 100%);
+                flex-direction: column;
 
-        .price-main {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-        }
+                .price-main {
+                    color: var(--color-globus-blue);
+                    @include adaptive(font-size, 26, 26);
+                }
 
-        .price-note {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 14, 18);
-            line-height: 1.2;
-            @include adaptive(margin-top, 2, 2);
+                .price-note {
+                    color: var(--color-globus-blue);
+                    @include adaptive(font-size, 14, 18);
+                    @include adaptive(margin-top, 2, 2);
+                }
+            }
         }
 
         .divider {
@@ -217,16 +221,6 @@ const categories: PriceCategory[] = [
             &:last-child {
                 @include adaptive(margin-bottom, 0, 0);
             }
-        }
-
-        .pricing-note {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            text-align: center;
-            @include adaptive(max-width, 830, 100%);
-            margin: 0 auto;
         }
     }
 </style>

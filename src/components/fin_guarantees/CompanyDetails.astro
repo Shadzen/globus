@@ -21,31 +21,26 @@ const companyInfo = {
 ---
 
 <section class="company-details-section">
-    <div class="company-details-container">
-        <h2 class="company-details-title">{companyInfo.title}</h2>
+    <div class="section-container">
+        <h2>{companyInfo.title}</h2>
 
         <div class="company-details-grid">
-            <div class="company-name">
-                <p>{companyInfo.fullName}</p>
-            </div>
+            <p>{companyInfo.fullName}</p>
 
-            <div class="company-info">
+            <ul>
                 {
                     companyInfo.details.map((item) => (
-                        <div class="company-info-item">
-                            <span class="bullet" />
-                            <p class="company-info-text">
-                                {item.text}
-                                {item.link && (
-                                    <a href={item.link.url} target="_blank" rel="noopener noreferrer">
-                                        {item.link.text}
-                                    </a>
-                                )}
-                            </p>
-                        </div>
+                        <li>
+                            {item.text}
+                            {item.link && (
+                                <a href={item.link.url} target="_blank" rel="noopener noreferrer">
+                                    {item.link.text}
+                                </a>
+                            )}
+                        </li>
                     ))
                 }
-            </div>
+            </ul>
         </div>
     </div>
 </section>
@@ -53,15 +48,6 @@ const companyInfo = {
 <style lang="scss" is:global>
     .company-details-section {
         @include adaptive(margin-top, 120, 60);
-
-        .company-details-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .company-details-title {
-            color: var(--color-globus-blue);
-        }
 
         .company-details-grid {
             @include adaptive(margin-top, 90, 50);
@@ -71,53 +57,6 @@ const companyInfo = {
 
             @include mobile {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        .company-name {
-            p {
-                @include font-circe-light;
-                font-style: normal;
-                color: var(--color-globus-blue);
-                @include adaptive(font-size, 26, 20);
-                line-height: 1.2;
-                margin: 0;
-            }
-        }
-
-        .company-info {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 25, 20);
-        }
-
-        .company-info-item {
-            display: flex;
-            @include adaptive(gap, 17, 12);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-                flex-shrink: 0;
-            }
-        }
-
-        .company-info-text {
-            @include font-circe-light;
-            font-style: normal;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            margin: 0;
-
-            a {
-                color: var(--color-globus-blue);
-                text-decoration: underline;
-                transition: opacity 0.3s ease;
-
-                &:hover {
-                    opacity: 0.7;
-                }
             }
         }
     }

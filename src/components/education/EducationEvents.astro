@@ -30,8 +30,8 @@ const events: EventItem[] = [
 ---
 
 <section class="education-events-section">
-    <div class="education-events-container">
-        <h2 class="education-events-title">Мероприятия</h2>
+    <div class="section-container">
+        <h2>Мероприятия</h2>
 
         <EventsGrid events={events} userType={userType} />
     </div>
@@ -41,13 +41,7 @@ const events: EventItem[] = [
     .education-events-section {
         @include adaptive(margin-top, 60, 60);
 
-        .education-events-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .education-events-title {
-            color: var(--color-globus-blue);
+        h2 {
             @include adaptive(margin-bottom, 30, 30);
         }
     }

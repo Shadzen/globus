@@ -51,7 +51,7 @@ const offers: HotelOffer[] = [
 
 <section class="hotel-offers-section">
     <div class="section-container">
-        <h2 class="offers-title">Лучшие предложения с вылетом из<br />Новосибирска 22.10 на 9 ночей:</h2>
+        <h2>Лучшие предложения с вылетом из<br />Новосибирска 22.10 на 9 ночей:</h2>
 
         <div class="offers-grid">
             {offers.map((offer) => (
@@ -82,11 +82,8 @@ const offers: HotelOffer[] = [
     .hotel-offers-section {
         @include adaptive(margin-top, 120, 60);
 
-        .offers-title {
-            @include adaptive(margin-bottom, 80, 50);
-        }
-
         .offers-grid {
+            @include adaptive(margin-top, 80, 50);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             @include adaptive(gap, 100, 40);

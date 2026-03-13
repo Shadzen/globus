@@ -32,25 +32,24 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
 
 <section class="pagination-section">
     <div class="section-container">
-        <button class="button _sized" type="button">
-            Загрузить еще
-        </button>
+        <button class="button _sized" type="button"> Загрузить еще </button>
 
         <nav class="pagination-nav" aria-label="Навигация по страницам">
-            <ul class="pagination-list">
+            <ul>
                 {
                     pageNumbers.map((page) => (
-                        <li class="pagination-item">
+                        <li>
                             {typeof page === 'number' ?
                                 <a
                                     href={`${baseUrl}?page=${page}`}
-                                    class={`pagination-link ${page === currentPage ? 'active' : ''}`}
+                                    class={`${page === currentPage ? 'active' : ''}`}
                                     aria-label={`Страница ${page}`}
+                                    title={`Страница ${page}`}
                                     aria-current={page === currentPage ? 'page' : undefined}
                                 >
                                     {page}
                                 </a>
-                            :   <span class="pagination-ellipsis">{page}</span>}
+                            :   <span>{page}</span>}
                         </li>
                     ))
                 }
@@ -74,58 +73,49 @@ const pageNumbers = generatePageNumbers(currentPage, totalPages)
             width: 100%;
             display: flex;
             justify-content: center;
-        }
 
-        .pagination-list {
-            display: flex;
-            align-items: center;
-            @include adaptive(gap, 33, 20);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+            ul {
+                @include flex-center;
+                flex-wrap: wrap;
+                flex-direction: row;
+                @include adaptive(gap, 33, 20);
 
-        .pagination-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+                li {
+                    @include flex-center;
+                    padding: 0;
 
-        .pagination-link {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
-            line-height: 1.6;
-            text-transform: uppercase;
-            color: var(--color-globus-light-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            @include adaptive(width, 29, 29);
-            @include adaptive(height, 29, 29);
-            @include flex-center;
-            position: relative;
-            border: 1px solid transparent;
-            border-radius: 50%;
-            letter-spacing: 0;
+                    &::before {
+                        display: none;
+                    }
+                }
 
-            &:hover {
-                color: var(--color-globus-blue);
+                a {
+                    @include adaptive(font-size, 16, 14);
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    @include adaptive(width, 29, 29);
+                    @include adaptive(height, 29, 29);
+                    @include flex-center;
+                    position: relative;
+                    border: 1px solid transparent;
+                    border-radius: 50%;
+                    letter-spacing: 0;
+
+                    &.active {
+                        color: var(--color-globus-blue);
+                        border-color: var(--color-globus-blue);
+                    }
+                }
+
+                span {
+                    @include font-circe-regular;
+                    @include adaptive(font-size, 16, 14);
+                    line-height: 1.6;
+                    text-transform: uppercase;
+                    color: var(--color-globus-light-blue);
+                    user-select: none;
+                }
             }
-
-            &.active {
-                color: var(--color-globus-blue);
-                border-color: var(--color-globus-blue);
-            }
-        }
-
-        .pagination-ellipsis {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 14);
-            line-height: 1.6;
-            text-transform: uppercase;
-            color: var(--color-globus-light-blue);
-            user-select: none;
         }
     }
 </style>

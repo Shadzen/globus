@@ -36,8 +36,8 @@ const regions = [
 ---
 
 <section class="countries-section">
-    <div class="countries-container">
-        {showTitle && <h2 class="countries-title">Страны</h2>}
+    <div class="section-container">
+        {showTitle && <h2>Страны</h2>}
 
         <div class="countries-content">
             {
@@ -47,13 +47,11 @@ const regions = [
 
                     return (
                         <div class="region">
-                            <h3 class="region-title">{region.title}</h3>
-                            <ul class="region-list">
+                            <h3>{region.title}</h3>
+                            <ul>
                                 {region.countries.map((country) => (
-                                    <li class="region-item">
-                                        <a href={href} class="region-link">
-                                            {country}
-                                        </a>
+                                    <li>
+                                        <a href={href}>{country}</a>
                                     </li>
                                 ))}
                             </ul>
@@ -69,10 +67,6 @@ const regions = [
     .countries-section {
         @include adaptive(margin-top, 80, 40);
 
-        .countries-container {
-            @include side-paddings;
-            width: 100%;
-        }
         .countries-content {
             display: grid;
             @include adaptive(margin-top, 44, 36);
@@ -92,41 +86,32 @@ const regions = [
             flex-direction: column;
         }
 
-        .region-title {
+        h3 {
             @include font-circe-regular;
-            color: var(--color-globus-sand);
-            @include adaptive(font-size, 24, 31);
-            line-height: 1.2;
-            text-transform: uppercase;
+            @include adaptive(font-size, 24, 26);
             @include adaptive(letter-spacing, 2.4, 3);
-            margin: 0;
         }
 
-        .region-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 15, 12);
+        ul {
             @include adaptive(margin-top, 22, 28);
-        }
 
-        .region-item {
-            margin: 0;
-        }
+            li {
+                padding: 0;
 
-        .region-link {
-            @include font-circe-light;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-            white-space: normal;
-            transition: color 0.3s ease;
-            display: inline-block;
+                a {
+                    @include adaptive(font-size, 26, 22);
+                    white-space: normal;
+                    display: inline-block;
+                    text-decoration: none;
 
-            &:hover {
-                color: var(--color-globus-sand);
+                    &:hover {
+                        color: var(--color-globus-sand);
+                    }
+                }
+
+                &::before {
+                    display: none;
+                }
             }
         }
     }

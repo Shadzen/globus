@@ -20,14 +20,14 @@ const services = [
 ---
 
 <section class="concierge-service-icons-section">
-    <div class="concierge-service-icons-container">
+    <div class="section-container">
         <div class="services-grid">
             {services.map((service) => (
                 <div class="service-item">
                     <div class="svg-icon">
                         <img src={service.icon} alt="" />
                     </div>
-                    <h3 class="service-title">{service.title}</h3>
+                    <h3>{service.title}</h3>
                 </div>
             ))}
         </div>
@@ -37,11 +37,6 @@ const services = [
 <style lang="scss" is:global>
     .concierge-service-icons-section {
         @include adaptive(margin-top, 120, 60);
-
-        .concierge-service-icons-container {
-            @include side-paddings;
-            width: 100%;
-        }
 
         .services-grid {
             display: grid;
@@ -64,13 +59,10 @@ const services = [
             }
         }
 
-        .service-title {
+        h3 {
             @include font-circe-regular;
             color: var(--color-globus-sand);
             @include adaptive(font-size, 28, 18);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
         }
     }
 </style>

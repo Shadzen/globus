@@ -33,12 +33,11 @@ const services = [
 
         <div class="info-text">
             <p>Мы создаём маршруты, в которых всё продумано до мелочей:</p>
-            <ul class="service-list">
+            <ul>
                 {
                     services.map((service) => (
-                        <li class="service-list-item">
-                            <span class="bullet" />
-                            <span class="service-list-text">{service}</span>
+                        <li>
+                            {service}
                         </li>
                     ))
                 }

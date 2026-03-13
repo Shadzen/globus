@@ -1,8 +1,8 @@
 ---
-import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
+import AccordionSection from '@/components/common/AccordionSection.astro'
 ---
 
-<LegalPageLayout title="Правила оплаты и безопасность платежей">
+<AccordionSection title="Правила оплаты и безопасность платежей">
     <div slot="intro">
         <p>К оплате принимаются карты VISA, MasterCard, МИР.</p>
         <p>
@@ -60,7 +60,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
     <div class="payment-sections">
         <div class="payment-section">
             <div class="section-header">
-                <h3 class="section-title">Правила возврата товара</h3>
+                <h3>Правила возврата товара</h3>
             </div>
             <div class="section-content">
                 <p>
@@ -120,7 +120,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
 
         <div class="payment-section">
             <div class="section-header">
-                <h3 class="section-title">Контактная информация</h3>
+                <h3>Контактная информация</h3>
             </div>
             <div class="section-content">
                 <div class="contact-info">
@@ -158,7 +158,7 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
             </div>
         </div>
     </div>
-</LegalPageLayout>
+</AccordionSection>
 
 <style lang="scss" is:global>
     .payment-sections {
@@ -168,19 +168,12 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
         .section-header {
             @include adaptive(padding-top, 44, 22);
             @include adaptive(padding-bottom, 44, 22);
+            @include adaptive(padding-left, 146, 0);
 
-            @include desktop {
-                @include adaptive(padding-left, 146, 146);
+            h3 {
+                color: var(--color-globus-blue);
+                @include adaptive(font-size, 28, 26);
             }
-        }
-
-        .section-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
         }
 
         .section-content {
@@ -190,25 +183,24 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
             }
 
             p {
-                @include font-circe-regular;
                 color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
-                line-height: 1.2;
-                margin: 0;
             }
 
             ul {
                 list-style: disc;
                 @include adaptive(padding-left, 30, 24);
-                margin: 0;
+                gap: 0;
 
                 li {
-                    @include font-circe-regular;
-                    color: var(--color-globus-blue);
                     @include adaptive(font-size, 20, 18);
-                    line-height: 1.2;
-                    @include adaptive(margin-top, 12, 12);
-                    @include adaptive(margin-bottom, 12, 12);
+                    padding: 0;
+                    @include adaptive(margin-top, 6, 6);
+                    @include adaptive(margin-bottom, 6, 6);
+
+                    &::before {
+                        display: none;
+                    }
                 }
             }
         }
@@ -226,29 +218,12 @@ import LegalPageLayout from '@/components/common/LegalPageLayout.astro'
         }
 
         .contact-label {
-            @include font-circe-regular;
             color: var(--color-globus-light-blue);
             @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            margin: 0;
         }
 
         .contact-value {
-            @include font-circe-light;
-            color: var(--color-globus-blue);
             @include adaptive(font-size, 26, 22);
-            line-height: 1.2;
-            margin: 0;
-
-            a {
-                color: var(--color-globus-blue);
-                text-decoration: underline;
-                transition: opacity 0.3s ease;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-            }
         }
     }
 </style>

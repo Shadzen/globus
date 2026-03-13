@@ -48,40 +48,14 @@
                 order: 2;
             }
 
-            p {
-                @include font-circe-light;
-                color: var(--color-globus-blue);
-                @include adaptive(font-size, 26, 18);
-                line-height: 1.2;
-                margin: 0;
+            ul {
+                @include adaptive(gap, 21, 18);
+
+                li {
+                    display: flex;
+                    @include adaptive(gap, 10, 10);
+                }
             }
-        }
-
-        .service-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 21, 18);
-        }
-
-        .service-list-item {
-            display: flex;
-            @include adaptive(gap, 10, 10);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-            }
-        }
-
-        .service-list-text {
-            @include font-circe-light;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            flex: 1;
         }
 
         .info-image {

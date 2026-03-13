@@ -23,8 +23,8 @@ const tourInfo = {
 ---
 
 <section class="promo-tour-info-section">
-    <div class="promo-tour-info-container">
-        <h2 class="promo-tour-info-title">{tourInfo.title}</h2>
+    <div class="section-container">
+        <h2>{tourInfo.title}</h2>
 
         <div class="promo-tour-info-content">
             <div class="promo-tour-info-image">
@@ -32,24 +32,17 @@ const tourInfo = {
             </div>
 
             <div class="promo-tour-info-details">
-                <div class="promo-tour-info-list">
-                    {
-                        tourInfo.details.map((detail) => (
-                            <div class="promo-tour-info-item">
-                                <span class="bullet" />
-                                <p class="promo-tour-info-text">{detail}</p>
-                            </div>
-                        ))
-                    }
-                </div>
+                <ul>
+                    {tourInfo.details.map((detail) => <li>{detail}</li>)}
+                </ul>
 
                 <div class="promo-tour-info-prices">
                     {
                         tourInfo.prices.map((price) => (
-                            <div class="promo-tour-price-badge">
-                                <p class="promo-tour-price-amount">{price.amount}</p>
-                                <p class="promo-tour-price-label">{price.label}</p>
-                            </div>
+                            <a href="#" class="button _sized _outline">
+                                <span class="price-amount">{price.amount}</span>
+                                <span class="price-label">{price.label}</span>
+                            </a>
                         ))
                     }
                 </div>
@@ -61,15 +54,6 @@ const tourInfo = {
 <style lang="scss" is:global>
     .promo-tour-info-section {
         @include adaptive(margin-top, 120, 60);
-
-        .promo-tour-info-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .promo-tour-info-title {
-            color: var(--color-globus-blue);
-        }
 
         .promo-tour-info-content {
             @include adaptive(margin-top, 60, 30);
@@ -101,30 +85,8 @@ const tourInfo = {
             @include adaptive(gap, 50, 30);
         }
 
-        .promo-tour-info-list {
-            display: flex;
-            flex-direction: column;
+        ul {
             @include adaptive(gap, 25, 20);
-        }
-
-        .promo-tour-info-item {
-            display: flex;
-            @include adaptive(gap, 17, 12);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-                flex-shrink: 0;
-            }
-        }
-
-        .promo-tour-info-text {
-            @include font-circe-light;
-            font-style: normal;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            margin: 0;
         }
 
         .promo-tour-info-prices {
@@ -133,27 +95,18 @@ const tourInfo = {
             flex-wrap: wrap;
         }
 
-        .promo-tour-price-badge {
-            @include button-sized;
-            @include button-outline;
+        .button {
             @include adaptive(min-width, 270, auto);
             flex-direction: column;
-        }
-
-        .promo-tour-price-amount {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 26);
             color: var(--color-globus-blue);
-            line-height: 1.2;
-            margin: 0;
-        }
 
-        .promo-tour-price-label {
-            @include font-circe-regular;
-            @include adaptive(font-size, 14, 18);
-            color: var(--color-globus-blue);
-            line-height: 1.2;
-            margin: 0;
+            .price-amount {
+                @include adaptive(font-size, 26, 26);
+            }
+
+            .price-label {
+                @include adaptive(font-size, 14, 18);
+            }
         }
     }
 </style>

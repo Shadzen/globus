@@ -14,16 +14,21 @@ interface Props {
     largeText?: boolean
 }
 
-const { sections, type, theme = 'dark', largeText = false } = Astro.props
+const { sections, type, theme = 'light', largeText = false } = Astro.props
 ---
 
-<div class="accordion" data-type={type} data-theme={theme} data-large-text={largeText}>
+<div
+    class:list={[
+        'accordion',
+        { _docs: type === 'docs', _dark: theme === 'dark', '_large-text': largeText },
+    ]}
+>
     {
         sections.map((section) => (
             <div class="accordion-item" data-accordion-item>
                 <div class="divider" />
                 <button class="accordion-header" data-accordion-button aria-expanded="false">
-                    <h3 class="accordion-title">{section.title}</h3>
+                    <h3>{section.title}</h3>
                     <img src={chevronDown.src} alt="" class="accordion-icon" />
                 </button>
                 <div class="accordion-content" data-accordion-content>
@@ -52,9 +57,15 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
             cursor: pointer;
             text-align: left;
             @include adaptive(padding-left, 146, 0);
+
+            h3 {
+                color: var(--color-globus-blue);
+                @include adaptive(font-size, 28, 26);
+                flex: 1;
+            }
         }
 
-        &[data-type='docs'] {
+        &._docs {
             .accordion-item:first-child .divider {
                 display: none;
             }
@@ -66,16 +77,6 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
             .accordion-content-inner {
                 width: 100%;
             }
-        }
-
-        .accordion-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
-            flex: 1;
         }
 
         .accordion-icon {
@@ -104,40 +105,23 @@ const { sections, type, theme = 'dark', largeText = false } = Astro.props
             }
 
             p {
-                @include font-circe-regular;
-                color: var(--color-globus-blue);
                 @include adaptive(font-size, 20, 18);
-                line-height: 1.2;
-                margin: 0;
             }
         }
 
-        &[data-theme='light'] {
-            .accordion-title {
+        &._dark {
+            .accordion-header h3 {
                 color: var(--color-globus-cream);
             }
 
-            .divider {
-                background-color: var(--color-globus-cream);
-            }
-
             .accordion-content-inner {
-                p {
+                p, a {
                     color: var(--color-globus-cream);
-
-                    a {
-                        color: var(--color-globus-cream);
-                        transition: opacity 0.3s;
-
-                        &:hover {
-                            opacity: 0.7;
-                        }
-                    }
                 }
             }
         }
 
-        &[data-large-text='true'] {
+        &._large-text {
             .accordion-content-inner {
                 p {
                     @include adaptive(font-size, 28, 18);

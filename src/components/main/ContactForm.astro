@@ -12,168 +12,179 @@ interface Props {
 const { userType = 'tourist' } = Astro.props
 ---
 
-<section class="contact-form-section" class:list={{ '_agent': userType === 'agent' }}>
-    {userType === 'tourist' ? (
-        <div class="contact-form-container">
-            <div class="contact-left">
-                <h2 class="contact-title">Открываем мир</h2>
+<section class="contact-form-section _dark" class:list={{ _agent: userType === 'agent' }}>
+    {
+        userType === 'tourist' ?
+            <div class="section-container _alt-paddings">
+                <div class="contact-left">
+                    <h2>Открываем мир</h2>
 
-                <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-label">Телефон</span>
-                    <div class="contact-separator"></div>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Telegram">
-                            <img src={telegramAccentIcon.src} alt="" />
-                        </a>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">Телефон</span>
+                            <div class="contact-separator" />
+                            <div class="social-icons">
+                                <a href="#" class="social-icon" aria-label="Telegram">
+                                    <img src={telegramAccentIcon.src} alt="" />
+                                </a>
+                            </div>
+                            <a href="tel:880020006578" class="contact-value">
+                                8 800 2000 6578
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <div class="contact-separator" />
+                            <a href="mailto:info@globus-tour.ru" class="contact-value">
+                                info@globus-tour.ru
+                            </a>
+                        </div>
                     </div>
-                    <a href="tel:880020006578" class="contact-value">8 800 2000 6578</a>
+
+                    <form class="newsletter-form">
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            name="email"
+                            placeholder="Подпишись на новости"
+                            class="newsletter-input"
+                            aria-label="Email для подписки"
+                            autocomplete="email"
+                        />
+                        <button type="submit" class="newsletter-btn" aria-label="Подписаться">
+                            <svg
+                                width="39"
+                                height="32"
+                                viewBox="0 0 39 32"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
+                                    stroke="white"
+                                    stroke-width="2"
+                                />
+                            </svg>
+                        </button>
+                    </form>
                 </div>
 
-                <div class="contact-item">
-                    <span class="contact-label">Email</span>
-                    <div class="contact-separator"></div>
-                    <a href="mailto:info@globus-tour.ru" class="contact-value">info@globus-tour.ru</a>
+                <div class="contact-right">
+                    <form class="contact-form">
+                        <h3 class="form-title">Напишите прямо сейчас</h3>
+
+                        <div class="form-group">
+                            <label for="contact-name" class="form-label">
+                                Имя
+                            </label>
+                            <input
+                                type="text"
+                                id="contact-name"
+                                name="name"
+                                class="form-input"
+                                autocomplete="name"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-phone" class="form-label">
+                                Телефон
+                            </label>
+                            <input
+                                type="tel"
+                                id="contact-phone"
+                                name="phone"
+                                class="form-input"
+                                autocomplete="tel"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-comment" class="form-label">
+                                Комментарий
+                            </label>
+                            <input
+                                type="text"
+                                id="contact-comment"
+                                name="comment"
+                                class="form-input"
+                                autocomplete="off"
+                            />
+                        </div>
+
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="contact-agree" name="agree" required />
+                            <label for="contact-agree">
+                                Я принимаю условия Пользовательского соглашения и подтверждаю
+                                согласие на обработку моих персональных данных.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="button _sized">
+                            Отправить
+                        </button>
+                    </form>
                 </div>
             </div>
+        :   <div class="section-container _alt-paddings">
+                <h2>Открываем мир</h2>
 
-            <form class="newsletter-form">
-                <input
-                    type="email"
-                    id="newsletter-email"
-                    name="email"
-                    placeholder="Подпишись на новости"
-                    class="newsletter-input"
-                    aria-label="Email для подписки"
-                    autocomplete="email"
-                />
-                <button type="submit" class="newsletter-btn" aria-label="Подписаться">
-                    <svg
-                        width="39"
-                        height="32"
-                        viewBox="0 0 39 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
-                            stroke="white"
-                            stroke-width="2"></path>
-                    </svg>
-                </button>
-            </form>
-        </div>
+                <div class="contact-agent-buttons">
+                    <a href="tel:880020006578" class="button _sized _outline">
+                        <img src={phoneIcon.src} alt="" />
+                        <span>8 800 2000 6578</span>
+                    </a>
 
-        <div class="contact-right">
-            <form class="contact-form">
-                <h3 class="form-title">Напишите прямо сейчас</h3>
+                    <a href="mailto:info@globus-tour.ru" class="button _sized _outline">
+                        <img src={mailIcon.src} alt="" />
+                        <span>info@globus-tour.ru</span>
+                    </a>
 
-                <div class="form-group">
-                    <label for="contact-name" class="form-label">Имя</label>
-                    <input
-                        type="text"
-                        id="contact-name"
-                        name="name"
-                        class="form-input"
-                        autocomplete="name"
-                    />
+                    <a href="#" class="button _sized _outline">
+                        <img src={telegramIcon.src} alt="" />
+                        <span>Группа в ТГ</span>
+                    </a>
+
+                    <form class="newsletter-form">
+                        <input
+                            type="email"
+                            id="newsletter-email-agent"
+                            name="email"
+                            placeholder="Подпишись на новости"
+                            class="newsletter-input"
+                            aria-label="Email для подписки"
+                            autocomplete="email"
+                        />
+                        <button type="submit" class="newsletter-btn" aria-label="Подписаться">
+                            <svg
+                                width="39"
+                                height="32"
+                                viewBox="0 0 39 32"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
+                                    stroke="white"
+                                    stroke-width="2"
+                                />
+                            </svg>
+                        </button>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label for="contact-phone" class="form-label">Телефон</label>
-                    <input
-                        type="tel"
-                        id="contact-phone"
-                        name="phone"
-                        class="form-input"
-                        autocomplete="tel"
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label for="contact-comment" class="form-label">Комментарий</label>
-                    <input
-                        type="text"
-                        id="contact-comment"
-                        name="comment"
-                        class="form-input"
-                        autocomplete="off"
-                    />
-                </div>
-
-                <div class="form-checkbox">
-                    <input type="checkbox" id="contact-agree" name="agree" required />
-                    <label for="contact-agree">
-                        Я принимаю условия Пользовательского соглашения и подтверждаю согласие на
-                        обработку моих персональных данных.
-                    </label>
-                </div>
-
-                <button type="submit" class="button _sized">Отправить</button>
-            </form>
-        </div>
-    </div>
-    ) : (
-        <div class="contact-agent-container">
-            <h2 class="contact-title">Открываем мир</h2>
-
-            <div class="contact-agent-buttons">
-                <a href="tel:880020006578" class="button _sized _outline">
-                    <img src={phoneIcon.src} alt="" />
-                    <span>8 800 2000 6578</span>
-                </a>
-
-                <a href="mailto:info@globus-tour.ru" class="button _sized _outline">
-                    <img src={mailIcon.src} alt="" />
-                    <span>info@globus-tour.ru</span>
-                </a>
-
-                <a href="#" class="button _sized _outline">
-                    <img src={telegramIcon.src} alt="" />
-                    <span>Группа в ТГ</span>
-                </a>
-
-                <form class="newsletter-form">
-                    <input
-                        type="email"
-                        id="newsletter-email-agent"
-                        name="email"
-                        placeholder="Подпишись на новости"
-                        class="newsletter-input"
-                        aria-label="Email для подписки"
-                        autocomplete="email"
-                    />
-                    <button type="submit" class="newsletter-btn" aria-label="Подписаться">
-                        <svg
-                            width="39"
-                            height="32"
-                            viewBox="0 0 39 32"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M37.5 16L1.5 16M37.5 16L22.5 31M37.5 16L22.5 1"
-                                stroke="white"
-                                stroke-width="2"></path>
-                        </svg>
-                    </button>
-                </form>
             </div>
-        </div>
-    )}
+    }
 </section>
 
 <style lang="scss" is:global>
     .contact-form-section {
-        background: var(--color-globus-blue);
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 98, 60);
         @include adaptive(padding-bottom, 98, 60);
         @include side-paddings;
 
-        .contact-form-container {
-            position: relative;
-            width: 100%;
+        .section-container {
             display: flex;
             @include adaptive(gap, 16, 60);
 
@@ -190,11 +201,10 @@ const { userType = 'tourist' } = Astro.props
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 93, 32);
-        }
 
-        .contact-title {
-            color: var(--color-globus-cream);
-            @include adaptive(text-align, left, center);
+            h2 {
+                @include adaptive(text-align, left, center);
+            }
         }
 
         .contact-info {
@@ -215,10 +225,8 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-label {
-            @include font-circe-regular;
             @include adaptive(font-size, 16, 18);
             line-height: 1.6;
-            color: var(--color-globus-cream);
             text-transform: uppercase;
             @include adaptive(letter-spacing, 3.2, 3.2);
             opacity: 0.4;
@@ -242,7 +250,6 @@ const { userType = 'tourist' } = Astro.props
         .contact-value {
             @include font-kudry-sans;
             @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
             color: var(--color-globus-cream);
             text-transform: uppercase;
             text-decoration: none;
@@ -352,11 +359,7 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .form-title {
-            @include font-kudry-sans;
             @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
-            text-transform: uppercase;
             opacity: 0.4;
             margin: 0;
 
@@ -447,17 +450,12 @@ const { userType = 'tourist' } = Astro.props
         }
     }
 
-    // Стили для версии агента
     .contact-form-section._agent {
         .contact-agent-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             @include adaptive(gap, 58, 50);
-        }
-
-        .contact-title {
-            color: var(--color-globus-cream);
         }
 
         .contact-agent-buttons {

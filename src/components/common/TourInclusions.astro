@@ -24,27 +24,25 @@ interface Props {
 const { includedItems, additionalContent = [], useGrid = false, darkTheme = false } = Astro.props
 ---
 
-<section class:list={['tour-inclusions-section', { 'dark-theme': darkTheme }]}>
+<section class:list={['tour-inclusions-section', { '_dark': darkTheme }]}>
     <div class="section-container">
-        <h2 class="section-title">В стоимость тура входит:</h2>
+        <h2>В стоимость тура входит:</h2>
 
         {useGrid ? (
-            <ul class="inclusions-grid">
+            <ul class="list-grid">
                 {includedItems.flat().map((item) => (
-                    <li class="inclusion-item">
-                        <div class="inclusion-bullet"></div>
-                        <p class="inclusion-text">{item.text}</p>
+                    <li>
+                        {item.text}
                     </li>
                 ))}
             </ul>
         ) : (
-            <div class="info-columns">
+            <div class="list-columns">
                 {includedItems.map((column) => (
-                    <ul class="info-list">
+                    <ul>
                         {column.map((item) => (
-                            <li class="info-item">
-                                <span class="bullet"></span>
-                                <p class="info-text">{item.text}</p>
+                            <li>
+                                {item.text}
                             </li>
                         ))}
                     </ul>
@@ -54,33 +52,28 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
 
         <div class="divider"></div>
 
-        <h3 class="subsection-title">Дополнительно оплачивается:</h3>
+        <h3>Дополнительно оплачивается:</h3>
 
         {additionalContent.length > 0 && (
             <div class="additional-section">
                 {additionalContent.map((content) => (
                     <>
                         {content.type === 'link' && content.data.link && (
-                            <a href="#" class="additional-link">
+                            <a href="#">
                                 <span class="svg-icon">
                                     <img src={arrowIcon.src} alt="" />
                                 </span>
-                                <span class="additional-text">Виза в Садовскую Аравию</span>
+                                <span>Виза в Садовскую Аравию</span>
                             </a>
                         )}
                         {content.type === 'text' && content.data.text && (
-                            <p class="additional-text" set:html={content.data.text}></p>
+                            <p set:html={content.data.text}></p>
                         )}
                         {content.type === 'list' && content.data.items && (
-                            <ul class:list={[useGrid ? 'inclusions-grid' : 'info-columns']}>
+                            <ul class:list={[useGrid ? 'list-grid' : 'list-columns']}>
                                 {content.data.items.map((item) => (
-                                    <li class:list={[useGrid ? 'inclusion-item' : 'info-item']}>
-                                        {useGrid ? (
-                                            <div class="bullet"></div>
-                                        ) : (
-                                            <span class="bullet"></span>
-                                        )}
-                                        <p class:list={[useGrid ? 'inclusion-text' : 'info-text']}>{item.text}</p>
+                                    <li>
+                                        {item.text}
                                     </li>
                                 ))}
                             </ul>
@@ -93,7 +86,7 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         <div class="divider"></div>
 
         <div class="bottom-section">
-            <p class="bottom-text">
+            <p>
                 Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
             </p>
             <div class="bottom-buttons">
@@ -113,95 +106,8 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
         @include adaptive(padding-top, 80, 50);
         @include adaptive(padding-bottom, 80, 50);
 
-        &.dark-theme {
-            background: var(--color-globus-blue);
-
-            .section-title,
-            .subsection-title,
-            .info-text,
-            .inclusion-text,
-            .bottom-text {
-                color: var(--color-globus-cream);
-            }
-
-            .additional-text {
-                color: var(--color-globus-cream);
-            }
-        }
-
-        .section-title {
+        h2 {
             @include adaptive(margin-bottom, 50, 30);
-        }
-
-        // Grid layout (для NewsTypeFour)
-        .inclusions-grid {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            @include adaptive(gap, 30, 20);
-
-            @include mobile {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .inclusion-item {
-            display: flex;
-            @include adaptive(gap, 10, 8);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 6, 5);
-            }
-        }
-
-        .inclusion-text {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 20, 18);
-            line-height: 1.2;
-            margin: 0;
-        }
-
-        // Columns layout (для NewsTypeOne)
-        .info-columns {
-            display: flex;
-            @include adaptive(gap, 55, 20);
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .info-list {
-            flex: 1;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 30, 20);
-        }
-
-        .info-item {
-            display: flex;
-            @include adaptive(gap, 10, 8);
-            align-items: flex-start;
-
-            .bullet {
-                @include adaptive(margin-top, 8, 6);
-            }
-        }
-
-        .info-text {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            margin: 0;
-            flex: 1;
         }
 
         .divider {
@@ -209,42 +115,25 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
             @include adaptive(margin-bottom, 40, 25);
         }
 
-        .subsection-title {
+        h3 {
             color: var(--color-globus-blue);
             @include adaptive(font-size, 32, 24);
             text-align: center;
-            @include adaptive(margin-bottom, 40, 25);
         }
 
         .additional-section {
+            @include adaptive(margin-top, 40, 25);
             display: flex;
             @include adaptive(gap, 260, 20);
 
             @include mobile {
                 flex-direction: column;
             }
-        }
 
-        .additional-link {
-            display: flex;
-            align-items: center;
-            transition: opacity 0.3s ease;
-
-            .additional-text {
-                text-decoration: underline;
+            a {
+                display: flex;
+                align-items: center;
             }
-
-            &:hover {
-                opacity: 0.8;
-            }
-        }
-
-        .additional-text {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            margin: 0;
         }
 
         .bottom-section {
@@ -257,16 +146,10 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
                 flex-direction: column;
                 align-items: flex-start;
             }
-        }
 
-        .bottom-text {
-            @include font-circe-light;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
-            margin: 0;
-            flex: 1;
-            @include adaptive(max-width, 693, 100%);
+            p {
+                @include adaptive(max-width, 693, 100%);
+            }
         }
 
         .bottom-buttons {

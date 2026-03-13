@@ -116,7 +116,7 @@ const galleryPreview = gallery.slice(0, 4)
             <p class="hotel-location">Kodhipparu, North Male Atoll, Гиравару</p>
         </div>
 
-        <div class="hotel-gallery-container">
+        <div class="section-container _alt-paddings">
             <!-- data-gallery holds ALL images for the lightbox -->
             <div class="about-hotel-gallery swiper" data-gallery={JSON.stringify(gallery)}>
                 <div class="hotel-gallery-wrapper swiper-wrapper">
@@ -177,11 +177,8 @@ const galleryPreview = gallery.slice(0, 4)
         @include adaptive(padding-top, 445, 374);
 
         .hotel-title {
-            @include font-kudry-sans;
             @include adaptive(font-size, 60, 58);
             line-height: 1.2;
-            text-transform: uppercase;
-            color: var(--color-globus-cream);
         }
 
         .hotel-rating {
@@ -197,16 +194,11 @@ const galleryPreview = gallery.slice(0, 4)
         }
 
         .hotel-location {
-            @include font-circe-regular;
-            @include adaptive(font-size, 26, 18);
-            line-height: 1.2;
             color: var(--color-globus-cream);
             @include adaptive(margin-top, 34, 38);
         }
 
-        .hotel-gallery-container {
-            position: relative;
-            width: 100%;
+        .section-container {
             z-index: 2;
             @include adaptive(margin-bottom, -174, -148);
         }
@@ -332,7 +324,7 @@ const galleryPreview = gallery.slice(0, 4)
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--color-globus-cream);
             transition: all 0.3s;
             z-index: 2;
 

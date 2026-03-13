@@ -71,9 +71,9 @@ const vipServices: ServiceItem[] = [
 ---
 
 <section class="country-vip-section">
-    <div class="country-vip-container">
-        <p class="country-vip-subtitle">Дополнительные услуги</p>
-        <h2 class="country-vip-title">VIP SERVICES в аэропорту Салонники</h2>
+    <div class="section-container">
+        <span>Дополнительные услуги</span>
+        <h2>VIP SERVICES в аэропорту Салонники</h2>
 
         <div class="country-vip-list">
             {
@@ -81,21 +81,17 @@ const vipServices: ServiceItem[] = [
                     <>
                         {index > 0 && <div class="divider" />}
                         <div class="vip-item">
-                            <h3 class="vip-title">{item.title}</h3>
+                            <h3>{item.title}</h3>
                             <div class="vip-content">
-                                <ul class="vip-features">
+                                <ul>
                                     {item.services.map((service) => (
                                         <li>{service}</li>
                                     ))}
                                 </ul>
                                 <div class="vip-prices">
                                     <div class="vip-price">
-                                        <span class="vip-price-value">
-                                            {item.prices.main}
-                                        </span>
-                                        <span class="vip-price-note">
-                                            {item.prices.mainNote}
-                                        </span>
+                                        <span class="vip-price-value">{item.prices.main}</span>
+                                        <span class="vip-price-note">{item.prices.mainNote}</span>
                                     </div>
                                     {item.prices.secondary && (
                                         <div class="vip-price">
@@ -140,31 +136,21 @@ const vipServices: ServiceItem[] = [
     .country-vip-section {
         @include adaptive(margin-top, 120, 60);
 
-        .country-vip-container {
-            @include side-paddings;
-            width: 100%;
-        }
-
-        .country-vip-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 60, 40);
-            line-height: 1.2;
-            text-transform: uppercase;
-            @include adaptive(margin-bottom, 60, 40);
-        }
-
-        .country-vip-subtitle {
-            @include font-kudry-sans;
-            color: var(--color-globus-sand);
-            @include adaptive(font-size, 36, 26);
-            line-height: 1.2;
-            text-align: center;
-            text-transform: uppercase;
-            @include adaptive(margin-bottom, 20, 16);
+        .section-container {
+            > span {
+                display: inline-block;
+                width: 100%;
+                @include font-kudry-sans;
+                color: var(--color-globus-sand);
+                @include adaptive(font-size, 36, 20);
+                text-align: center;
+                text-transform: uppercase;
+                @include adaptive(margin-bottom, 20, 16);
+            }
         }
 
         .country-vip-list {
+            @include adaptive(margin-top, 60, 40);
             display: flex;
             flex-direction: column;
 
@@ -181,17 +167,19 @@ const vipServices: ServiceItem[] = [
             @include mobile {
                 flex-direction: column;
             }
-        }
 
-        .vip-title {
-            @include font-kudry-sans;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
-            @include adaptive(width, 563, 100%);
-            flex-shrink: 0;
+            h3 {
+                color: var(--color-globus-blue);
+                @include adaptive(font-size, 28, 20);
+                @include adaptive(width, 563, 100%);
+                flex-shrink: 0;
+            }
+
+            ul {
+                li {
+                    @include adaptive(font-size, 20, 16);
+                }
+            }
         }
 
         .vip-content {
@@ -199,24 +187,6 @@ const vipServices: ServiceItem[] = [
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 30, 20);
-        }
-
-        .vip-features {
-            list-style: disc;
-            @include adaptive(padding-left, 30, 24);
-            margin: 0;
-
-            li {
-                @include font-circe-regular;
-                color: var(--color-globus-blue);
-                @include adaptive(font-size, 20, 18);
-                line-height: 1.2;
-                @include adaptive(margin-bottom, 8, 6);
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
         }
 
         .vip-prices {
@@ -243,32 +213,17 @@ const vipServices: ServiceItem[] = [
         }
 
         .vip-price-value {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
+            @include adaptive(font-size, 26, 22);
             text-align: center;
         }
 
         .vip-price-note {
-            @include font-circe-regular;
-            color: var(--color-globus-blue);
-            @include adaptive(font-size, 14, 18);
-            line-height: 1.2;
+            @include adaptive(font-size, 14, 16);
             text-align: center;
         }
 
         .country-vip-notes {
-            // @include adaptive(margin-top, 80, 60);
             text-align: center;
-
-            p {
-                @include font-circe-light;
-                color: var(--color-globus-blue);
-                @include adaptive(font-size, 26, 18);
-                line-height: 1.2;
-                margin: 0;
-            }
         }
     }
 </style>

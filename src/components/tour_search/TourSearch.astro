@@ -8,11 +8,10 @@ interface Props {
 }
 
 const { mode } = Astro.props
-// Плейсхолдер - в будущем здесь будет форма авторизации или поиска
 ---
 
 <section class="tour-search-section">
-    <div class="tour-search-container">
+    <div class="section-container">
         {mode === 'login' ?
             <div class="tour-search-placeholder">
                 <img src={tourSearchLoginImg.src} alt="Форма входа" />
@@ -34,9 +33,7 @@ const { mode } = Astro.props
         @include adaptive(margin-top, 60, 30);
         @include adaptive(padding-bottom, 60, 30);
 
-        .tour-search-container {
-            @include side-paddings;
-            width: 100%;
+        .section-container {
             display: flex;
             flex-direction: column;
             justify-content: center;

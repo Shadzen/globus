@@ -22,7 +22,7 @@ interface Props {
 const { videos, textColor = 'main' } = Astro.props
 ---
 
-<div class="videos-grid" data-text-color={textColor}>
+<div class:list={['videos-grid', { _dark: textColor === 'main' }]}>
     {
         videos.map((video) => (
             <div class="video-card">
@@ -56,7 +56,7 @@ const { videos, textColor = 'main' } = Astro.props
                                     >
                                         {material.label}
                                     </a>
-                                :   <p class="video-material-text">{material.label}</p>,
+                                :   <p class="video-material-link">{material.label}</p>,
                             )}
                         </div>
                     )}
@@ -148,12 +148,13 @@ const { videos, textColor = 'main' } = Astro.props
         .video-title {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 24);
-            color: var(--color-globus-sand);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin: 0;
+            color: var(--color-globus-blue);
             white-space: normal;
             width: 90%;
+        }
+
+        &._dark .video-title {
+            color: var(--color-globus-sand);
         }
 
         .video-materials {
@@ -164,33 +165,13 @@ const { videos, textColor = 'main' } = Astro.props
         }
 
         .video-material-link {
-            @include font-circe-regular;
             @include adaptive(font-size, 18, 18);
-            color: var(--color-globus-cream);
-            line-height: 1.2;
             text-decoration: none;
-            transition: opacity 0.3s;
             white-space: normal;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
-        .video-material-text {
-            @include font-circe-regular;
-            @include adaptive(font-size, 18, 18);
+        &._dark .video-material-link {
             color: var(--color-globus-cream);
-            line-height: 1.2;
-            margin: 0;
-            white-space: normal;
-        }
-
-        &[data-text-color='alternate'] {
-            .video-material-link,
-            .video-material-text {
-                color: var(--color-globus-blue);
-            }
         }
     }
 </style>

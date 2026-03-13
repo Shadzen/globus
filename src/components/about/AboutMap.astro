@@ -2,16 +2,16 @@
 // src/components/about/AboutMap.astro
 ---
 
-<section class="about-map">
-    <div class="about-map-container">
+<section class="about-map _dark">
+    <div class="section-container">
         <div class="about-map-text">
             <div class="about-map-block">
-                <h3 class="about-map-heading">Адрес</h3>
-                <p class="about-map-info">Новосибирск, ул. Советская, дом 64, оф. 403.</p>
+                <h3>Адрес</h3>
+                <p>Новосибирск, ул. Советская, дом 64, оф. 403.</p>
             </div>
             <div class="about-map-block">
-                <h3 class="about-map-heading">График работы</h3>
-                <p class="about-map-info">
+                <h3>График работы</h3>
+                <p>
                     Пн — Пт: 10:00 — 19:00<br />Суббота: 11:00 — 18:00
                 </p>
             </div>
@@ -26,20 +26,17 @@
             data-balloon="Новосибирск, ул. Советская, дом 64, оф. 403"
             data-preset="islands#redDotIcon"
             data-api-key=""
-        ></div>
+        >
+        </div>
     </div>
 </section>
 
 <style lang="scss" is:global>
     .about-map {
-        background: var(--color-globus-blue);
         @include adaptive(padding-top, 80, 40);
         @include adaptive(padding-bottom, 80, 60);
 
-        .about-map-container {
-            position: relative;
-            width: 100%;
-            @include side-paddings;
+        .section-container {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
@@ -69,26 +66,17 @@
             @include adaptive(gap, 6, 20);
         }
 
-        .about-map-heading {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 26);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .about-map-info {
-            @include font-circe-light;
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-            color: var(--color-globus-light-blue);
-            width: 70%;
-
-            @include mobile {
-                width: 100%;
+        .about-map-text .about-map-block {
+            h3 {
+                @include adaptive(font-size, 28, 26);
+                color: var(--color-globus-cream);
             }
 
+            p {
+                @include adaptive(font-size, 26, 26);
+                color: var(--color-globus-light-blue);
+                @include adaptive(width, 70%, 100%);
+            }
         }
 
         .about-map-image {

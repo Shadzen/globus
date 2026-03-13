@@ -31,14 +31,14 @@ const scheduleData: ScheduleRow[] = [
 
 <section class="news-schedule-section">
     <div class="section-container">
-        <h2 class="schedule-title">Полетная программа Москва-Эр-Рияд:</h2>
+        <h2>Полетная программа Москва-Эр-Рияд:</h2>
 
         <div class="schedule-table">
             <div class="table-header">
-                <div class="table-cell header-cell">Авиакомпания</div>
-                <div class="table-cell header-cell">Даты</div>
-                <div class="table-cell header-cell">Направление</div>
-                <div class="table-cell header-cell">Вылеты</div>
+                <span class="table-cell header-cell">Авиакомпания</span>
+                <span class="table-cell header-cell">Даты</span>
+                <span class="table-cell header-cell">Направление</span>
+                <span class="table-cell header-cell">Вылеты</span>
             </div>
 
             {scheduleData.map((row) => (
@@ -60,9 +60,9 @@ const scheduleData: ScheduleRow[] = [
                             />
                         )}
                     </div>
-                    <div class="table-cell date-cell">{row.date}</div>
-                    <div class="table-cell route-cell">{row.route}</div>
-                    <div class="table-cell departures-cell">{row.departures}</div>
+                    <span class="table-cell content-cell" data-label="Даты:">{row.date}</span>
+                    <span class="table-cell content-cell" data-label="Направление:">{row.route}</span>
+                    <span class="table-cell content-cell" data-label="Вылеты:">{row.departures}</span>
                 </div>
             ))}
         </div>
@@ -73,9 +73,9 @@ const scheduleData: ScheduleRow[] = [
     .news-schedule-section {
         @include adaptive(margin-top, 60, 40);
 
-        .schedule-title {
+        h2 {
             @include adaptive(font-size, 28, 22);
-            @include adaptive(margin-bottom, 40, 24);
+            @include adaptive(margin-bottom, 40, 6);
         }
 
         .schedule-table {
@@ -112,15 +112,12 @@ const scheduleData: ScheduleRow[] = [
 
         .table-cell {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .header-cell {
-            @include font-circe-regular;
             @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            opacity: 0.6;
+            color: var(--color-globus-light-blue);
         }
 
         .airline-cell {
@@ -128,6 +125,7 @@ const scheduleData: ScheduleRow[] = [
 
             @include mobile {
                 justify-content: center;
+                @include adaptive(margin-bottom, 0, 12);
             }
 
             .airline-logo {
@@ -139,40 +137,20 @@ const scheduleData: ScheduleRow[] = [
             }
         }
 
-        .date-cell,
-        .route-cell,
-        .departures-cell {
-            @include font-circe-light;
+        .content-cell {
+            position: relative;
             @include adaptive(font-size, 26, 20);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
 
             @include mobile {
-                position: relative;
                 @include adaptive(padding-left, 120, 120);
 
                 &::before {
                     content: attr(data-label);
                     position: absolute;
                     left: 0;
-                    @include font-circe-regular;
-                    @include adaptive(font-size, 16, 14);
-                    opacity: 0.6;
+                    @include adaptive(font-size, 16, 16);
+                    color: var(--color-globus-light-blue);
                 }
-            }
-        }
-
-        @include mobile {
-            .date-cell::before {
-                content: 'Даты:';
-            }
-
-            .route-cell::before {
-                content: 'Направление:';
-            }
-
-            .departures-cell::before {
-                content: 'Вылеты:';
             }
         }
     }
