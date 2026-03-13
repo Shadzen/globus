@@ -33,11 +33,11 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             <input type="radio" name="hotel-tab" id="tab-restaurants" class="hotel-tab-input" />
             <input type="radio" name="hotel-tab" id="tab-other" class="hotel-tab-input" />
 
-            <label for="tab-location" class="tab-label" data-order="1">
+            <label for="tab-location" class="tab-label _order-1">
                 <span>Местоположение отеля</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
-            <div class="tab-content" data-tab="location">
+            <div class="tab-content _tab-location">
                 <iframe
                     src={mapEmbedUrlSimple}
                     class="tab-content-map"
@@ -58,37 +58,37 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 </div>
             </div>
 
-            <label for="tab-rooms" class="tab-label" data-order="2">
+            <label for="tab-rooms" class="tab-label _order-2">
                 <span>Номера</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
-            <div class="tab-content" data-tab="rooms">
+            <div class="tab-content _tab-rooms">
                 <p>Информация о номерах скоро появится</p>
             </div>
 
-            <label for="tab-amenities" class="tab-label" data-order="3">
+            <label for="tab-amenities" class="tab-label _order-3">
                 <span>Удобства</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
-            <div class="tab-content" data-tab="amenities">
+            <div class="tab-content _tab-amenities">
                 <p>Информация об удобствах скоро появится</p>
             </div>
 
-            <label for="tab-restaurants" class="tab-label" data-order="4">
+            <label for="tab-restaurants" class="tab-label _order-4">
                 <span>Кафе и рестораны</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
-            <div class="tab-content" data-tab="restaurants">
+            <div class="tab-content _tab-restaurants">
                 <p>
                     Информация о кафе и ресторанах скоро появится
                 </p>
             </div>
 
-            <label for="tab-other" class="tab-label" data-order="5">
+            <label for="tab-other" class="tab-label _order-5">
                 <span>Другое</span>
                 <img src={chevronIcon.src} alt="" class="tab-label-icon" />
             </label>
-            <div class="tab-content" data-tab="other">
+            <div class="tab-content _tab-other">
                 <p>
                     Дополнительная информация скоро появится
                 </p>
@@ -111,26 +111,16 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             display: flex;
             flex-wrap: wrap;
             width: 100%;
-            @include adaptive(gap, 16, 1);
+            @include adaptive(gap, 16, 0);
             @include adaptive(margin-top, 24, 60);
 
             // Desktop: all labels at the top
             @include desktop {
                 // Labels first (order 1-5)
-                .tab-label[data-order='1'] {
-                    order: 1;
-                }
-                .tab-label[data-order='2'] {
-                    order: 2;
-                }
-                .tab-label[data-order='3'] {
-                    order: 3;
-                }
-                .tab-label[data-order='4'] {
-                    order: 4;
-                }
-                .tab-label[data-order='5'] {
-                    order: 5;
+                @for $i from 1 through 5 {
+                    .tab-label._order-#{$i} {
+                        order: $i;
+                    }
                 }
 
                 // Content after (order 100)
@@ -143,7 +133,6 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             // Mobile: each label+content pair in order
             @include mobile {
                 flex-direction: column;
-                gap: 0;
             }
         }
 
@@ -162,6 +151,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             * {
                 color: inherit;
                 font-size: inherit;
+                line-height: inherit;
+                font-family: inherit;
             }
 
             span {
@@ -172,14 +163,18 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 display: none;
             }
 
+            @include adaptive(padding-left, 50, 0);
+            @include adaptive(padding-right, 50, 0);
+            @include adaptive(padding-top, 16, 24);
+            @include adaptive(padding-bottom, 16, 24);
+            @include adaptive(font-size, 22, 26);
+            line-height: 1.2;
+            text-transform: uppercase;
+
             // Desktop: tab styles
             @include desktop {
                 @include flex-center;
                 @include adaptive(height, 61, 50);
-                @include adaptive(padding-left, 50, 30);
-                @include adaptive(padding-right, 50, 30);
-                @include adaptive(padding-top, 16, 12);
-                @include adaptive(padding-bottom, 16, 12);
                 border-radius: 500px;
                 border-width: 1px;
                 border-style: solid;
@@ -187,10 +182,7 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 background: transparent;
 
                 @include font-circe-regular;
-                @include adaptive(font-size, 22, 18);
-                line-height: 1.2;
                 @include adaptive(letter-spacing, 2.2, 1.8);
-                text-transform: uppercase;
                 color: var(--color-globus-sand);
 
                 &:hover {
@@ -201,14 +193,10 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             // Mobile: accordion header styles
             @include mobile {
                 @include flex-center-between;
-                @include adaptive(padding-top, 1, 24);
-                @include adaptive(padding-bottom, 1, 24);
                 border-bottom: 1px solid var(--color-globus-sand);
+                border-bottom-width: 1px;
 
                 @include font-kudry-sans;
-                @include adaptive(font-size, 1, 25.6);
-                line-height: 1.2;
-                text-transform: uppercase;
                 color: var(--color-globus-blue);
                 width: 100%;
 
@@ -218,8 +206,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 
                 .tab-label-icon {
                     display: block;
-                    @include adaptive(width, 1, 18.876);
-                    @include adaptive(height, 1, 13.111);
+                    @include adaptive(width, 0, 20);
+                    @include adaptive(height, 0, 14);
                     flex-shrink: 0;
                     transition: transform 0.3s;
                 }
@@ -234,25 +222,20 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 @include adaptive(width, 76%, 100%);
             }
 
-            // Desktop: content below all tabs
-            @include desktop {
-                @include adaptive(margin-top, 66, 0);
-                order: 100;
-            }
+            @include adaptive(margin-top, 66, 0);
+            @include adaptive(padding-bottom, 0, 40);
 
-            // Mobile: content right after header
             @include mobile {
-                @include adaptive(padding-bottom, 0, 40);
                 border-bottom: 1px solid var(--color-globus-sand);
             }
         }
 
-        // Active states
-        #tab-location:checked ~ .tab-label[for='tab-location'],
-        #tab-rooms:checked ~ .tab-label[for='tab-rooms'],
-        #tab-amenities:checked ~ .tab-label[for='tab-amenities'],
-        #tab-restaurants:checked ~ .tab-label[for='tab-restaurants'],
-        #tab-other:checked ~ .tab-label[for='tab-other'] {
+        // Active states (each input is followed by its label with _order-N)
+        #tab-location:checked ~ .tab-label._order-1,
+        #tab-rooms:checked ~ .tab-label._order-2,
+        #tab-amenities:checked ~ .tab-label._order-3,
+        #tab-restaurants:checked ~ .tab-label._order-4,
+        #tab-other:checked ~ .tab-label._order-5 {
             // Desktop: active tab
             @include desktop {
                 background: var(--color-globus-sand);
@@ -273,11 +256,11 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
             }
         }
 
-        #tab-location:checked ~ .tab-content[data-tab='location'],
-        #tab-rooms:checked ~ .tab-content[data-tab='rooms'],
-        #tab-amenities:checked ~ .tab-content[data-tab='amenities'],
-        #tab-restaurants:checked ~ .tab-content[data-tab='restaurants'],
-        #tab-other:checked ~ .tab-content[data-tab='other'] {
+        #tab-location:checked ~ .tab-content._tab-location,
+        #tab-rooms:checked ~ .tab-content._tab-rooms,
+        #tab-amenities:checked ~ .tab-content._tab-amenities,
+        #tab-restaurants:checked ~ .tab-content._tab-restaurants,
+        #tab-other:checked ~ .tab-content._tab-other {
             display: flex;
             @include adaptive(gap, 60, 22);
             align-items: flex-start;
@@ -307,8 +290,8 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
         }
 
         .location-icon {
-            @include adaptive(width, 112, 65.715);
-            @include adaptive(height, 120, 70.4);
+            @include adaptive(width, 112, 66);
+            @include adaptive(height, 120, 70);
         }
     }
 </style>
