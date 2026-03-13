@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import autoprefixer from 'autoprefixer'
 import sortMediaQueries from 'postcss-sort-media-queries'
-import combineMediaQuery from 'postcss-combine-media-query'
 import cssnano from 'cssnano'
 import postcss from 'postcss'
 import { fileURLToPath } from 'url'
@@ -68,7 +67,6 @@ function mergeMediaQueriesPlugin() {
             for (const [filename, asset] of Object.entries(bundle)) {
                 if (asset.type === 'asset' && filename.endsWith('.css')) {
                     const result = await postcss([
-                        combineMediaQuery(),
                         deduplicateMediaConditions(),
                         removeImpossibleMediaQueries(),
                         sortMediaQueries(),
