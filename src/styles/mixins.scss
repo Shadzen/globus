@@ -202,11 +202,16 @@
         }
     }
 
+    span {
+        @include adaptive(padding-top, 2, 2);
+    }
+
     img,
     svg {
         @include adaptive(width, 40, 30);
         @include adaptive(height, 40, 30);
         flex-shrink: 0;
+        @include adaptive(margin-top, -2, -2);
     }
 
     .button-numbers {
