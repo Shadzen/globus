@@ -60,11 +60,7 @@ const { tours } = Astro.props
             @include adaptive(gap, 20, 15);
             text-decoration: none;
             cursor: pointer;
-            transition: transform 0.3s ease;
-
-            &:hover {
-                transform: translateY(-4px);
-            }
+            @include hover-card-default;
         }
 
         .tour-image {

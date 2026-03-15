@@ -4,36 +4,36 @@
 import SocialButtons from '@/components/common/SocialButtons.astro'
 ---
 
-<div class="contact-form">
+<div class="contact-form-popup">
     <h2 id="contact-title" data-modal-focus>Открываем мир</h2>
 
     <div class="contact-form-container">
         <div class="contact-form-left">
-            <div class="contact-form-info">
+            <div class="contacts-info">
                 <h3>Контакты для связи</h3>
 
-                <div class="contact-form-item">
-                    <span class="contact-form-label">Экстренный телефон</span>
-                    <div class="contact-form-separator"></div>
-                    <a href="tel:+7 383 2000 500" class="contact-form-value"> +7 383 2000 500 </a>
+                <div class="contacts-info-item">
+                    <span class="contacts-info-label">Экстренный телефон</span>
+                    <div class="contacts-info-separator"></div>
+                    <a href="tel:+7 383 2000 500" class="contacts-info-value"> +7 383 2000 500 </a>
                 </div>
 
-                <div class="contact-form-item">
-                    <span class="contact-form-label">Телефон</span>
-                    <div class="contact-form-separator"></div>
-                    <a href="tel:+7 383 2000 500" class="contact-form-value"> +7 383 2000 500 </a>
+                <div class="contacts-info-item">
+                    <span class="contacts-info-label">Телефон</span>
+                    <div class="contacts-info-separator"></div>
+                    <a href="tel:+7 383 2000 500" class="contacts-info-value"> +7 383 2000 500 </a>
                 </div>
 
-                <div class="contact-form-item">
-                    <span class="contact-form-label">Email</span>
-                    <div class="contact-form-separator"></div>
-                    <a href="mailto:info@globus-tour.ru" class="contact-form-value">
+                <div class="contacts-info-item">
+                    <span class="contacts-info-label">Email</span>
+                    <div class="contacts-info-separator"></div>
+                    <a href="mailto:info@globus-tour.ru" class="contacts-info-value">
                         info@globus-tour.ru
                     </a>
                 </div>
             </div>
 
-            <div class="contact-form-social">
+            <div class="contacts-social">
                 <h3>Быстрая связь в месенджерах</h3>
                 <SocialButtons
                     variant="default"
@@ -44,14 +44,14 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
         </div>
 
         <div class="contact-form-right">
-            <form class="contact-form-form">
+            <form class="contact-form">
                 <h3>Напишите прямо сейчас</h3>
 
                 <input
                     type="text"
                     id="contact-name"
                     name="name"
-                    class="contact-form-form-input"
+                    class="contact-form-input"
                     placeholder="Имя"
                     aria-label="Имя"
                     autocomplete="name"
@@ -60,7 +60,7 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
                     type="tel"
                     id="contact-phone"
                     name="phone"
-                    class="contact-form-form-input"
+                    class="contact-form-input"
                     placeholder="Телефон"
                     aria-label="Телефон"
                     autocomplete="tel"
@@ -69,7 +69,7 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
                     type="text"
                     id="contact-comment"
                     name="comment"
-                    class="contact-form-form-input"
+                    class="contact-form-input"
                     placeholder="Комментарий"
                     aria-label="Комментарий"
                     autocomplete="off"
@@ -90,7 +90,7 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
 </div>
 
 <style lang="scss" is:global>
-    .contact-form {
+    .contact-form-popup {
         display: flex;
         flex-direction: column;
         @include adaptive(gap, 80, 40);
@@ -101,10 +101,6 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
 
             @include mobile {
                 flex-direction: column;
-            }
-
-            > * {
-                flex: 1;
             }
         }
 
@@ -118,6 +114,7 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
         }
 
         .contact-form-left {
+            flex: 1;
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 32, 60);
@@ -127,146 +124,18 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
             }
         }
 
-        .contact-form-info {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 40, 24);
-        }
-
-        .contact-form-item {
-            width: 100%;
-            @include flex-center-start;
+        .contacts-info-item {
             @include adaptive(gap, 24, 14);
-            // @include adaptive(width, 74%, 100%);
-
-            @include mobile {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        .contact-form-label {
-            @include adaptive(font-size, 16, 18);
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 3.2);
-            opacity: 0.5;
-
-            @include mobile {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        .contact-form-separator {
-            height: 1px;
-            flex: 1;
-            background: var(--color-globus-sand);
-
-            @include mobile {
-                display: none;
-            }
-        }
-
-        .contact-form-value {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 28);
-            text-transform: uppercase;
-            text-decoration: none;
-        }
-
-        .contact-form-social {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 24, 24);
-            @include adaptive(align-items, flex-start, center);
+            width: 100%;
         }
 
         .contact-form-right {
+            flex: 1;
             display: flex;
             align-items: flex-start;
 
             @include mobile {
                 order: 1;
-            }
-        }
-
-        .contact-form-form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 32, 32);
-        }
-
-        .contact-form-form-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid color-mix(in srgb, var(--color-globus-sand) 50%, transparent);
-            @include font-circe-regular;
-            @include adaptive(font-size, 18, 16);
-            line-height: 1.2;
-            color: var(--color-globus-blue);
-            outline: none;
-            transition: border-color 0.3s;
-            @include adaptive(padding-top, 8, 8);
-            @include adaptive(padding-bottom, 8, 8);
-
-            &::placeholder {
-                @include font-circe-regular;
-                @include adaptive(font-size, 16, 18);
-                line-height: 1.6;
-                color: var(--color-globus-blue);
-                text-transform: uppercase;
-                @include adaptive(letter-spacing, 3.2, 3.2);
-                opacity: 0.5;
-            }
-
-            &:focus {
-                border-bottom-color: var(--color-globus-sand);
-            }
-        }
-
-        .contact-form-checkbox {
-            display: flex;
-            @include adaptive(gap, 12, 12);
-            align-items: flex-start;
-
-            input[type='checkbox'] {
-                @include adaptive(width, 18, 18);
-                @include adaptive(height, 18, 18);
-                flex-shrink: 0;
-                appearance: none;
-                border: 1px solid var(--color-globus-sand);
-                border-radius: 4px;
-                cursor: pointer;
-                transition: all 0.3s;
-                margin: 0;
-                margin-top: 2px;
-
-                &:checked {
-                    background: var(--color-globus-sand);
-                    border-color: var(--color-globus-sand);
-                }
-
-                &:hover {
-                    opacity: 0.8;
-                }
-            }
-
-            label {
-                @include font-circe-regular;
-                @include adaptive(font-size, 14, 16);
-                line-height: 1.4;
-                color: var(--color-globus-blue);
-                opacity: 0.7;
-                cursor: pointer;
-
-                a {
-                    color: inherit;
-                    font-size: inherit;
-                    font-family: inherit;
-                    letter-spacing: inherit;
-                    white-space: normal;
-                }
             }
         }
 

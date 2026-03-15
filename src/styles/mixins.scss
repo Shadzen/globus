@@ -10,11 +10,11 @@
         $vw: 75vw;
     }
 
-    @if meta.type-of($size)=='string' {
+    @if meta.type-of($size) == 'string' {
         @return $size;
     }
 
-    @if meta.type-of($size)=='number' and not math.is-unitless($size) {
+    @if meta.type-of($size) == 'number' and not math.is-unitless($size) {
         @return $size;
     }
 
@@ -26,10 +26,10 @@
 }
 
 @mixin adaptive($property, $desktop-size, $mobile-size, $important: false) {
-    $suffix: "";
+    $suffix: '';
 
     @if $important {
-        $suffix: " !important";
+        $suffix: ' !important';
     }
 
     #{$property}: adaptive-value($desktop-size, $default-width) #{$suffix};
@@ -170,6 +170,7 @@
     border-color: var(--color-globus-sand);
     @include adaptive(border-width, 2, 2);
     border-radius: 500px;
+    @include adaptive(padding-top, 2, 2);
     white-space: nowrap;
     z-index: 2;
 
@@ -186,6 +187,11 @@
         transition: all 0.3s ease;
         cursor: pointer;
 
+        @include mobile {
+            width: 100%;
+            align-self: stretch;
+        }
+
         &:hover {
             opacity: 0.8;
             transform: translateY(-2px);
@@ -201,11 +207,6 @@
         @include adaptive(width, 40, 30);
         @include adaptive(height, 40, 30);
         flex-shrink: 0;
-    }
-
-    @include mobile {
-        width: 100%;
-        align-self: stretch;
     }
 
     .button-numbers {
@@ -227,11 +228,16 @@
 }
 
 @mixin button-sized {
-    @include button-default;
-    @include adaptive(letter-spacing, 2.2, 3.6);
-    @include adaptive(height, 61, 64);
+    @include adaptive(height, 61, auto);
     @include adaptive(padding-left, 40, 20);
     @include adaptive(padding-right, 40, 20);
+    @include adaptive(padding-top, 6, 6);
+    @include adaptive(padding-bottom, 4, 4);
+
+    &:is(a, button) {
+        @include adaptive(height, 61, 64);
+        @include adaptive(letter-spacing, 2.2, 3.6);
+    }
 }
 
 @mixin button-outline {
@@ -250,9 +256,25 @@
     &:is(a, button) {
         transition: transform 0.3s;
 
+        .card-image {
+            &::after {
+                content: '';
+                @include abs-default;
+                box-shadow: inset 0 0 0 color-mix(in srgb, var(--color-globus-blue) 0%, transparent);
+                transition: box-shadow 0.3s;
+                z-index: 1;
+            }
+        }
+
         &:hover {
             opacity: 1;
             transform: translateY(-4px);
+
+            .card-image {
+                &::after {
+                    box-shadow: inset 0 0 120px 12px color-mix(in srgb, var(--color-globus-blue) 100%, transparent);
+                }
+            }
         }
     }
 }

@@ -70,7 +70,12 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                         )
                     }
 
-                    <button class="button _contact" type="button" aria-label="Связаться с нами" data-modal-trigger="contact-popup">
+                    <button
+                        class="button _contact"
+                        type="button"
+                        aria-label="Связаться с нами"
+                        data-modal-trigger="contact-popup"
+                    >
                         <span>Связаться с нами</span>
                     </button>
 
@@ -157,10 +162,10 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 z-index: 999;
                 transform: translateX(100%);
                 transition: transform #{$menu-animation-duration} ease-in-out;
+            }
 
-                &._active {
-                    transform: translateX(0);
-                }
+            &._active {
+                transform: translateX(0);
             }
         }
 

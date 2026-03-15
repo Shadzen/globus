@@ -14,10 +14,17 @@ function openModal(modal: HTMLElement, _trigger: HTMLElement | null) {
     }
 }
 
+function isMobileMenuOpen(): boolean {
+    const menu = document.querySelector('.header-actions-wrapper')
+    return menu?.classList.contains('_active') ?? false
+}
+
 function closeModal(modal: HTMLElement, returnFocusTo: HTMLElement | null) {
     modal.classList.remove('_active')
     modal.setAttribute('aria-hidden', 'true')
-    document.body.classList.remove(BODY_SCROLL_CLASS)
+    if (!isMobileMenuOpen()) {
+        document.body.classList.remove(BODY_SCROLL_CLASS)
+    }
 
     if (returnFocusTo) {
         returnFocusTo.focus()

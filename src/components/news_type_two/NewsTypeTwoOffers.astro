@@ -54,26 +54,31 @@ const offers: HotelOffer[] = [
         <h2>Лучшие предложения с вылетом из<br />Новосибирска 22.10 на 9 ночей:</h2>
 
         <div class="offers-grid">
-            {offers.map((offer) => (
-                <div class={`card ${offer.position ? `_pos-${offer.position}` : ''}`}>
-                    <div class="card-image">
-                        <Image
-                            src={offer.image}
-                            alt={offer.title}
-                            loading="lazy"
-                            quality={100}
-                        />
-                        <span class="card-badge">{offer.badge}</span>
+            {
+                offers.map((offer) => (
+                    <div class="hotel-card">
+                        <a
+                            href="#"
+                            class={`card _interactive ${offer.position ? `_pos-${offer.position}` : ''}`}
+                        >
+                            <span class="card-image">
+                                <Image
+                                    src={offer.image}
+                                    alt={offer.title}
+                                    loading="lazy"
+                                    quality={100}
+                                />
+                                <span class="card-badge">{offer.badge}</span>
+                            </span>
+                            <span class="card-content">
+                                <h3 class="card-title">{offer.title}</h3>
+                                <p class="card-price">{offer.price}</p>
+                            </span>
+                        </a>
+                        <button class="button _sized">Забронировать</button>
                     </div>
-                    <div class="card-content">
-                        <h3 class="card-title">{offer.title}</h3>
-                        <p class="card-price">{offer.price}</p>
-                        <button class="button _sized" type="button">
-                            Забронировать
-                        </button>
-                    </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </div>
 </section>

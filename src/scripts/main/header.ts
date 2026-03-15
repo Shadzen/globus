@@ -41,8 +41,11 @@ export const initHeader = () => {
             mobileMenuBtn.classList.toggle('_active')
             headerActionsWrapper.classList.toggle('_active')
 
-            // Use existing class to lock scroll
-            document.body.classList.toggle('_disable-scrolling')
+            if (isActive) {
+                document.body.classList.remove('_disable-scrolling')
+            } else {
+                document.body.classList.add('_disable-scrolling')
+            }
 
             // Toggle logo for mobile menu
             if (logoWrapper) {

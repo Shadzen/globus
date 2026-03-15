@@ -117,25 +117,11 @@ const advantages: Advantage[] = [
             position: relative;
             width: 100%;
             @include flex-start-center;
-            @include adaptive(gap, 70, 15);
+            @include adaptive(gap, 70, 0);
             flex-flow: wrap;
 
             @include mobile {
-                gap: 0;
-            }
-
-            > * {
-                flex: 30%;
-                max-width: 31%;
-            }
-
-            @include mobile {
                 flex-direction: column;
-                > * {
-                    flex: 100%;
-                    max-width: 100%;
-                    width: 100%;
-                }
             }
         }
 
@@ -143,6 +129,9 @@ const advantages: Advantage[] = [
             display: flex;
             flex-direction: column;
             @include adaptive(gap, 10, 10);
+            @include adaptive(flex, 30%, 100%);
+            @include adaptive(width, auto, 100%);
+            @include adaptive(max-width, 31%, 100%);
 
             @include mobile {
                 &:nth-child(1) {
@@ -195,17 +184,8 @@ const advantages: Advantage[] = [
             flex-wrap: wrap;
             @include adaptive(margin-top, 24, 24);
 
-            > * {
-                flex: 20%;
-                min-width: 20%;
-            }
-
             @include mobile {
                 flex-direction: column;
-                > * {
-                    flex: 100%;
-                    max-width: 100%;
-                }
             }
         }
 
@@ -223,6 +203,9 @@ const advantages: Advantage[] = [
         }
 
         .advantage-item {
+            @include adaptive(flex, 20%, 100%);
+            @include adaptive(width, 20%, 100%);
+
             @include mobile {
                 flex-direction: row;
             }

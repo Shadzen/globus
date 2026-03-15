@@ -104,13 +104,19 @@ const base = import.meta.env.BASE_URL
         width: 100%;
         overflow: hidden;
         z-index: 10;
-        @include adaptive(padding-top, 20, 10);
+        @include adaptive(padding-top, 40, 20);
     }
 
     .cards-bottom-grid {
         position: relative;
         width: 100%;
         display: flex;
+    }
+
+    .hotel-card {
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 32, 40);
     }
 
     .card {
@@ -153,7 +159,6 @@ const base = import.meta.env.BASE_URL
 
     .card-category,
     .card-date {
-        @include font-circe-regular;
         @include adaptive(font-size, 16, 18);
         line-height: 1.6;
         color: var(--color-globus-light-blue);
@@ -173,9 +178,7 @@ const base = import.meta.env.BASE_URL
     }
 
     .card-price {
-        @include font-circe-regular;
         @include adaptive(font-size, 26, 26);
-        line-height: 1.2;
         color: var(--color-globus-sand);
     }
 

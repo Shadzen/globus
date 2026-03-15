@@ -37,21 +37,23 @@ const hotels: Hotel[] = [
         <div class="hotels-grid">
             {
                 hotels.map((hotel) => (
-                    <div class="card">
-                        <div class="card-image">
-                            <img
-                                src={hotel.image}
-                                alt={hotel.name}
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <div class="card-badge">{hotel.badge}</div>
-                        </div>
-                        <h3 class="card-title">{hotel.name}</h3>
-                        <p class="card-price">{hotel.price}</p>
-                        <a href="#" class="button _sized">
-                            Забронировать
+                    <div class="hotel-card">
+                        <a href="#" class="card _interactive">
+                            <span class="card-image">
+                                <img
+                                    src={hotel.image}
+                                    alt={hotel.name}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                                <span class="card-badge">{hotel.badge}</span>
+                            </span>
+                            <span class="card-content">
+                                <h3 class="card-title">{hotel.name}</h3>
+                                <p class="card-price">{hotel.price}</p>
+                            </span>
                         </a>
+                        <button class="button _sized">Забронировать</button>
                     </div>
                 ))
             }
@@ -93,8 +95,12 @@ const hotels: Hotel[] = [
             }
         }
 
-        .card {
+        .hotel-card {
             @include adaptive(width, 48.8%, 100%);
+        }
+
+        .card {
+            width: 100%;
         }
 
         .card-image {

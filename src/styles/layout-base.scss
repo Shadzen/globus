@@ -83,6 +83,21 @@ section {
             color: var(--color-globus-sand);
         }
 
+        .button {
+            color: var(--color-globus-cream);
+
+            &._outline {
+                color: var(--color-globus-sand);
+            }
+        }
+
+        label,
+        input,
+        textarea,
+        ::placeholder {
+            color: var(--color-globus-cream);
+        }
+
         h1,
         h2,
         h3,
@@ -204,6 +219,13 @@ a {
     }
 }
 
+label,
+input,
+textarea,
+::placeholder {
+    @include adaptive(padding-top, 2, 2);
+}
+
 ol {
     padding-left: 0;
     list-style-position: inside;
@@ -252,6 +274,15 @@ ul {
             }
         }
     }
+}
+
+
+._font-circle {
+    @include font-circe-regular;
+}
+
+._font-kudry {
+    @include font-kudry-sans;
 }
 
 .list-grid {
@@ -317,6 +348,7 @@ ul {
 }
 
 ._light-text {
+
     h1,
     h2,
     h3,
@@ -327,6 +359,13 @@ ul {
     ul,
     ol,
     li {
+        color: var(--color-globus-cream);
+    }
+
+    label,
+    input,
+    textarea,
+    ::placeholder {
         color: var(--color-globus-cream);
     }
 
@@ -346,6 +385,7 @@ ul {
 }
 
 ._dark-text {
+
     h1,
     h2,
     h3,
@@ -356,6 +396,13 @@ ul {
     ul,
     ol,
     li {
+        color: var(--color-globus-blue);
+    }
+
+    label,
+    input,
+    textarea,
+    ::placeholder {
         color: var(--color-globus-blue);
     }
 
@@ -370,6 +417,145 @@ ul {
 
         .back-text {
             color: var(--color-globus-blue) !important;
+        }
+    }
+}
+
+.contacts-info {
+    display: flex;
+    flex-direction: column;
+    @include adaptive(gap, 40, 24);
+}
+
+.contacts-info-item {
+    @include flex-center-start;
+
+    @include mobile {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.contacts-info-label {
+    @include adaptive(font-size, 16, 18);
+    text-transform: uppercase;
+    @include adaptive(letter-spacing, 3.2, 3.2);
+    opacity: 0.5;
+
+    @include mobile {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.contacts-info-separator {
+    height: 1px;
+    flex: 1;
+    background: var(--color-globus-sand);
+
+    @include mobile {
+        display: none;
+    }
+}
+
+.contacts-info-value {
+    @include font-kudry-sans;
+    @include adaptive(font-size, 28, 28);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.contacts-social {
+    display: flex;
+    flex-direction: column;
+    @include adaptive(gap, 24, 24);
+    @include adaptive(align-items, flex-start, center);
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    @include adaptive(gap, 32, 32);
+}
+
+.contact-form-title {
+    @include adaptive(font-size, 28, 26);
+    opacity: 0.4;
+
+    @include mobile {
+        text-align: center;
+    }
+}
+
+.contact-form-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-globus-sand) 50%, transparent);
+    @include font-circe-regular;
+    @include adaptive(font-size, 18, 16);
+    line-height: 1.2;
+    color: var(--color-globus-blue);
+    outline: none;
+    transition: border-color 0.3s;
+    @include adaptive(padding-top, 8, 8);
+    @include adaptive(padding-bottom, 8, 8);
+
+    &::placeholder {
+        @include font-circe-regular;
+        @include adaptive(font-size, 16, 18);
+        line-height: 1.6;
+        color: var(--color-globus-blue);
+        text-transform: uppercase;
+        @include adaptive(letter-spacing, 3.2, 3.2);
+        opacity: 0.5;
+    }
+
+    &:focus {
+        border-bottom-color: var(--color-globus-sand);
+    }
+}
+
+.contact-form-checkbox {
+    display: flex;
+    @include adaptive(gap, 12, 12);
+    align-items: flex-start;
+
+    input[type='checkbox'] {
+        @include adaptive(width, 18, 18);
+        @include adaptive(height, 18, 18);
+        flex-shrink: 0;
+        appearance: none;
+        border: 1px solid var(--color-globus-sand);
+        @include adaptive(border-radius, 4, 4);
+        cursor: pointer;
+        transition: all 0.3s;
+        margin: 0;
+
+        &:checked {
+            background: var(--color-globus-sand);
+            border-color: var(--color-globus-sand);
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    label {
+        @include font-circe-regular;
+        @include adaptive(font-size, 14, 16);
+        line-height: 1.4;
+        color: var(--color-globus-blue);
+        opacity: 0.6;
+        cursor: pointer;
+
+        a {
+            color: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            letter-spacing: inherit;
+            white-space: normal;
         }
     }
 }
@@ -459,6 +645,11 @@ ul {
 
         .button {
             @include adaptive(font-size, 22, 18);
+            color: var(--color-globus-cream);
+
+            &._outline {
+                color: var(--color-globus-sand);
+            }
         }
     }
 

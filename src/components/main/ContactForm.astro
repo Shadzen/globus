@@ -19,24 +19,24 @@ const { userType = 'tourist' } = Astro.props
                 <div class="contact-left">
                     <h2>Открываем мир</h2>
 
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="contact-label">Телефон</span>
-                            <div class="contact-separator" />
+                    <div class="contacts-info">
+                        <div class="contacts-info-item">
+                            <span class="contacts-info-label">Телефон</span>
+                            <div class="contacts-info-separator" />
                             <div class="social-icons">
                                 <a href="#" class="social-icon" aria-label="Telegram">
                                     <img src={telegramAccentIcon.src} alt="" />
                                 </a>
                             </div>
-                            <a href="tel:880020006578" class="contact-value">
+                            <a href="tel:880020006578" class="contacts-info-value">
                                 8 800 2000 6578
                             </a>
                         </div>
 
-                        <div class="contact-item">
-                            <span class="contact-label">Email</span>
-                            <div class="contact-separator" />
-                            <a href="mailto:info@globus-tour.ru" class="contact-value">
+                        <div class="contacts-info-item">
+                            <span class="contacts-info-label">Email</span>
+                            <div class="contacts-info-separator" />
+                            <a href="mailto:info@globus-tour.ru" class="contacts-info-value">
                                 info@globus-tour.ru
                             </a>
                         </div>
@@ -72,52 +72,42 @@ const { userType = 'tourist' } = Astro.props
 
                 <div class="contact-right">
                     <form class="contact-form">
-                        <h3 class="form-title">Напишите прямо сейчас</h3>
+                        <h3 class="contact-form-title">Напишите прямо сейчас</h3>
 
-                        <div class="form-group">
-                            <label for="contact-name" class="form-label">
-                                Имя
-                            </label>
-                            <input
-                                type="text"
-                                id="contact-name"
-                                name="name"
-                                class="form-input"
-                                autocomplete="name"
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="contact-name"
+                            name="name"
+                            class="contact-form-input"
+                            placeholder="Имя"
+                            aria-label="Имя"
+                            autocomplete="name"
+                        />
+                        <input
+                            type="tel"
+                            id="contact-phone"
+                            name="phone"
+                            class="contact-form-input"
+                            placeholder="Телефон"
+                            aria-label="Телефон"
+                            autocomplete="tel"
+                        />
+                        <input
+                            type="text"
+                            id="contact-comment"
+                            name="comment"
+                            class="contact-form-input"
+                            placeholder="Комментарий"
+                            aria-label="Комментарий"
+                            autocomplete="off"
+                        />
 
-                        <div class="form-group">
-                            <label for="contact-phone" class="form-label">
-                                Телефон
-                            </label>
-                            <input
-                                type="tel"
-                                id="contact-phone"
-                                name="phone"
-                                class="form-input"
-                                autocomplete="tel"
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contact-comment" class="form-label">
-                                Комментарий
-                            </label>
-                            <input
-                                type="text"
-                                id="contact-comment"
-                                name="comment"
-                                class="form-input"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <div class="form-checkbox">
+                        <div class="contact-form-checkbox">
                             <input type="checkbox" id="contact-agree" name="agree" required />
                             <label for="contact-agree">
-                                Я принимаю условия Пользовательского соглашения и подтверждаю
-                                согласие на обработку моих персональных данных.
+                                Я принимаю условия <a href="#">Пользовательского соглашения</a> и
+                                подтверждаю
+                                <a href="#">согласие на обработку моих персональных данных</a>.
                             </label>
                         </div>
 
@@ -127,7 +117,7 @@ const { userType = 'tourist' } = Astro.props
                     </form>
                 </div>
             </div>
-        :   <div class="section-container _alt-paddings">
+        :   <div class="contact-agent-container _alt-paddings">
                 <h2>Открываем мир</h2>
 
                 <div class="contact-agent-buttons">
@@ -207,57 +197,13 @@ const { userType = 'tourist' } = Astro.props
             }
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 36, 20);
-        }
-
-        .contact-item {
-            @include flex-center-start;
+        .contacts-info-item {
             @include adaptive(gap, 36, 14);
             @include adaptive(width, 74%, 100%);
-
-            @include mobile {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
         }
 
-        .contact-label {
-            @include adaptive(font-size, 16, 18);
-            line-height: 1.6;
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 3.2);
-            opacity: 0.4;
-
-            @include mobile {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        .contact-separator {
-            height: 1px;
-            flex: 1;
-            background: var(--color-globus-sand);
-
-            @include mobile {
-                display: none;
-            }
-        }
-
-        .contact-value {
-            @include font-kudry-sans;
-            @include adaptive(font-size, 28, 26);
+        .contacts-info-value {
             color: var(--color-globus-cream);
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: opacity 0.3s;
-
-            &:hover {
-                opacity: 0.8;
-            }
         }
 
         .social-icons {
@@ -313,7 +259,8 @@ const { userType = 'tourist' } = Astro.props
             outline: none;
 
             &::placeholder {
-                color: var(--color-globus-grey);
+                color: var(--color-globus-cream);
+                opacity: 0.5;
             }
         }
 
@@ -334,7 +281,6 @@ const { userType = 'tourist' } = Astro.props
             }
 
             &:hover {
-                // opacity: 0.8;
                 transform: scale(1.05);
             }
 
@@ -353,99 +299,12 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .contact-form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-title {
-            @include adaptive(font-size, 28, 26);
-            opacity: 0.4;
-            margin: 0;
-
-            @include mobile {
-                text-align: center;
-            }
-        }
-
-        .form-group {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            @include adaptive(margin-top, 32, 32);
-        }
-
-        .form-label {
-            @include font-circe-regular;
-            @include adaptive(font-size, 16, 18);
-            line-height: 1.6;
-            color: var(--color-globus-cream);
-            text-transform: uppercase;
-            @include adaptive(letter-spacing, 3.2, 3.2);
-            opacity: 0.4;
-        }
-
-        .form-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid color-mix(in srgb, var(--color-globus-sand) 50%, transparent);
-            @include font-kudry-sans;
-            @include adaptive(font-size, 20, 16);
-            line-height: 1.2;
-            color: var(--color-globus-cream);
-            outline: none;
-            transition: border-color 0.3s;
-
-            &::placeholder {
-                color: var(--color-globus-grey);
-            }
-
-            &:focus {
-                border-bottom-color: var(--color-globus-sand);
-            }
-        }
-
-        .form-checkbox {
-            display: flex;
-            @include adaptive(gap, 16, 16);
-            align-items: flex-start;
-            @include adaptive(margin-top, 16, 16);
-
-            input[type='checkbox'] {
-                @include adaptive(width, 15, 15);
-                @include adaptive(height, 15, 15);
-                flex-shrink: 0;
-                appearance: none;
-                border: 1px solid var(--color-globus-sand);
-                @include adaptive(border-radius, 4, 4);
-                cursor: pointer;
-                transition: all 0.3s;
-                margin: 0;
-
-                &:checked {
-                    background: var(--color-globus-sand);
-                    border-color: var(--color-globus-sand);
-                }
-
-                &:hover {
-                    opacity: 0.8;
-                }
-            }
-
-            label {
-                @include font-circe-regular;
-                @include adaptive(font-size, 16, 20);
-                line-height: 1;
-                color: var(--color-globus-cream);
-                opacity: 0.4;
-                cursor: pointer;
-                @include adaptive(letter-spacing, -0.32, -0.32);
-            }
+            @include adaptive(gap, 40, 40);
         }
 
         &:not(._agent) .button {
-            @include adaptive(margin-top, 32, 32);
-            @include adaptive(width, 200, 100%);
+            // @include adaptive(margin-top, 38, 38);
+            @include adaptive(width, 222, 100%);
             align-self: flex-start;
         }
     }

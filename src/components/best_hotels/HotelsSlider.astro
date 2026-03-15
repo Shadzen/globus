@@ -32,26 +32,26 @@ const { hotels } = Astro.props
             hotels.map((hotel) => (
                 <div class="hotel-card swiper-slide">
                     <a href={hotel.href} class="card _interactive">
-                        <div class="card-image">
+                        <span class="card-image">
                             <Image
                                 src={hotel.image}
                                 alt={hotel.name}
                                 loading="lazy"
                                 quality={100}
                             />
-                            <div class="card-badge">
+                            <span class="card-badge">
                                 <span>{hotel.badge}</span>
-                            </div>
+                            </span>
                             {hotel.isRecommended && (
                                 <div class="hotel-recommended">
                                     <img src={gtRecommendsIcon.src} alt="GT рекомендует" />
                                 </div>
                             )}
-                        </div>
-                        <div class="card-content">
+                        </span>
+                        <span class="card-content">
                             <h3 class="card-title" set:html={hotel.name} />
                             <p class="card-price">{hotel.price}</p>
-                        </div>
+                        </span>
                     </a>
                     <button class="button _sized">Забронировать</button>
                 </div>
@@ -127,7 +127,7 @@ const { hotels } = Astro.props
         }
 
         .card-title {
-            @include adaptive(min-height, 67, 53);
+            @include adaptive(min-height, 67, 62);
         }
 
         .button {
