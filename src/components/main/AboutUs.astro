@@ -133,19 +133,29 @@ const advantages: Advantage[] = [
             @include adaptive(width, auto, 100%);
             @include adaptive(max-width, 31%, 100%);
 
-            @include mobile {
-                &:nth-child(1) {
+            &:nth-child(1) {
+                @include mobile {
                     order: 2;
-                    .about-item-content {
+                }
+
+                .about-item-content {
+                    @include mobile {
                         padding-right: 16%;
                     }
                 }
-                &:nth-child(2) {
+            }
+            &:nth-child(2) {
+                @include mobile {
                     order: 1;
                 }
-                &:nth-child(3) {
+            }
+            &:nth-child(3) {
+                @include mobile {
                     order: 3;
-                    .about-item-content {
+                }
+
+                .about-item-content {
+                    @include mobile {
                         padding-left: 33%;
                     }
                 }
