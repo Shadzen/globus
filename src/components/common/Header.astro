@@ -1,7 +1,6 @@
 ---
 // src/components/common/Header.astro
 import Logo from './Logo.astro'
-import dotsIcon from '@/assets/icons/dots.svg'
 const base = import.meta.env.BASE_URL
 
 interface Props {
@@ -16,41 +15,67 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
     <div class="header-container">
         <Logo userType={userType} color={heroTextColor === 'dark' ? 'dark' : 'light'} />
 
-        <div class="header-actions">
-            <div class:list={["user-type", `_${userType}`]}>
-                <a href={`${base}tourist/`} class:list={["user-type-btn", { "_active": userType === 'tourist' }]}>Турист</a>
-                <a href={`${base}agent/`} class:list={["user-type-btn", { "_active": userType === 'agent' }]}>Агент</a>
-            </div>
+        <div class="header-actions-wrapper">
+            <div class="header-actions">
+                <div class:list={['user-type', `_${userType}`]}>
+                    <a
+                        href={`${base}tourist/`}
+                        class:list={['user-type-btn', { _active: userType === 'tourist' }]}
+                        >Турист</a
+                    >
+                    <a
+                        href={`${base}agent/`}
+                        class:list={['user-type-btn', { _active: userType === 'agent' }]}>Агент</a
+                    >
+                </div>
 
-            <nav class="nav-menu">
-                {userType === 'agent' && (
-                    <a href="#">Кыргызстан</a>
-                )}
-                <a href={`${base}${userType}/about`}>О нас</a>
-                <a href={`${base}tourist/tourvisor`}>Поиск тура и отеля</a>
-                <a href={`${base}${userType}/news`}>Глобус-News</a>
-                {userType === 'tourist' ? (
-                    <>
-                        <a href="#">Коллекции туров</a>
-                        <a href={`${base}tourist/best_hotels`}>Лучшие отели мира</a>
-                        <a href={`${base}tourist/mice`}>Деловой туризм</a>
-                    </>
-                ) : (
-                    <>
-                        <a href={`${base}agent/partner`}>Стать партнером</a>
-                        <a href={`${base}agent/countries`}>Страны</a>
-                    </>
-                )}
-            </nav>
+                <nav class="nav-menu">
+                    {userType === 'agent' && <a href="#">Кыргызстан</a>}
+                    <a href={`${base}${userType}/about`}>О нас</a>
+                    <a href={`${base}tourist/tourvisor`}>Поиск тура и отеля</a>
+                    <a href={`${base}${userType}/news`}>Глобус-News</a>
+                    {
+                        userType === 'tourist' ?
+                            <>
+                                <a href="#">Коллекции туров</a>
+                                <a href={`${base}tourist/best_hotels`}>Лучшие отели мира</a>
+                                <a href={`${base}tourist/mice`}>Деловой туризм</a>
+                            </>
+                        :   <>
+                                <a href={`${base}agent/partner`}>Стать партнером</a>
+                                <a href={`${base}agent/countries`}>Страны</a>
+                            </>
+                    }
+                </nav>
 
-            <div class="contacts">
-                <a href="#" class="dots-btn">
-                    <img src={dotsIcon.src} alt="" />
-                </a>
+                <div class="contacts">
+                    {
+                        userType === 'agent' && (
+                            <a href="#" class="button _outline _login">
+                                <span class="button-label _desktop">ЛК</span>
+                                <span class="button-label _mobile">Вход в личный кабинет</span>
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 22 22"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M11.5508 21.7939C11.3574 21.7939 11.1957 21.729 11.0659 21.5992C10.936 21.4693 10.8711 21.3072 10.8711 21.1129C10.8711 20.9185 10.936 20.7565 11.0659 20.6266C11.1957 20.4967 11.3578 20.4318 11.5522 20.4318H19.5941C19.803 20.4318 19.995 20.3446 20.1703 20.1703C20.3456 19.9959 20.4327 19.8034 20.4318 19.5927V2.20119C20.4318 1.99142 20.3446 1.79891 20.1703 1.62365C19.9959 1.44839 19.8034 1.36121 19.5928 1.36212H11.5522C11.3578 1.36212 11.1957 1.29719 11.0659 1.16734C10.936 1.03748 10.8711 0.87539 10.8711 0.68106C10.8711 0.486731 10.936 0.324639 11.0659 0.194783C11.1957 0.0649279 11.3578 0 11.5522 0H19.5941C20.2207 0 20.7442 0.21022 21.1646 0.630662C21.5851 1.0511 21.7949 1.57461 21.7939 2.20119V19.5941C21.7939 20.2207 21.5842 20.7442 21.1646 21.1646C20.7451 21.5851 20.2211 21.7948 19.5928 21.7939H11.5508ZM12.1052 11.578H0.68107C0.487649 11.578 0.325556 11.5131 0.194793 11.3832C0.0640292 11.2534 -0.000898687 11.0913 9.39391e-06 10.897C0.000917474 10.7026 0.0658454 10.5405 0.194793 10.4107C0.32374 10.2808 0.485832 10.2159 0.68107 10.2159H12.1052L9.41907 7.53117C9.29194 7.40404 9.22384 7.25057 9.21476 7.07077C9.20568 6.89006 9.27378 6.72479 9.41907 6.57496C9.56437 6.42512 9.7251 6.34885 9.90127 6.34612C10.0774 6.3434 10.2409 6.41695 10.3916 6.56678L13.9508 10.126C14.1706 10.3467 14.2805 10.6037 14.2805 10.897C14.2805 11.1903 14.1706 11.4473 13.9508 11.6679L10.3916 15.2271C10.259 15.3597 10.1015 15.4292 9.91897 15.4356C9.73645 15.4419 9.56982 15.3697 9.41907 15.219C9.27378 15.0691 9.20295 14.9071 9.20658 14.7327C9.20931 14.5593 9.28286 14.4003 9.42725 14.256L12.1052 11.578Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </a>
+                        )
+                    }
 
-                <a href="#" class="contact-btn">Связаться с нами</a>
+                    <button class="button _contact" type="button" aria-label="Связаться с нами" data-modal-trigger="contact-popup">
+                        <span>Связаться с нами</span>
+                    </button>
 
-                <a href="tel:+73832000500" class="phone">+7 383 2000 500</a>
+                    <a href="tel:+73832000500" class="phone">+7 383 2000 500</a>
+                </div>
             </div>
         </div>
 
@@ -63,13 +88,20 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 </header>
 
 <style lang="scss" is:global>
+    $scroll-transition-duration: 0.4s;
+    $scroll-transition-easing: ease;
+    $menu-animation-duration: 0.3s;
+
     header {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 1000;
-        --menu-animation-duration: 0.3s;
+        transition:
+            background-color $scroll-transition-duration $scroll-transition-easing,
+            border-color $scroll-transition-duration $scroll-transition-easing;
+        border-bottom: 1px solid transparent;
 
         @media (min-aspect-ratio: 21/9) {
             padding: 0 12.5%;
@@ -80,6 +112,10 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         }
 
         .header-container {
+            transition:
+                padding-top $scroll-transition-duration $scroll-transition-easing,
+                padding-bottom $scroll-transition-duration $scroll-transition-easing,
+                gap $scroll-transition-duration $scroll-transition-easing;
             position: relative;
             width: 100%;
             @include flex-center;
@@ -95,11 +131,21 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             }
         }
 
-        .header-actions {
+        .header-container .logo-wrapper {
+            transition:
+                width $scroll-transition-duration $scroll-transition-easing,
+                height $scroll-transition-duration $scroll-transition-easing;
+        }
+
+        .header-actions-wrapper {
             position: relative;
             width: 100%;
-            @include flex-center-between;
             flex-shrink: 0;
+            @include adaptive(padding-top, 0, 110);
+            @include adaptive(padding-bottom, 0, 40);
+            @include adaptive(padding-left, 0, 15);
+            @include adaptive(padding-right, 0, 15);
+
             @include mobile {
                 position: fixed;
                 top: 0;
@@ -107,18 +153,27 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 bottom: 0;
                 width: 100dvw;
                 height: 100dvh;
-                @include side-paddings;
-                @include adaptive(padding-top, 110, 110);
-                @include adaptive(padding-bottom, 40, 40);
-                flex-direction: column;
                 background-color: var(--color-globus-blue);
                 z-index: 999;
                 transform: translateX(100%);
-                transition: transform var(--menu-animation-duration) ease-in-out;
+                transition: transform #{$menu-animation-duration} ease-in-out;
 
                 &._active {
                     transform: translateX(0);
                 }
+            }
+        }
+
+        .header-actions {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            @include flex-center-between;
+            flex-shrink: 0;
+            overflow-y: scroll;
+
+            @include mobile {
+                flex-direction: column;
             }
         }
 
@@ -127,6 +182,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             border-style: solid;
             border-color: var(--color-globus-sand);
             @include adaptive(border-width, 2, 2);
+            @include adaptive(height, 40, 50);
 
             &._tourist {
                 border-left: none;
@@ -136,8 +192,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 border-right: none;
             }
 
-            border-radius: 50px;
-            // box-shadow: inset -1px 1px 0px var(--color-globus-sand), inset 1px -1px 0px var(--color-globus-sand), inset 1px 1px 0px var(--color-globus-sand), inset -1px -1px 0px var(--color-globus-sand);
+            border-radius: 500px;
 
             @include mobile {
                 width: 100%;
@@ -146,11 +201,12 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 
         .user-type-btn {
             @include flex-center;
-            @include adaptive(padding-top, 6, 8);
+            @include adaptive(padding-top, 8, 10);
             @include adaptive(padding-bottom, 6, 8);
             @include adaptive(padding-left, 18, 18);
             @include adaptive(padding-right, 18, 18);
-            border-radius: 50px;
+            height: 100%;
+            border-radius: 500px;
             @include font-circe-regular;
             @include adaptive(font-size, 18, 22);
             line-height: 1.3;
@@ -162,6 +218,8 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             &._active {
                 background: var(--color-globus-sand) !important;
                 opacity: 1;
+                cursor: default;
+                pointer-events: none;
             }
 
             &:hover {
@@ -193,11 +251,10 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             }
 
             a {
-                @include font-circe-regular;
                 @include adaptive(font-size, 20, 22);
+                @include adaptive(padding-top, 2, 2);
                 color: var(--color-globus-cream);
                 opacity: 0.6;
-                transition: opacity 0.3s;
 
                 @include mobile {
                     width: 100%;
@@ -219,73 +276,97 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include adaptive(gap, 18, 18);
 
             @include mobile {
-                // flex-direction: column;
                 justify-content: flex-start;
                 flex-wrap: wrap;
                 width: 100%;
-                @include adaptive(gap, 30, 30);
-                // margin-top: 20px;
-            }
-        }
-
-        .dots-btn {
-            display: block;
-            @include adaptive(width, 40, 40);
-            @include adaptive(height, 40, 40);
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
             }
 
-            @include mobile {
-                order: 1;
-            }
-        }
+            .button {
+                @include adaptive(height, 40, 60);
+                @include adaptive(padding-top, 6, 6);
+                @include adaptive(padding-bottom, 6, 6);
+                @include adaptive(padding-left, 18, 24);
+                @include adaptive(padding-right, 18, 24);
+                @include adaptive(font-size, 20, 22);
+                @include adaptive(letter-spacing, 1, 3);
+                @include adaptive(column-gap, 6, 6);
+                color: var(--color-globus-cream);
 
-        .contact-btn {
-            @include flex-center;
-            @include adaptive(padding-top, 6, 6);
-            @include adaptive(padding-bottom, 6, 6);
-            @include adaptive(padding-left, 18, 18);
-            @include adaptive(padding-right, 18, 18);
+                svg {
+                    @include adaptive(width, 22, 30);
+                    @include adaptive(height, 22, 30);
+                }
 
-            border-style: solid;
-            border-color: var(--color-globus-sand);
-            @include adaptive(border-width, 2, 2);
-            // @include adaptive(border-radius, 25, 25);
-            border-radius: 50px;
+                &._login {
+                    @include adaptive(text-transform, capitalize, none);
+                    justify-content: space-between;
 
-            background: var(--color-globus-sand);
-            @include font-circe-regular;
-            @include adaptive(font-size, 20, 18);
-            color: var(--color-globus-cream) !important;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
+                    @include mobile {
+                        order: 2;
+                    }
 
-            &:hover {
-                opacity: 0.8;
-            }
+                    .button-label {
+                        @include adaptive(padding-top, 2, 2);
 
-            @include mobile {
-                order: 3;
-                width: 100%;
-                @include adaptive(height, 60, 60);
-                text-transform: uppercase;
-                @include adaptive(letter-spacing, 3, 3);
+                        &._desktop {
+                            @include adaptive(display, flex, none);
+                        }
+
+                        &._mobile {
+                            @include adaptive(display, none, flex);
+                        }
+                    }
+
+                    .button-label,
+                    svg {
+                        opacity: 0.6;
+
+                        @include mobile {
+                            opacity: 1;
+                        }
+                    }
+
+                    &:hover {
+                        color: var(--color-globus-cream);
+                        background-color: var(--color-globus-sand);
+                        opacity: 1;
+                        transform: translateY(0);
+
+                        .button-label,
+                        svg {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &._contact {
+                    @include adaptive(text-transform, none, uppercase);
+
+                    @include mobile {
+                        order: 3;
+                    }
+
+                    span {
+                        @include adaptive(padding-top, 2, 2);
+                    }
+
+                    &:hover {
+                        transform: translateY(0);
+                    }
+                }
             }
         }
 
         .phone {
             @include font-kudry-sans;
             @include adaptive(font-size, 28, 28);
+            @include adaptive(padding-top, 2, 2);
+            @include adaptive(margin-bottom, 0, 12);
             color: var(--color-globus-cream);
             text-transform: uppercase;
 
             @include mobile {
-                order: 2;
+                order: 1;
             }
         }
 
@@ -332,42 +413,44 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 background-color: var(--color-globus-cream);
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
-                transition: background-color var(--menu-animation-duration) ease-in-out;
+                transition: background-color #{$menu-animation-duration} ease-in-out;
 
                 &:nth-child(2) {
-                    transition: opacity 0.1s ease, background-color var(--menu-animation-duration) ease-in-out;
+                    transition:
+                        opacity 0.1s ease,
+                        background-color #{$menu-animation-duration} ease-in-out;
                 }
             }
 
             // State when menu is open
             &._active {
                 span:nth-child(1) {
-                    animation: topLineToX var(--menu-animation-duration) ease-in-out forwards;
+                    animation: topLineToX #{$menu-animation-duration} ease-in-out forwards;
                 }
 
                 span:nth-child(2) {
                     opacity: 0;
-                    transition-delay: calc(var(--menu-animation-duration) / 2);
+                    transition-delay: calc(#{$menu-animation-duration} / 2);
                 }
 
                 span:nth-child(3) {
-                    animation: bottomLineToX var(--menu-animation-duration) ease-in-out forwards;
+                    animation: bottomLineToX #{$menu-animation-duration} ease-in-out forwards;
                 }
             }
 
             // Close state (reverse animation) - only if button was already used
             &._initialized:not(._active) {
                 span:nth-child(1) {
-                    animation: topLineFromX var(--menu-animation-duration) ease-in-out forwards;
+                    animation: topLineFromX #{$menu-animation-duration} ease-in-out forwards;
                 }
 
                 span:nth-child(2) {
                     opacity: 1;
-                    transition-delay: calc(var(--menu-animation-duration) / 2);
+                    transition-delay: calc(#{$menu-animation-duration} / 2);
                 }
 
                 span:nth-child(3) {
-                    animation: bottomLineFromX var(--menu-animation-duration) ease-in-out forwards;
+                    animation: bottomLineFromX #{$menu-animation-duration} ease-in-out forwards;
                 }
             }
 
@@ -420,6 +503,35 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             }
         }
 
+        // Sticky header when scrolled: fixed, background, border, smaller logo
+        &._scrolled {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            &:not(._dark-text) {
+                background-color: var(--color-globus-blue);
+                border-bottom-color: color-mix(in srgb, white 10%, var(--color-globus-blue));
+            }
+
+            &._dark-text {
+                background-color: var(--color-globus-cream);
+                border-bottom-color: color-mix(in srgb, black 10%, var(--color-globus-cream));
+            }
+
+            .header-container {
+                @include adaptive(padding-top, 12, 10);
+                @include adaptive(padding-bottom, 16, 12);
+                @include adaptive(gap, 8, 6);
+            }
+
+            .header-container .logo-wrapper {
+                @include adaptive(width, 200, 171);
+                @include adaptive(height, 56, 48);
+            }
+        }
+
         // Dark text color for pages with light hero background
         &._dark-text {
             .user-type-btn {
@@ -438,6 +550,40 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 
                     @include mobile {
                         color: var(--color-globus-cream);
+                    }
+                }
+            }
+
+            .contacts {
+                .button {
+                    &._login {
+                        color: var(--color-globus-blue);
+
+                        &:hover {
+                            color: var(--color-globus-cream);
+
+                            span,
+                            svg {
+                                color: var(--color-globus-cream);
+                            }
+                        }
+
+                        @include mobile {
+                            color: var(--color-globus-cream);
+
+                            span,
+                            svg {
+                                color: var(--color-globus-cream);
+                            }
+                        }
+                    }
+
+                    &._contact {
+                        color: var(--color-globus-cream);
+
+                        span {
+                            color: var(--color-globus-cream);
+                        }
                     }
                 }
             }

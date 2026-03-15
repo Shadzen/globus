@@ -1,0 +1,128 @@
+---
+interface ScheduleTableRow {
+    logo: { src: string; alt: string }
+    cells: readonly [string, string, string]
+}
+
+interface Props {
+    headers: [string, string, string, string]
+    rows: ScheduleTableRow[]
+}
+
+const { headers, rows } = Astro.props
+
+const contentLabels = headers.slice(1).map((h) => `${h}:`)
+---
+
+<div class="schedule-table-section">
+    <div class="schedule-table">
+        <div class="table-header">
+            {headers.map((header) => (
+                <span class="table-cell header-cell">{header}</span>
+            ))}
+        </div>
+
+        {rows.map((row) => (
+            <div class="table-row">
+                <div class="table-cell airline-cell">
+                    <img
+                        src={row.logo.src}
+                        alt={row.logo.alt}
+                        class="airline-logo"
+                        loading="lazy"
+                    />
+                </div>
+                <span class="table-cell content-cell" data-label={contentLabels[0]}>
+                    {row.cells[0]}
+                </span>
+                <span class="table-cell content-cell" data-label={contentLabels[1]}>
+                    {row.cells[1]}
+                </span>
+                <span class="table-cell content-cell" data-label={contentLabels[2]}>
+                    {row.cells[2]}
+                </span>
+            </div>
+        ))}
+    </div>
+</div>
+
+<style lang="scss" is:global>
+    .schedule-table-section {
+        .schedule-table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            @include adaptive(gap, 45, 20);
+            @include adaptive(padding-bottom, 24, 16);
+            border-bottom: 1px solid var(--color-globus-sand);
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            @include adaptive(gap, 45, 16);
+            @include adaptive(padding-top, 24, 20);
+            @include adaptive(padding-bottom, 24, 20);
+            border-bottom: 1px solid var(--color-globus-sand);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .table-cell {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-cell {
+            @include adaptive(font-size, 20, 16);
+            opacity: 0.6;
+        }
+
+        .airline-cell {
+            @include adaptive(padding-top, 6, 6);
+            @include adaptive(margin-bottom, 0, 12);
+
+            @include mobile {
+                justify-content: center;
+            }
+
+            .airline-logo {
+                @include adaptive(max-width, 196, 140);
+                @include adaptive(max-height, 72, 50);
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        .content-cell {
+            position: relative;
+            @include adaptive(font-size, 26, 20);
+            @include adaptive(padding-left, 0, 120);
+
+            &::before {
+                position: absolute;
+                left: 0;
+                @include adaptive(font-size, 16, 16);
+                opacity: 0.6;
+            }
+
+            @include mobile {
+                &::before {
+                    content: attr(data-label);
+                }
+            }
+        }
+    }
+</style>

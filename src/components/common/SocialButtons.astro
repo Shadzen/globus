@@ -1,0 +1,72 @@
+---
+// Reusable social buttons: Telegram and WhatsApp, round links with sand background.
+// variant: 'default' = inline in layout, 'fixed' = fixed on screen (e.g. side strip).
+import telegramWhiteIcon from '@/assets/icons/telegram-white.svg'
+import whatsappWhiteIcon from '@/assets/icons/whatsapp-white.svg'
+
+interface Props {
+    variant?: 'default' | 'fixed'
+    telegramHref?: string
+    whatsappHref?: string
+}
+
+const { variant = 'default', telegramHref = '#', whatsappHref = '#' } = Astro.props
+---
+
+<div class="social-buttons" class:list={[variant === 'fixed' && '_fixed']}>
+    <a
+        href={telegramHref}
+        class="social-buttons-link"
+        aria-label="Telegram"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <img src={telegramWhiteIcon.src} alt="" width="24" height="24" />
+    </a>
+    <a
+        href={whatsappHref}
+        class="social-buttons-link"
+        aria-label="WhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <img src={whatsappWhiteIcon.src} alt="" width="24" height="24" />
+    </a>
+</div>
+
+<style lang="scss" is:global>
+    .social-buttons {
+        @include flex-center;
+        @include adaptive(gap, 24, 24);
+        border-radius: 500px;
+
+        &._fixed {
+            position: fixed;
+            z-index: 100;
+            @include adaptive(right, 24, 16);
+            @include adaptive(bottom, 24, 16);
+            background-color: var(--color-globus-sand);
+        }
+
+        .social-buttons-link {
+            @include flex-center;
+            height: 100%;
+            @include adaptive(height, 80, 80);
+            @include adaptive(width, 80, 80);
+            border-radius: 50%;
+            background-color: var(--color-globus-sand);
+            transition: transform 0.2s, opacity 0.2s;
+
+            img {
+                width: 60%;
+                height: 60%;
+                object-fit: contain;
+            }
+
+            &:hover {
+                opacity: 0.9;
+                transform: scale(1.05);
+            }
+        }
+    }
+</style>

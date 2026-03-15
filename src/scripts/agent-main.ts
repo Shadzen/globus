@@ -1,9 +1,11 @@
 // Agent pages only: mobile menu and any other agent-specific logic.
 // Used by AgentLayout (agent/tour_search, agent/tour_search_login).
 import { initHeader } from './main/header'
+import { initModal } from './common/modal'
 
 const initAgent = () => {
     initHeader()
+    initModal()
 }
 
 if (document.readyState === 'loading') {

@@ -105,14 +105,9 @@ const buttons = [
             flex-direction: column;
             @include adaptive(gap, 18, 16);
             @include adaptive(min-width, 179, 0);
-
-            @include mobile {
-                min-width: 0;
-            }
         }
 
         .tour-search-info-label {
-            @include font-circe-regular;
             @include adaptive(font-size, 16, 14);
             color: color-mix(in srgb, var(--color-globus-cream) 55%, transparent);
             line-height: 1.6;
@@ -135,7 +130,6 @@ const buttons = [
         .tour-search-info-value {
             @include adaptive(font-size, 26, 22);
             color: var(--color-globus-cream);
-            margin: 0;
         }
 
         .tour-search-info-icon {

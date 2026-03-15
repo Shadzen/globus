@@ -39,10 +39,10 @@ const tourInfo = {
                 <div class="promo-tour-info-prices">
                     {
                         tourInfo.prices.map((price) => (
-                            <a href="#" class="button _sized _outline">
-                                <span class="price-amount">{price.amount}</span>
-                                <span class="price-label">{price.label}</span>
-                            </a>
+                            <div class="button _sized _outline">
+                                <span class="button-amount">{price.amount}</span>
+                                <span class="button-label">{price.label}</span>
+                            </div>
                         ))
                     }
                 </div>
@@ -99,14 +99,6 @@ const tourInfo = {
             @include adaptive(min-width, 270, auto);
             flex-direction: column;
             color: var(--color-globus-blue);
-
-            .price-amount {
-                @include adaptive(font-size, 26, 26);
-            }
-
-            .price-label {
-                @include adaptive(font-size, 14, 18);
-            }
         }
     }
 </style>

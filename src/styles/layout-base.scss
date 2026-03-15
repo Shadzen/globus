@@ -239,8 +239,7 @@ ul {
             content: '';
             position: absolute;
             left: 0;
-            // em = relative to li font-size, scales with text
-            top: 0.35em;
+            top: 0.3em;
             @include adaptive(width, 12, 10);
             @include adaptive(height, 12, 10);
             border-radius: 50%;

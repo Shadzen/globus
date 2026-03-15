@@ -13,9 +13,11 @@ import { initNewsSlider } from './news/newsSlider'
 import { initNewsTypeTwoSlider } from './news_type_two/newsTypeTwoSlider'
 import { initCompaniesSlider } from './mice/companiesSlider'
 import { initAccordion } from './common/accordion'
+import { initModal } from './common/modal'
 
 const initAll = () => {
     initHeader()
+    initModal()
     initSearchForm()
     initTourCollections()
     initGlobusNews()

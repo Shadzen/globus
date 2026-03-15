@@ -89,26 +89,26 @@ const vipServices: ServiceItem[] = [
                                     ))}
                                 </ul>
                                 <div class="vip-prices">
-                                    <div class="vip-price">
-                                        <span class="vip-price-value">{item.prices.main}</span>
-                                        <span class="vip-price-note">{item.prices.mainNote}</span>
+                                    <div class="button _sized _outline">
+                                        <span class="button-amount">{item.prices.main}</span>
+                                        <span class="button-label">{item.prices.mainNote}</span>
                                     </div>
                                     {item.prices.secondary && (
-                                        <div class="vip-price">
-                                            <span class="vip-price-value">
+                                        <div class="button _sized _outline">
+                                            <span class="button-amount">
                                                 {item.prices.secondary}
                                             </span>
-                                            <span class="vip-price-note">
+                                            <span class="button-label">
                                                 {item.prices.secondaryNote}
                                             </span>
                                         </div>
                                     )}
                                     {item.prices.tertiary && (
-                                        <div class="vip-price">
-                                            <span class="vip-price-value">
+                                        <div class="button _sized _outline">
+                                            <span class="button-amount">
                                                 {item.prices.tertiary}
                                             </span>
-                                            <span class="vip-price-note">
+                                            <span class="button-label">
                                                 {item.prices.tertiaryNote}
                                             </span>
                                         </div>
@@ -193,33 +193,12 @@ const vipServices: ServiceItem[] = [
             display: flex;
             @include adaptive(gap, 20, 16);
             flex-wrap: wrap;
-        }
 
-        .vip-price {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--color-globus-sand);
-            border-radius: 390px;
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(height, 61, 64);
-            @include adaptive(min-width, 273, 100%);
-            // @include button-sized;
-            // @include button-outline;
-        }
-
-        .vip-price-value {
-            @include adaptive(font-size, 26, 22);
-            text-align: center;
-        }
-
-        .vip-price-note {
-            @include adaptive(font-size, 14, 16);
-            text-align: center;
+            .button {
+                @include adaptive(min-width, 270, auto);
+                flex-direction: column;
+                color: var(--color-globus-blue);
+            }
         }
 
         .country-vip-notes {

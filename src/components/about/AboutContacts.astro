@@ -198,8 +198,10 @@ const tabs: ContactTab[] = [
             @include adaptive(height, 61, 64);
             @include adaptive(padding-left, 48, 64);
             @include adaptive(padding-right, 48, 64);
-            border-radius: 50px;
-            border: 1px solid var(--color-globus-sand);
+            border-radius: 500px;
+            border-style: solid;
+            border-color: var(--color-globus-sand);
+            @include adaptive(border-width, 2, 2);
             background: transparent;
             cursor: pointer;
             transition: all 0.3s;

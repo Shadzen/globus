@@ -1,7 +1,7 @@
 ---
 interface BulletItem {
     title?: string
-    text: string
+    text?: string
 }
 
 type BulletItemOrString = BulletItem | string
@@ -17,8 +17,10 @@ interface Props {
 
 const { title, items, dark = true, columns = 2, titleSize = 'h2', compactGap = false } = Astro.props
 
-// Normalize items to always be objects
-const normalizedItems = items.map((item) => (typeof item === 'string' ? { text: item } : item))
+// Normalize items to always be objects (string → { text }, rest as-is)
+const normalizedItems = items.map((item) =>
+    typeof item === 'string' ? { text: item } : item,
+)
 ---
 
 <section class:list={['bullet-list-section', { _dark: dark }]}>
@@ -30,7 +32,7 @@ const normalizedItems = items.map((item) => (typeof item === 'string' ? { text: 
                 normalizedItems.map((item) => (
                     <li>
                         {item.title && <h4>{item.title}</h4>}
-                        <p set:html={item.text} />
+                        {item.text != null && <p set:html={item.text} />}
                     </li>
                 ))
             }

@@ -3,6 +3,8 @@
 // Styles here are built into a separate CSS chunk for deployment on another domain.
 import '../styles/fonts.scss'
 import Header from '@/components/common/Header.astro'
+import Modal from '@/components/common/Modal.astro'
+import ContactFormPopupContent from '@/components/main/ContactFormPopupContent.astro'
 
 interface Props {
     title: string
@@ -30,6 +32,9 @@ const base = import.meta.env.BASE_URL
         <main>
             <slot />
         </main>
+        <Modal id="contact-popup">
+            <ContactFormPopupContent />
+        </Modal>
         <script src="@/scripts/agent-main.ts"></script>
     </body>
 </html>

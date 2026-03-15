@@ -7,6 +7,8 @@ import 'swiper/css/navigation'
 import 'photoswipe/style.css'
 import Header from '@/components/common/Header.astro'
 import Footer from '@/components/common/Footer.astro'
+import Modal from '@/components/common/Modal.astro'
+import ContactFormPopupContent from '@/components/main/ContactFormPopupContent.astro'
 
 interface Props {
     title: string
@@ -36,6 +38,9 @@ const base = import.meta.env.BASE_URL
             <slot />
         </main>
         {showFooter && <Footer userType={userType} />}
+        <Modal id="contact-popup">
+            <ContactFormPopupContent />
+        </Modal>
         <script src="@/scripts/main.ts"></script>
     </body>
 </html>

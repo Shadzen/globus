@@ -74,23 +74,23 @@ const categories: PriceCategory[] = [
                             <p>{category.description}</p>
 
                             <div class="category-prices">
-                                <a href="#" class="button _sized _outline">
-                                    <span class="price-main">{category.prices.adult}</span>
-                                    <span class="price-note">{category.prices.adultNote}</span>
-                                </a>
+                                <div class="button _sized _outline">
+                                    <span class="button-amount">{category.prices.adult}</span>
+                                    <span class="button-label">{category.prices.adultNote}</span>
+                                </div>
 
                                 {category.prices.child && (
-                                    <a href="#" class="button _sized _outline">
-                                        <span class="price-main">{category.prices.child}</span>
-                                        <span class="price-note">{category.prices.childNote}</span>
-                                    </a>
+                                    <div class="button _sized _outline">
+                                        <span class="button-amount">{category.prices.child}</span>
+                                        <span class="button-label">{category.prices.childNote}</span>
+                                    </div>
                                 )}
 
                                 {category.prices.infant && (
-                                    <a href="#" class="button _sized _outline">
-                                        <span class="price-main">{category.prices.infant}</span>
-                                        <span class="price-note">{category.prices.infantNote}</span>
-                                    </a>
+                                    <div class="button _sized _outline">
+                                        <span class="button-amount">{category.prices.infant}</span>
+                                        <span class="button-label">{category.prices.infantNote}</span>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -200,17 +200,7 @@ const categories: PriceCategory[] = [
             .button {
                 @include adaptive(width, 273, 100%);
                 flex-direction: column;
-
-                .price-main {
-                    color: var(--color-globus-blue);
-                    @include adaptive(font-size, 26, 26);
-                }
-
-                .price-note {
-                    color: var(--color-globus-blue);
-                    @include adaptive(font-size, 14, 18);
-                    @include adaptive(margin-top, 2, 2);
-                }
+                color: var(--color-globus-blue);
             }
         }
 

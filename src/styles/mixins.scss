@@ -10,15 +10,15 @@
         $vw: 75vw;
     }
 
-    @if meta.type-of($size) == 'string' {
+    @if meta.type-of($size)=='string' {
         @return $size;
     }
 
-    @if meta.type-of($size) == 'number' and not math.is-unitless($size) {
+    @if meta.type-of($size)=='number' and not math.is-unitless($size) {
         @return $size;
     }
 
-    @if $size == 0 {
+    @if $size ==0 {
         @return 0;
     }
 
@@ -164,11 +164,7 @@
     @include adaptive(font-size, 16, 18);
     line-height: 1.2;
     color: var(--color-globus-cream);
-    text-transform: uppercase;
     text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    @include adaptive(letter-spacing, 3, 3);
     background: var(--color-globus-sand);
     border-style: solid;
     border-color: var(--color-globus-sand);
@@ -180,9 +176,28 @@
     * {
         color: inherit;
         font-size: inherit;
+        font-family: inherit;
+        letter-spacing: inherit;
     }
 
-    img, svg {
+    &:is(a, button) {
+        @include adaptive(letter-spacing, 3, 3);
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    img,
+    svg {
         @include adaptive(width, 40, 30);
         @include adaptive(height, 40, 30);
         flex-shrink: 0;
@@ -193,15 +208,6 @@
         align-self: stretch;
     }
 
-    &:hover {
-        opacity: 0.8;
-        transform: translateY(-2px);
-    }
-
-    &:active {
-        transform: translateY(0);
-    }
-
     .button-numbers {
         display: flex;
         @include adaptive(gap, 5, 0);
@@ -209,6 +215,14 @@
         @include mobile {
             flex-direction: column;
         }
+    }
+
+    .button-amount {
+        @include adaptive(font-size, 26, 24);
+    }
+
+    .button-label {
+        @include adaptive(font-size, 14, 18);
     }
 }
 
@@ -225,22 +239,21 @@
     color: var(--color-globus-sand);
     border-color: var(--color-globus-sand);
 
-    * {
-        color: inherit;
-        font-size: inherit;
-    }
-
-    &:hover {
-        background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
+    &:is(a, button) {
+        &:hover {
+            background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
+        }
     }
 }
 
 @mixin hover-card-default {
-    transition: transform 0.3s;
+    &:is(a, button) {
+        transition: transform 0.3s;
 
-    &:hover {
-        opacity: 1;
-        transform: translateY(-4px);
+        &:hover {
+            opacity: 1;
+            transform: translateY(-4px);
+        }
     }
 }
 
