@@ -21,9 +21,7 @@ const base = import.meta.env.BASE_URL
                     <a href={`${base}${userType}/about`}>О нас</a>
                     <a href={`${base}${userType}/tourvisor`}>Поиск туров</a>
                     <a href="#">Авиабилеты</a>
-                    {userType === 'agent' && (
-                        <a href={`${base}agent/docs_accordion`}>Документы</a>
-                    )}
+                    {userType === 'agent' && <a href={`${base}agent/docs_accordion`}>Документы</a>}
                 </nav>
             </div>
 
@@ -34,32 +32,34 @@ const base = import.meta.env.BASE_URL
                     <a href="#">Активный отдых</a>
                     <a href="#">Мероприятия</a>
                     <a href={`${base}tourist/concierge_service`}>Консьерж-сервис</a>
-                    {userType === 'agent' && (
-                        <>
-                            <a href={`${base}agent/countries`}>Страны</a>
-                            <a href={`${base}agent/promo_tours`}>Рекламные туры</a>
-                        </>
-                    )}
+                    {
+                        userType === 'agent' && (
+                            <>
+                                <a href={`${base}agent/countries`}>Страны</a>
+                                <a href={`${base}agent/promo_tours`}>Рекламные туры</a>
+                            </>
+                        )
+                    }
                 </nav>
             </div>
 
             <div class="footer-column">
                 <h3 class="footer-title">Полезное</h3>
                 <nav class="footer-nav">
-                    {userType === 'tourist' ? (
-                        <>
-                            <a href={`${base}tourist/visas`}>Визы</a>
-                            <a href={`${base}tourist/insurance`}>Страхование</a>
-                        </>
-                    ) : (
-                        <>
-                            <a href={`${base}agent/bonus_program`}>Бонусная программа</a>
-                            <a href={`${base}agent/selfie_travel`}>Selfie travel</a>
-                            <a href={`${base}agent/education`}>Обучение</a>
-                            <a href={`${base}agent/partner`}>Партнерам</a>
-                            <a href={`${base}agent/fin_guarantees`}>Финансовые гарантии</a>
-                        </>
-                    )}
+                    {
+                        userType === 'tourist' ?
+                            <>
+                                <a href={`${base}tourist/visas`}>Визы</a>
+                                <a href={`${base}tourist/insurance`}>Страхование</a>
+                            </>
+                        :   <>
+                                <a href={`${base}agent/bonus_program`}>Бонусная программа</a>
+                                <a href={`${base}agent/selfie_travel`}>Selfie travel</a>
+                                <a href={`${base}agent/education`}>Обучение</a>
+                                <a href={`${base}agent/partner`}>Партнерам</a>
+                                <a href={`${base}agent/fin_guarantees`}>Финансовые гарантии</a>
+                            </>
+                    }
                 </nav>
             </div>
 
@@ -79,10 +79,14 @@ const base = import.meta.env.BASE_URL
                 <a href={`${base}tourist/payment_methods`} class="footer-link">Способы оплаты</a>
             </div>
             <div class="footer-column">
-                <a href={`${base}tourist/privacy_policy`} class="footer-link">Политика конфиденциальности</a>
+                <a href={`${base}tourist/privacy_policy`} class="footer-link"
+                    >Политика конфиденциальности</a
+                >
             </div>
             <div class="footer-column">
-                <a href={`${base}tourist/user_agreement`} class="footer-link">Пользовательское соглашение</a>
+                <a href={`${base}tourist/user_agreement`} class="footer-link"
+                    >Пользовательское соглашение</a
+                >
             </div>
             <div class="footer-column">
                 <div class="footer-legal">
@@ -99,9 +103,9 @@ const base = import.meta.env.BASE_URL
 
 <style lang="scss" is:global>
     footer {
+        background: var(--color-globus-cream);
         position: relative;
         width: 100%;
-        background: var(--color-globus-cream);
         @include adaptive(padding-top, 120, 60);
         @include adaptive(padding-bottom, 30, 20);
         @include side-paddings;
@@ -125,32 +129,40 @@ const base = import.meta.env.BASE_URL
 
             @include mobile {
                 flex-direction: column;
+            }
 
-                &:nth-child(1) {
-                    .footer-column {
-                        &:nth-child(1) {
+            &:nth-child(1) {
+                .footer-column {
+                    &:nth-child(1) {
+                        @include mobile {
                             order: 2;
                         }
+                    }
 
-                        &:nth-child(2) {
+                    &:nth-child(2) {
+                        @include mobile {
                             order: 3;
                         }
+                    }
 
-                        &:nth-child(3) {
+                    &:nth-child(3) {
+                        @include mobile {
                             order: 4;
                         }
+                    }
 
-                        &:nth-child(4) {
+                    &:nth-child(4) {
+                        @include mobile {
                             order: 1;
                             flex-direction: row;
                             justify-content: space-between;
                         }
                     }
                 }
+            }
 
-                &:nth-child(2) {
-                    @include adaptive(margin-top, 0, 40);
-                }
+            &:nth-child(2) {
+                @include adaptive(margin-top, 0, 40);
             }
         }
 
@@ -237,8 +249,9 @@ const base = import.meta.env.BASE_URL
                 @include adaptive(font-size, 16, 18);
                 line-height: 1;
                 color: var(--color-globus-blue);
-                @include adaptive(letter-spacing, -0.32, 0.01);
+                @include adaptive(letter-spacing, -0.32, 0);
                 opacity: 0.6;
+
                 &:last-child {
                     @include adaptive(top, 20, 15);
 

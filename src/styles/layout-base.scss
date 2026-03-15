@@ -93,8 +93,12 @@ section {
 
         label,
         input,
-        textarea,
-        ::placeholder {
+        textarea {
+            color: var(--color-globus-cream);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
             color: var(--color-globus-cream);
         }
 
@@ -221,8 +225,12 @@ a {
 
 label,
 input,
-textarea,
-::placeholder {
+textarea {
+    @include adaptive(padding-top, 2, 2);
+}
+
+input::placeholder,
+textarea::placeholder {
     @include adaptive(padding-top, 2, 2);
 }
 
@@ -348,7 +356,6 @@ ul {
 }
 
 ._light-text {
-
     h1,
     h2,
     h3,
@@ -364,8 +371,12 @@ ul {
 
     label,
     input,
-    textarea,
-    ::placeholder {
+    textarea {
+        color: var(--color-globus-cream);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
         color: var(--color-globus-cream);
     }
 
@@ -385,7 +396,6 @@ ul {
 }
 
 ._dark-text {
-
     h1,
     h2,
     h3,
@@ -401,8 +411,12 @@ ul {
 
     label,
     input,
-    textarea,
-    ::placeholder {
+    textarea {
+        color: var(--color-globus-blue);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
         color: var(--color-globus-blue);
     }
 

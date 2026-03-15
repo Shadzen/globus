@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config'
-import autoprefixer from 'autoprefixer'
 import sortMediaQueries from 'postcss-sort-media-queries'
 import cssnano from 'cssnano'
 import postcss from 'postcss'
@@ -139,7 +138,7 @@ export default defineConfig({
             },
             postcss: {
                 plugins: [
-                    ...(!isDev ? [autoprefixer(), deduplicateMediaConditions()] : []),
+                    ...(!isDev ? [deduplicateMediaConditions()] : []),
                 ],
             },
         },
