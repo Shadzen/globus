@@ -32,7 +32,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 <nav class="nav-menu">
                     {userType === 'agent' && <a href="#">Кыргызстан</a>}
                     <a href={`${base}${userType}/about`}>О нас</a>
-                    <a href={`${base}tourist/tourvisor`}>Поиск тура и отеля</a>
+                    <a href={`${base}tourist/tourvisor`}>Поиск тура</a>
                     <a href={`${base}${userType}/news`}>Глобус-News</a>
                     {
                         userType === 'tourist' ?
@@ -52,20 +52,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                     {
                         userType === 'agent' && (
                             <a href="#" class="button _outline _login">
-                                <span class="button-label _desktop">ЛК</span>
-                                <span class="button-label _mobile">Вход в личный кабинет</span>
-                                <svg
-                                    width="22"
-                                    height="22"
-                                    viewBox="0 0 22 22"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M11.5508 21.7939C11.3574 21.7939 11.1957 21.729 11.0659 21.5992C10.936 21.4693 10.8711 21.3072 10.8711 21.1129C10.8711 20.9185 10.936 20.7565 11.0659 20.6266C11.1957 20.4967 11.3578 20.4318 11.5522 20.4318H19.5941C19.803 20.4318 19.995 20.3446 20.1703 20.1703C20.3456 19.9959 20.4327 19.8034 20.4318 19.5927V2.20119C20.4318 1.99142 20.3446 1.79891 20.1703 1.62365C19.9959 1.44839 19.8034 1.36121 19.5928 1.36212H11.5522C11.3578 1.36212 11.1957 1.29719 11.0659 1.16734C10.936 1.03748 10.8711 0.87539 10.8711 0.68106C10.8711 0.486731 10.936 0.324639 11.0659 0.194783C11.1957 0.0649279 11.3578 0 11.5522 0H19.5941C20.2207 0 20.7442 0.21022 21.1646 0.630662C21.5851 1.0511 21.7949 1.57461 21.7939 2.20119V19.5941C21.7939 20.2207 21.5842 20.7442 21.1646 21.1646C20.7451 21.5851 20.2211 21.7948 19.5928 21.7939H11.5508ZM12.1052 11.578H0.68107C0.487649 11.578 0.325556 11.5131 0.194793 11.3832C0.0640292 11.2534 -0.000898687 11.0913 9.39391e-06 10.897C0.000917474 10.7026 0.0658454 10.5405 0.194793 10.4107C0.32374 10.2808 0.485832 10.2159 0.68107 10.2159H12.1052L9.41907 7.53117C9.29194 7.40404 9.22384 7.25057 9.21476 7.07077C9.20568 6.89006 9.27378 6.72479 9.41907 6.57496C9.56437 6.42512 9.7251 6.34885 9.90127 6.34612C10.0774 6.3434 10.2409 6.41695 10.3916 6.56678L13.9508 10.126C14.1706 10.3467 14.2805 10.6037 14.2805 10.897C14.2805 11.1903 14.1706 11.4473 13.9508 11.6679L10.3916 15.2271C10.259 15.3597 10.1015 15.4292 9.91897 15.4356C9.73645 15.4419 9.56982 15.3697 9.41907 15.219C9.27378 15.0691 9.20295 14.9071 9.20658 14.7327C9.20931 14.5593 9.28286 14.4003 9.42725 14.256L12.1052 11.578Z"
-                                        fill="currentColor"
-                                    />
-                                </svg>
+                                <span>Личный кабинет</span>
                             </a>
                         )
                     }
@@ -297,33 +284,14 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 @include adaptive(column-gap, 6, 6);
                 color: var(--color-globus-cream);
 
-                svg {
-                    @include adaptive(width, 22, 30);
-                    @include adaptive(height, 22, 30);
-                }
-
                 &._login {
-                    @include adaptive(text-transform, capitalize, none);
-                    justify-content: space-between;
+                    text-transform: none;
 
                     @include mobile {
                         order: 2;
                     }
 
-                    .button-label {
-                        @include adaptive(padding-top, 2, 2);
-
-                        &._desktop {
-                            @include adaptive(display, flex, none);
-                        }
-
-                        &._mobile {
-                            @include adaptive(display, none, flex);
-                        }
-                    }
-
-                    .button-label,
-                    svg {
+                    span {
                         opacity: 0.6;
 
                         @include mobile {
@@ -337,8 +305,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                         opacity: 1;
                         transform: translateY(0);
 
-                        .button-label,
-                        svg {
+                        span {
                             opacity: 1;
                         }
                     }
@@ -349,10 +316,6 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 
                     @include mobile {
                         order: 3;
-                    }
-
-                    span {
-                        @include adaptive(padding-top, 2, 2);
                     }
 
                     &:hover {
