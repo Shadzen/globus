@@ -55,7 +55,7 @@ const { title, narrowContainer = true, dark = false } = Astro.props
             @include adaptive(margin-top, 78, 40);
             margin-left: auto;
             margin-right: auto;
-            width: 80%;
+            // width: 80%;
 
             @include mobile {
                 width: 100%;
@@ -69,11 +69,7 @@ const { title, narrowContainer = true, dark = false } = Astro.props
                 list-style: disc;
                 @include adaptive(padding-left, 30, 24);
                 gap: 0;
-                width: 70%;
-
-                @include mobile {
-                    width: 100%;
-                }
+                @include adaptive(width, 70%, 100%);
 
                 li {
                     @include adaptive(font-size, 20, 18);

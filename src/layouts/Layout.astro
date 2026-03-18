@@ -143,6 +143,7 @@ const base = import.meta.env.BASE_URL
     }
 
     .card-image {
+        display: inline-block;
         position: relative;
         width: 100%;
         @include adaptive(height, auto, 231);
@@ -169,6 +170,7 @@ const base = import.meta.env.BASE_URL
     .card-title {
         @include adaptive(font-size, 28, 26);
         color: var(--color-globus-blue);
+        @include adaptive(max-width, 500, 100%);
     }
 
     .card-description {
@@ -190,8 +192,8 @@ const base = import.meta.env.BASE_URL
         border-radius: 500px;
         @include adaptive(padding-left, 40, 20);
         @include adaptive(padding-right, 40, 20);
-        @include adaptive(padding-top, 16, 12);
-        @include adaptive(padding-bottom, 14, 10);
+        @include adaptive(padding-top, 10, 10);
+        @include adaptive(padding-bottom, 10, 10);
         @include font-circe-regular;
         color: var(--color-globus-cream);
         line-height: 1.2;

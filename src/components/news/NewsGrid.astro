@@ -22,6 +22,7 @@ interface NewsItem {
     date: string
     title: string
     slug: string
+    size: string
 }
 
 const newsItems: NewsItem[] = [
@@ -32,6 +33,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Саудовская Аравия: Туры на прямых рейсах из Москвы',
         slug: 'news_type_one',
+        size: '1',
     },
     {
         id: 2,
@@ -40,6 +42,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Турция приглашает на бархатный сезон!',
         slug: 'news_type_two',
+        size: '2',
     },
     {
         id: 3,
@@ -48,6 +51,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Мальдивы: Лучшие спецпредложения месяца',
         slug: 'news_type_four',
+        size: '2',
     },
     {
         id: 4,
@@ -56,6 +60,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Мальдивы: Лучшие спецпредложения месяца',
         slug: 'news_type_four',
+        size: '1',
     },
     {
         id: 5,
@@ -64,6 +69,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Мальдивы: Лучшие спецпредложения месяца',
         slug: 'news_type_four',
+        size: '2',
     },
     {
         id: 6,
@@ -72,6 +78,7 @@ const newsItems: NewsItem[] = [
         date: '16 октября 2025',
         title: 'Новый Год в Дубае',
         slug: 'news_type_three',
+        size: '1',
     },
 ]
 ---
@@ -81,7 +88,7 @@ const newsItems: NewsItem[] = [
         <div class="news-grid">
             {
                 newsItems.map((item) => (
-                    <a href={`${base}${userType}/${item.slug}/`} class="card _interactive">
+                    <a href={`${base}${userType}/${item.slug}/`} class={`card _interactive _size-${item.size}`}>
                         <span class="card-image">
                             <Image src={item.image} alt={item.title} loading="lazy" quality={100} />
                             <span class="card-badge">
@@ -104,7 +111,7 @@ const newsItems: NewsItem[] = [
         @include adaptive(padding-top, 60, 40);
 
         .news-grid {
-            @include adaptive(gap, 45, 20);
+            @include adaptive(gap, 100, 40);
 
             display: flex;
             flex-wrap: wrap;
@@ -116,16 +123,24 @@ const newsItems: NewsItem[] = [
         }
 
         .card {
-            @include adaptive(max-width, 56%, 100%);
+            // @include adaptive(max-width, 56%, 100%);
+
+            &._size-1 {
+                @include adaptive(width, 997, 100%);
+            }
+
+            &._size-2 {
+                @include adaptive(width, 563, 100%);
+            }
         }
 
         .card-badge {
             position: absolute;
-            @include adaptive(top, 28, 20);
+            @include adaptive(bottom, 28, 20);
             @include adaptive(left, 28, 20);
 
             span {
-                @include adaptive(font-size, 26, 18);
+                @include adaptive(font-size, 26, 26);
             }
         }
     }

@@ -24,8 +24,8 @@ const slides: TimelineSlide[] = [
         description:
             'мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием Доверили нам свои впечатления –и мы сделали их путешествия по-настоящему незабываемыми',
         images: [
-            { src: aboutTimeline1.src },
-            { src: aboutTimeline2.src, modifier: '_pos-top-1 _pos-right' },
+            { src: aboutTimeline1.src, modifier: '_size-1' },
+            { src: aboutTimeline2.src, modifier: '_size-1 _pos-top-1 _pos-right' },
         ],
     },
     {
@@ -33,7 +33,7 @@ const slides: TimelineSlide[] = [
         year: '2005',
         title: 'Расширение',
         description: 'Контент для 2005 года будет добавлен позже',
-        images: [{ src: 'https://placehold.co/828x540/CCA870/00273F?text=2005' }],
+        images: [{ src: 'https://placehold.co/828x540/CCA870/00273F?text=2005', modifier: '_size-3' }],
     },
     {
         id: 3,
@@ -43,15 +43,15 @@ const slides: TimelineSlide[] = [
         images: [
             {
                 src: 'https://placehold.co/414x309/CCA870/00273F?text=2009-1',
-                modifier: '_pos-top-1',
+                modifier: '_size-1 _pos-top-1',
             },
             {
                 src: 'https://placehold.co/390x240/CCA870/00273F?text=2009-2',
-                modifier: '_pos-right',
+                modifier: '_size-1 _pos-right',
             },
             {
                 src: 'https://placehold.co/300x200/CCA870/00273F?text=2009-3',
-                modifier: '_pos-center',
+                modifier: '_size-2 _pos-center',
             },
         ],
     },
@@ -60,7 +60,7 @@ const slides: TimelineSlide[] = [
         year: '2012',
         title: 'Новые горизонты',
         description: 'Контент для 2012 года будет добавлен позже',
-        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2012' }],
+        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2012', modifier: '_size-1' }],
     },
     {
         id: 5,
@@ -68,8 +68,8 @@ const slides: TimelineSlide[] = [
         title: 'Инновации',
         description: 'Контент для 2018 года будет добавлен позже',
         images: [
-            { src: 'https://placehold.co/414x309/CCA870/00273F?text=2018-1' },
-            { src: 'https://placehold.co/390x240/CCA870/00273F?text=2018-2' },
+            { src: 'https://placehold.co/414x309/CCA870/00273F?text=2018-1', modifier: '_size-1' },
+            { src: 'https://placehold.co/390x240/CCA870/00273F?text=2018-2', modifier: '_size-1' },
         ],
     },
     {
@@ -77,14 +77,14 @@ const slides: TimelineSlide[] = [
         year: '2021',
         title: 'Цифровизация',
         description: 'Контент для 2021 года будет добавлен позже',
-        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2021' }],
+        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2021', modifier: '_size-1' }],
     },
     {
         id: 7,
         year: '2025',
         title: 'Будущее',
         description: 'Контент для 2025 года будет добавлен позже',
-        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2025' }],
+        images: [{ src: 'https://placehold.co/414x309/CCA870/00273F?text=2025', modifier: '_size-1' }],
     },
 ]
 ---
@@ -282,7 +282,6 @@ const slides: TimelineSlide[] = [
         .slide-image {
             position: relative;
             overflow: hidden;
-            @include adaptive(max-width, auto, 272);
 
             img {
                 width: 100%;
@@ -301,6 +300,20 @@ const slides: TimelineSlide[] = [
 
             &._pos-top-1 {
                 @include adaptive(margin-top, 150, 0);
+            }
+
+            &._size-1 {
+                @include adaptive(min-width, 390, 0);
+                @include adaptive(max-width, 100%, 272);
+            }
+
+            &._size-2 {
+                @include adaptive(min-width, 300, 0);
+                @include adaptive(max-width, 100%, 222);
+            }
+
+            &._size-3 {
+                min-width: 100%;
             }
         }
 

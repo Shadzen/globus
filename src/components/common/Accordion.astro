@@ -54,9 +54,10 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
             border: none;
             @include adaptive(padding-top, 44, 22);
             @include adaptive(padding-bottom, 44, 22);
+            padding-left: 0;
+            padding-right: 0;
             cursor: pointer;
             text-align: left;
-            @include adaptive(padding-left, 146, 0);
 
             h3 {
                 color: var(--color-globus-blue);
@@ -70,13 +71,13 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
                 display: none;
             }
 
-            .accordion-header {
-                padding-left: 0;
-            }
+            // .accordion-header {
+            //     padding-left: 0;
+            // }
 
-            .accordion-content-inner {
-                width: 100%;
-            }
+            // .accordion-content-inner {
+            //     width: 100%;
+            // }
         }
 
         .accordion-icon {
@@ -99,10 +100,10 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
         .accordion-content-inner {
             @include adaptive(padding-bottom, 44, 22);
 
-            @include desktop {
-                width: 80%;
-                margin: 0 auto;
-            }
+            // @include desktop {
+            //     width: 80%;
+            //     margin: 0 auto;
+            // }
 
             p {
                 @include adaptive(font-size, 20, 18);
