@@ -1,4 +1,6 @@
 ---
+import BulletGrid from '../common/BulletGrid.astro'
+
 const services = {
     general: [
         'Лечение и диагностика',
@@ -42,107 +44,31 @@ const services = {
     entertainment: ['Рыбалка'],
     business: ['Бизнес-центр'],
 }
+
+const serviceCategories = [
+    { title: 'Общее', items: services.general },
+    { title: 'Бассейн<br />и пляж', items: services.pool },
+    { title: 'В номерах', items: services.rooms },
+    { title: 'Интернет', items: services.internet },
+    { title: 'Дети', items: services.kids },
+    { title: 'Спорт', items: services.sport },
+    { title: 'Услуги<br />и удобства', items: services.amenities },
+    { title: 'Питание', items: services.dining },
+    { title: 'Красота<br />и здоровье', items: services.beauty },
+    { title: 'Развлечение', items: services.entertainment },
+    { title: 'Бизнес', items: services.business },
+]
+
+const splitIndex = Math.ceil(serviceCategories.length / 2)
+const firstColumnCategories = serviceCategories.slice(0, splitIndex)
+const secondColumnCategories = serviceCategories.slice(splitIndex)
 ---
 
 <section class="hotel-services">
     <div class="section-container">
         <h2>Услуги в отеле</h2>
 
-        <div class="services-grid">
-            <!-- Left column -->
-            <div class="services-column">
-                <!-- General -->
-                <div class="service-category">
-                    <h3>Общее</h3>
-                    <ul>
-                        {services.general.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Pool and beach -->
-                <div class="service-category">
-                    <h3>Бассейн<br />и пляж</h3>
-                    <ul>
-                        {services.pool.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- In rooms -->
-                <div class="service-category">
-                    <h3>В номерах</h3>
-                    <ul>
-                        {services.rooms.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Internet -->
-                <div class="service-category">
-                    <h3>Интернет</h3>
-                    <ul>
-                        {services.internet.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Kids -->
-                <div class="service-category">
-                    <h3>Дети</h3>
-                    <ul>
-                        {services.kids.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Right column -->
-            <div class="services-column">
-                <!-- Sports -->
-                <div class="service-category">
-                    <h3>Спорт</h3>
-                    <ul>
-                        {services.sport.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Services and amenities -->
-                <div class="service-category">
-                    <h3>Услуги<br />и удобства</h3>
-                    <ul>
-                        {services.amenities.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Dining -->
-                <div class="service-category">
-                    <h3>Питание</h3>
-                    <ul>
-                        {services.dining.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Beauty and wellness -->
-                <div class="service-category">
-                    <h3>Красота<br />и здоровье</h3>
-                    <ul>
-                        {services.beauty.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Entertainment -->
-                <div class="service-category">
-                    <h3>Развлечение</h3>
-                    <ul>
-                        {services.entertainment.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-
-                <!-- Business -->
-                <div class="service-category">
-                    <h3>Бизнес</h3>
-                    <ul>
-                        {services.business.map((item) => <li>{item}</li>)}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <BulletGrid firstColumn={firstColumnCategories} secondColumn={secondColumnCategories} />
     </div>
 </section>
 
@@ -154,59 +80,6 @@ const services = {
         h2 {
             @include desktop {
                 text-align: left;
-            }
-        }
-
-        .services-grid {
-            display: flex;
-            flex-wrap: wrap;
-            @include adaptive(margin-top, 90, 40);
-            @include adaptive(gap, 90, 40);
-
-            @include mobile {
-                flex-direction: column;
-            }
-
-            h3 {
-                @include font-circe-regular;
-                @include adaptive(font-size, 24, 20);
-                @include adaptive(letter-spacing, 2.4, 2);
-                @include adaptive(width, 400, 240);
-                flex-shrink: 0;
-
-                @include mobile {
-                    width: 100%;
-                }
-            }
-        }
-
-        .services-column {
-            display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 40, 30);
-            flex: 1;
-            min-width: 0;
-
-            @include mobile {
-                flex: none;
-                width: 100%;
-            }
-        }
-
-        .service-category {
-            display: flex;
-            // flex-direction: column;
-            @include adaptive(gap, 20, 16);
-            @include adaptive(padding-bottom, 40, 30);
-            border-bottom: 1px solid var(--color-globus-sand);
-
-            &:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-
-            @include mobile {
-                flex-direction: column;
             }
         }
     }

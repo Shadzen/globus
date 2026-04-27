@@ -58,7 +58,6 @@
         .info-image {
             overflow: hidden;
             @include adaptive(height, auto, 231);
-            @include adaptive(max-width, 59%, 100%);
             flex-shrink: 0;
 
             img {
@@ -73,10 +72,12 @@
             }
 
             &._size-1 {
+                @include adaptive(max-width, 59%, 100%);
                 @include adaptive(min-width, 1003, 100%);
             }
 
             &._size-2 {
+                @include adaptive(max-width, 38%, 100%);
                 @include adaptive(min-width, 665, 100%);
             }
 

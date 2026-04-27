@@ -149,15 +149,27 @@ const base = import.meta.env.BASE_URL
             .card {
                 &:nth-child(1) {
                     @include adaptive(width, 54%, 100%);
+
+                    .card-image {
+                        @include adaptive(max-height, 331, none);
+                    }
                 }
                 &:nth-child(2) {
                     @include adaptive(width, 41.11%, 100%);
                     @include adaptive(margin-top, 80, 0);
+
+                    .card-image {
+                        @include adaptive(max-height, 350, none);
+                    }
                 }
                 &:nth-child(3) {
                     @include adaptive(width, 38.1%, 100%);
                     @include adaptive(margin-top, -48, 0);
                     @include adaptive(margin-left, 274, 0);
+
+                    .card-image {
+                        @include adaptive(max-height, 325, none);
+                    }
 
                     .card-category {
                         color: var(--color-globus-cream);

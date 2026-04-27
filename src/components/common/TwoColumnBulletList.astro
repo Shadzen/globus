@@ -11,12 +11,19 @@ interface Column {
 interface Props {
     columns: [Column, Column]
     dark?: boolean
+    showDivider?: boolean
+    centerTitle?: boolean
 }
 
-const { columns, dark = true } = Astro.props
+const { columns, dark = true, showDivider = true, centerTitle = false } = Astro.props
 ---
 
-<section class:list={['two-column-bullet-list-section', { _dark: dark }]}>
+<section
+    class:list={[
+        'two-column-bullet-list-section',
+        { _dark: dark, '_no-divider': !showDivider, '_center-title': centerTitle },
+    ]}
+>
     <div class="section-container">
         <div class="columns-grid">
             {
@@ -95,6 +102,7 @@ const { columns, dark = true } = Astro.props
 
         h3 {
             @include adaptive(font-size, 28, 26);
+            color: var(--color-globus-blue);
         }
 
         &._dark h3 {
@@ -106,6 +114,22 @@ const { columns, dark = true } = Astro.props
 
             li {
                 @include adaptive(font-size, 26, 20);
+            }
+        }
+
+        &._no-divider {
+            .columns-grid::before {
+                display: none;
+            }
+
+            .column::after {
+                display: none !important;
+            }
+        }
+
+        &._center-title {
+            h3 {
+                text-align: center;
             }
         }
     }

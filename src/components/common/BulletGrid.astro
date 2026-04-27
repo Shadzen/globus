@@ -1,0 +1,107 @@
+---
+export interface BulletGridCategory {
+    title: string
+    items: string[]
+}
+
+interface Props {
+    firstColumn: BulletGridCategory[]
+    secondColumn: BulletGridCategory[]
+}
+
+const { firstColumn, secondColumn } = Astro.props
+---
+
+<div class="bullet-grid">
+    <div class="bullet-grid-column">
+        {
+            firstColumn.map((category) => (
+                <div class="bullet-grid-category">
+                    <h3 set:html={category.title} />
+                    <ul>
+                        {category.items.map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))
+        }
+    </div>
+
+    <div class="bullet-grid-column">
+        {
+            secondColumn.map((category) => (
+                <div class="bullet-grid-category">
+                    <h3 set:html={category.title} />
+                    <ul>
+                        {category.items.map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style lang="scss" is:global>
+    .bullet-grid {
+        display: flex;
+        @include adaptive(margin-top, 90, 40);
+        @include adaptive(gap, 90, 40);
+
+        @include mobile {
+            flex-direction: column;
+        }
+
+        h3 {
+            @include font-circe-regular;
+            @include adaptive(font-size, 24, 20);
+            @include adaptive(letter-spacing, 2.4, 2);
+            @include adaptive(width, 400, 240);
+            flex-shrink: 0;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+    }
+
+    .bullet-grid-column {
+        display: flex;
+        flex-direction: column;
+        @include adaptive(gap, 40, 30);
+        flex: 1;
+        min-width: 0;
+
+        @include mobile {
+            flex: none;
+            width: 100%;
+        }
+
+        &:first-child {
+            .bullet-grid-category:last-child {
+                @include mobile {
+                    border-bottom: 1px solid var(--color-globus-sand);
+                    @include adaptive(padding-bottom, 40, 30);
+                }
+            }
+        }
+    }
+
+    .bullet-grid-category {
+        display: flex;
+        @include adaptive(gap, 20, 16);
+        @include adaptive(padding-bottom, 40, 30);
+        border-bottom: 1px solid var(--color-globus-sand);
+
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+</style>

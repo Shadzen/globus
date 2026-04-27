@@ -161,6 +161,11 @@ function initTouristsCounter() {
 
     if (!input || !dropdownList) return
 
+    // Clicks inside panel must not bubble to document — initDropdowns closes all lists on any document click
+    dropdownList.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
+
     const counts: TouristCounts = {
         adults: 2,
         children: 0,
@@ -198,7 +203,9 @@ function initTouristsCounter() {
 
     // Update counter display
     function updateCounterDisplay(type: keyof TouristCounts, value: number) {
-        const counter = touristsField?.querySelector(`[data-type="${type}"]`) as HTMLElement
+        const counter = touristsField?.querySelector(
+            `.counter-value[data-type="${type}"]`,
+        ) as HTMLElement | null
         if (counter) {
             counter.textContent = value.toString()
         }

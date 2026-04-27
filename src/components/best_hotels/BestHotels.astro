@@ -364,6 +364,9 @@ const hotels: Hotel[] = [
                 @include mobile {
                     flex: 0 0 100%;
                 }
+                .card-image {
+                    @include adaptive(height, 280, 231);
+                }
             }
         }
     }

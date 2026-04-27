@@ -1,0 +1,251 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Accordion from '@/components/common/Accordion.astro'
+import AccordionSection from '@/components/common/AccordionSection.astro'
+import InfoGrid from '@/components/common/InfoGrid.astro'
+import TwoColumnBulletList from '@/components/common/TwoColumnBulletList.astro'
+import BulletGrid from '@/components/common/BulletGrid.astro'
+import ScheduleTable from '@/components/common/ScheduleTable.astro'
+import TabBlock from '@/components/common/TabBlock.astro'
+import flynasLogo from '@/assets/images/news_type_one/company-logo-1.svg'
+import saudiaLogo from '@/assets/images/news_type_one/company-logo-2.png'
+import { COMPANY_NAME } from '@/scripts/utils'
+
+const accordionDemoSections = [
+    {
+        id: 'booking',
+        title: 'Booking and confirmation',
+        content: `
+            <p>After creating a request, the manager confirms availability and sends payment details within 1 business day.</p>
+        `,
+    },
+    {
+        id: 'changes',
+        title: 'Changes and cancellations',
+        content: `
+            <p>You can request changes by email. Free cancellation is available up to 72 hours before departure.</p>
+        `,
+    },
+    {
+        id: 'documents',
+        title: 'Travel documents',
+        content: `
+            <p>Final vouchers and tickets are usually sent 24-48 hours before departure.</p>
+        `,
+    },
+]
+
+const darkAccordionDemoSections = [
+    {
+        id: 'premium',
+        title: 'Premium support',
+        content: `
+            <p>24/7 support line for urgent travel cases and on-trip assistance.</p>
+        `,
+    },
+    {
+        id: 'vip-transfer',
+        title: 'VIP transfer options',
+        content: `
+            <p>Private transfers can be arranged for arrival and departure on request.</p>
+        `,
+    },
+    {
+        id: 'late-checkout',
+        title: 'Late check-out conditions',
+        content: `
+            <p>Late check-out depends on availability and is confirmed by the host property.</p>
+        `,
+    },
+]
+
+const twoColumnBulletDemo = [
+    {
+        title: 'Before departure',
+        items: [
+            { text: 'Confirm passport validity and entry rules for your destination.' },
+            { text: 'Save hotel and transfer contacts offline.' },
+            { text: 'Check baggage allowance with your carrier.' },
+        ],
+    },
+    {
+        title: 'On arrival',
+        items: [
+            { text: 'Keep vouchers and insurance details within reach.' },
+            { text: 'Inform the hotel if you expect a late check-in.' },
+            { text: 'Report any service issues to your manager promptly.' },
+        ],
+    },
+] as [
+    { title: string; items: { text: string }[] },
+    { title: string; items: { text: string }[] },
+]
+
+const servicesGridDemoFirstColumn = [
+        {
+            title: 'General',
+            items: ['Medical support'],
+        },
+        {
+            title: 'Pool and beach',
+            items: ['Outdoor pool', 'Private beach area'],
+        },
+        {
+            title: 'In rooms',
+            items: ['Room service', 'Mini bar', 'In-room safe'],
+        },
+]
+
+const servicesGridDemoSecondColumn = [
+        {
+            title: 'Sports',
+            items: ['Fitness center', 'Gym', 'Diving', 'Yoga deck'],
+        },
+        {
+            title: 'Dining',
+            items: ['Restaurant', 'Cafe', 'Pool bar', 'Lobby lounge', '24h room dining'],
+        },
+        {
+            title: 'Business',
+            items: [
+                'Business center',
+                'Meeting room',
+                'Fast Wi-Fi',
+                'Conference hall',
+                'Printing services',
+                'Private workspaces',
+            ],
+        },
+]
+
+const scheduleTableDemoRows = [
+    {
+        logo: { src: flynasLogo.src, alt: 'Flynas' },
+        cells: ['From 01.08.2026', 'Moscow (VKO) -> Riyadh', 'Mon, Wed, Fri'] as const,
+    },
+    {
+        logo: { src: saudiaLogo.src, alt: 'Saudia' },
+        cells: ['From 17.10.2026', 'Moscow (SVO) -> Riyadh', 'Tue, Fri, Sun'] as const,
+    },
+]
+
+const tabBlockDemoTabs = [
+    { label: 'Overview' },
+    { label: 'Rooms' },
+    { label: 'Dining' },
+    { label: 'Leisure' },
+]
+---
+
+<Layout title={`Component demos - ${COMPANY_NAME}`} showHeader={false} showFooter={false}>
+
+    <hr style="margin: 100px 0;" />
+
+    <AccordionSection title="Accordion Section demo">
+        <Fragment slot="intro">
+            <p>
+                This block demonstrates how to place short intro text before the accordion content.
+            </p>
+        </Fragment>
+        <Accordion sections={accordionDemoSections} />
+    </AccordionSection>
+
+    <hr style="margin: 100px 0;" />
+
+    <AccordionSection title="Accordion Section dark demo" dark={true} narrowContainer={false}>
+        <Accordion sections={darkAccordionDemoSections} theme="dark" type="docs" largeText={true} />
+    </AccordionSection>
+
+    <hr style="margin: 100px 0;" />
+
+    <InfoGrid>
+        <div class="info-grid-row">
+            <div class="info-text">
+                <p>
+                    This row shows the default left-text and right-image composition for short explanatory content.
+                </p>
+            </div>
+
+            <div class="info-image _size-1">
+                <img src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_httpss.mj_.rungti67ksmyxm_the_woman_is_sitting_on__d6c22194-ed18-4675-8afa-b04ea7032256_2.png" alt="Demo business travel visual" />
+            </div>
+        </div>
+
+        <div class="info-grid-row">
+            <div class="info-image _size-2 _pos-1">
+                <img src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_luxury_private_jet_interior_with_a_table_set_for__434a7078-7464-46e7-9095-2d5424d9fa19_3-e1776138977187.png" alt="Demo city skyline visual" />
+            </div>
+
+            <div class="info-text">
+                <p>
+                    The second row swaps the order and supports longer text blocks, matching real project usage.
+                </p>
+                <ul>
+                    <li set:text="Supports mixed text and list content" />
+                    <li set:text="Adapts to mobile with stacked order" />
+                    <li set:text="Uses existing utility spacing and typography" />
+                </ul>
+            </div>
+        </div>
+    </InfoGrid>
+
+    <hr style="margin: 100px 0;" />
+
+    <TwoColumnBulletList columns={twoColumnBulletDemo} dark={false} showDivider={false} centerTitle={true} />
+
+    <hr style="margin: 100px 0;" />
+
+    <TwoColumnBulletList columns={twoColumnBulletDemo} dark={true} />
+
+    <hr style="margin: 100px 0;" />
+
+    <section>
+        <div class="section-container">
+            <h2>Services Grid demo</h2>
+            <BulletGrid
+                firstColumn={servicesGridDemoFirstColumn}
+                secondColumn={servicesGridDemoSecondColumn}
+            />
+        </div>
+    </section>
+
+    <hr style="margin: 100px 0;" />
+
+    <section>
+        <div class="section-container">
+            <h2>Schedule Table demo</h2>
+            <ScheduleTable
+                headers={['Airline', 'Dates', 'Route', 'Departures']}
+                rows={scheduleTableDemoRows}
+            />
+        </div>
+    </section>
+
+    <hr style="margin: 100px 0;" />
+
+    <section>
+        <div class="section-container">
+            <h2>Tab Block demo (4 tabs)</h2>
+            <TabBlock groupName="dev-components-tab-block" tabs={tabBlockDemoTabs} defaultIndex={0}>
+                <p slot="panel-0">
+                    Short overview copy for the first tab. Use this area for hotel summary or lead text.
+                </p>
+                <p slot="panel-1">
+                    Room types, sizes, and occupancy rules can go here in real pages.
+                </p>
+                <p slot="panel-2">
+                    Restaurants, meal plans, and bar hours fit the dining tab.
+                </p>
+                <p slot="panel-3">
+                    Pools, spa, and activities belong in the leisure tab.
+                </p>
+            </TabBlock>
+        </div>
+    </section>
+
+    <hr style="margin: 100px 0;" />
+
+</Layout>
+
+<style lang="scss" is:global>
+</style>

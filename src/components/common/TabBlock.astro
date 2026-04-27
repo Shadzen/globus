@@ -1,0 +1,223 @@
+---
+import chevronIcon from '@/assets/icons/chevron-down.svg'
+
+export interface TabBlockItem {
+    label: string
+}
+
+const MAX_TABS = 10
+
+interface Props {
+    groupName: string
+    tabs: TabBlockItem[]
+    defaultIndex?: number
+}
+
+function slug(value: string) {
+    const s = value.replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    return s || 'tab-block'
+}
+
+const { groupName, tabs: rawTabs, defaultIndex = 0 } = Astro.props
+const tabs = rawTabs.slice(0, MAX_TABS)
+const radioName = slug(groupName)
+const tabInputIds = tabs.map((_, i) => `${radioName}-tab-${i}`)
+const safeDefaultIndex =
+    tabs.length === 0 ? 0 : Math.min(Math.max(0, defaultIndex), tabs.length - 1)
+---
+
+{
+    tabs.length > 0 && (
+        <div class="tab-block">
+            {tabs.map((_, i) => (
+                <input
+                    type="radio"
+                    name={radioName}
+                    id={tabInputIds[i]}
+                    class="tab-block-input"
+                    data-tab-index={i}
+                    checked={i === safeDefaultIndex}
+                />
+            ))}
+
+            {tabs.map((tab, i) => (
+                <>
+                    <label for={tabInputIds[i]} class:list={['tab-label', `_order-${i + 1}`]}>
+                        <span>{tab.label}</span>
+                        <img src={chevronIcon.src} alt="" class="tab-label-icon" />
+                    </label>
+                    <div class="tab-content" data-tab-index={i}>
+                        {i === 0 ? <slot name="panel-0" /> : null}
+                        {i === 1 ? <slot name="panel-1" /> : null}
+                        {i === 2 ? <slot name="panel-2" /> : null}
+                        {i === 3 ? <slot name="panel-3" /> : null}
+                        {i === 4 ? <slot name="panel-4" /> : null}
+                        {i === 5 ? <slot name="panel-5" /> : null}
+                        {i === 6 ? <slot name="panel-6" /> : null}
+                        {i === 7 ? <slot name="panel-7" /> : null}
+                        {i === 8 ? <slot name="panel-8" /> : null}
+                        {i === 9 ? <slot name="panel-9" /> : null}
+                    </div>
+                </>
+            ))}
+        </div>
+    )
+}
+
+<style lang="scss" is:global>
+    .tab-block {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        @include adaptive(gap, 16, 0);
+        @include adaptive(margin-top, 40, 60);
+
+        @for $i from 1 through 10 {
+            .tab-label._order-#{$i} {
+                order: $i;
+
+                @include mobile {
+                    order: unset !important;
+                }
+            }
+        }
+
+        .tab-content {
+            order: 100;
+            width: 100%;
+
+            @include mobile {
+                order: unset !important;
+            }
+        }
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+
+    .tab-block-input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .tab-block .tab-label {
+        cursor: pointer;
+        transition: all 0.3s;
+
+        * {
+            color: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            font-family: inherit;
+        }
+
+        span {
+            flex: 1;
+            @include adaptive(padding-top, 2, 2);
+        }
+
+        .tab-label-icon {
+            display: none;
+        }
+
+        @include adaptive(padding-left, 50, 0);
+        @include adaptive(padding-right, 50, 0);
+        @include adaptive(padding-top, 16, 24);
+        @include adaptive(padding-bottom, 16, 24);
+        @include adaptive(font-size, 22, 26);
+        line-height: 1.2;
+        text-transform: uppercase;
+
+        @include desktop {
+            @include flex-center;
+            @include adaptive(height, 61, 50);
+            border-radius: 500px;
+            border-style: solid;
+            border-color: var(--color-globus-sand);
+            @include adaptive(border-width, 2, 2);
+            background: transparent;
+
+            @include font-circe-regular;
+            @include adaptive(letter-spacing, 2.2, 1.8);
+            color: var(--color-globus-sand);
+
+            &:hover {
+                background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
+            }
+        }
+
+        @include mobile {
+            @include flex-center-between;
+            border-bottom: 1px solid var(--color-globus-sand);
+            border-bottom-width: 1px;
+
+            @include font-kudry-sans;
+            color: var(--color-globus-blue);
+            width: 100%;
+
+            &:first-of-type {
+                border-top: 1px solid var(--color-globus-sand);
+            }
+
+            .tab-label-icon {
+                display: block;
+                @include adaptive(width, 0, 20);
+                @include adaptive(height, 0, 14);
+                flex-shrink: 0;
+                transition: transform 0.3s;
+            }
+        }
+    }
+
+    .tab-block .tab-content {
+        display: none;
+
+        p {
+            @include adaptive(width, 76%, 100%);
+        }
+
+        @include adaptive(margin-top, 66, 0);
+        @include adaptive(padding-bottom, 0, 40);
+
+        @include mobile {
+            border-bottom: 1px solid var(--color-globus-sand);
+        }
+    }
+
+    @for $i from 0 through 9 {
+        .tab-block:has(.tab-block-input[data-tab-index='#{$i}']:checked) {
+            .tab-label._order-#{$i + 1} {
+                @include desktop {
+                    background: var(--color-globus-sand);
+                    color: var(--color-globus-cream);
+
+                    &:hover {
+                        background: var(--color-globus-sand);
+                        opacity: 0.9;
+                    }
+                }
+
+                @include mobile {
+                    border-bottom: none;
+
+                    .tab-label-icon {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            .tab-content[data-tab-index='#{$i}'] {
+                display: flex;
+                @include adaptive(gap, 60, 22);
+                align-items: flex-start;
+
+                @include mobile {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+</style>

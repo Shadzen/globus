@@ -14,10 +14,17 @@ interface Props {
     title: string
     userType?: 'tourist' | 'agent'
     heroTextColor?: 'light' | 'dark'
+    showHeader?: boolean
     showFooter?: boolean
 }
 
-const { title, userType = 'tourist', heroTextColor = 'light', showFooter = true } = Astro.props
+const {
+    title,
+    userType = 'tourist',
+    heroTextColor = 'light',
+    showHeader = true,
+    showFooter = true,
+} = Astro.props
 const base = import.meta.env.BASE_URL
 ---
 
@@ -33,7 +40,7 @@ const base = import.meta.env.BASE_URL
         <title>{title}</title>
     </head>
     <body>
-        <Header userType={userType} heroTextColor={heroTextColor} />
+        {showHeader && <Header userType={userType} heroTextColor={heroTextColor} />}
         <main>
             <slot />
         </main>
@@ -143,7 +150,7 @@ const base = import.meta.env.BASE_URL
     }
 
     .card-image {
-        display: inline-block;
+        @include flex-center;
         position: relative;
         width: 100%;
         @include adaptive(height, auto, 231);

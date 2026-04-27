@@ -16,10 +16,7 @@ interface Props {
     variant?: 'hero' | 'inline'
 }
 
-const {
-    fields = {},
-    variant = 'hero',
-} = Astro.props
+const { fields = {}, variant = 'hero' } = Astro.props
 
 const showCity = fields.city !== false
 const showCountry = fields.country !== false
@@ -31,234 +28,346 @@ const isInline = variant === 'inline'
 
 <section class="hero-search-form _dark" class:list={{ _inline: isInline }}>
     <div class="hero-search-form-container">
-        {!isInline && (
-        <div class="search-form-header">
-            <h2>Подбор тура</h2>
-            <button
-                name="close-form"
-                class="hero-search-form-close"
-                type="button"
-                aria-label="Закрыть форму поиска"
-            >
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-        )}
+        {
+            !isInline && (
+                <div class="search-form-header">
+                    <h2>Подбор тура</h2>
+                    <button
+                        name="close-form"
+                        class="hero-search-form-close"
+                        type="button"
+                        aria-label="Закрыть форму поиска"
+                    >
+                        <span />
+                        <span />
+                    </button>
+                </div>
+            )
+        }
 
-        {showCity && (
-        <div class="form-field" data-field="city">
-            <label for="city" class="field-label">Город вылета</label>
-            <div class="field-dropdown">
-                <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    class="field-input"
-                    value="Новосибирск"
-                    placeholder="Выберите город"
-                    autocomplete="off"
-                    readonly
-                />
-                <div class="dropdown-list">
+        {
+            showCity && (
+                <div class="form-field" data-field="city">
+                    <label for="city" class="field-label">
+                        Город вылета
+                    </label>
+                    <div class="field-dropdown">
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            class="field-input"
+                            value="Новосибирск"
+                            placeholder="Выберите город"
+                            autocomplete="off"
+                            readonly
+                        />
+                        <div class="dropdown-list">
+                            <input
+                                type="text"
+                                name="city-search"
+                                id="city-search"
+                                class="dropdown-search"
+                                placeholder="Поиск города..."
+                            />
+                            <div class="dropdown-items">
+                                <div class="dropdown-item" data-value="Москва">
+                                    Москва
+                                </div>
+                                <div class="dropdown-item" data-value="Санкт-Петербург">
+                                    Санкт-Петербург
+                                </div>
+                                <div class="dropdown-item" data-value="Новосибирск">
+                                    Новосибирск
+                                </div>
+                                <div class="dropdown-item" data-value="Екатеринбург">
+                                    Екатеринбург
+                                </div>
+                                <div class="dropdown-item" data-value="Казань">
+                                    Казань
+                                </div>
+                                <div class="dropdown-item" data-value="Нижний Новгород">
+                                    Нижний Новгород
+                                </div>
+                                <div class="dropdown-item" data-value="Челябинск">
+                                    Челябинск
+                                </div>
+                                <div class="dropdown-item" data-value="Самара">
+                                    Самара
+                                </div>
+                                <div class="dropdown-item" data-value="Омск">
+                                    Омск
+                                </div>
+                                <div class="dropdown-item" data-value="Ростов-на-Дону">
+                                    Ростов-на-Дону
+                                </div>
+                                <div class="dropdown-item" data-value="Уфа">
+                                    Уфа
+                                </div>
+                                <div class="dropdown-item" data-value="Красноярск">
+                                    Красноярск
+                                </div>
+                                <div class="dropdown-item" data-value="Воронеж">
+                                    Воронеж
+                                </div>
+                                <div class="dropdown-item" data-value="Пермь">
+                                    Пермь
+                                </div>
+                                <div class="dropdown-item" data-value="Волгоград">
+                                    Волгоград
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            showCountry && (
+                <div class="form-field" data-field="country">
+                    <label for="country" class="field-label">
+                        Страна
+                    </label>
+                    <div class="field-dropdown">
+                        <input
+                            type="text"
+                            id="country"
+                            name="country"
+                            class="field-input"
+                            value="ОАЭ"
+                            placeholder="Выберите страну"
+                            autocomplete="off"
+                            readonly
+                        />
+                        <div class="dropdown-list">
+                            <input
+                                type="text"
+                                name="country-search"
+                                id="country-search"
+                                class="dropdown-search"
+                                placeholder="Поиск страны..."
+                            />
+                            <div class="dropdown-items">
+                                <div class="dropdown-item" data-value="ОАЭ">
+                                    ОАЭ
+                                </div>
+                                <div class="dropdown-item" data-value="Турция">
+                                    Турция
+                                </div>
+                                <div class="dropdown-item" data-value="Египет">
+                                    Египет
+                                </div>
+                                <div class="dropdown-item" data-value="Таиланд">
+                                    Таиланд
+                                </div>
+                                <div class="dropdown-item" data-value="Мальдивы">
+                                    Мальдивы
+                                </div>
+                                <div class="dropdown-item" data-value="Греция">
+                                    Греция
+                                </div>
+                                <div class="dropdown-item" data-value="Кипр">
+                                    Кипр
+                                </div>
+                                <div class="dropdown-item" data-value="Испания">
+                                    Испания
+                                </div>
+                                <div class="dropdown-item" data-value="Италия">
+                                    Италия
+                                </div>
+                                <div class="dropdown-item" data-value="Черногория">
+                                    Черногория
+                                </div>
+                                <div class="dropdown-item" data-value="Индия">
+                                    Индия
+                                </div>
+                                <div class="dropdown-item" data-value="Шри-Ланка">
+                                    Шри-Ланка
+                                </div>
+                                <div class="dropdown-item" data-value="Вьетнам">
+                                    Вьетнам
+                                </div>
+                                <div class="dropdown-item" data-value="Индонезия">
+                                    Индонезия
+                                </div>
+                                <div class="dropdown-item" data-value="Доминикана">
+                                    Доминикана
+                                </div>
+                                <div class="dropdown-item" data-value="Мексика">
+                                    Мексика
+                                </div>
+                                <div class="dropdown-item" data-value="Куба">
+                                    Куба
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        {
+            showDates && (
+                <div class="form-field" data-field="dates">
+                    <label for="dates" class="field-label">
+                        Дата вылета
+                    </label>
                     <input
                         type="text"
-                        name="city-search"
-                        id="city-search"
-                        class="dropdown-search"
-                        placeholder="Поиск города..."
+                        id="dates"
+                        name="dates"
+                        class="field-input"
+                        value="16 сен - 25 сен"
+                        placeholder="Выберите даты"
+                        autocomplete="off"
+                        readonly
                     />
-                    <div class="dropdown-items">
-                        <div class="dropdown-item" data-value="Москва">Москва</div>
-                        <div class="dropdown-item" data-value="Санкт-Петербург">
-                            Санкт-Петербург
-                        </div>
-                        <div class="dropdown-item" data-value="Новосибирск">Новосибирск</div>
-                        <div class="dropdown-item" data-value="Екатеринбург">Екатеринбург</div>
-                        <div class="dropdown-item" data-value="Казань">Казань</div>
-                        <div class="dropdown-item" data-value="Нижний Новгород">
-                            Нижний Новгород
-                        </div>
-                        <div class="dropdown-item" data-value="Челябинск">Челябинск</div>
-                        <div class="dropdown-item" data-value="Самара">Самара</div>
-                        <div class="dropdown-item" data-value="Омск">Омск</div>
-                        <div class="dropdown-item" data-value="Ростов-на-Дону">Ростов-на-Дону</div>
-                        <div class="dropdown-item" data-value="Уфа">Уфа</div>
-                        <div class="dropdown-item" data-value="Красноярск">Красноярск</div>
-                        <div class="dropdown-item" data-value="Воронеж">Воронеж</div>
-                        <div class="dropdown-item" data-value="Пермь">Пермь</div>
-                        <div class="dropdown-item" data-value="Волгоград">Волгоград</div>
-                    </div>
                 </div>
-            </div>
-        </div>
-        )}
+            )
+        }
 
-        {showCountry && (
-        <div class="form-field" data-field="country">
-            <label for="country" class="field-label">Страна</label>
-            <div class="field-dropdown">
-                <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    class="field-input"
-                    value="ОАЭ"
-                    placeholder="Выберите страну"
-                    autocomplete="off"
-                    readonly
-                />
-                <div class="dropdown-list">
-                    <input
-                        type="text"
-                        name="country-search"
-                        id="country-search"
-                        class="dropdown-search"
-                        placeholder="Поиск страны..."
-                    />
-                    <div class="dropdown-items">
-                        <div class="dropdown-item" data-value="ОАЭ">ОАЭ</div>
-                        <div class="dropdown-item" data-value="Турция">Турция</div>
-                        <div class="dropdown-item" data-value="Египет">Египет</div>
-                        <div class="dropdown-item" data-value="Таиланд">Таиланд</div>
-                        <div class="dropdown-item" data-value="Мальдивы">Мальдивы</div>
-                        <div class="dropdown-item" data-value="Греция">Греция</div>
-                        <div class="dropdown-item" data-value="Кипр">Кипр</div>
-                        <div class="dropdown-item" data-value="Испания">Испания</div>
-                        <div class="dropdown-item" data-value="Италия">Италия</div>
-                        <div class="dropdown-item" data-value="Черногория">Черногория</div>
-                        <div class="dropdown-item" data-value="Индия">Индия</div>
-                        <div class="dropdown-item" data-value="Шри-Ланка">Шри-Ланка</div>
-                        <div class="dropdown-item" data-value="Вьетнам">Вьетнам</div>
-                        <div class="dropdown-item" data-value="Индонезия">Индонезия</div>
-                        <div class="dropdown-item" data-value="Доминикана">Доминикана</div>
-                        <div class="dropdown-item" data-value="Мексика">Мексика</div>
-                        <div class="dropdown-item" data-value="Куба">Куба</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        )}
-
-        {showDates && (
-        <div class="form-field" data-field="dates">
-            <label for="dates" class="field-label">Дата вылета</label>
-            <input
-                type="text"
-                id="dates"
-                name="dates"
-                class="field-input"
-                value="16 сен - 25 сен"
-                placeholder="Выберите даты"
-                autocomplete="off"
-                readonly
-            />
-        </div>
-        )}
-
-        {showNights && (
-        <div class="form-field" data-field="nights">
-            <label for="nights" class="field-label">Ночей</label>
-            <div class="field-dropdown">
-                <input
-                    type="text"
-                    id="nights"
-                    name="nights"
-                    class="field-input"
-                    value="6-14"
-                    placeholder="Количество ночей"
-                    autocomplete="off"
-                    readonly
-                />
-                <div class="dropdown-list">
-                    <div class="dropdown-items">
-                        <div class="dropdown-item" data-value="1-3">1-3 ночи</div>
-                        <div class="dropdown-item" data-value="3-5">3-5 ночей</div>
-                        <div class="dropdown-item" data-value="6-9">6-9 ночей</div>
-                        <div class="dropdown-item" data-value="10-14">10-14 ночей</div>
-                        <div class="dropdown-item" data-value="14-21">14-21 ночь</div>
-                        <div class="dropdown-item" data-value="21+">21+ ночей</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        )}
-
-        {showTourists && (
-        <div class="form-field" data-field="tourists">
-            <label for="tourists" class="field-label">Туристы</label>
-            <div class="field-dropdown">
-                <input
-                    type="text"
-                    id="tourists"
-                    name="tourists"
-                    class="field-input"
-                    value="2 взрослых"
-                    placeholder="Количество туристов"
-                    autocomplete="off"
-                    readonly
-                />
-                <div class="dropdown-list tourists-dropdown">
-                    <div class="tourists-group">
-                        <div class="tourist-type">
-                            <span class="tourist-label">Взрослые</span>
-                            <div class="tourist-counter">
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="decrease"
-                                    data-type="adults">-</button
-                                >
-                                <span class="counter-value" data-type="adults">2</span>
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="increase"
-                                    data-type="adults">+</button
-                                >
-                            </div>
-                        </div>
-                        <div class="tourist-type">
-                            <span class="tourist-label">Дети (2-12 лет)</span>
-                            <div class="tourist-counter">
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="decrease"
-                                    data-type="children">-</button
-                                >
-                                <span class="counter-value" data-type="children">0</span>
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="increase"
-                                    data-type="children">+</button
-                                >
-                            </div>
-                        </div>
-                        <div class="tourist-type">
-                            <span class="tourist-label">Младенцы (до 2 лет)</span>
-                            <div class="tourist-counter">
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="decrease"
-                                    data-type="infants">-</button
-                                >
-                                <span class="counter-value" data-type="infants">0</span>
-                                <button
-                                    type="button"
-                                    class="counter-btn"
-                                    data-action="increase"
-                                    data-type="infants">+</button
-                                >
+        {
+            showNights && (
+                <div class="form-field" data-field="nights">
+                    <label for="nights" class="field-label">
+                        Ночей
+                    </label>
+                    <div class="field-dropdown">
+                        <input
+                            type="text"
+                            id="nights"
+                            name="nights"
+                            class="field-input"
+                            value="6-14"
+                            placeholder="Количество ночей"
+                            autocomplete="off"
+                            readonly
+                        />
+                        <div class="dropdown-list">
+                            <div class="dropdown-items">
+                                <div class="dropdown-item" data-value="1-3">
+                                    1-3 ночи
+                                </div>
+                                <div class="dropdown-item" data-value="3-5">
+                                    3-5 ночей
+                                </div>
+                                <div class="dropdown-item" data-value="6-9">
+                                    6-9 ночей
+                                </div>
+                                <div class="dropdown-item" data-value="10-14">
+                                    10-14 ночей
+                                </div>
+                                <div class="dropdown-item" data-value="14-21">
+                                    14-21 ночь
+                                </div>
+                                <div class="dropdown-item" data-value="21+">
+                                    21+ ночей
+                                </div>
                             </div>
                         </div>
                     </div>
-            </div>
-        </div>
-        </div>
-        )}
+                </div>
+            )
+        }
+
+        {
+            showTourists && (
+                <div class="form-field" data-field="tourists">
+                    <label for="tourists" class="field-label">
+                        Туристы
+                    </label>
+                    <div class="field-dropdown">
+                        <input
+                            type="text"
+                            id="tourists"
+                            name="tourists"
+                            class="field-input"
+                            value="2 взрослых"
+                            placeholder="Количество туристов"
+                            autocomplete="off"
+                            readonly
+                        />
+                        <div class="dropdown-list tourists-dropdown">
+                            <div class="tourists-group">
+                                <div class="tourist-type">
+                                    <span class="tourist-label">Взрослые</span>
+                                    <div class="tourist-counter">
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="decrease"
+                                            data-type="adults"
+                                        >
+                                            -
+                                        </button>
+                                        <span class="counter-value" data-type="adults">
+                                            2
+                                        </span>
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="increase"
+                                            data-type="adults"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="tourist-type">
+                                    <span class="tourist-label">Дети (2-12 лет)</span>
+                                    <div class="tourist-counter">
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="decrease"
+                                            data-type="children"
+                                        >
+                                            -
+                                        </button>
+                                        <span class="counter-value" data-type="children">
+                                            0
+                                        </span>
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="increase"
+                                            data-type="children"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="tourist-type">
+                                    <span class="tourist-label">Младенцы (до 2 лет)</span>
+                                    <div class="tourist-counter">
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="decrease"
+                                            data-type="infants"
+                                        >
+                                            -
+                                        </button>
+                                        <span class="counter-value" data-type="infants">
+                                            0
+                                        </span>
+                                        <button
+                                            type="button"
+                                            class="counter-btn"
+                                            data-action="increase"
+                                            data-type="infants"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
 
         <button name="search-submit" class="button _sized" type="submit">Найти</button>
     </div>

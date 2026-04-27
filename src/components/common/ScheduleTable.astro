@@ -48,6 +48,8 @@ const contentLabels = headers.slice(1).map((h) => `${h}:`)
 
 <style lang="scss" is:global>
     .schedule-table-section {
+        @include adaptive(margin-top, 60, 20);
+
         .schedule-table {
             display: flex;
             flex-direction: column;
