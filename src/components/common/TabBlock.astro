@@ -220,4 +220,32 @@ const safeDefaultIndex =
             }
         }
     }
+
+    .tab-block .tab-content-panel {
+        display: contents;
+    }
+
+    .tab-block .tab-content-map {
+        @include adaptive(min-height, 560, 230);
+        @include adaptive(min-width, 852, 343);
+        border: 0;
+        display: block;
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    .tab-block .tab-content-info {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        justify-content: space-between;
+        @include adaptive(gap, 60, 22);
+    }
+
+    .tab-block .location-icon {
+        @include adaptive(width, 112, 66);
+        @include adaptive(height, 120, 70);
+    }
 </style>

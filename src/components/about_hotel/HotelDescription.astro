@@ -1,6 +1,6 @@
 ---
 import locationIcon from '@/assets/icons/location-pin.svg'
-import chevronIcon from '@/assets/icons/chevron-down.svg'
+import TabBlock from '@/components/common/TabBlock.astro'
 
 // Hotel name and location
 const hotelName = 'Grand Park Kodhipparu, Maldives'
@@ -13,31 +13,22 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
 
 // Option 3: With API key for extra features (Place ID is more precise):
 // const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(hotelName)}&zoom=15`
+
+const hotelDescriptionTabs = [
+    { label: 'Местоположение отеля' },
+    { label: 'Номера' },
+    { label: 'Удобства' },
+    { label: 'Кафе и рестораны' },
+    { label: 'Другое' },
+]
 ---
 
 <section class="hotel-description">
     <div class="section-container">
         <h2>Описание отеля</h2>
 
-        <div class="hotel-tabs-wrapper">
-            <!-- Radio inputs (hidden) -->
-            <input
-                type="radio"
-                name="hotel-tab"
-                id="tab-location"
-                class="hotel-tab-input"
-                checked
-            />
-            <input type="radio" name="hotel-tab" id="tab-rooms" class="hotel-tab-input" />
-            <input type="radio" name="hotel-tab" id="tab-amenities" class="hotel-tab-input" />
-            <input type="radio" name="hotel-tab" id="tab-restaurants" class="hotel-tab-input" />
-            <input type="radio" name="hotel-tab" id="tab-other" class="hotel-tab-input" />
-
-            <label for="tab-location" class="tab-label _order-1">
-                <span>Местоположение отеля</span>
-                <img src={chevronIcon.src} alt="" class="tab-label-icon" />
-            </label>
-            <div class="tab-content _tab-location">
+        <TabBlock groupName="hotel-description-tabs" tabs={hotelDescriptionTabs} defaultIndex={0}>
+            <div class="tab-content-panel" slot="panel-0">
                 <iframe
                     src={mapEmbedUrlSimple}
                     class="tab-content-map"
@@ -57,38 +48,14 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
                 </div>
             </div>
 
-            <label for="tab-rooms" class="tab-label _order-2">
-                <span>Номера</span>
-                <img src={chevronIcon.src} alt="" class="tab-label-icon" />
-            </label>
-            <div class="tab-content _tab-rooms">
-                <p>Информация о номерах скоро появится</p>
-            </div>
+            <p slot="panel-1">Информация о номерах скоро появится</p>
 
-            <label for="tab-amenities" class="tab-label _order-3">
-                <span>Удобства</span>
-                <img src={chevronIcon.src} alt="" class="tab-label-icon" />
-            </label>
-            <div class="tab-content _tab-amenities">
-                <p>Информация об удобствах скоро появится</p>
-            </div>
+            <p slot="panel-2">Информация об удобствах скоро появится</p>
 
-            <label for="tab-restaurants" class="tab-label _order-4">
-                <span>Кафе и рестораны</span>
-                <img src={chevronIcon.src} alt="" class="tab-label-icon" />
-            </label>
-            <div class="tab-content _tab-restaurants">
-                <p>Информация о кафе и ресторанах скоро появится</p>
-            </div>
+            <p slot="panel-3">Информация о кафе и ресторанах скоро появится</p>
 
-            <label for="tab-other" class="tab-label _order-5">
-                <span>Другое</span>
-                <img src={chevronIcon.src} alt="" class="tab-label-icon" />
-            </label>
-            <div class="tab-content _tab-other">
-                <p>Дополнительная информация скоро появится</p>
-            </div>
-        </div>
+            <p slot="panel-4">Дополнительная информация скоро появится</p>
+        </TabBlock>
     </div>
 </section>
 
@@ -99,197 +66,6 @@ const mapEmbedUrlSimple = `https://maps.google.com/maps?q=${encodeURIComponent(h
         .section-container {
             @include flex-start-between;
             flex-direction: column;
-        }
-
-        .hotel-tabs-wrapper {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            @include adaptive(gap, 16, 0);
-            @include adaptive(margin-top, 24, 60);
-
-            @for $i from 1 through 5 {
-                .tab-label._order-#{$i} {
-                    order: $i;
-
-                    @include mobile {
-                        order: unset !important;
-                    }
-                }
-            }
-
-            .tab-content {
-                order: 100;
-                width: 100%;
-
-                @include mobile {
-                    order: unset !important;
-                }
-            }
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        // Hide radio inputs
-        .hotel-tab-input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        // Styles for labels (tabs on desktop, accordion headers on mobile)
-        .tab-label {
-            cursor: pointer;
-            transition: all 0.3s;
-
-            * {
-                color: inherit;
-                font-size: inherit;
-                line-height: inherit;
-                font-family: inherit;
-            }
-
-            span {
-                flex: 1;
-                @include adaptive(padding-top, 2, 2);
-            }
-
-            .tab-label-icon {
-                display: none;
-            }
-
-            @include adaptive(padding-left, 50, 0);
-            @include adaptive(padding-right, 50, 0);
-            @include adaptive(padding-top, 16, 24);
-            @include adaptive(padding-bottom, 16, 24);
-            @include adaptive(font-size, 22, 26);
-            line-height: 1.2;
-            text-transform: uppercase;
-
-            // Desktop: tab styles
-            @include desktop {
-                @include flex-center;
-                @include adaptive(height, 61, 50);
-                border-radius: 500px;
-                border-style: solid;
-                border-color: var(--color-globus-sand);
-                @include adaptive(border-width, 2, 2);
-                background: transparent;
-
-                @include font-circe-regular;
-                @include adaptive(letter-spacing, 2.2, 1.8);
-                color: var(--color-globus-sand);
-
-                &:hover {
-                    background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent);
-                }
-            }
-
-            // Mobile: accordion header styles
-            @include mobile {
-                @include flex-center-between;
-                border-bottom: 1px solid var(--color-globus-sand);
-                border-bottom-width: 1px;
-
-                @include font-kudry-sans;
-                color: var(--color-globus-blue);
-                width: 100%;
-
-                &:first-of-type {
-                    border-top: 1px solid var(--color-globus-sand);
-                }
-
-                .tab-label-icon {
-                    display: block;
-                    @include adaptive(width, 0, 20);
-                    @include adaptive(height, 0, 14);
-                    flex-shrink: 0;
-                    transition: transform 0.3s;
-                }
-            }
-        }
-
-        // Content styles
-        .tab-content {
-            display: none;
-
-            p {
-                @include adaptive(width, 76%, 100%);
-            }
-
-            @include adaptive(margin-top, 66, 0);
-            @include adaptive(padding-bottom, 0, 40);
-
-            @include mobile {
-                border-bottom: 1px solid var(--color-globus-sand);
-            }
-        }
-
-        // Active states (each input is followed by its label with _order-N)
-        #tab-location:checked ~ .tab-label._order-1,
-        #tab-rooms:checked ~ .tab-label._order-2,
-        #tab-amenities:checked ~ .tab-label._order-3,
-        #tab-restaurants:checked ~ .tab-label._order-4,
-        #tab-other:checked ~ .tab-label._order-5 {
-            // Desktop: active tab
-            @include desktop {
-                background: var(--color-globus-sand);
-                color: var(--color-globus-cream);
-
-                &:hover {
-                    background: var(--color-globus-sand);
-                    opacity: 0.9;
-                }
-            }
-
-            @include mobile {
-                border-bottom: none;
-
-                .tab-label-icon {
-                    transform: rotate(180deg);
-                }
-            }
-        }
-
-        #tab-location:checked ~ .tab-content._tab-location,
-        #tab-rooms:checked ~ .tab-content._tab-rooms,
-        #tab-amenities:checked ~ .tab-content._tab-amenities,
-        #tab-restaurants:checked ~ .tab-content._tab-restaurants,
-        #tab-other:checked ~ .tab-content._tab-other {
-            display: flex;
-            @include adaptive(gap, 60, 22);
-            align-items: flex-start;
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .tab-content-map {
-            @include adaptive(min-height, 560, 230);
-            @include adaptive(min-width, 852, 343);
-            border: 0;
-            display: block;
-
-            @include mobile {
-                width: 100%;
-            }
-        }
-
-        .tab-content-info {
-            display: flex;
-            flex-direction: column;
-            align-self: stretch;
-            justify-content: space-between;
-            @include adaptive(gap, 60, 22);
-        }
-
-        .location-icon {
-            @include adaptive(width, 112, 66);
-            @include adaptive(height, 120, 70);
         }
     }
 </style>
