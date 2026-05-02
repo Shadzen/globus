@@ -7,9 +7,46 @@ import TwoColumnBulletList from '@/components/common/TwoColumnBulletList.astro'
 import BulletGrid from '@/components/common/BulletGrid.astro'
 import ScheduleTable from '@/components/common/ScheduleTable.astro'
 import TabBlock from '@/components/common/TabBlock.astro'
+import HeroCustom from '@/components/common/HeroCustom.astro'
+import HeroNav from '@/components/common/HeroNav.astro'
+import NewsGrid from '@/components/news/NewsGrid.astro'
+import SectionGap from '@/components/common/SectionGap.astro'
+import CustomGrid from '@/components/common/CustomGrid.astro'
+import CountryRules from '@/components/country/CountryRules.astro'
+import VisaDocuments from '@/components/visa/VisaDocuments.astro'
+import TourInclusions from '@/components/common/TourInclusions.astro'
+import PromoTourIncluded from '@/components/promo_tour/PromoTourIncluded.astro'
+import InsuranceCoverage from '@/components/insurance/InsuranceCoverage.astro'
+import AdvantagesGrid from '@/components/main/AdvantagesGrid.astro'
+
+import heroDesktop1 from '@/assets/images/concierge_service/hero-1.jpg'
+import heroMobile1 from '@/assets/images/concierge_service/hero-1-mobile.jpg'
+import heroDesktop2 from '@/assets/images/partner/hero-1.jpg'
+import heroMobile2 from '@/assets/images/partner/hero-1-mobile.jpg'
+import heroDesktop3 from '@/assets/images/best_hotels/hero-1.jpg'
+import heroMobile3 from '@/assets/images/best_hotels/hero-1-mobile.jpg'
+import heroDesktop4 from '@/assets/images/tourvisor/hero-1.jpg'
+import heroMobile4 from '@/assets/images/tourvisor/hero-1-mobile.jpg'
+import heroDesktop5 from '@/assets/images/news_type_three/hero-1.jpg'
+import heroMobile5 from '@/assets/images/news_type_three/hero-1-mobile.jpg'
+import heroDesktop6 from '@/assets/images/news_type_two/hero-1.jpg'
+import heroMobile6 from '@/assets/images/news_type_two/hero-1-mobile.jpg'
+import heroDesktop7 from '@/assets/images/news_type_one/hero-1.jpg'
+import heroMobile7 from '@/assets/images/news_type_one/hero-1-mobile.jpg'
+
+import photo1 from '@/assets/images/news_type_three/news-type-three-photo-1.jpg'
+import photo2 from '@/assets/images/news_type_three/news-type-three-photo-2.jpg'
+
 import flynasLogo from '@/assets/images/news_type_one/company-logo-1.svg'
 import saudiaLogo from '@/assets/images/news_type_one/company-logo-2.png'
-import { COMPANY_NAME } from '@/scripts/utils'
+import { BREAKPOINTS, COMPANY_NAME } from '@/scripts/utils'
+
+const base = import.meta.env.BASE_URL
+const devHeroUserType = 'tourist' as const
+
+// Demo asset for fullscreen video lightbox (CC0 sample).
+const fullscreenDemoVideoSrc =
+    'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
 
 const accordionDemoSections = [
     {
@@ -76,46 +113,43 @@ const twoColumnBulletDemo = [
             { text: 'Report any service issues to your manager promptly.' },
         ],
     },
-] as [
-    { title: string; items: { text: string }[] },
-    { title: string; items: { text: string }[] },
-]
+] as [{ title: string; items: { text: string }[] }, { title: string; items: { text: string }[] }]
 
 const servicesGridDemoFirstColumn = [
-        {
-            title: 'General',
-            items: ['Medical support'],
-        },
-        {
-            title: 'Pool and beach',
-            items: ['Outdoor pool', 'Private beach area'],
-        },
-        {
-            title: 'In rooms',
-            items: ['Room service', 'Mini bar', 'In-room safe'],
-        },
+    {
+        title: 'General',
+        items: ['Medical support'],
+    },
+    {
+        title: 'Pool and beach',
+        items: ['Outdoor pool', 'Private beach area'],
+    },
+    {
+        title: 'In rooms',
+        items: ['Room service', 'Mini bar', 'In-room safe'],
+    },
 ]
 
 const servicesGridDemoSecondColumn = [
-        {
-            title: 'Sports',
-            items: ['Fitness center', 'Gym', 'Diving', 'Yoga deck'],
-        },
-        {
-            title: 'Dining',
-            items: ['Restaurant', 'Cafe', 'Pool bar', 'Lobby lounge', '24h room dining'],
-        },
-        {
-            title: 'Business',
-            items: [
-                'Business center',
-                'Meeting room',
-                'Fast Wi-Fi',
-                'Conference hall',
-                'Printing services',
-                'Private workspaces',
-            ],
-        },
+    {
+        title: 'Sports',
+        items: ['Fitness center', 'Gym', 'Diving', 'Yoga deck'],
+    },
+    {
+        title: 'Dining',
+        items: ['Restaurant', 'Cafe', 'Pool bar', 'Lobby lounge', '24h room dining'],
+    },
+    {
+        title: 'Business',
+        items: [
+            'Business center',
+            'Meeting room',
+            'Fast Wi-Fi',
+            'Conference hall',
+            'Printing services',
+            'Private workspaces',
+        ],
+    },
 ]
 
 const scheduleTableDemoRows = [
@@ -135,11 +169,386 @@ const tabBlockDemoTabs = [
     { label: 'Dining' },
     { label: 'Leisure' },
 ]
+
+
+interface IncludedItem {
+    text: string
+}
+
+const includedColumns: IncludedItem[][] = [
+    [
+        { text: 'Авиаперелет Москва — Эр-Рияд — Москва\n(прямые рейсы Flynas, Saudia airlines)*' },
+        { text: 'Авиаперелет Эр-Рияд — Аль-Ула — Эр-Рияд\n(прямые рейсы Flynas, Saudia airlines)*' },
+        { text: 'Встреча/проводы в аэропорту.' },
+        { text: 'Размещение в указанных отелях\nили аналогичных отелях той же\nкатегории с завтраками.' },
+        { text: 'Проживание в отеле Sahary Al Ula\nс полупансионом (включая завтрак и ужин).' },
+    ],
+    [
+        { text: 'Мероприятия, указанные в программе.' },
+        { text: 'Входные билеты по программе.' },
+        { text: 'Англоговорящий гид в Эр-Рияде.' },
+        { text: 'Экскурсия по Аль-Уле на автобусе SIC.' },
+        { text: 'Обед на местной ферме в Аль-Уле.' },
+        { text: 'Англоговорящий местный координатор\nтура на протяжении всего тура.' },
+    ],
+    [
+        { text: 'Частный транспорт на современном комфортабельном автомобиле по программе.' },
+        { text: 'Бесплатная вода в автобусе ежедневно.' },
+        { text: 'Медицинская страховка' },
+    ],
+]
 ---
 
-<Layout title={`Component demos - ${COMPANY_NAME}`} showHeader={false} showFooter={false}>
+<Layout title={`Component demos - ${COMPANY_NAME}`} heroTextColor="dark">
+    <HeroNav
+        darkText={true}
+        items={[{ label: 'Главная', href: `${base}${devHeroUserType}/` }, { label: 'Компоненты' }]}
+    />
 
-    <hr style="margin: 100px 0;" />
+    <HeroCustom type="one">
+        <div class="hero-custom-block _one">
+            <h2>Персональные консьерж-услуги по всему миру</h2>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <picture class="custom-image _size-1">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile1.src} />
+                <img src={heroDesktop1.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="two" heroPadding={false}>
+        <div class="hero-custom-block _one">
+            <h2>Новый Год в Дубае – Концерт легендарной группы Maroon 5!</h2>
+            <div class="custom-column">
+                <p>
+                    Друзья, приглашаем встретить Новый Год в Дубае и с радостью анонсируем концерт
+                    группы Maroon 5 - 31 декабря в отелях Atlantis The Royalи Atlantis The Palm!
+                </p>
+            </div>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <picture class="custom-image _size-1">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile5.src} />
+                <img src={heroDesktop5.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="two" heroPadding={false}>
+        <div class="hero-custom-block _one">
+            <h2>Новый Год в Дубае – Концерт легендарной группы Maroon 5!</h2>
+            <div class="custom-column">
+                <p>
+                    Друзья, приглашаем встретить Новый Год в Дубае и с радостью анонсируем концерт
+                    группы Maroon 5 - 31 декабря в отелях Atlantis The Royalи Atlantis The Palm!
+                </p>
+                <br />
+                <p>
+                    Друзья, приглашаем встретить Новый Год в Дубае и с радостью анонсируем концерт
+                    группы Maroon 5 - 31 декабря в отелях Atlantis The Royalи Atlantis The Palm!
+                </p>
+            </div>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <picture class="custom-image _size-1">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile4.src} />
+                <img src={heroDesktop4.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="three" heroPadding={false}>
+        <div class="hero-custom-block _one">
+            <h2>Турция приглашает</h2>
+            <h2>на бархатный сезон!</h2>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <picture class="custom-image _size-1">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile6.src} />
+                <img src={heroDesktop6.src} alt="" loading="eager" decoding="async" />
+            </picture>
+            <div class="custom-column">
+                <p>
+                    Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое
+                    море создают идеальные условия для восстановления сил перед долгой зимой, а
+                    лучшие курорты радуют выгодными акциями и спецпредложениями. Спешите
+                    воспользоваться всеми преимуществами осеннего отдыха на Анталийском побережье.
+                </p>
+            </div>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="three" heroPadding={false}>
+        <div class="hero-custom-block _one">
+            <h2>Турция приглашает</h2>
+            <h2>на бархатный сезон!</h2>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <div class="custom-column">
+                <p>
+                    Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое
+                    море создают идеальные условия для восстановления сил перед долгой зимой, а
+                    лучшие курорты радуют выгодными акциями и спецпредложениями. Спешите
+                    воспользоваться всеми преимуществами осеннего отдыха на Анталийском побережье.
+                </p>
+                <br />
+                <p>
+                    Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое
+                    море создают идеальные условия для восстановления сил перед долгой зимой, а
+                    лучшие курорты радуют выгодными акциями и спецпредложениями. Спешите
+                    воспользоваться всеми преимуществами осеннего отдыха на Анталийском побережье.
+                </p>
+            </div>
+            <picture class="custom-image _size-1">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile3.src} />
+                <img src={heroDesktop3.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="four" heroPadding={false}>
+        <div class="hero-custom-block _one">
+            <div class="custom-column">
+                <h2>Саудовская Аравия: Туры на прямых рейсах из Москвы</h2>
+                <br />
+                <p>
+                    Приглашаем отправиться в незабываемое путешествие по Саудовской Аравии —
+                    экскурсионные туры Аль-Ула+Эр-Рияд на прямых рейсах из Москвы.
+                </p>
+            </div>
+        </div>
+
+        <div class="hero-custom-block _two">
+            <picture class="custom-image _size-2">
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile7.src} />
+                <img src={heroDesktop7.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="screen">
+        <picture class="custom-image _overlay-darker">
+            <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile2.src} />
+            <img src={heroDesktop2.src} alt="" loading="eager" decoding="async" />
+        </picture>
+
+        <div class="hero-custom-block _one">
+            <div class="custom-column _light-text">
+                <h2>праздничные туры <br /> в Японию</h2>
+                <br />
+                <p>
+                    Создаём безупречные бизнес-путешествия и незабываемые корпоративные события.
+                    Пока вы достигаете целей, мы создаём комфорт.
+                </p>
+            </div>
+        </div>
+    </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <HeroCustom type="one" heroPadding={false}>
+        <picture class="custom-image _size-1 _overlay-darker">
+            <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile2.src} />
+            <img src={heroDesktop2.src} alt="" loading="eager" decoding="async" />
+        </picture>
+        <picture class="custom-image _size-1 _overlay-double-gradient">
+            <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile3.src} />
+            <img src={heroDesktop3.src} alt="" loading="eager" decoding="async" />
+        </picture>
+        <picture class="custom-image _size-1 _overlay-gradient">
+            <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile4.src} />
+            <img src={heroDesktop4.src} alt="" loading="eager" decoding="async" />
+        </picture>
+    </HeroCustom>
+
+    <SectionGap size={20} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={40} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={60} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={100} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={120} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={20} />
+
+    <NewsGrid userType={devHeroUserType} />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <picture
+                class="custom-image _size-1"
+                data-pswp-lightbox
+                data-pswp-media="video"
+                data-pswp-video-src={fullscreenDemoVideoSrc}
+                data-pswp-poster={heroDesktop5.src}
+            >
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile5.src} />
+                <img src={heroDesktop5.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <h2>Open fullscreen image demo</h2>
+            <br />
+            <br />
+            <picture
+                class="custom-image _size-1"
+                data-pswp-lightbox
+                data-pswp-src={heroDesktop3.src}
+                data-pswp-width={heroDesktop3.width}
+                data-pswp-height={heroDesktop3.height}
+                data-pswp-alt=""
+            >
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile3.src} />
+                <img src={heroDesktop3.src} alt="" loading="eager" decoding="async" />
+            </picture>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <CustomGrid>
+                <div class="custom-grid-row">
+                    <div class="custom-column">
+                        <p>
+                            Встречайте 2026 год на грандиозном праздничном ужине c выступлением
+                            настоящих легенд, многократных обладателей Грэмми, исполнителей всемирно
+                            известных хитов!
+                        </p>
+                    </div>
+                    <picture
+                        class="custom-image _size-1"
+                        data-pswp-lightbox
+                        data-pswp-media="video"
+                        data-pswp-video-src={fullscreenDemoVideoSrc}
+                        data-pswp-poster={photo1.src}
+                    >
+                        <img src={photo1.src} alt="" loading="eager" decoding="async" />
+                    </picture>
+                </div>
+                <div class="custom-grid-row">
+                    <picture class="custom-image _size-3">
+                        <img src={photo2.src} alt="" loading="eager" decoding="async" />
+                    </picture>
+                    <div class="custom-column">
+                        <p>
+                            Гостей ждёт открытая площадка с видом на Пальму Джумейра и небоскрёбы
+                            Дубая, живая музыка и оркестр. Дресс-код — black tie, атмосфера —
+                            настоящая зимняя сказка. Роскошный ужин с изысканными деликатесами —
+                            чёрной икрой, белым трюфелем и премиальным шампанским — станет настоящим
+                            украшением новогодней ночи.
+                        </p>
+                        <br />
+                        <p>
+                            Слушайте вживую Moves Like Jagger, She Will Be Loved и This Love под
+                            аккомпанемент новогодних фейерверков! Вы можете выбрать различные
+                            категории новогоднего ужина под открытым небом: «Premium» (Премиум),
+                            «Красный круг» или «Золотой круг»:
+                        </p>
+                    </div>
+                </div>
+            </CustomGrid>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <CountryRules />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <VisaDocuments />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <TourInclusions includedItems={includedColumns} />
+
+    <hr style="margin: 0; border-color: red;" />
+
+    <PromoTourIncluded />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <InsuranceCoverage />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <AdvantagesGrid />
+        </div>
+    </section>
+
+    <!-- <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={40} />
+
+    <section>
+        <div class="section-container">
+            <AdvantagesGrid />
+        </div>
+    </section> -->
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={40} />
 
     <AccordionSection title="Accordion Section demo">
         <Fragment slot="intro">
@@ -150,35 +559,46 @@ const tabBlockDemoTabs = [
         <Accordion sections={accordionDemoSections} />
     </AccordionSection>
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={20} />
 
     <AccordionSection title="Accordion Section dark demo" dark={true} narrowContainer={false}>
         <Accordion sections={darkAccordionDemoSections} theme="dark" type="docs" largeText={true} />
     </AccordionSection>
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
 
     <InfoGrid>
         <div class="info-grid-row">
             <div class="info-text">
                 <p>
-                    This row shows the default left-text and right-image composition for short explanatory content.
+                    This row shows the default left-text and right-image composition for short
+                    explanatory content.
                 </p>
             </div>
 
             <div class="info-image _size-1">
-                <img src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_httpss.mj_.rungti67ksmyxm_the_woman_is_sitting_on__d6c22194-ed18-4675-8afa-b04ea7032256_2.png" alt="Demo business travel visual" />
+                <img
+                    src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_httpss.mj_.rungti67ksmyxm_the_woman_is_sitting_on__d6c22194-ed18-4675-8afa-b04ea7032256_2.png"
+                    alt="Demo business travel visual"
+                />
             </div>
         </div>
 
         <div class="info-grid-row">
             <div class="info-image _size-2 _pos-1">
-                <img src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_luxury_private_jet_interior_with_a_table_set_for__434a7078-7464-46e7-9095-2d5424d9fa19_3-e1776138977187.png" alt="Demo city skyline visual" />
+                <img
+                    src="https://gt.dozestudio.ru/wp-content/uploads/2026/04/u4679691313_luxury_private_jet_interior_with_a_table_set_for__434a7078-7464-46e7-9095-2d5424d9fa19_3-e1776138977187.png"
+                    alt="Demo city skyline visual"
+                />
             </div>
 
             <div class="info-text">
                 <p>
-                    The second row swaps the order and supports longer text blocks, matching real project usage.
+                    The second row swaps the order and supports longer text blocks, matching real
+                    project usage.
                 </p>
                 <ul>
                     <li set:text="Supports mixed text and list content" />
@@ -189,15 +609,23 @@ const tabBlockDemoTabs = [
         </div>
     </InfoGrid>
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
 
-    <TwoColumnBulletList columns={twoColumnBulletDemo} dark={false} showDivider={false} centerTitle={true} />
+    <TwoColumnBulletList
+        columns={twoColumnBulletDemo}
+        dark={false}
+        showDivider={false}
+        centerTitle={true}
+    />
 
-    <hr style="margin: 100px 0;" />
+    <hr style="margin: 0; border-color: red;" />
 
     <TwoColumnBulletList columns={twoColumnBulletDemo} dark={true} />
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
 
     <section>
         <div class="section-container">
@@ -209,7 +637,9 @@ const tabBlockDemoTabs = [
         </div>
     </section>
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
 
     <section>
         <div class="section-container">
@@ -221,31 +651,33 @@ const tabBlockDemoTabs = [
         </div>
     </section>
 
-    <hr style="margin: 100px 0;" />
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
 
     <section>
         <div class="section-container">
             <h2>Tab Block demo (4 tabs)</h2>
             <TabBlock groupName="dev-components-tab-block" tabs={tabBlockDemoTabs} defaultIndex={0}>
                 <p slot="panel-0">
-                    Short overview copy for the first tab. Use this area for hotel summary or lead text.
+                    Short overview copy for the first tab. Use this area for hotel summary or lead
+                    text.
                 </p>
                 <p slot="panel-1">
                     Room types, sizes, and occupancy rules can go here in real pages.
                 </p>
-                <p slot="panel-2">
-                    Restaurants, meal plans, and bar hours fit the dining tab.
-                </p>
-                <p slot="panel-3">
-                    Pools, spa, and activities belong in the leisure tab.
-                </p>
+                <p slot="panel-2">Restaurants, meal plans, and bar hours fit the dining tab.</p>
+                <p slot="panel-3">Pools, spa, and activities belong in the leisure tab.</p>
             </TabBlock>
         </div>
     </section>
 
-    <hr style="margin: 100px 0;" />
-
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
 </Layout>
 
 <style lang="scss" is:global>
+    // .dev-pswp-picture {
+    //     cursor: zoom-in;
+    // }
 </style>

@@ -1,0 +1,44 @@
+---
+export type SectionGapSize = 20 | 40 | 60 | 80 | 100 | 120
+
+interface Props {
+    size: SectionGapSize
+}
+
+const { size } = Astro.props
+const sizeModifier = `_size-${size}` as const
+---
+
+<div class:list={['section-gap', sizeModifier]} aria-hidden="true" />
+
+<style lang="scss" is:global>
+    .section-gap {
+        width: 100%;
+        flex-shrink: 0;
+        // pointer-events: none;
+
+        &._size-20 {
+            @include adaptive(height, 20, 10);
+        }
+
+        &._size-40 {
+            @include adaptive(height, 40, 20);
+        }
+
+        &._size-60 {
+            @include adaptive(height, 60, 30);
+        }
+
+        &._size-80 {
+            @include adaptive(height, 80, 40);
+        }
+
+        &._size-100 {
+            @include adaptive(height, 100, 50);
+        }
+
+        &._size-120 {
+            @include adaptive(height, 120, 60);
+        }
+    }
+</style>

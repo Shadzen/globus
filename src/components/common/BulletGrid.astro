@@ -58,12 +58,14 @@ const { firstColumn, secondColumn } = Astro.props
             @include font-circe-regular;
             @include adaptive(font-size, 24, 20);
             @include adaptive(letter-spacing, 2.4, 2);
-            @include adaptive(width, 400, 240);
+            @include adaptive(width, 240, 100%);
             flex-shrink: 0;
+        }
 
-            @include mobile {
-                width: 100%;
-            }
+        h4 {
+            @include font-circe-regular;
+            @include adaptive(font-size, 20, 18);
+            @include adaptive(letter-spacing, 2, 1.8);
         }
     }
 

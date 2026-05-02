@@ -22,6 +22,8 @@ interface Props {
 }
 
 const { includedItems, additionalContent = [], useGrid = false, darkTheme = false } = Astro.props
+
+const hasAdditionalContent = additionalContent.length > 0
 ---
 
 <section class:list={['tour-inclusions-section', { '_dark': darkTheme }]}>
@@ -50,54 +52,56 @@ const { includedItems, additionalContent = [], useGrid = false, darkTheme = fals
             </div>
         )}
 
-        <div class="divider"></div>
+        {hasAdditionalContent && (
+            <>
+                <div class="divider"></div>
 
-        <h3>Дополнительно оплачивается:</h3>
+                <h3>Дополнительно оплачивается:</h3>
 
-        {additionalContent.length > 0 && (
-            <div class="additional-section">
-                {additionalContent.map((content) => (
-                    <>
-                        {content.type === 'link' && content.data.link && (
-                            <a href="#">
-                                <span class="svg-icon">
-                                    <img src={arrowIcon.src} alt="" />
-                                </span>
-                                <span>Виза в Садовскую Аравию</span>
-                            </a>
-                        )}
-                        {content.type === 'text' && content.data.text && (
-                            <p set:html={content.data.text}></p>
-                        )}
-                        {content.type === 'list' && content.data.items && (
-                            <ul class:list={[useGrid ? 'list-grid' : 'list-columns']}>
-                                {content.data.items.map((item) => (
-                                    <li>
-                                        {item.text}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </>
-                ))}
-            </div>
+                <div class="additional-section">
+                    {additionalContent.map((content) => (
+                        <>
+                            {content.type === 'link' && content.data.link && (
+                                <a href="#">
+                                    <span class="svg-icon">
+                                        <img src={arrowIcon.src} alt="" />
+                                    </span>
+                                    <span>Виза в Садовскую Аравию</span>
+                                </a>
+                            )}
+                            {content.type === 'text' && content.data.text && (
+                                <p set:html={content.data.text}></p>
+                            )}
+                            {content.type === 'list' && content.data.items && (
+                                <ul class:list={[useGrid ? 'list-grid' : 'list-columns']}>
+                                    {content.data.items.map((item) => (
+                                        <li>
+                                            {item.text}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </>
+                    ))}
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="bottom-section">
+                    <p>
+                        Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
+                    </p>
+                    <div class="bottom-buttons">
+                        <button class="button _sized _outline" type="button">
+                            запрос на поиск
+                        </button>
+                        <button class="button _sized" type="button">
+                            перейти в поиск туров
+                        </button>
+                    </div>
+                </div>
+            </>
         )}
-
-        <div class="divider"></div>
-
-        <div class="bottom-section">
-            <p>
-                Если вы не нашли подходящий вариант тура в нашем поиске, вы можете отправить запрос на электронную почту.
-            </p>
-            <div class="bottom-buttons">
-                <button class="button _sized _outline" type="button">
-                    запрос на поиск
-                </button>
-                <button class="button _sized" type="button">
-                    перейти в поиск туров
-                </button>
-            </div>
-        </div>
     </div>
 </section>
 

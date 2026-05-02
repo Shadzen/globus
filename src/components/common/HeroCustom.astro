@@ -1,0 +1,182 @@
+---
+interface Props {
+    type: 'one' | 'two' | 'three' | 'four' | 'screen'
+    heroPadding?: boolean
+    class?: string
+}
+
+const { type, heroPadding = true, class: className } = Astro.props
+
+const typeModifierClass = `_type-${type}` as const
+const paddingModifierClass = heroPadding ? undefined : '_no-top-padding'
+---
+
+<section class:list={['hero-custom', typeModifierClass, paddingModifierClass, className]}>
+    <slot />
+</section>
+
+<style lang="scss" is:global>
+    .hero-custom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        @include adaptive(gap, 50, 30);
+        @include adaptive(padding-top, 440, 240);
+        @include side-paddings;
+
+        .hero-custom-block {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            @include adaptive(flex-direction, row, column);
+            @include adaptive(gap, 50, 30);
+            width: 100%;
+            &._one {
+                @include desktop {
+                    order: 1;
+                }
+                @include mobile {
+                    order: 2;
+                }
+            }
+            &._two {
+                @include desktop {
+                    order: 2;
+                }
+                @include mobile {
+                    order: 1;
+                }
+            }
+        }
+
+        &._type-one {
+            h2 {
+                @include adaptive(font-size, 74, 50);
+            }
+
+            .hero-custom-block {
+                &._one {
+                    @include adaptive(width, 70%, 100%);
+
+                    h2,
+                    p {
+                        @include adaptive(text-align, center, left);
+                    }
+                }
+            }
+        }
+
+        &._type-two {
+            h2 {
+                text-align: left;
+                @include adaptive(width, 50%, 100%);
+            }
+
+            .custom-column {
+                @include adaptive(width, 28%, 100%);
+                margin: 0 auto;
+            }
+        }
+
+        &._type-three {
+            .hero-custom-block {
+                &._one {
+                    flex-wrap: wrap;
+                    gap: 0;
+
+                    h2 {
+                        width: 100%;
+                        &:nth-child(even) {
+                            @include adaptive(text-align, center, left);
+                        }
+                        &:nth-child(odd) {
+                            text-align: left;
+                        }
+                    }
+
+                    @include mobile {
+                        order: 1;
+                    }
+                }
+
+                &._two {
+                    @include adaptive(gap, 100, 40);
+
+                    .custom-image {
+                        align-self: center;
+                    }
+
+                    .custom-column {
+                        align-self: flex-end;
+                        @include adaptive(max-width, 40%, 100%);
+                    }
+
+                    p {
+                        @include adaptive(padding-right, 6%, 0);
+                    }
+
+                    @include mobile {
+                        order: 2;
+                    }
+                }
+            }
+        }
+
+        &._type-four {
+            flex-wrap: nowrap;
+            @include adaptive(gap, 120, 30);
+
+            @include desktop {
+                flex-direction: row;
+            }
+
+            h2 {
+                text-align: left;
+            }
+
+            p {
+                @include adaptive(width, 80%, 100%);
+            }
+
+            .hero-custom-block {
+                &._one {
+                    align-self: flex-end;
+                    gap: 0;
+                }
+                &._two {
+                    @include adaptive(margin-right, -100, 0);
+                }
+            }
+        }
+
+        &._type-screen {
+            height: 100dvh;
+            align-items: flex-start;
+
+            .custom-image {
+                position: absolute;
+            }
+
+            h2 {
+                text-align: left;
+                @include adaptive(font-size, 74, 60);
+            }
+
+            .button {
+                margin-top: auto;
+            }
+
+            .hero-custom-block {
+                &._one {
+                    @include adaptive(width, 50%, 100%);
+
+                    p {
+                        @include adaptive(width, 80%, 100%);
+                    }
+                }
+            }
+        }
+    }
+</style>

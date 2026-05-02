@@ -10,14 +10,15 @@ import { initAboutInfo } from './about/aboutInfo'
 import { initAboutTimeline } from './about/aboutTimeline'
 import { initAboutMap } from './about/aboutMap'
 import { initNewsSlider } from './news/newsSlider'
-import { initNewsTypeTwoSlider } from './news_type_two/newsTypeTwoSlider'
 import { initCompaniesSlider } from './mice/companiesSlider'
 import { initAccordion } from './common/accordion'
 import { initModal } from './common/modal'
+import { initDataPswpLightbox } from './common/dataPswpLightbox'
 
 const initAll = () => {
     initHeader()
     initModal()
+    initDataPswpLightbox()
     initSearchForm()
     initTourCollections()
     initGlobusNews()
@@ -27,7 +28,6 @@ const initAll = () => {
     initAboutTimeline()
     initAboutMap()
     initNewsSlider()
-    initNewsTypeTwoSlider()
     initCompaniesSlider()
     initAccordion()
 }

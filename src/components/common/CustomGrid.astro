@@ -1,0 +1,60 @@
+---
+interface Props {
+    class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['custom-grid', className]}>
+    <slot />
+</div>
+
+<style lang="scss" is:global>
+    .custom-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        @include adaptive(gap, 50, 30);
+
+        .custom-grid-row {
+            display: flex;
+            width: 100%;
+            @include adaptive(gap, 50, 30);
+
+            @include mobile {
+                flex-direction: column;
+            }
+        }
+
+        .custom-column {
+            p {
+                @include adaptive(width, 60%, 100%);
+            }
+
+            @include mobile {
+                order: 2;
+            }
+
+            ~ .custom-image {
+                @include adaptive(flex-basis, 170%, auto);
+            }
+        }
+
+        .custom-image {
+            @include adaptive(flex-basis, 152%, auto);
+
+            p {
+                @include adaptive(width, 60%, 100%);
+            }
+
+            @include mobile {
+                order: 1;
+            }
+        }
+
+        .custom-grid-item {
+            @include adaptive(width, 50%, 100%);
+        }
+    }
+</style>

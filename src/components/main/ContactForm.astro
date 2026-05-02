@@ -320,7 +320,7 @@ const { userType = 'tourist' } = Astro.props
         .contact-agent-buttons {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
             @include adaptive(gap, 40, 28);
             width: 100%;
 
@@ -331,7 +331,7 @@ const { userType = 'tourist' } = Astro.props
         }
 
         .button {
-            @include adaptive(font-size, 24, 18);
+            @include adaptive(font-size, 22, 18);
         }
 
         .newsletter-form {

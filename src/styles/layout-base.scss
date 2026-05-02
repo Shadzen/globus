@@ -61,6 +61,7 @@ body {
 }
 
 main {
+    position: relative;
     flex: 1;
     width: 100%;
     margin: 0;
@@ -227,6 +228,10 @@ a {
         opacity: 0.8;
     }
 }
+
+// hr {
+//     border-color: var(--color-globus-blue);
+// }
 
 label,
 input,
@@ -425,7 +430,7 @@ ul {
         color: var(--color-globus-blue);
     }
 
-    .hero-nav {
+    .hero-nav, &.hero-nav {
         .breadcrumb {
 
             a,
@@ -438,6 +443,14 @@ ul {
             color: var(--color-globus-blue) !important;
         }
     }
+}
+
+._no-padding {
+    padding: 0 !important;
+}
+
+._no-top-padding {
+    padding-top: 0 !important;
 }
 
 .contacts-info {
@@ -579,58 +592,90 @@ ul {
     }
 }
 
+.custom-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-bg, .custom-image {
+    @include flex-center;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        @include abs-default;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    &._size-1 {
+        @include adaptive(height, 360, 231);
+    }
+
+    &._size-2 {
+        @include adaptive(height, 607, 231);
+    }
+
+    &._size-3 {
+        @include adaptive(height, 242, 231);
+    }
+
+    &._overlay-gradient {
+        &::after {
+            background: linear-gradient(180deg, #00273f -15%, rgba(0, 39, 63, 0) 50%);
+        }
+    }
+
+    &._overlay-double-gradient {
+        &::after {
+            background:
+                linear-gradient(180deg,
+                    rgba(0, 39, 63, 0.04) 35%,
+                    rgba(0, 39, 63, 0.75) 80%),
+                linear-gradient(180deg,
+                    rgba(0, 39, 63, 0.46) 0%,
+                    rgba(0, 39, 63, 0) 70%);
+        }
+    }
+
+    &._overlay-darker {
+        &::after {
+            background: linear-gradient(0deg,
+                    rgba(0, 39, 63, 0.7) 0%,
+                    rgba(0, 39, 63, 0.7) 100%);
+        }
+    }
+}
+
+.hero-bg {
+    position: absolute;
+}
+
 .hero-section {
     @include flex-start-between;
     flex-direction: column;
-
-    .hero-bg {
-        @include abs-default;
-        display: block;
-        overflow: hidden;
-        z-index: 0;
-
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        &::after {
-            content: '';
-            display: block;
-            @include abs-default;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        &._overlay-gradient {
-            &::after {
-                background: linear-gradient(180deg, #00273f -15%, rgba(0, 39, 63, 0) 50%);
-            }
-        }
-
-        &._overlay-double-gradient {
-            &::after {
-                background:
-                    linear-gradient(180deg,
-                        rgba(0, 39, 63, 0.04) 35%,
-                        rgba(0, 39, 63, 0.75) 80%),
-                    linear-gradient(180deg,
-                        rgba(0, 39, 63, 0.46) 0%,
-                        rgba(0, 39, 63, 0) 70%);
-            }
-        }
-
-        &._overlay-darker {
-            &::after {
-                background: linear-gradient(0deg,
-                        rgba(0, 39, 63, 0.7) 0%,
-                        rgba(0, 39, 63, 0.7) 100%);
-            }
-        }
-    }
 
     .hero-content {
         @include side-paddings;
@@ -768,4 +813,60 @@ ul {
             @include adaptive(font-size, 60, 60);
         }
     }
+}
+
+[data-pswp-lightbox] {
+    cursor: pointer;
+}
+
+[data-pswp-media="video"] {
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include adaptive(width, 100, 80);
+        @include adaptive(height, 100, 80);
+        transition: transform 0.3s;
+        background: url('@/assets/icons/play-white.svg') no-repeat center center;
+        background-size: contain;
+    }
+
+    &::after {
+        background: linear-gradient(0deg,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    &:hover {
+        &::before {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    }
+}
+
+// PhotoSwipe HTML slides: center video from dataPswpLightbox (data-pswp-media="video").
+// Wrap uses pointer-events: none so clicks on letterboxing reach the backdrop (PhotoSwipe closes).
+.pswp .pswp-lightbox-video-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: max(20px, var(--safe-top)) max(20px, var(--safe-right)) max(20px, var(--safe-bottom))
+        max(20px, var(--safe-left));
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.pswp .pswp-lightbox-video-wrap .pswp-lightbox-video {
+    width: 100%;
+    max-width: min(92vw, 1280px);
+    height: auto;
+    max-height: min(85vh, calc(100dvh - 120px));
+    display: block;
+    pointer-events: auto;
 }

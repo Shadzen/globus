@@ -12,9 +12,10 @@ interface Props {
     items: BreadcrumbItem[]
     showBackButton?: boolean
     backButtonText?: string
+    darkText?: boolean
 }
 
-const { items, showBackButton = true, backButtonText = 'назад' } = Astro.props
+const { items, showBackButton = true, backButtonText = 'назад', darkText = false } = Astro.props
 
 const getItemHref = (item: BreadcrumbItem, index: number, total: number): string | null => {
     if (item.href !== undefined) {
@@ -33,7 +34,7 @@ const getItemHref = (item: BreadcrumbItem, index: number, total: number): string
 }
 ---
 
-<div class="hero-nav">
+<div class:list={['hero-nav', { '_dark-text': darkText }]}>
     <nav class="breadcrumb">
         {
             items.map((item, index) => {

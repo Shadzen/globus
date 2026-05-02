@@ -4,7 +4,6 @@ import { initSlider } from '../swiperHelpers'
 const initHotelSlider = () => {
     return initSlider({
         containerSelector: '.hotels-slider-wrapper',
-        parentSelector: '.best-hotels',
         spaceBetweenDesktop: 16,
         spaceBetweenMobile: 12,
     })
