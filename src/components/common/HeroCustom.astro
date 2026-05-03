@@ -31,7 +31,7 @@ const paddingModifierClass = heroPadding ? undefined : '_no-top-padding'
             z-index: 1;
             display: flex;
             @include adaptive(flex-direction, row, column);
-            @include adaptive(gap, 50, 30);
+            @include adaptive(gap, 30, 20);
             width: 100%;
             &._one {
                 @include desktop {
@@ -104,10 +104,6 @@ const paddingModifierClass = heroPadding ? undefined : '_no-top-padding'
                 &._two {
                     @include adaptive(gap, 100, 40);
 
-                    .custom-image {
-                        align-self: center;
-                    }
-
                     .custom-column {
                         align-self: flex-end;
                         @include adaptive(max-width, 40%, 100%);
@@ -146,6 +142,7 @@ const paddingModifierClass = heroPadding ? undefined : '_no-top-padding'
                     gap: 0;
                 }
                 &._two {
+                    align-self: flex-start;
                     @include adaptive(margin-right, -100, 0);
                 }
             }

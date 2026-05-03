@@ -595,6 +595,7 @@ ul {
 .custom-column {
     display: flex;
     flex-direction: column;
+    @include adaptive(gap, 30, 20);
 }
 
 .hero-bg, .custom-image {
