@@ -12,12 +12,12 @@ import HeroNav from '@/components/common/HeroNav.astro'
 import NewsGrid from '@/components/news/NewsGrid.astro'
 import SectionGap from '@/components/common/SectionGap.astro'
 import CustomGrid from '@/components/common/CustomGrid.astro'
-import CountryRules from '@/components/country/CountryRules.astro'
 import VisaDocuments from '@/components/visa/VisaDocuments.astro'
 import TourInclusions from '@/components/common/TourInclusions.astro'
 import PromoTourIncluded from '@/components/promo_tour/PromoTourIncluded.astro'
 import InsuranceCoverage from '@/components/insurance/InsuranceCoverage.astro'
 import AdvantagesGrid from '@/components/main/AdvantagesGrid.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
 
 import heroDesktop1 from '@/assets/images/concierge_service/hero-1.jpg'
 import heroMobile1 from '@/assets/images/concierge_service/hero-1-mobile.jpg'
@@ -170,7 +170,6 @@ const tabBlockDemoTabs = [
     { label: 'Leisure' },
 ]
 
-
 interface IncludedItem {
     text: string
 }
@@ -178,9 +177,13 @@ interface IncludedItem {
 const includedColumns: IncludedItem[][] = [
     [
         { text: 'Авиаперелет Москва — Эр-Рияд — Москва\n(прямые рейсы Flynas, Saudia airlines)*' },
-        { text: 'Авиаперелет Эр-Рияд — Аль-Ула — Эр-Рияд\n(прямые рейсы Flynas, Saudia airlines)*' },
+        {
+            text: 'Авиаперелет Эр-Рияд — Аль-Ула — Эр-Рияд\n(прямые рейсы Flynas, Saudia airlines)*',
+        },
         { text: 'Встреча/проводы в аэропорту.' },
-        { text: 'Размещение в указанных отелях\nили аналогичных отелях той же\nкатегории с завтраками.' },
+        {
+            text: 'Размещение в указанных отелях\nили аналогичных отелях той же\nкатегории с завтраками.',
+        },
         { text: 'Проживание в отеле Sahary Al Ula\nс полупансионом (включая завтрак и ужин).' },
     ],
     [
@@ -499,8 +502,92 @@ const includedColumns: IncludedItem[][] = [
 
     <SectionGap size={80} />
     <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
 
-    <CountryRules />
+    <section>
+        <div class="section-container">
+            <CustomGrid>
+                <div class="custom-grid-row">
+                    <div class="custom-column">
+                        <p>
+                            Встречайте 2026 год на грандиозном праздничном ужине c выступлением
+                            настоящих легенд, многократных обладателей Грэмми, исполнителей всемирно
+                            известных хитов!
+                        </p>
+                    </div>
+                    <picture
+                        class="custom-image _size-1"
+                        data-pswp-lightbox
+                        data-pswp-media="video"
+                        data-pswp-video-src={fullscreenDemoVideoSrc}
+                        data-pswp-poster={photo1.src}
+                    >
+                        <img src={photo1.src} alt="" loading="eager" decoding="async" />
+                    </picture>
+                </div>
+            </CustomGrid>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <CustomGrid>
+                <div class="custom-grid-row">
+                    <picture class="custom-image _size-3">
+                        <img src={photo2.src} alt="" loading="eager" decoding="async" />
+                    </picture>
+                    <div class="custom-column">
+                        <p>
+                            Гостей ждёт открытая площадка с видом на Пальму Джумейра и небоскрёбы
+                            Дубая, живая музыка и оркестр. Дресс-код — black tie, атмосфера —
+                            настоящая зимняя сказка. Роскошный ужин с изысканными деликатесами —
+                            чёрной икрой, белым трюфелем и премиальным шампанским — станет настоящим
+                            украшением новогодней ночи.
+                        </p>
+                        <p>
+                            Слушайте вживую Moves Like Jagger, She Will Be Loved и This Love под
+                            аккомпанемент новогодних фейерверков! Вы можете выбрать различные
+                            категории новогоднего ужина под открытым небом: «Premium» (Премиум),
+                            «Красный круг» или «Золотой круг»:
+                        </p>
+                    </div>
+                </div>
+            </CustomGrid>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section>
+        <div class="section-container">
+            <h2 class="_text-left">Правила въезда</h2>
+            <SectionGap size={40} />
+            <div class="custom-column _width-70">
+                <p>
+                    Греция отменила COVID-ограничения. Для въезда в страну больше не требуется
+                    предъявлять сертификат о вакцинации, заполнять анкету PLF, ПЦР-тест до вылета и
+                    экспресс-тест по прилёте также отменены.
+                </p>
+                <p>
+                    Для посещения Греции гражданам РФ нужна <a
+                        href="https://agency.globus-tour.ru/agencies/strany/greciya/viza-v-greciyu"
+                        target="_blank"
+                        rel="noopener noreferrer">виза</a
+                    >.
+                </p>
+                <p>
+                    Срок действия загранпаспорта должен быть не менее 3 месяцев со дня возвращения из
+                    поездки.
+                </p>
+            </div>
+        </div>
+    </section>
 
     <SectionGap size={80} />
     <hr style="margin: 0; border-color: red;" />
@@ -667,6 +754,70 @@ const includedColumns: IncludedItem[][] = [
             </TabBlock>
         </div>
     </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
+    <section class="country-rules-section">
+        <div class="section-container">
+            <div class="country-rules-content">
+                <p>
+                    Данный метод оплаты можно выбрать в личном кабинете агентства, в разделе «Оплата
+                    заявки» — «Внести оплату» при выборе заявки.<br />Далее осуществляется
+                    направление на страницу, где можно отсканировать QR-код или воспользоваться
+                    приложением банка.<br />Такой способ оплаты позволяет переводить деньги в
+                    нерабочие часы и выходные дни. Время зачисления средств по заявке составит 5-10
+                    минут.<br />&nbsp;
+                </p><br />
+                <p>
+                    Как и при обычных условиях оплаты, заявка должна быть<strong
+                        >&nbsp;подтверждена и/или доступна для оплаты.</strong>
+                </p><br />
+                <ul>
+                    <br />
+                    <li data-list-item-id="e6c55c9f2bbda194b91d95242fb4dcd3e">
+                        при оплате заявки в способах оплаты выбрать «СБП»
+                    </li><br />
+                    <li data-list-item-id="e31854253bd3e2c5c12784969cb9cd5da">
+                        при необходимости изменить сумму для оплаты и нажать «Оплатить»
+                    </li><br />
+                    <li data-list-item-id="e26f900f0c30cce3dfcdc4f43e8eca29f">
+                        сформируется QR-код для оплаты с мобильного устройства или, если Вы
+                        оплачиваете заявку с ПК, то необходимо нажать на ссылку перехода для выбора
+                        банка оплаты
+                    </li><br />
+                    <li data-list-item-id="e47872efb4aecbf8f0d2f15e2125b47ab">
+                        далее идет переход на страницу выбора банка, с которого Вы будете оплачивать
+                        заявку, и система автоматически запустит Ваш клиент-банк
+                    </li><br />
+                    <li data-list-item-id="e30801b487a49130926331d36ad7c410e">
+                        после оплаты заявки через СБП, оплата встает в систему автоматически в
+                        течении 5-10 минут<br />&nbsp;
+                    </li><br />
+                </ul><br />
+                <p>
+                    <strong
+                        >Обращаем Ваше внимание, что данный способ оплаты работает исключительно для
+                        агентов и корпоративных клиентов, у которых есть доступ в ЛК и есть
+                        клиент-банк оформленный на юр.лицо.</strong>
+                </p><br />
+                <p>
+                    <a href="/sposoby-oplaty-dlya-agentov/"
+                        ><strong>Смотреть все способы оплаты&nbsp;</strong></a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <ContactsGrid
+        standalone
+        title="Свяжитесь с нами для разработки персонального предложения"
+        description="Наши менеджеры по работе с корпоративными клиентами готовы проконсультировать вас и подготовить коммерческое предложение, идеально соответствующее целям и бюджету вашей компании"
+    />
 
     <SectionGap size={80} />
     <hr style="margin: 0; border-color: red;" />

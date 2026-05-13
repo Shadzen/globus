@@ -76,7 +76,7 @@ const base = import.meta.env.BASE_URL
         </div>
         <div class="footer-columns">
             <div class="footer-column">
-                <a href={`${base}tourist/payment_methods`} class="footer-link">Способы оплаты</a>
+                <a href={`${base}tourist/payment_methods`} class="footer-link">Правила оплаты и&nbsp;безопасность платежей</a>
             </div>
             <div class="footer-column">
                 <a href={`${base}tourist/privacy_policy`} class="footer-link"
@@ -85,7 +85,7 @@ const base = import.meta.env.BASE_URL
             </div>
             <div class="footer-column">
                 <a href={`${base}tourist/user_agreement`} class="footer-link"
-                    >Пользовательское соглашение</a
+                    >Пользовательское <br> соглашение</a
                 >
             </div>
             <div class="footer-column">
@@ -225,16 +225,11 @@ const base = import.meta.env.BASE_URL
             @include adaptive(letter-spacing, 3.2, 3.2);
             transition: opacity 0.3s;
             white-space: normal;
-            width: 50%;
-            @include adaptive(margin-top, 80, 15);
+            width: 100%;
+            @include adaptive(margin-top, 80, 0);
 
             &:hover {
                 opacity: 0.8;
-            }
-
-            @include mobile {
-                width: 100%;
-                margin-top: 0;
             }
         }
 

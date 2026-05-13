@@ -15,6 +15,7 @@ interface Props {
     people?: ContactPerson[]
     standalone?: boolean
     title?: string
+    description?: string
 }
 
 const defaultPeople: ContactPerson[] = [
@@ -41,11 +42,12 @@ const defaultPeople: ContactPerson[] = [
     },
 ]
 
-const { people = defaultPeople, standalone = false, title } = Astro.props
+const { people = defaultPeople, standalone = false, title, description } = Astro.props
 ---
 
 <section class:list={['contacts-grid _dark', { _standalone: standalone }]}>
     {title && <h2 set:html={title} />}
+    {description && <p set:html={description} />}
 
     {
         people.map((person) => (
@@ -81,8 +83,8 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
         @include adaptive(padding-bottom, 80, 40);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        @include adaptive(column-gap, 60, 30);
-        @include adaptive(row-gap, 80, 50);
+        @include adaptive(gap, 60, 30);
+        // @include adaptive(row-gap, 80, 50);
 
         &._standalone {
             @include side-paddings;
@@ -93,8 +95,20 @@ const { people = defaultPeople, standalone = false, title } = Astro.props
             grid-template-columns: 1fr;
         }
 
-        h2 {
+        > h2, > p {
             grid-column: 1 / -1;
+            width: 90%;
+            text-align: center;
+            justify-self: center;
+        }
+
+        > h2 {
+            @include adaptive(width, 90%, 100%);
+        }
+
+        > p {
+            @include adaptive(width, 50%, 100%);
+            color: var(--color-globus-light-blue) !important;
         }
     }
 
