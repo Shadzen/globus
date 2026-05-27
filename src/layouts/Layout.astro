@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL
         </main>
         {showFooter && <Footer userType={userType} />}
         <Modal id="contact-popup">
-            <ContactFormPopupContent />
+            <ContactFormPopupContent userType={userType} />
         </Modal>
         <script src="@/scripts/main.ts"></script>
     </body>

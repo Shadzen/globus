@@ -2,6 +2,14 @@
 // src/components/main/ContactFormPopupContent.astro
 // Popup variant of contact form (tourist structure, light/white background).
 import SocialButtons from '@/components/common/SocialButtons.astro'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+const managersContactsHref = `${base}${userType}/about#contacts-tabs-wrapper`
 ---
 
 <div class="contact-form-popup">
@@ -32,6 +40,17 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
                     </a>
                 </div>
             </div>
+
+            {
+                userType === 'agent' && (
+                    <a
+                        href={managersContactsHref}
+                        class="button _sized _outline contacts-managers-link"
+                    >
+                        Контакты менеджеров
+                    </a>
+                )
+            }
 
             <div class="contacts-social">
                 <h3>Быстрая связь в месенджерах</h3>
@@ -142,6 +161,11 @@ import SocialButtons from '@/components/common/SocialButtons.astro'
         .button._sized {
             @include adaptive(width, 222, 100%);
             align-self: flex-start;
+        }
+
+        .contacts-managers-link.button._sized {
+            width: 100%;
+            @include adaptive(font-size, 28, 24);
         }
     }
 </style>

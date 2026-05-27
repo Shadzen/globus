@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL
             <slot />
         </main>
         <Modal id="contact-popup">
-            <ContactFormPopupContent />
+            <ContactFormPopupContent userType={userType} />
         </Modal>
         <script src="@/scripts/agent-main.ts"></script>
     </body>
