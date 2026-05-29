@@ -4,6 +4,7 @@ node_modules/
 # Build output
 dist/
 dist-agent/
+scripts/agent-shell/src/pages/
 .astro/
 
 # IDE files
