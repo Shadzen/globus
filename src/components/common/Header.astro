@@ -30,22 +30,23 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 </div>
 
                 <nav class="nav-menu">
-                    {userType === 'agent' && <a href="#">Кыргызстан</a>}
-                    <a href={`${base}${userType}/about`}>О нас</a>
-                    <a href={`${base}tourist/tourvisor`}>
-                        {userType === 'tourist' ? 'Поиск тура и отеля' : 'Поиск тура'}
-                    </a>
-                    <a href={`${base}${userType}/news`}>Глобус-News</a>
                     {
                         userType === 'tourist' ?
                             <>
+                                <a href={`${base}${userType}/about`}>О нас</a>
+                                <a href={`${base}tourist/tourvisor`}>Поиск тура и отеля</a>
+                                <a href={`${base}${userType}/news`}>Глобус-News</a>
                                 <a href="#">Коллекции туров</a>
                                 <a href={`${base}tourist/best_hotels`}>Лучшие отели мира</a>
                                 <a href={`${base}tourist/mice`}>Деловой туризм</a>
                             </>
                         :   <>
-                                <a href={`${base}agent/partner`}>Стать партнером</a>
+                                <a href="#">Кыргызстан</a>
+                                <a href={`${base}agent/about`}>О нас</a>
+                                <a href={`${base}agent/news`}>Глобус-News</a>
                                 <a href={`${base}agent/countries`}>Страны</a>
+                                <a href={`${base}agent/partner`}>Агенствам</a>
+                                <a href={`${base}agent/tour_search`}>Поиск</a>
                             </>
                     }
                 </nav>

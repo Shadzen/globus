@@ -1,19 +1,44 @@
 ---
-// Reusable social buttons: Telegram and WhatsApp, round links with sand background.
+// Reusable social buttons: MAX, message, and Telegram, round links with sand background.
 // variant: 'default' = inline in layout, 'fixed' = fixed on screen (e.g. side strip).
-import telegramWhiteIcon from '@/assets/icons/telegram-white.svg'
-import whatsappWhiteIcon from '@/assets/icons/whatsapp-white.svg'
+import maxIcon from '@/assets/icons/max4.png'
+import messageIcon from '@/assets/icons/soobshhenie-3.png'
+import telegramIcon from '@/assets/icons/telegram-1.png'
 
 interface Props {
     variant?: 'default' | 'fixed'
+    maxHref?: string
+    messageHref?: string
     telegramHref?: string
-    whatsappHref?: string
 }
 
-const { variant = 'default', telegramHref = '#', whatsappHref = '#' } = Astro.props
+const {
+    variant = 'default',
+    maxHref = '#',
+    messageHref = '#',
+    telegramHref = '#',
+} = Astro.props
 ---
 
 <div class="social-buttons" class:list={[variant === 'fixed' && '_fixed']}>
+    <a
+        href={maxHref}
+        class="social-buttons-link"
+        aria-label="MAX"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <img src={maxIcon.src} alt="" width="24" height="24" />
+    </a>
+    <a
+        href={messageHref}
+        class="social-buttons-link"
+        aria-label="Сообщения"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <img src={messageIcon.src} alt="" width="24" height="24" />
+    </a>
     <a
         href={telegramHref}
         class="social-buttons-link"
@@ -21,16 +46,7 @@ const { variant = 'default', telegramHref = '#', whatsappHref = '#' } = Astro.pr
         target="_blank"
         rel="noopener noreferrer"
     >
-        <img src={telegramWhiteIcon.src} alt="" width="24" height="24" />
-    </a>
-    <a
-        href={whatsappHref}
-        class="social-buttons-link"
-        aria-label="WhatsApp"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img src={whatsappWhiteIcon.src} alt="" width="24" height="24" />
+        <img src={telegramIcon.src} alt="" width="24" height="24" />
     </a>
 </div>
 

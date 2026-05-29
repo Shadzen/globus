@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && node scripts/fix-scripts.js && prettier --write \"dist/**/*.html\" --ignore-path .prettierignore",
+    "build:agent": "node scripts/build-agent.js",
     "preview": "astro preview",
+    "preview:agent": "npx --yes serve dist-agent -l 4322",
     "astro": "astro",
     "lint": "eslint src"
   },

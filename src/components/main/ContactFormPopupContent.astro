@@ -10,10 +10,11 @@ interface Props {
 const { userType = 'tourist' } = Astro.props
 const base = import.meta.env.BASE_URL
 const managersContactsHref = `${base}${userType}/about#contacts-tabs-wrapper`
+const popupTitle = userType === 'agent' ? 'Открываем мир для вас' : 'Открываем мир'
 ---
 
 <div class="contact-form-popup">
-    <h2 id="contact-title" data-modal-focus>Открываем мир</h2>
+    <h2 id="contact-title" data-modal-focus>{popupTitle}</h2>
 
     <div class="contact-form-container">
         <div class="contact-form-left">
@@ -56,8 +57,9 @@ const managersContactsHref = `${base}${userType}/about#contacts-tabs-wrapper`
                 <h3>Быстрая связь в месенджерах</h3>
                 <SocialButtons
                     variant="default"
-                    telegramHref="https://t.me/+79130637716"
-                    whatsappHref="https://wa.me/79130637716"
+                    maxHref="#"
+                    messageHref="#"
+                    telegramHref="#"
                 />
             </div>
         </div>
@@ -95,10 +97,15 @@ const managersContactsHref = `${base}${userType}/about#contacts-tabs-wrapper`
                 />
 
                 <div class="contact-form-checkbox">
-                    <input type="checkbox" id="contact-agree" name="agree" required />
-                    <label for="contact-agree">
-                        Я принимаю условия <a href="#">Пользовательского соглашения</a> и подтверждаю
-                        <a href="#">согласие на обработку моих персональных данных</a>.
+                    <input type="checkbox" id="contact-agree-1" name="agree" required />
+                    <label for="contact-agree-1">
+                        Я принимаю условия
+                        <a href="/polzovatelskoe-soglashenie/">Пользовательского соглашения</a>.
+                    </label>
+                    <input type="checkbox" id="contact-agree-2" name="agree" required />
+                    <label for="contact-agree-2">
+                        Я подтверждаю
+                        <a href="/politika-konfidenczialnosti/">согласие на обработку моих персональных данных</a>.
                     </label>
                 </div>
 
@@ -165,7 +172,35 @@ const managersContactsHref = `${base}${userType}/about#contacts-tabs-wrapper`
 
         .contacts-managers-link.button._sized {
             width: 100%;
-            @include adaptive(font-size, 28, 24);
+            isolation: isolate;
+            background-color: transparent;
+            transition: transform 0.3s ease;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                border-radius: inherit;
+                background-color: var(--color-globus-sand);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: -1;
+            }
+
+            &:hover {
+                background: transparent;
+                color: var(--color-globus-cream);
+                opacity: 1;
+                transform: translateY(-2px);
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
         }
     }
 </style>
