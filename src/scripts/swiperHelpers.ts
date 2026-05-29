@@ -13,17 +13,6 @@ interface InitSliderOptions {
     slidesOffsetMobile?: number
 }
 
-const navButtonDescendantSelector = (
-    parentSelector: string,
-    navClass: 'nav-btn-prev' | 'nav-btn-next',
-) => {
-    const s = parentSelector.trim()
-    if (s.includes(',')) {
-        return `:is(${s}) .${navClass}`
-    }
-    return `${s} .${navClass}`
-}
-
 const getNavButtonsForSwiperContainer = (
     swiperContainer: HTMLElement,
     parent: Element,
@@ -120,35 +109,19 @@ export const initSlider = ({
     }
 
     const parents = document.querySelectorAll(scopeParents)
-    if (parents.length > 0) {
-        parents.forEach((parent) => {
-            const containers = parent.querySelectorAll(containerSelector)
-            containers.forEach((node) => {
-                if (!(node instanceof HTMLElement)) return
+    parents.forEach((parent) => {
+        const containers = parent.querySelectorAll(containerSelector)
+        containers.forEach((node) => {
+            if (!(node instanceof HTMLElement)) return
 
-                const { prev: prevButton, next: nextButton } = getNavButtonsForSwiperContainer(
-                    node,
-                    parent,
-                )
+            const { prev: prevButton, next: nextButton } = getNavButtonsForSwiperContainer(
+                node,
+                parent,
+            )
 
-                createSwiper(node, prevButton, nextButton)
-            })
+            createSwiper(node, prevButton, nextButton)
         })
-    } else {
-        const swiperContainer = document.querySelector(containerSelector)
-        if (!swiperContainer || !(swiperContainer instanceof HTMLElement)) {
-            return swipers
-        }
-
-        const prevButton = document.querySelector(
-            navButtonDescendantSelector(scopeParents, 'nav-btn-prev'),
-        ) as HTMLElement | null
-        const nextButton = document.querySelector(
-            navButtonDescendantSelector(scopeParents, 'nav-btn-next'),
-        ) as HTMLElement | null
-
-        createSwiper(swiperContainer, prevButton, nextButton)
-    }
+    })
 
     return swipers
 }
