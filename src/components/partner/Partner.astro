@@ -123,6 +123,7 @@
 
         .partner-step {
             display: flex;
+            align-items: center;
             @include adaptive(gap, 44, 22);
             @include adaptive(padding-top, 30, 20);
             @include adaptive(padding-bottom, 30, 20);
@@ -144,6 +145,7 @@
             flex: 1;
             @include adaptive(gap, 100, 22);
             align-self: center;
+            align-items: center;
 
             @include mobile {
                 flex-direction: column;
@@ -157,12 +159,16 @@
             h4 {
                 @include font-circe-regular;
                 text-transform: uppercase;
-                @include adaptive(margin-bottom, 26, 12);
             }
 
             .partner-col {
                 display: flex;
                 flex-direction: column;
+                @include adaptive(gap, 20, 10);
+
+                p {
+                    width: 100%;
+                }
             }
         }
 

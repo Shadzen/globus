@@ -22,6 +22,13 @@ interface NewsCard {
     image: ImageMetadata
 }
 
+interface BottomNewsCard {
+    id: number
+    title: string
+    category: string
+    image: ImageMetadata | string
+}
+
 const topCards: NewsCard[] = [
     {
         id: 1,
@@ -43,7 +50,13 @@ const topCards: NewsCard[] = [
     },
 ]
 
-const bottomCards: NewsCard[] = [
+const bottomCards: BottomNewsCard[] = [
+    {
+        id: 0,
+        title: 'Япония',
+        category: 'Туры 2026',
+        image: 'https://gt.dozestudio.ru/wp-content/uploads/2026/03/fudzi-kavaguchiko.jpg',
+    },
     {
         id: 4,
         title: 'Авторские туры <br> в составе мини-группы',
@@ -117,12 +130,21 @@ const base = import.meta.env.BASE_URL
                         bottomCards.map((card) => (
                             <a href="#" class="card _interactive _second swiper-slide">
                                 <span class="card-image">
-                                    <Image
-                                        src={card.image}
-                                        alt={card.title}
-                                        loading="lazy"
-                                        quality={100}
-                                    />
+                                    {typeof card.image === 'string' ? (
+                                        <img
+                                            src={card.image}
+                                            alt={card.title}
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={card.image}
+                                            alt={card.title}
+                                            loading="lazy"
+                                            quality={100}
+                                        />
+                                    )}
                                 </span>
                                 <span class="card-content">
                                     <span class="card-category">{card.category}</span>
@@ -179,6 +201,12 @@ const base = import.meta.env.BASE_URL
                         color: var(--color-globus-cream);
                     }
                 }
+            }
+        }
+
+        .cards-bottom-grid {
+            .card-image {
+                @include adaptive(height, 280, 231);
             }
         }
 

@@ -11,7 +11,7 @@ const base = import.meta.env.BASE_URL
                 Для начала работы с турами Selfie Travel просим следовать инструкции
             </p>
 
-            <a href={`${base}agent/selfie_travel`} class="partner-selfie-button">
+            <a href={`${base}agent/selfie_travel`} class="button _sized">
                 <span>Selfie Travel</span>
             </a>
         </div>
@@ -27,7 +27,7 @@ const base = import.meta.env.BASE_URL
             @include adaptive(padding-left, 145, 0);
             @include adaptive(padding-right, 145, 0);
             @include flex-center;
-            @include adaptive(gap, 60, 60);
+            @include adaptive(gap, 30, 30);
             flex-wrap: wrap;
             align-items: center;
 
@@ -39,15 +39,10 @@ const base = import.meta.env.BASE_URL
         .partner-selfie-text {
             @include adaptive(font-size, 26, 18);
             color: var(--color-globus-blue);
-            flex: 1;
 
             @include mobile {
                 text-align: center;
             }
-        }
-
-        .partner-selfie-button {
-            @include button-sized;
         }
     }
 </style>

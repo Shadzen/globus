@@ -47,6 +47,8 @@ const devHeroUserType = 'tourist' as const
 // Demo asset for fullscreen video lightbox (CC0 sample).
 const fullscreenDemoVideoSrc =
     'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
+const fullscreenDemoYoutubeSrc = 'https://www.youtube.com/watch?v=aqz-KE-bpKQ'
+const fullscreenDemoRutubeSrc = 'https://rutube.ru/video/48d4c504e46d01723a5bb920a064c383/'
 
 const accordionDemoSections = [
     {
@@ -413,8 +415,60 @@ const includedColumns: IncludedItem[][] = [
     <hr style="margin: 0; border-color: red;" />
     <SectionGap size={80} />
 
+    <section class="_dark">
+        <div class="section-container">
+            <SectionGap size={80} />
+            <h2>Концерты</h2>
+            <div class="offers-badge">ЛЕТО 2026</div>
+            <div class="hotels-list">
+                <div class="hotel-item">
+                    <div class="hotel-info _gap-40">
+                        <div class="custom-column _gap-15">
+                            <h3>Концерт Рики Мартина в Тбилиси</h3>
+                            <span class="text-accent">14 июля 2026 </span>
+                        </div>
+
+                        <div class="custom-column _gap-30">
+                            <h3>Стоимость тура на человека при двухместном размещении:</h3>
+
+                            <ul>
+                                <li>с перелетом из Новосибирска: от 83 000 руб.чел</li>
+                                <li>без перелета от 30 100 руб.чел</li>
+                            </ul>
+                        </div>
+
+                        <span class="text-accent">без билета на концерт</span>
+
+                        <div class="custom-row">
+                            <button class="button _sized">Забронировать</button>
+                            <button class="button _sized _outline">Подробнее</button>
+                        </div>
+                    </div>
+
+                    <div class="hotel-image">
+                        <img
+                            src="https://gt.dozestudio.ru/wp-content/uploads/2026/05/f0233ab7-3b46-492c-9f60-4d4dbd9a1b88.jpg"
+                            alt="Концерт Рики Мартина в Тбилиси"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="card-badge">4 дня / 3 ночи</div>
+                    </div>
+                </div>
+                <SectionGap size={80} />
+            </div>
+        </div>
+    </section>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+    <SectionGap size={80} />
+
     <section>
         <div class="section-container">
+            <h2>Open fullscreen video demos</h2>
+            <br />
+            <br />
             <picture
                 class="custom-image _size-1"
                 data-pswp-lightbox
@@ -424,6 +478,30 @@ const includedColumns: IncludedItem[][] = [
             >
                 <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile5.src} />
                 <img src={heroDesktop5.src} alt="" loading="eager" decoding="async" />
+            </picture>
+            <br />
+            <br />
+            <picture
+                class="custom-image _size-1"
+                data-pswp-lightbox
+                data-pswp-media="video"
+                data-pswp-video-src={fullscreenDemoYoutubeSrc}
+                data-pswp-poster={heroDesktop4.src}
+            >
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile4.src} />
+                <img src={heroDesktop4.src} alt="" loading="eager" decoding="async" />
+            </picture>
+            <br />
+            <br />
+            <picture
+                class="custom-image _size-1"
+                data-pswp-lightbox
+                data-pswp-media="video"
+                data-pswp-video-src={fullscreenDemoRutubeSrc}
+                data-pswp-poster={heroDesktop6.src}
+            >
+                <source media={`(max-width: ${BREAKPOINTS.mobile}px)`} srcset={heroMobile6.src} />
+                <img src={heroDesktop6.src} alt="" loading="eager" decoding="async" />
             </picture>
         </div>
     </section>
@@ -582,8 +660,8 @@ const includedColumns: IncludedItem[][] = [
                     >.
                 </p>
                 <p>
-                    Срок действия загранпаспорта должен быть не менее 3 месяцев со дня возвращения из
-                    поездки.
+                    Срок действия загранпаспорта должен быть не менее 3 месяцев со дня возвращения
+                    из поездки.
                 </p>
             </div>
         </div>
@@ -772,7 +850,8 @@ const includedColumns: IncludedItem[][] = [
                 </p><br />
                 <p>
                     Как и при обычных условиях оплаты, заявка должна быть<strong
-                        >&nbsp;подтверждена и/или доступна для оплаты.</strong>
+                        >&nbsp;подтверждена и/или доступна для оплаты.</strong
+                    >
                 </p><br />
                 <ul>
                     <br />
@@ -800,11 +879,13 @@ const includedColumns: IncludedItem[][] = [
                     <strong
                         >Обращаем Ваше внимание, что данный способ оплаты работает исключительно для
                         агентов и корпоративных клиентов, у которых есть доступ в ЛК и есть
-                        клиент-банк оформленный на юр.лицо.</strong>
+                        клиент-банк оформленный на юр.лицо.</strong
+                    >
                 </p><br />
                 <p>
                     <a href="/sposoby-oplaty-dlya-agentov/"
-                        ><strong>Смотреть все способы оплаты&nbsp;</strong></a>
+                        ><strong>Смотреть все способы оплаты&nbsp;</strong></a
+                    >
                 </p>
             </div>
         </div>

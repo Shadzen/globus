@@ -17,13 +17,20 @@ const base = import.meta.env.BASE_URL
 
 interface NewsSlide {
     id: number
-    image: ImageMetadata
+    image: ImageMetadata | string
     category: string
     title: string
     slug: string
 }
 
 const newsSlides: NewsSlide[] = [
+    {
+        id: 0,
+        image: 'https://gt.dozestudio.ru/wp-content/uploads/2026/03/fudzi-kavaguchiko.jpg',
+        category: 'Туры 2026',
+        title: 'Япония',
+        slug: 'japan-2026',
+    },
     {
         id: 1,
         image: newsImage1,
@@ -75,12 +82,21 @@ const newsSlides: NewsSlide[] = [
                     newsSlides.map((slide) => (
                         <a href={`${base}${userType}/news/${slide.slug}/`} class="card _interactive _second swiper-slide">
                             <span class="card-image">
-                                <Image
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    loading="lazy"
-                                    quality={100}
-                                />
+                                {typeof slide.image === 'string' ? (
+                                    <img
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        loading="lazy"
+                                        quality={100}
+                                    />
+                                )}
                             </span>
                             <span class="card-content">
                                 <span class="card-category">{slide.category}</span>
@@ -109,6 +125,10 @@ const newsSlides: NewsSlide[] = [
 
         .card._second {
             @include adaptive(max-width, 418, 290);
+        }
+
+        .card-image {
+            @include adaptive(height, 280, 231);
         }
     }
 </style>

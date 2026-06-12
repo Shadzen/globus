@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import AgenciesHero from '@/components/agencies/AgenciesHero.astro'
+import PlainGrid from '@/components/common/PlainGrid.astro'
+import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout title={`Агенствам - ${COMPANY_NAME}`} userType="agent">
+    <AgenciesHero userType="agent" />
+    <PlainGrid userType="agent" />
+    <ContactsGrid
+        standalone
+        title="Остались вопросы? Свяжитесь с нами!"
+    />
+</Layout>

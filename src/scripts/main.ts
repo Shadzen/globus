@@ -1,7 +1,6 @@
 // src/scripts/main.ts
 import './swiper'
 import { initHeader } from './main/header'
-import { initSearchForm } from './main/searchForm'
 import { initTourCollections } from './main/tourCollections'
 import { initGlobusNews } from './main/globusNews'
 import { initHotelGallery } from './about_hotel/hotelGallery'
@@ -19,7 +18,6 @@ const initAll = () => {
     initHeader()
     initModal()
     initDataPswpLightbox()
-    initSearchForm()
     initTourCollections()
     initGlobusNews()
     initHotelGallery()

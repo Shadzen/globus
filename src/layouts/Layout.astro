@@ -1,13 +1,13 @@
 ---
 // src/layouts/Layout.astro
 import '../styles/fonts.scss'
-import 'flatpickr/dist/flatpickr.min.css'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'photoswipe/style.css'
 import Header from '@/components/common/Header.astro'
 import Footer from '@/components/common/Footer.astro'
 import Modal from '@/components/common/Modal.astro'
+import SocialButtons from '@/components/common/SocialButtons.astro'
 import ContactFormPopupContent from '@/components/main/ContactFormPopupContent.astro'
 
 interface Props {
@@ -48,6 +48,11 @@ const base = import.meta.env.BASE_URL
         <Modal id="contact-popup">
             <ContactFormPopupContent userType={userType} />
         </Modal>
+        <SocialButtons
+            variant="fixed"
+            maxHref="#"
+            telegramHref="https://t.me/+79130637716"
+        />
         <script src="@/scripts/main.ts"></script>
     </body>
 </html>
@@ -219,143 +224,124 @@ const base = import.meta.env.BASE_URL
         }
     }
 
-    // flatpickr styles
-    .flatpickr-calendar {
-        background: var(--color-globus-blue) !important;
-        border: 1px solid color-mix(in srgb, var(--color-globus-sand) 30%, transparent) !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-
-        &::before,
-        &::after {
-            display: none !important;
-        }
-
-        span {
-            @include adaptive(font-size, 14, 14);
-        }
+    .offers-badge {
+        @include font-circe-regular;
+        color: var(--color-globus-sand);
+        @include adaptive(font-size, 26, 26);
+        line-height: 1.2;
+        text-align: center;
+        border: 1px solid var(--color-globus-sand);
+        border-radius: 390px;
+        @include adaptive(padding-top, 16, 12);
+        @include adaptive(padding-bottom, 16, 12);
+        @include adaptive(padding-left, 50, 30);
+        @include adaptive(padding-right, 50, 30);
+        @include adaptive(margin-top, 30, 20);
+        @include adaptive(margin-bottom, 60, 40);
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
     }
 
-    .flatpickr-months {
-        background: transparent !important;
-        border-bottom: 1px solid color-mix(in srgb, var(--color-globus-sand) 20%, transparent) !important;
-        padding: 10px !important;
+    .hotels-list {
+        display: flex;
+        flex-direction: column;
 
-        .flatpickr-month {
-            color: var(--color-globus-cream) !important;
+        .hotel-item {
+            display: flex;
+            @include adaptive(gap, 50, 20);
+
+            @include mobile {
+                flex-direction: column;
+            }
         }
 
-        .flatpickr-current-month {
-            color: var(--color-globus-cream) !important;
+        .hotel-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
 
-            .flatpickr-monthDropdown-months {
-                background: var(--color-globus-blue) !important;
-                color: var(--color-globus-cream) !important;
-                border: 1px solid color-mix(in srgb, var(--color-globus-sand) 30%, transparent) !important;
+            @include mobile {
+                order: 2;
+            }
 
-                option {
-                    background: var(--color-globus-blue) !important;
-                    color: var(--color-globus-cream) !important;
+            h3 {
+                @include adaptive(font-size, 28, 20);
+            }
+
+            .card-price,
+            .text-accent {
+                @include adaptive(font-size, 26, 20);
+                color: var(--color-globus-sand);
+            }
+
+            .card-price {
+                @include adaptive(margin-top, 16, 8);
+                @include adaptive(margin-bottom, 40, 25);
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                @include adaptive(gap, 30, 20);
+                @include adaptive(margin-bottom, 40, 30);
+
+                li {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    @include adaptive(gap, 8, 5);
+
+                    span {
+                        opacity: 0.6;
+                        @include adaptive(font-size, 20, 18);
+                    }
                 }
             }
 
-            input.cur-year {
-                color: var(--color-globus-cream) !important;
-                background: transparent !important;
+            &._gap-40 {
+                ul {
+                    margin-bottom: 0;
+                }
             }
         }
 
-        .flatpickr-prev-month,
-        .flatpickr-next-month {
-            color: var(--color-globus-cream) !important;
-            fill: var(--color-globus-cream) !important;
+        .button {
+            @include adaptive(width, 273, 100%);
+        }
 
-            &:hover svg {
-                fill: var(--color-globus-sand) !important;
+        .hotel-image {
+            position: relative;
+            overflow: hidden;
+            @include adaptive(width, 970, 100%);
+            @include adaptive(height, 560, 300);
+
+            @include desktop {
+                flex-shrink: 0;
             }
-        }
-    }
 
-    .flatpickr-weekdays {
-        background: transparent !important;
+            @include mobile {
+                order: 1;
+            }
 
-        .flatpickr-weekday {
-            color: color-mix(in srgb, var(--color-globus-cream) 60%, transparent) !important;
-        }
-    }
-
-    .flatpickr-days {
-        background: transparent !important;
-    }
-
-    .flatpickr-day {
-        color: var(--color-globus-cream) !important;
-        border: none !important;
-
-        &:hover,
-        &:focus {
-            background: color-mix(in srgb, var(--color-globus-sand) 20%, transparent) !important;
-            border-color: transparent !important;
-        }
-
-        &.today {
-            border-color: var(--color-globus-sand) !important;
-            background: transparent !important;
-            color: var(--color-globus-cream) !important;
-
-            &:hover {
-                background: color-mix(in srgb, var(--color-globus-sand) 20%, transparent) !important;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
             }
         }
 
-        &.selected,
-        &.startRange,
-        &.endRange {
-            background: var(--color-globus-sand) !important;
-            color: var(--color-globus-blue) !important;
-            border-color: var(--color-globus-sand) !important;
-        }
-        &.startRange {
-            box-shadow: 5px 0 0 var(--color-globus-grey) !important;
-        }
-        &.endRange {
-            box-shadow: -5px 0 0 var(--color-globus-grey) !important;
+        .card-badge {
+            position: absolute;
+            @include adaptive(left, 36, 20);
+            @include adaptive(top, 30, 20);
+            @include adaptive(height, 54, 41);
         }
 
-        &.inRange {
-            background: var(--color-globus-grey) !important;
-            border-color: transparent !important;
-            color: var(--color-globus-cream) !important;
-            box-shadow:
-                -5px 0 0 var(--color-globus-grey),
-                5px 0 0 var(--color-globus-grey) !important;
-        }
-
-        // &.disabled,
-        // &.nextMonthDay,
-        // &.prevMonthDay,
-        &.flatpickr-disabled {
-            color: color-mix(in srgb, var(--color-globus-cream) 30%, transparent) !important;
-        }
-    }
-
-    .flatpickr-time {
-        border-top: 1px solid color-mix(in srgb, var(--color-globus-sand) 20%, transparent) !important;
-        background: transparent !important;
-
-        input {
-            color: var(--color-globus-cream) !important;
-            background: transparent !important;
-
-            &:hover,
-            &:focus {
-                background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent) !important;
-            }
-        }
-
-        .flatpickr-time-separator,
-        .flatpickr-am-pm {
-            color: var(--color-globus-cream) !important;
+        .divider {
+            @include adaptive(margin-top, 80, 40);
+            @include adaptive(margin-bottom, 80, 40);
         }
     }
 </style>

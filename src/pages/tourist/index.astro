@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import MainHero from '@/components/main/MainHero.astro'
-import SearchForm from '@/components/main/SearchForm.astro'
+import LinkToPage from '@/components/common/LinkToPage.astro'
 import TourCollections from '@/components/main/TourCollections.astro'
 import GlobusNews from '@/components/main/GlobusNews.astro'
 import AboutUs from '@/components/main/AboutUs.astro'
@@ -11,8 +11,8 @@ import { COMPANY_NAME } from '@/scripts/utils'
 
 <Layout title={COMPANY_NAME} userType="tourist">
     <MainHero userType="tourist" />
-    <SearchForm />
     <TourCollections />
+    <LinkToPage userType="tourist" />
     <GlobusNews />
     <AboutUs />
     <ContactForm userType="tourist" />

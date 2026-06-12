@@ -80,15 +80,15 @@ const hotels: Hotel[] = [
                                 <ul>
                                     {hotel.features.map((feature) => (
                                         <li>
-                                            {feature.label && (
-                                                <span>{feature.label}</span>
-                                            )}
+                                            {feature.label && <span>{feature.label}</span>}
                                             <p>{feature.value}</p>
                                         </li>
                                     ))}
                                 </ul>
-
-                                <button class="button _sized">Забронировать</button>
+                                <div class="custom-row">
+                                    <button class="button _sized">Забронировать</button>
+                                    <button class="button _sized _outline">Подробнее</button>
+                                </div>
                             </div>
 
                             <div class="hotel-image">
@@ -112,120 +112,8 @@ const hotels: Hotel[] = [
 
 <style lang="scss" is:global>
     .news-type-four-offers-section {
-        background: var(--color-globus-blue);
         @include adaptive(margin-top, 120, 60);
         @include adaptive(padding-top, 80, 60);
         @include adaptive(padding-bottom, 80, 60);
-
-        .offers-badge {
-            @include font-circe-regular;
-            color: var(--color-globus-sand);
-            @include adaptive(font-size, 26, 26);
-            line-height: 1.2;
-            text-align: center;
-            border: 1px solid var(--color-globus-sand);
-            border-radius: 390px;
-            @include adaptive(padding-top, 16, 12);
-            @include adaptive(padding-bottom, 16, 12);
-            @include adaptive(padding-left, 50, 30);
-            @include adaptive(padding-right, 50, 30);
-            @include adaptive(margin-top, 30, 20);
-            @include adaptive(margin-bottom, 60, 40);
-            margin-left: auto;
-            margin-right: auto;
-            width: fit-content;
-        }
-
-        .hotels-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hotel-item {
-            display: flex;
-            @include adaptive(gap, 50, 20);
-
-            @include mobile {
-                flex-direction: column;
-            }
-        }
-
-        .hotel-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-
-            @include mobile {
-                order: 2;
-            }
-
-            h3 {
-                @include adaptive(font-size, 28, 20);
-            }
-
-            .card-price {
-                @include adaptive(margin-top, 16, 8);
-                @include adaptive(margin-bottom, 40, 25);
-                @include adaptive(font-size, 26, 20);
-                color: var(--color-globus-sand);
-            }
-
-            ul {
-                display: flex;
-                flex-direction: column;
-                @include adaptive(gap, 33, 20);
-                @include adaptive(margin-bottom, 40, 30);
-
-                li {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    @include adaptive(gap, 8, 5);
-
-                    span {
-                        opacity: 0.6;
-                        @include adaptive(font-size, 20, 18);
-                    }
-                }
-            }
-        }
-
-        .button {
-            @include adaptive(width, 273, 100%);
-        }
-
-        .hotel-image {
-            position: relative;
-            overflow: hidden;
-            @include adaptive(width, 970, 100%);
-            @include adaptive(height, 560, 300);
-
-            @include desktop {
-                flex-shrink: 0;
-            }
-
-            @include mobile {
-                order: 1;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-        }
-
-        .card-badge {
-            position: absolute;
-            @include adaptive(left, 36, 20);
-            @include adaptive(top, 30, 20);
-            @include adaptive(height, 54, 41);
-        }
-
-        .divider {
-            @include adaptive(margin-top, 80, 40);
-            @include adaptive(margin-bottom, 80, 40);
-        }
     }
 </style>

@@ -1,5 +1,5 @@
 ---
-import SearchForm from '@/components/main/SearchForm.astro'
+import LinkToPage from '@/components/common/LinkToPage.astro'
 
 const pricingData = [
     {
@@ -35,19 +35,9 @@ const pricingData = [
 ]
 ---
 
-<section class="hotel-pricing">
-    <!-- Search form (same fields as on main: departure date + travellers) -->
-    <SearchForm
-        variant="inline"
-        fields={{
-            city: false,
-            country: false,
-            dates: true,
-            nights: false,
-            tourists: true,
-        }}
-    />
+<LinkToPage userType="tourist" />
 
+<section class="hotel-pricing">
     <!-- Pricing Table -->
     <div class="section-container">
         <div class="pricing-table">

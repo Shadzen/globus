@@ -1,6 +1,7 @@
 ---
 // Reusable social buttons: MAX, message, and Telegram, round links with sand background.
 // variant: 'default' = inline in layout, 'fixed' = fixed on screen (e.g. side strip).
+// Each icon is rendered only when its href prop is passed (non-empty string; "#" is allowed).
 import maxIcon from '@/assets/icons/max4.png'
 import messageIcon from '@/assets/icons/soobshhenie-3.png'
 import telegramIcon from '@/assets/icons/telegram-1.png'
@@ -12,56 +13,63 @@ interface Props {
     telegramHref?: string
 }
 
-const {
-    variant = 'default',
-    maxHref = '#',
-    messageHref = '#',
-    telegramHref = '#',
-} = Astro.props
+const { variant = 'default', maxHref, messageHref, telegramHref } = Astro.props
+
+const isVisibleHref = (href?: string) => href !== undefined && href !== ''
+
+const items = [
+    { href: maxHref, label: 'MAX', icon: maxIcon },
+    { href: messageHref, label: 'Сообщения', icon: messageIcon },
+    { href: telegramHref, label: 'Telegram', icon: telegramIcon },
+].filter((item) => isVisibleHref(item.href))
 ---
 
-<div class="social-buttons" class:list={[variant === 'fixed' && '_fixed']}>
-    <a
-        href={maxHref}
-        class="social-buttons-link"
-        aria-label="MAX"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img src={maxIcon.src} alt="" width="24" height="24" />
-    </a>
-    <a
-        href={messageHref}
-        class="social-buttons-link"
-        aria-label="Сообщения"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img src={messageIcon.src} alt="" width="24" height="24" />
-    </a>
-    <a
-        href={telegramHref}
-        class="social-buttons-link"
-        aria-label="Telegram"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img src={telegramIcon.src} alt="" width="24" height="24" />
-    </a>
-</div>
+{
+    items.length > 0 && (
+        <div class="social-buttons" class:list={[variant === 'fixed' && '_fixed']}>
+            {items.map((item) => (
+                <a
+                    href={item.href}
+                    class="social-buttons-link"
+                    aria-label={item.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img src={item.icon.src} alt="*" />
+                </a>
+            ))}
+        </div>
+    )
+}
 
 <style lang="scss" is:global>
     .social-buttons {
         @include flex-center;
-        @include adaptive(gap, 24, 24);
+        @include adaptive(gap, 22, 22);
         border-radius: 500px;
 
         &._fixed {
             position: fixed;
             z-index: 100;
-            @include adaptive(right, 24, 16);
-            @include adaptive(bottom, 24, 16);
+            @include adaptive(right, 40, 16);
+            @include adaptive(bottom, 120, 16);
             background-color: var(--color-globus-sand);
+            @include adaptive(padding, 12, 12);
+
+            @include mobile {
+                display: none;
+            }
+
+            .social-buttons-link {
+                @include adaptive(height, 40, 40);
+                @include adaptive(width, 40, 40);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
         }
 
         .social-buttons-link {
@@ -71,7 +79,9 @@ const {
             @include adaptive(width, 80, 80);
             border-radius: 50%;
             background-color: var(--color-globus-sand);
-            transition: transform 0.2s, opacity 0.2s;
+            transition:
+                transform 0.2s,
+                opacity 0.2s;
 
             img {
                 width: 60%;
