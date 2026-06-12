@@ -56,6 +56,10 @@ const items = [
             background-color: var(--color-globus-sand);
             @include adaptive(padding, 12, 12);
 
+            @media (min-aspect-ratio: 21/9) {
+                right: calc(12.5% + adaptive-value(40, $default-width, true));
+            }
+
             @include mobile {
                 display: none;
             }
