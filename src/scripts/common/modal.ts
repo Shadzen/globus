@@ -1,9 +1,13 @@
 // src/scripts/common/modal.ts
-// Binds [data-modal-trigger] to [data-modal], handles open/close, focus, body scroll lock.
+// Binds [data-modal-trigger] to [data-modal] via event delegation, handles open/close, focus, body scroll lock.
 
 const BODY_SCROLL_CLASS = '_disable-scrolling'
 
-function openModal(modal: HTMLElement, _trigger: HTMLElement | null) {
+const lastTriggerByModal = new WeakMap<HTMLElement, HTMLElement>()
+
+let initialized = false
+
+function openModal(modal: HTMLElement) {
     modal.classList.add('_active')
     modal.setAttribute('aria-hidden', 'false')
     document.body.classList.add(BODY_SCROLL_CLASS)
@@ -19,7 +23,9 @@ function isMobileMenuOpen(): boolean {
     return menu?.classList.contains('_active') ?? false
 }
 
-function closeModal(modal: HTMLElement, returnFocusTo: HTMLElement | null) {
+function closeModal(modal: HTMLElement) {
+    const returnFocusTo = lastTriggerByModal.get(modal) ?? null
+
     modal.classList.remove('_active')
     modal.setAttribute('aria-hidden', 'true')
     if (!isMobileMenuOpen()) {
@@ -31,41 +37,44 @@ function closeModal(modal: HTMLElement, returnFocusTo: HTMLElement | null) {
     }
 }
 
+function handleTriggerClick(e: Event) {
+    const trigger = (e.target as Element).closest<HTMLElement>('[data-modal-trigger]')
+    if (!trigger) return
+
+    const modalId = trigger.getAttribute('data-modal-trigger')
+    if (!modalId) return
+
+    const modal = document.querySelector<HTMLElement>(`[data-modal="${modalId}"]`)
+    if (!modal) return
+
+    e.preventDefault()
+    lastTriggerByModal.set(modal, trigger)
+    openModal(modal)
+}
+
+function handleEscape(e: KeyboardEvent) {
+    if (e.key !== 'Escape') return
+
+    const openModalEl = document.querySelector<HTMLElement>('.modal._active')
+    if (!openModalEl) return
+
+    closeModal(openModalEl)
+}
+
 export const initModal = () => {
-    const triggers = document.querySelectorAll<HTMLElement>('[data-modal-trigger]')
-    const modals = document.querySelectorAll<HTMLElement>('[data-modal]')
+    if (initialized) return
+    initialized = true
 
-    triggers.forEach((trigger) => {
-        const modalId = trigger.getAttribute('data-modal-trigger')
-        if (!modalId) return
+    document.addEventListener('click', handleTriggerClick)
+    document.addEventListener('keydown', handleEscape)
 
-        const modal = document.querySelector<HTMLElement>(`[data-modal="${modalId}"]`)
-        if (!modal) return
-
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault()
-            openModal(modal, trigger)
-        })
-    })
-
-    modals.forEach((modal) => {
+    document.querySelectorAll<HTMLElement>('[data-modal]').forEach((modal) => {
         const closeBtn = modal.querySelector<HTMLElement>('[data-modal-close]')
         const backdrop = modal.querySelector<HTMLElement>('[data-modal-backdrop]')
 
-        const handleClose = () => {
-            const trigger = document.querySelector<HTMLElement>(`[data-modal-trigger="${modal.getAttribute('data-modal')}"]`)
-            closeModal(modal, trigger)
-        }
+        const handleClose = () => closeModal(modal)
 
         closeBtn?.addEventListener('click', handleClose)
         backdrop?.addEventListener('click', handleClose)
-    })
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return
-        const openModalEl = document.querySelector<HTMLElement>('.modal._active')
-        if (!openModalEl) return
-        const trigger = document.querySelector<HTMLElement>(`[data-modal-trigger="${openModalEl.getAttribute('data-modal')}"]`)
-        closeModal(openModalEl, trigger)
     })
 }
