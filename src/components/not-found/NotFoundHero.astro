@@ -1,0 +1,198 @@
+---
+import heroVideo from '@/assets/videos/404/hero-1.mp4'
+import heroDesktop from '@/assets/images/404/hero-1.jpg'
+import heroMobile from '@/assets/images/404/hero-1-mobile.jpg'
+import prevAccentIcon from '@/assets/icons/prev-accent.svg'
+
+import { BREAKPOINTS } from '@/scripts/utils'
+
+interface Props {
+    userType?: 'tourist' | 'agent'
+}
+
+const { userType = 'tourist' } = Astro.props
+const base = import.meta.env.BASE_URL
+const homeHref = `${base}${userType}/`
+---
+
+<section class="hero-section not-found-hero _type-screen">
+    <div class="hero-content">
+        <p class="not-found-foreground _2">Упс, а такой страницы нет</p>
+        <h1 class="not-found-foreground _1" aria-label="404">
+            <span class="not-found-digit">4</span>
+            <span class="not-found-zero">
+                <span class="not-found-zero-slot" aria-hidden="true">0</span>
+                <span class="not-found-media-wrap">
+                    <video
+                        class="not-found-media"
+                        src={heroVideo}
+                        poster={heroDesktop.src}
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        aria-hidden="true"></video>
+                    <picture class="not-found-media">
+                        <source
+                            media={`(max-width: ${BREAKPOINTS.mobile}px)`}
+                            srcset={heroMobile.src}
+                        />
+                        <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
+                    </picture>
+                </span>
+            </span>
+            <span class="not-found-digit">4</span>
+        </h1>
+
+        <a href={homeHref} class="not-found-back not-found-foreground _2">
+            <img src={prevAccentIcon.src} alt="" class="not-found-back-icon" />
+            <span>на главную</span>
+        </a>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .not-found-hero.hero-section {
+        container-type: size;
+        overflow: hidden;
+        @include adaptive(padding-top, 200, 130);
+        background-color: var(--color-globus-blue);
+
+        --not-found-media-offset-x: 0%;
+        --not-found-media-offset-y: -7%;
+
+        @include mobile {
+            --not-found-media-offset-y: 1%;
+        }
+
+        .hero-content {
+            @include flex-center;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .not-found-foreground {
+            position: relative;
+
+            &._1 {
+                z-index: 1;
+            }
+
+            &._2 {
+                z-index: 2;
+            }
+        }
+
+        p {
+            @include adaptive(font-size, 26, 26);
+            color: var(--color-globus-cream);
+            @include adaptive(margin-bottom, 0, 40);
+        }
+
+        h1 {
+            @include flex-center;
+            width: 100%;
+            @include adaptive(gap, 80, 20);
+            margin: 0;
+            @include adaptive(font-size, 534, 250);
+            line-height: 1;
+            color: var(--color-globus-cream);
+        }
+
+        .not-found-digit {
+            flex-shrink: 0;
+            z-index: 3;
+        }
+
+        .not-found-zero {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .not-found-zero-slot {
+            opacity: 0;
+        }
+
+        .not-found-media-wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 0;
+            width: 110cqi;
+            height: 160cqh;
+            transform: translate(
+                calc(-50% + var(--not-found-media-offset-x)),
+                calc(-50% + var(--not-found-media-offset-y))
+            );
+            pointer-events: none;
+
+            &::after {
+                content: '';
+                @include abs-default;
+                background: rgba(0, 39, 63, 0.2);
+                pointer-events: none;
+            }
+        }
+
+        .not-found-media {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            pointer-events: none;
+        }
+
+        video.not-found-media {
+            display: block;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        picture.not-found-media {
+            @include desktop {
+                display: none;
+            }
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+            }
+        }
+
+        .not-found-back {
+            @include flex-center;
+            @include adaptive(margin-top, -60, 20);
+            @include adaptive(gap, 27, 20);
+            text-decoration: none;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 0.8;
+
+                .not-found-back-icon {
+                    transform: translateX(-5px);
+                }
+            }
+
+            .not-found-back-icon {
+                @include adaptive(width, 70, 55);
+                @include adaptive(height, 70, 55);
+                transition: transform 0.3s;
+            }
+
+            span {
+                @include adaptive(font-size, 18, 18);
+                @include adaptive(letter-spacing, 3.6, 3.6);
+                text-transform: uppercase;
+                color: var(--color-globus-cream);
+            }
+        }
+    }
+</style>

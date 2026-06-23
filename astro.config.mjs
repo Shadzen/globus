@@ -96,7 +96,6 @@ function singleChunkPlugin() {
                     if (id.includes('src/scripts/')) return 'main'
                     if (
                         id.includes('node_modules/swiper') ||
-                        id.includes('node_modules/gsap') ||
                         id.includes('node_modules/photoswipe')
                     ) {
                         return 'main'

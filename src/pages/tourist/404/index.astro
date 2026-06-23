@@ -1,0 +1,12 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import NotFoundHero from '@/components/not-found/NotFoundHero.astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+---
+
+<Layout
+    title={`Страница не найдена - ${COMPANY_NAME}`}
+    userType="tourist"
+>
+    <NotFoundHero userType="tourist" />
+</Layout>

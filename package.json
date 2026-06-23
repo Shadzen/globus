@@ -14,7 +14,6 @@
   "dependencies": {
     "astro": "^6.4.2",
     "globby": "^16.2.0",
-    "gsap": "^3.15.0",
     "photoswipe": "^5.4.4",
     "swiper": "^12.2.0"
   },
