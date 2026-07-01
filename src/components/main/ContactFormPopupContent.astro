@@ -22,13 +22,13 @@ const popupTitle = userType === 'agent' ? 'Открываем мир для ва
                 <h3>Контакты для связи</h3>
 
                 <div class="contacts-info-item">
-                    <span class="contacts-info-label">Экстренный телефон</span>
+                    <span class="contacts-info-label">Телефон</span>
                     <div class="contacts-info-separator"></div>
                     <a href="tel:+7 383 2000 500" class="contacts-info-value"> +7 383 2000 500 </a>
                 </div>
 
                 <div class="contacts-info-item">
-                    <span class="contacts-info-label">Телефон</span>
+                    <span class="contacts-info-label">Экстренная связь</span>
                     <div class="contacts-info-separator"></div>
                     <a href="tel:+7 383 2000 500" class="contacts-info-value"> +7 383 2000 500 </a>
                 </div>
@@ -46,9 +46,9 @@ const popupTitle = userType === 'agent' ? 'Открываем мир для ва
                 userType === 'agent' && (
                     <a
                         href={managersContactsHref}
-                        class="button _sized _outline contacts-managers-link"
+                        class="button _sized contacts-managers-link"
                     >
-                        Контакты менеджеров
+                        Контакты сотрудников
                     </a>
                 )
             }
@@ -66,7 +66,7 @@ const popupTitle = userType === 'agent' ? 'Открываем мир для ва
 
         <div class="contact-form-right">
             <form class="contact-form">
-                <h3>Напишите прямо сейчас</h3>
+                <h3>Напишите нам</h3>
 
                 <input
                     type="text"
@@ -96,20 +96,38 @@ const popupTitle = userType === 'agent' ? 'Открываем мир для ва
                     autocomplete="off"
                 />
 
-                <div class="contact-form-checkbox">
-                    <input type="checkbox" id="contact-agree-1" name="agree" required />
-                    <label for="contact-agree-1">
-                        Я принимаю условия
-                        <a href="/polzovatelskoe-soglashenie/">Пользовательского соглашения</a>.
-                    </label>
-                    <input type="checkbox" id="contact-agree-2" name="agree" required />
-                    <label for="contact-agree-2">
-                        Я подтверждаю
-                        <a href="/politika-konfidenczialnosti/">согласие на обработку моих персональных данных</a>.
-                    </label>
+                <div class="contact-form-row">
+                    <div class="contact-form-row-item">
+                        <input type="checkbox" id="contact-agree-1" name="agree" required />
+                        <label for="contact-agree-1">
+                            Я принимаю условия
+                            <a href="/polzovatelskoe-soglashenie/">Пользовательского соглашения</a>.
+                        </label>
+                    </div>
+                    <div class="contact-form-row-item">
+                        <input type="checkbox" id="contact-agree-2" name="agree" required />
+                        <label for="contact-agree-2">
+                            Я подтверждаю
+                            <a href="/politika-konfidenczialnosti/">согласие на обработку моих персональных данных</a>.
+                        </label>
+                    </div>
                 </div>
 
                 <button type="submit" class="button _sized">Отправить</button>
+
+                <div class="contact-form-row">
+                    <div class="contact-form-row-item _column">
+                        <span>ООО ТА «Глобус-тур»</span>
+                        <span>630091, г.Новосибирск,</span>
+                        <span>ул.Советская 64, 403 офис; 4 этаж</span>
+
+                    </div>
+                    <div class="contact-form-row-item _column">
+                        <span>Понедельник – Пятница: 10:00 – 19:00</span>
+                        <span>Суббота: 11:00 – 18:00</span>
+                        <span>Воскресенье: офис работает в удаленном режиме</span>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -172,35 +190,6 @@ const popupTitle = userType === 'agent' ? 'Открываем мир для ва
 
         .contacts-managers-link.button._sized {
             width: 100%;
-            isolation: isolate;
-            background-color: transparent;
-            transition: transform 0.3s ease;
-
-            &::before {
-                content: '';
-                position: absolute;
-                inset: -2px;
-                border-radius: inherit;
-                background-color: var(--color-globus-sand);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                z-index: -1;
-            }
-
-            &:hover {
-                background: transparent;
-                color: var(--color-globus-cream);
-                opacity: 1;
-                transform: translateY(-2px);
-
-                &::before {
-                    opacity: 1;
-                }
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
         }
     }
 </style>

@@ -571,10 +571,30 @@ ul {
     }
 }
 
-.contact-form-checkbox {
+.contact-form-row {
     display: flex;
-    @include adaptive(gap, 12, 12);
+    @include adaptive(gap, 24, 24);
     align-items: flex-start;
+    justify-content: space-between;
+    @include adaptive(flex-direction, row, column);
+
+    .contact-form-row-item {
+        display: flex;
+        align-items: flex-start;
+        @include adaptive(column-gap, 12, 12);
+
+        &._column {
+            flex-direction: column;
+        }
+
+        &:nth-child(1) {
+            @include adaptive(width, 40%, 100%);
+        }
+
+        &:nth-child(2) {
+            @include adaptive(width, 60%, 100%);
+        }
+    }
 
     input[type='checkbox'] {
         @include adaptive(width, 18, 18);
@@ -597,13 +617,12 @@ ul {
         }
     }
 
-    label {
+    label, span {
         @include font-circe-regular;
         @include adaptive(font-size, 14, 16);
         line-height: 1.4;
         color: var(--color-globus-blue);
         opacity: 0.6;
-        cursor: pointer;
 
         a {
             color: inherit;
