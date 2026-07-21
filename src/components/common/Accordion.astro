@@ -105,7 +105,7 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
             //     margin: 0 auto;
             // }
 
-            p {
+            p, a {
                 @include adaptive(font-size, 20, 18);
             }
         }
@@ -124,7 +124,7 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
 
         &._large-text {
             .accordion-content-inner {
-                p {
+                p, a {
                     @include adaptive(font-size, 28, 18);
                 }
             }

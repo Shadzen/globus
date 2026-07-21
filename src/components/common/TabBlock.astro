@@ -5,7 +5,7 @@ export interface TabBlockItem {
     label: string
 }
 
-const MAX_TABS = 10
+const MAX_TABS = 12
 
 interface Props {
     groupName: string
@@ -57,6 +57,8 @@ const safeDefaultIndex =
                         {i === 7 ? <slot name="panel-7" /> : null}
                         {i === 8 ? <slot name="panel-8" /> : null}
                         {i === 9 ? <slot name="panel-9" /> : null}
+                        {i === 10 ? <slot name="panel-10" /> : null}
+                        {i === 11 ? <slot name="panel-11" /> : null}
                     </div>
                 </>
             ))}
@@ -73,7 +75,7 @@ const safeDefaultIndex =
         @include adaptive(gap, 16, 0);
         @include adaptive(margin-top, 40, 60);
 
-        @for $i from 1 through 10 {
+        @for $i from 1 through 12 {
             .tab-label._order-#{$i} {
                 order: $i;
 
@@ -187,7 +189,7 @@ const safeDefaultIndex =
         }
     }
 
-    @for $i from 0 through 9 {
+    @for $i from 0 through 11 {
         .tab-block:has(.tab-block-input[data-tab-index='#{$i}']:checked) {
             .tab-label._order-#{$i + 1} {
                 @include desktop {

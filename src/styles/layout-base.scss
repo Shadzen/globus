@@ -783,6 +783,7 @@ ul {
 
     .hero-buttons {
         display: flex;
+        flex-wrap: wrap;
         @include adaptive(gap, 20, 16);
         @include adaptive(margin-top, 30, 16);
 

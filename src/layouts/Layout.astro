@@ -168,6 +168,18 @@ const base = import.meta.env.BASE_URL
             object-fit: cover;
             object-position: center;
         }
+
+        &._image-top {
+            img {
+                object-position: top;
+            }
+        }
+
+        &._image-bottom {
+            img {
+                object-position: bottom;
+            }
+        }
     }
 
     .card-category,
