@@ -1,6 +1,4 @@
 ---
-import TourSearchInfoBar from '@/components/tour_search/TourSearchInfoBar.astro'
-
 interface Props {
     title?: string
 }
@@ -9,8 +7,6 @@ const { title } = Astro.props
 ---
 
 <section class="hero-section tour-search-hero">
-    <TourSearchInfoBar />
-
     {title && (
         <div class="hero-content">
             <h2 class="hero-title">{title}</h2>
@@ -20,7 +16,8 @@ const { title } = Astro.props
 
 <style lang="scss" is:global>
     .tour-search-hero.hero-section {
-        @include adaptive(padding-top, 164, 73);
+        // Compact header + sticky search bar clearance
+        @include adaptive(padding-top, 256, 406);
 
         .hero-content {
             @include adaptive(margin-top, 60, 30);

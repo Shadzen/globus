@@ -1,6 +1,7 @@
 ---
 // src/components/common/Header.astro
 import Logo from './Logo.astro'
+import TourSearchBar from '@/components/tour_search/TourSearchBar.astro'
 const base = import.meta.env.BASE_URL
 
 interface Props {
@@ -8,13 +9,25 @@ interface Props {
     heroTextColor?: 'light' | 'dark'
     // Always show compact (scrolled) header; skip scroll resize logic
     compact?: boolean
+    showSearchBar?: boolean
 }
 
-const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro.props
+const {
+    userType = 'tourist',
+    heroTextColor = 'light',
+    compact = false,
+    showSearchBar = false,
+} = Astro.props
 ---
 
 <header
-    class:list={[{ '_dark-text': heroTextColor === 'dark', _scrolled: compact }]}
+    class:list={[
+        {
+            '_dark-text': heroTextColor === 'dark',
+            _scrolled: compact,
+            '_with-search-bar': showSearchBar,
+        },
+    ]}
     data-header-compact={compact ? '' : undefined}
 >
     <div class="header-container">
@@ -90,6 +103,8 @@ const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro
             <span></span>
         </button>
     </div>
+
+    {showSearchBar && <TourSearchBar userType={userType} />}
 </header>
 
 <style lang="scss" is:global>
@@ -285,7 +300,7 @@ const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro
         }
 
         // Shared header CTA buttons (nav + contacts)
-        .button {
+        .header-container .button {
             color: var(--color-globus-cream);
 
             &._outline {
@@ -321,7 +336,7 @@ const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro
             }
         }
 
-        .contacts {
+        .header-container .contacts {
             position: relative;
             @include flex-center-between;
             @include adaptive(gap, 16, 16);
@@ -523,83 +538,96 @@ const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro
             }
         }
 
+        // Search bar sits under the nav row and sticks with the fixed header
+        &._with-search-bar {
+            .tour-search-bar {
+                // Break out of ultrawide header side padding so bar stays full-bleed
+                @media (min-aspect-ratio: 21/9) {
+                    width: 100vw;
+                    margin-left: calc(50% - 50vw);
+                }
+            }
+        }
+
         // Dark text color for pages with light hero background
         &._dark-text {
-            .user-type-btn {
-                &:not(._active) {
-                    color: var(--color-globus-blue) !important;
+            .header-container {
+                .user-type-btn {
+                    &:not(._active) {
+                        color: var(--color-globus-blue) !important;
 
-                    @include mobile {
-                        color: var(--color-globus-cream) !important;
+                        @include mobile {
+                            color: var(--color-globus-cream) !important;
+                        }
                     }
                 }
-            }
 
-            .nav-menu {
-                a {
+                .nav-menu {
+                    a {
+                        color: var(--color-globus-blue);
+
+                        @include mobile {
+                            color: var(--color-globus-cream);
+                        }
+                    }
+                }
+
+                .button {
+                    &._outline {
+                        color: var(--color-globus-blue);
+
+                        &:hover {
+                            color: var(--color-globus-cream);
+
+                            span,
+                            svg {
+                                color: var(--color-globus-cream);
+                            }
+                        }
+
+                        @include mobile {
+                            color: var(--color-globus-cream);
+
+                            span,
+                            svg {
+                                color: var(--color-globus-cream);
+                            }
+                        }
+                    }
+
+                    &._contact {
+                        color: var(--color-globus-cream);
+
+                        span {
+                            color: var(--color-globus-cream);
+                        }
+                    }
+                }
+
+                .phone {
                     color: var(--color-globus-blue);
 
                     @include mobile {
                         color: var(--color-globus-cream);
                     }
                 }
-            }
 
-            .button {
-                &._outline {
-                    color: var(--color-globus-blue);
-
-                    &:hover {
-                        color: var(--color-globus-cream);
-
-                        span,
-                        svg {
-                            color: var(--color-globus-cream);
-                        }
-                    }
-
+                .mobile-menu-btn {
                     @include mobile {
-                        color: var(--color-globus-cream);
-
-                        span,
-                        svg {
-                            color: var(--color-globus-cream);
+                        // When menu closed - dark stripes
+                        span {
+                            background-color: var(--color-globus-blue);
                         }
-                    }
-                }
 
-                &._contact {
-                    color: var(--color-globus-cream);
+                        // When menu open - light stripes
+                        &._active span {
+                            background-color: var(--color-globus-cream);
+                        }
 
-                    span {
-                        color: var(--color-globus-cream);
-                    }
-                }
-            }
-
-            .phone {
-                color: var(--color-globus-blue);
-
-                @include mobile {
-                    color: var(--color-globus-cream);
-                }
-            }
-
-            .mobile-menu-btn {
-                @include mobile {
-                    // When menu closed - dark stripes
-                    span {
-                        background-color: var(--color-globus-blue);
-                    }
-
-                    // When menu open - light stripes
-                    &._active span {
-                        background-color: var(--color-globus-cream);
-                    }
-
-                    // When menu closing - dark again
-                    &._initialized:not(._active) span {
-                        background-color: var(--color-globus-blue);
+                        // When menu closing - dark again
+                        &._initialized:not(._active) span {
+                            background-color: var(--color-globus-blue);
+                        }
                     }
                 }
             }
