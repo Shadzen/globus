@@ -16,7 +16,7 @@ export const initHeader = () => {
     const headerActionsWrapper = document.querySelector('.header-actions-wrapper')
     const logoWrapper = document.querySelector('.logo-wrapper')
 
-    if (header) {
+    if (header && !header.hasAttribute('data-header-compact')) {
         let ticking = false
         const onScroll = () => {
             if (!ticking) {

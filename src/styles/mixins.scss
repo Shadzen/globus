@@ -182,7 +182,7 @@
     }
 
     &:is(a, button) {
-        @include adaptive(letter-spacing, 3, 3);
+        // @include adaptive(letter-spacing, 3, 3);
         text-transform: uppercase;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -243,6 +243,17 @@
         @include adaptive(height, 61, 64);
         @include adaptive(letter-spacing, 2.2, 3.6);
     }
+}
+
+@mixin button-compact {
+    @include adaptive(height, 40, 60);
+    @include adaptive(padding-top, 6, 6);
+    @include adaptive(padding-bottom, 6, 6);
+    @include adaptive(padding-left, 18, 24);
+    @include adaptive(padding-right, 18, 24);
+    @include adaptive(font-size, 20, 22);
+    @include adaptive(letter-spacing, 1, 3);
+    @include adaptive(column-gap, 6, 6);
 }
 
 @mixin button-outline {

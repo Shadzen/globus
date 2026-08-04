@@ -23,7 +23,7 @@ const buttons = [
 ---
 
 <div class="tour-search-info-bar">
-    <div class="section-container _alt-paddings">
+    <div class="section-container">
         <div class="tour-search-info-items">
             <div class="tour-search-info-field">
                 <span class="tour-search-info-label">Дата</span>
@@ -59,8 +59,8 @@ const buttons = [
         <div class="tour-search-info-buttons">
             {
                 buttons.map((button) => (
-                    <a href={button.href} class="button _sized _outline">
-                        {button.label}
+                    <a href={button.href} class="button _outline _compact">
+                        <span>{button.label}</span>
                     </a>
                 ))
             }
@@ -71,17 +71,15 @@ const buttons = [
 <style lang="scss" is:global>
     .tour-search-info-bar {
         background-color: var(--color-globus-blue);
-        @include adaptive(padding-top, 44, 140);
-        @include adaptive(padding-bottom, 44, 30);
+        @include adaptive(padding-top, 25, 25);
+        @include adaptive(padding-bottom, 25, 25);
         width: 100%;
 
         .section-container {
-            @include adaptive(padding-left, 440, 15);
-            @include adaptive(padding-right, 100, 15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            @include adaptive(gap, 20, 60);
+            @include adaptive(gap, 20, 25);
 
             @include mobile {
                 flex-direction: column;
@@ -91,20 +89,14 @@ const buttons = [
 
         .tour-search-info-items {
             display: flex;
-            @include adaptive(gap, 60, 30);
+            @include adaptive(gap, 70, 30);
             align-items: center;
-
-            @include mobile {
-                flex-direction: column;
-                align-items: stretch;
-            }
         }
 
         .tour-search-info-field {
             display: flex;
-            flex-direction: column;
-            @include adaptive(gap, 18, 16);
-            @include adaptive(min-width, 179, 0);
+            align-items: center;
+            @include adaptive(gap, 20, 16);
         }
 
         .tour-search-info-label {
@@ -118,7 +110,8 @@ const buttons = [
         .tour-search-info-value-wrapper {
             display: flex;
             flex-direction: column;
-            @include adaptive(gap, 12, 10);
+            @include adaptive(gap, 8, 8);
+            @include adaptive(min-width, 180, 0);
         }
 
         .tour-search-info-value-with-icon {
@@ -146,7 +139,7 @@ const buttons = [
 
         .tour-search-info-buttons {
             display: flex;
-            @include adaptive(gap, 37, 20);
+            @include adaptive(gap, 60, 20);
             align-items: center;
             flex-wrap: wrap;
 
@@ -154,6 +147,11 @@ const buttons = [
                 flex-direction: column;
                 width: 100%;
             }
+        }
+
+        .button._outline {
+            color: var(--color-globus-cream);
+            @include adaptive(font-size, 16, 22);
         }
     }
 </style>

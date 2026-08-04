@@ -6,12 +6,17 @@ const base = import.meta.env.BASE_URL
 interface Props {
     userType?: 'tourist' | 'agent'
     heroTextColor?: 'light' | 'dark'
+    // Always show compact (scrolled) header; skip scroll resize logic
+    compact?: boolean
 }
 
-const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
+const { userType = 'tourist', heroTextColor = 'light', compact = false } = Astro.props
 ---
 
-<header class:list={[{ '_dark-text': heroTextColor === 'dark' }]}>
+<header
+    class:list={[{ '_dark-text': heroTextColor === 'dark', _scrolled: compact }]}
+    data-header-compact={compact ? '' : undefined}
+>
     <div class="header-container">
         <Logo userType={userType} color={heroTextColor === 'dark' ? 'dark' : 'light'} />
 
@@ -45,10 +50,8 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                                 <a href={`${base}agent/about`}>О нас</a>
                                 <a href={`${base}agent/news`}>Глобус-News</a>
                                 <a href={`${base}agent/countries`}>Страны</a>
+                                <a href={`${base}agent/visa`}>Визы</a>
                                 <a href={`${base}agent/partner`}>Агенствам</a>
-                                <a href={`${base}agent/tour_search`} class="button _outline">
-                                    <span>Поиск тура</span>
-                                </a>
                             </>
                     }
                 </nav>
@@ -56,19 +59,24 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
                 <div class="contacts">
                     {
                         userType === 'agent' && (
-                            <a href="#" class="button _outline">
-                                <span>Личный кабинет</span>
-                            </a>
+                            <>
+                                <a href={`${base}agent/tour_search`} class="button _outline _compact">
+                                    <span>Поиск тура</span>
+                                </a>
+                                <a href="#" class="button _outline _compact">
+                                    <span>Личный кабинет</span>
+                                </a>
+                            </>
                         )
                     }
 
                     <button
-                        class="button _contact"
+                        class="button _contact _compact"
                         type="button"
                         aria-label="Связаться с нами"
                         data-modal-trigger="contact-popup"
                     >
-                        <span>Связаться с нами</span>
+                        <span>Контакты</span>
                     </button>
 
                     <a href="tel:+73832000500" class="phone">+7 383 2000 500</a>
@@ -139,7 +147,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             width: 100%;
             flex-shrink: 0;
             @include adaptive(padding-top, 0, 110);
-            @include adaptive(padding-bottom, 0, 40);
+            @include adaptive(padding-bottom, 0, 30);
             @include adaptive(padding-left, 0, 15);
             @include adaptive(padding-right, 0, 15);
 
@@ -231,7 +239,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include flex-center-between;
             @include adaptive(gap, 30, 20);
             @include adaptive(padding-left, 50, 0);
-            @include adaptive(padding-right, 20, 0);
+            @include adaptive(padding-right, 50, 0);
             @include adaptive(padding-top, 0, 30);
             @include adaptive(padding-bottom, 0, 30);
 
@@ -278,14 +286,6 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
 
         // Shared header CTA buttons (nav + contacts)
         .button {
-            @include adaptive(height, 40, 60);
-            @include adaptive(padding-top, 6, 6);
-            @include adaptive(padding-bottom, 6, 6);
-            @include adaptive(padding-left, 18, 24);
-            @include adaptive(padding-right, 18, 24);
-            @include adaptive(font-size, 20, 22);
-            @include adaptive(letter-spacing, 1, 3);
-            @include adaptive(column-gap, 6, 6);
             color: var(--color-globus-cream);
 
             &._outline {
@@ -324,7 +324,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
         .contacts {
             position: relative;
             @include flex-center-between;
-            @include adaptive(gap, 20, 20);
+            @include adaptive(gap, 16, 16);
 
             @include mobile {
                 justify-content: flex-start;
@@ -335,7 +335,7 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             .button {
                 &._outline {
                     @include mobile {
-                        order: 2;
+                        order: 1;
                     }
                 }
 
@@ -351,12 +351,13 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             @include font-kudry-sans;
             @include adaptive(font-size, 28, 28);
             @include adaptive(padding-top, 2, 2);
+            @include adaptive(margin-top, 0, 12);
             @include adaptive(margin-bottom, 0, 12);
             color: var(--color-globus-cream);
             text-transform: uppercase;
 
             @include mobile {
-                order: 1;
+                order: 2;
             }
         }
 
@@ -511,9 +512,9 @@ const { userType = 'tourist', heroTextColor = 'light' } = Astro.props
             }
 
             .header-container {
-                @include adaptive(padding-top, 12, 10);
-                @include adaptive(padding-bottom, 16, 12);
-                @include adaptive(gap, 8, 6);
+                @include adaptive(padding-top, 25, 12);
+                @include adaptive(padding-bottom, 25, 12);
+                @include adaptive(gap, 18, 16);
             }
 
             .header-container .logo-wrapper {

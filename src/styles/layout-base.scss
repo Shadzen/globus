@@ -364,6 +364,10 @@ ul {
         @include button-sized;
     }
 
+    &._compact {
+        @include button-compact;
+    }
+
     &._outline {
         @include button-outline;
     }
