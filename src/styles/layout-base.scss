@@ -643,6 +643,15 @@ ul {
     display: flex;
     flex-wrap: wrap;
     @include adaptive(gap, 30, 20);
+
+    &._gap-8 {
+        @include adaptive(gap, 8, 8);
+    }
+
+    &._content-center {
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .custom-column {

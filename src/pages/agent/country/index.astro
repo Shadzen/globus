@@ -5,11 +5,28 @@ import CountryRules from '@/components/country/CountryRules.astro'
 import CountryTours from '@/components/country/CountryTours.astro'
 import CountryVIP from '@/components/country/CountryVIP.astro'
 import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import SectionGap from '@/components/common/SectionGap.astro'
 import { COMPANY_NAME } from '@/scripts/utils'
 ---
 
 <Layout title={`Страна Греция - ${COMPANY_NAME}`} userType="agent" heroTextColor="dark">
     <CountryHero userType="agent" />
+    <SectionGap size={80} />
+    <section>
+        <div class="section-container">
+            <div class="custom-row _gap-8">
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+                <a href="#" class="button _sized">памятка по стране</a>
+            </div>
+        </div>
+    </section>
     <CountryRules userType="agent" />
     <CountryTours />
     <CountryVIP userType="agent" />

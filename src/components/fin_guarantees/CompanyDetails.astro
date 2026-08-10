@@ -1,4 +1,6 @@
 ---
+import SectionGap from '@/components/common/SectionGap.astro'
+
 const companyInfo = {
     title: 'Реквизиты компании',
     fullName: 'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ ТУРИСТИЧЕСКОЕ АГЕНТСТВО «ГЛОБУС-ТУР»',
@@ -41,6 +43,12 @@ const companyInfo = {
                     ))
                 }
             </ul>
+        </div>
+
+        <SectionGap size={80} />
+
+        <div class="custom-row _content-center">
+            <a href="#" class="button _sized">Документы для скачивания</a>
         </div>
     </div>
 </section>
