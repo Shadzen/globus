@@ -1,0 +1,1416 @@
+// Shared Tourvisor design overrides for panel + full Tourvisor page.
+// Avoid theme classes (TVTheme2 etc.) — they can change.
+// Nest under .tv-search-form for stable specificity without theme classes.
+// Inline styles from Tourvisor still need !important or JS.
+
+@mixin tv-filled-button {
+    @include button-default;
+    @include button-sized;
+    text-transform: uppercase;
+    @include adaptive(letter-spacing, 2.2, 3.6);
+    @include adaptive(font-size, 16, 18, !important);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    @include adaptive(height, 61, 64);
+    align-self: center;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    background: var(--color-globus-sand) !important;
+    background-image: none !important;
+    color: var(--color-globus-cream) !important;
+    border-color: var(--color-globus-sand) !important;
+}
+
+@mixin tv-outline-button {
+    @include button-default;
+    @include button-outline;
+    box-sizing: border-box;
+    border-style: solid;
+    @include adaptive(border-width, 2, 2, !important);
+    @include adaptive(height, 54, 38, !important);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: auto;
+    min-width: 0;
+
+    &:hover {
+        background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent) !important;
+    }
+
+    background: transparent !important;
+    background-image: none !important;
+    color: var(--color-globus-blue) !important;
+    border-color: var(--color-globus-sand) !important;
+
+    .tv-svg {
+        color: var(--color-globus-sand) !important;
+    }
+}
+
+@mixin tv-icon-only-button-shape {
+    @include flex-center;
+    aspect-ratio: 1;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    @include adaptive(width, 54, 38, !important);
+    @include adaptive(height, 54, 38, !important);
+}
+
+@mixin tv-modal-shell {
+    position: fixed !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+    display: grid !important;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: min(100%, adaptive-value(640, $default-width));
+    box-sizing: border-box !important;
+    z-index: 100000;
+
+    @media screen and (max-width: #{$mobile-width}px) {
+        grid-template-columns: min(100%, 100%);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    @include side-paddings;
+    @include adaptive(padding-top, 40, 20);
+    @include adaptive(padding-bottom, 40, 20);
+}
+
+@mixin tv-modal-card {
+    grid-area: 1 / 1;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: 100%;
+    margin: 0 !important;
+    background-color: var(--color-globus-cream) !important;
+    border-radius: 0 !important;
+    @include adaptive(padding-top, 50, 25);
+    @include adaptive(padding-right, 50, 25);
+    @include adaptive(padding-bottom, 50, 25);
+    @include adaptive(padding-left, 50, 25);
+    font-family: inherit;
+}
+
+@mixin tv-modal-title {
+    margin: 0 !important;
+    height: auto !important;
+    @include font-kudry-sans;
+    font-weight: 300;
+    @include adaptive(font-size, 28, 24);
+    line-height: 1.2 !important;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-globus-blue) !important;
+
+    &::after {
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        text-transform: inherit;
+    }
+}
+
+@mixin tv-modal-body-text {
+    margin: 0 !important;
+    @include adaptive(margin-top, 16, 12, !important);
+    @include font-circe-regular;
+    font-weight: 350;
+    @include adaptive(font-size, 26, 20);
+    line-height: 1.2 !important;
+    letter-spacing: 0;
+    color: var(--color-globus-blue) !important;
+
+    &::after {
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        white-space: pre-wrap;
+    }
+}
+
+@mixin tv-modal-close-grid {
+    grid-area: 1 / 1;
+    justify-self: end;
+    align-self: start;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    @include adaptive(margin-top, 8, 12, !important);
+    @include adaptive(margin-right, 8, 12, !important);
+    @include adaptive(width, 36, 28, !important);
+    @include adaptive(height, 36, 28, !important);
+    min-width: 0 !important;
+    min-height: 0 !important;
+    cursor: pointer;
+    z-index: 2;
+
+    &::before,
+    &::after {
+        content: '' !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        width: max(1px, adaptive-value(1, $default-width));
+        @include adaptive(height, 28, 22, !important);
+        background-color: var(--color-globus-blue) !important;
+        box-sizing: border-box;
+
+        @media (min-aspect-ratio: 21/9) {
+            width: max(1px, adaptive-value(1, $default-width, true));
+        }
+    }
+
+    &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+@mixin tv-modal-close-absolute {
+    position: absolute !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    @include adaptive(top, 8, 12, !important);
+    @include adaptive(right, 8, 12, !important);
+    @include adaptive(width, 36, 28, !important);
+    @include adaptive(height, 36, 28, !important);
+    min-width: 0 !important;
+    min-height: 0 !important;
+    cursor: pointer;
+    z-index: 2;
+
+    &::before,
+    &::after {
+        content: '' !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        width: max(1px, adaptive-value(1, $default-width));
+        @include adaptive(height, 28, 22, !important);
+        background-color: var(--color-globus-blue) !important;
+        box-sizing: border-box;
+
+        @media (min-aspect-ratio: 21/9) {
+            width: max(1px, adaptive-value(1, $default-width, true));
+        }
+    }
+
+    &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+@mixin tv-modal-accent-button {
+    @include tv-filled-button;
+    @include adaptive(height, 61, 64, !important);
+    width: auto !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+
+    @include mobile {
+        width: auto !important;
+    }
+}
+
+@mixin tv-modal-cta-row {
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    @include adaptive(margin-top, 40, 24, !important);
+
+    .tv-button.tv-button--tone-accent.tv-button-has-background,
+    .tv-button.tv-button--tone-accent.tv-button-has-background.tv-full-width {
+        @include tv-modal-accent-button;
+    }
+}
+
+.tv-search-form {
+    .TVLineForm .TVMainForm {
+        @include side-paddings;
+        @include adaptive(padding-top, 50, 25);
+        @include adaptive(padding-bottom, 50, 25);
+        box-sizing: border-box;
+        background-color: var(--color-globus-blue) !important;
+
+        .TVMainFilter {
+            background-color: transparent;
+            @include adaptive(gap, 28, 14);
+
+            // All filter fields except search button — bottom divider, not right
+            > :not(.TVSearchButton) {
+                border-right: none;
+                border-bottom: max(1px, adaptive-value(1, $default-width)) solid var(--color-globus-sand);
+                box-sizing: border-box;
+
+                @media (min-aspect-ratio: 21/9) {
+                    border-bottom-width: max(1px, adaptive-value(1, $default-width, true));
+                }
+            }
+
+            .TVMainSelect {
+                background-color: transparent;
+                padding: 0;
+                height: auto;
+                @include adaptive(gap, 16, 16);
+                @include adaptive(padding-bottom, 8, 8);
+            }
+
+            .TVMainSelectPlaceholder {
+                @include font-circe-regular;
+                @include adaptive(font-size, 16, 14);
+                letter-spacing: 0.2em;
+                color: var(--color-globus-cream);
+                opacity: 0.55;
+
+                * {
+                    font-size: inherit;
+                    font-family: inherit;
+                    letter-spacing: inherit;
+                    line-height: inherit;
+                }
+            }
+
+            .TVMainSelectContent {
+                @include font-circe-regular;
+                @include adaptive(font-size, 26, 20);
+                line-height: 1.2;
+                letter-spacing: 0;
+                color: var(--color-globus-cream);
+                height: auto;
+            }
+
+            .TVMainFilterIcon::before {
+                content: none;
+                display: none;
+            }
+        }
+    }
+
+    .TVSearchResults {
+        padding-top: 0;
+        padding-bottom: 0;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100%;
+
+        .TVResultContentNavigationWrapper {
+            margin-bottom: 0;
+        }
+
+        .TVResultContentList,
+        .TVResultContentPreviewList {
+            background-color: var(--color-globus-cream) !important;
+        }
+
+        .TVHotelResulItemAbout {
+            @include adaptive(padding-left, 16, 12, !important);
+            @include adaptive(padding-right, 16, 12, !important);
+        }
+
+        .TVHotelResulItemAbout,
+        .TVHotelResulItemGroupedTours,
+        .TVHotelResulItemMap,
+        .TVHotelResulItemReviews,
+        .TVHotelResulItemTours {
+            @include adaptive(margin-top, 20, 16, !important);
+        }
+
+        .TVHotelResulItemAbout,
+        .TVHotelResulItemReviews {
+            border-top: max(1px, adaptive-value(1, $default-width)) dashed var(--color-globus-sand) !important;
+            @include adaptive(padding-top, 20, 16, !important);
+
+            @media (min-aspect-ratio: 21/9) {
+                border-top-width: max(1px, adaptive-value(1, $default-width, true));
+            }
+        }
+
+        .TVResultAboutHotelInfo {
+            display: grid !important;
+            grid-template-columns: adaptive-value(200, $default-width) 1fr;
+            @include adaptive(column-gap, 15, 12);
+            @include adaptive(row-gap, 12, 10);
+
+            @media (min-aspect-ratio: 21/9) {
+                grid-template-columns: adaptive-value(200, $default-width, true) 1fr;
+            }
+
+            @include mobile {
+                grid-template-columns: adaptive-value(130, $mobile-width) 1fr;
+
+                @media (min-aspect-ratio: 21/9) {
+                    grid-template-columns: adaptive-value(130, $mobile-width, true) 1fr;
+                }
+            }
+        }
+
+        .TVResultAboutHotelInfoItem {
+            display: contents !important;
+
+            &:not(:last-child) {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        .TVResultAboutHotelInfoItemTitle {
+            @include font-circe-regular;
+            font-weight: 400;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.4;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-align: left;
+            color: var(--color-globus-light-blue) !important;
+            margin: 0 !important;
+            min-width: 0 !important;
+        }
+
+        .TVResultAboutHotelInfoItemContent {
+            @include font-circe-regular;
+            font-weight: 350;
+            @include adaptive(font-size, 18, 16);
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-align: left;
+            color: var(--color-globus-blue) !important;
+            min-width: 0 !important;
+
+            p,
+            ul,
+            li {
+                @include font-circe-regular;
+                font-weight: 350;
+                @include adaptive(font-size, 18, 16);
+                line-height: 1.4;
+                letter-spacing: 0;
+                color: var(--color-globus-blue) !important;
+                text-indent: 0 !important;
+            }
+
+            ul {
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .TVResultToolbar {
+            @include side-paddings;
+            @include adaptive(margin-top, 28, 16);
+            @include adaptive(margin-bottom, 28, 16);
+
+            .TVResultToolbarActions {
+                margin: 0;
+            }
+        }
+
+        // Tourvisor dumps viewport px widths inline — force fluid
+        .TVResultToolbarFloat {
+            box-sizing: border-box !important;
+            width: 100% !important;
+            max-width: 100%;
+        }
+
+        .TVResultNavigationControl, .TVHelpRequestControl {
+            @include side-paddings;
+            @include adaptive(padding-top, 28, 16);
+            @include adaptive(padding-bottom, 28, 16);
+            box-sizing: border-box;
+            background-color: var(--color-globus-blue) !important;
+            border-radius: 0 !important;
+        }
+
+        .TVResultNavigationControl {
+            .tv-button.tv-button--tone-secondary.tv-button-has-background {
+                color: var(--color-globus-cream) !important;
+            }
+        }
+
+        .TVResultListView {
+            @include side-paddings;
+
+            .TVResultListViewBanner,
+            .TVResultListViewItem {
+                border-top: none;
+                border-bottom: max(1px, adaptive-value(1, $default-width)) solid var(--color-globus-sand);
+
+                @media (min-aspect-ratio: 21/9) {
+                    border-bottom-width: max(1px, adaptive-value(1, $default-width, true));
+                }
+            }
+
+            .TVResultListViewHelpItem {
+                border-bottom: none !important;
+            }
+
+            .TVResultListViewItem:has(+ .TVResultListViewHelpItem) {
+                border-bottom: none !important;
+            }
+
+            // Tourvisor sets padding-bottom: 15px on :last-child
+            .TVResultListViewBanner:last-child,
+            .TVResultListViewItem:last-child {
+                @include adaptive(padding-bottom, 40, 20, !important);
+            }
+        }
+
+        .TVResultListViewHelpItem {
+            margin-top: 0;
+            padding-top: 0;
+            @include adaptive(margin-left, -100, -15);
+            @include adaptive(margin-right, -100, -15);
+        }
+
+        .TVResultListViewItem {
+            // @include side-paddings;
+            box-sizing: border-box;
+            @include adaptive(padding-top, 40, 20);
+            @include adaptive(padding-bottom, 40, 20);
+            margin-top: 0;
+
+            // Tourvisor card shells vary (TVHotelResultItem, TVResortResultItem, …).
+            // Ending in ResultItem = outer wrapper, not nested TVResultItem / TVResultItemButton.
+            > [class$='ResultItem'],
+            [class*='ResulItemInfo'],
+            [class*='ResulItemDetail'],
+            [class*='ResultItemInfo'],
+            [class*='ResultItemDetail'] {
+                padding: 0;
+            }
+
+            [class*='ResulItemDetail'],
+            [class*='ResultItemDetail'] {
+                background: var(--color-globus-cream) !important;
+                background-color: var(--color-globus-cream) !important;
+            }
+
+            > [class$='ResultItem'] {
+                background-color: var(--color-globus-cream) !important;
+            }
+
+            .TVResultItemImageWrapper {
+                border-radius: 0 !important;
+                flex: 2;
+                flex-shrink: 0;
+                overflow: hidden;
+                position: relative;
+                @include adaptive(margin-right, 80, 30);
+                @include adaptive(height, 192, 120);
+                @include adaptive(max-width, 220, 140);
+                @include adaptive(min-width, 192, 120);
+            }
+        }
+
+        .TVGallery .TVGallContainer .TVGallLoupe {
+            border-radius: 0 !important;
+            @include adaptive(width, 32, 32, !important);
+            @include adaptive(height, 32, 32, !important);
+
+            &::before {
+                @include adaptive(font-size, 20, 14, !important);
+            }
+        }
+
+        .TVHotelInfoStar {
+            @include adaptive(font-size, 20, 16);
+        }
+
+        .TVHotelInfoStar.TVColorYellow500 {
+            color: var(--color-globus-sand) !important;
+        }
+
+        .TVMResultItemTitle,
+        .TVResultItemTitle,
+        .TVSResultItemTitle,
+        .TVHotelInfoTitleLink {
+            @include font-kudry-sans;
+            @include adaptive(font-size, 28, 24);
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--color-globus-blue) !important;
+        }
+
+        .TVResortResultItemSun,
+        .TVResortResultItemWater {
+            display: flex;
+            align-items: center;
+            @include font-kudry-sans;
+            font-weight: 300;
+            @include adaptive(font-size, 24, 20);
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .TVResortResultItemWater {
+            @include adaptive(margin-left, 10, 8);
+        }
+
+        .TVResortResultItemSun::before,
+        .TVResortResultItemWater::before {
+            @include adaptive(font-size, 24, 20);
+            @include adaptive(margin-right, 5, 4);
+        }
+
+        .TVResultItemHeader {
+            margin-top: 0;
+        }
+
+        .TVMResultItemSubTitle,
+        .TVResultItemSubTitle {
+            @include font-circe-regular;
+            @include adaptive(font-size, 18, 16);
+            line-height: 1.2;
+            letter-spacing: 0;
+            color: var(--color-globus-light-blue) !important;
+        }
+
+        .TVMResultItemDescription,
+        .TVResultItemDescription,
+        .TVSResultItemDescription {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            letter-spacing: 0;
+            color: var(--color-globus-blue) !important;
+            // Tourvisor line-clamp sets inline height (e.g. height: 18px)
+            height: auto !important;
+            max-height: none !important;
+            text-indent: 0 !important;
+            flex: 1;
+            min-width: 0;
+
+            &.TVLineClampEnabled {
+                display: block !important;
+                overflow: visible !important;
+                -webkit-line-clamp: unset !important;
+                line-clamp: unset !important;
+                -webkit-box-orient: unset !important;
+            }
+        }
+
+        .TVResultItemBodyWrapper {
+            @include adaptive(gap, 32, 24);
+        }
+
+        .TVResultItemBeforeDescriptionWrapper {
+            margin-top: 0;
+
+            // Resorts / hidden rating: empty BeforeDescription — no flex gap
+            &:has(.TVHotelInfoRating:not(.TVHide)) {
+                display: flex;
+                align-items: flex-start;
+                @include adaptive(gap, 12, 8);
+            }
+        }
+
+        .TVResultItemFooter,
+        .TVSResultItemFooter {
+            margin-top: 0;
+        }
+
+        .TVResultItemBeforeDescription {
+            flex-shrink: 0;
+
+            &:not(:has(.TVHotelInfoRating:not(.TVHide))) {
+                display: none;
+            }
+        }
+
+        .TVHotelInfoRating {
+            @include font-circe-regular;
+            @include adaptive(font-size, 26, 20);
+            line-height: 1.2;
+            position: static !important;
+            margin-right: 0 !important;
+            @include adaptive(padding-left, 6, 4, !important);
+            @include adaptive(padding-right, 6, 4, !important);
+            border-radius: 0 !important;
+        }
+
+        .TVResultItemPrice {
+            text-align: right;
+        }
+
+        .TVMResultItemPriceKilo,
+        .TVMResultItemPriceValue,
+        .TVSResultItemPriceKilo,
+        .TVSResultItemPriceValue,
+        .TVResultItemPriceKilo,
+        .TVResultItemPriceValue {
+            @include font-circe-regular;
+            font-weight: 400;
+            font-style: normal;
+            @include adaptive(font-size, 47, 36);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+            vertical-align: middle;
+            color: var(--color-globus-blue) !important;
+        }
+
+        .TVResultItemPriceCurrency {
+            @include font-circe-regular;
+            font-weight: 400;
+            font-style: normal;
+            @include adaptive(font-size, 19, 16);
+            line-height: 1.6;
+            letter-spacing: 0;
+            vertical-align: middle;
+            text-transform: uppercase;
+            color: var(--color-globus-blue) !important;
+        }
+
+        .TVMResultItemOldPrice,
+        .TVMSResultItemOldPrice,
+        .TVResultItemOldPrice,
+        .TVSResultItemOldPrice {
+            @include font-circe-regular;
+            font-weight: 400;
+            font-style: normal;
+            @include adaptive(font-size, 18, 16);
+            line-height: 1.2;
+            letter-spacing: 0;
+            color: var(--color-globus-light-blue) !important;
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+
+        .TVHotelResulItemTours,
+        .TVHotelResulItemGroupedTours {
+            @include adaptive(padding-left, 16, 12, !important);
+            @include adaptive(padding-right, 16, 12, !important);
+            border-top: max(1px, adaptive-value(1, $default-width)) dashed var(--color-globus-sand) !important;
+            @include adaptive(padding-top, 20, 16, !important);
+
+            @media (min-aspect-ratio: 21/9) {
+                border-top-width: max(1px, adaptive-value(1, $default-width, true));
+            }
+        }
+
+        .TVTourResultByRoomItem {
+            &:not(:last-child) {
+                @include adaptive(margin-bottom, 12, 10, !important);
+            }
+        }
+
+        .TVTourResultByRoomItemContent {
+            display: flex !important;
+            align-items: center !important;
+            background: transparent !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: max(1px, adaptive-value(1, $default-width)) solid var(--color-globus-sand) !important;
+            border-bottom: max(1px, adaptive-value(1, $default-width)) solid var(--color-globus-sand) !important;
+            border-radius: 0 !important;
+            box-sizing: border-box;
+
+            @media (min-aspect-ratio: 21/9) {
+                border-top-width: max(1px, adaptive-value(1, $default-width, true)) !important;
+                border-bottom-width: max(1px, adaptive-value(1, $default-width, true)) !important;
+            }
+
+            &.TVActive {
+                background-color: var(--color-globus-blue) !important;
+
+                .TVTourResultByRoomItemName,
+                .TVTourResultByRoomItemParams,
+                .TVTourResultByRoomItemPrice,
+                .TVTourResultByRoomItemPriceKilo,
+                .TVTourResultByRoomItemPriceCurrency {
+                    color: var(--color-globus-cream) !important;
+                }
+
+                .TVTourResultByRoomItemArrow::before {
+                    color: var(--color-globus-cream) !important;
+                }
+            }
+        }
+
+        .TVTourResultByRoomItemInfoWrapper {
+            display: flex !important;
+            align-items: center !important;
+            @include adaptive(gap, 20, 12);
+            @include adaptive(padding, 12, 10, !important);
+            min-width: 0;
+        }
+
+        .TVTourResultByRoomItemImage {
+            flex-shrink: 0;
+            border-radius: 0 !important;
+            @include adaptive(width, 80, 64, !important);
+            @include adaptive(min-width, 80, 64, !important);
+            @include adaptive(height, 72, 56, !important);
+            margin-right: 0 !important;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .TVTourResultByRoomItemNoImage {
+            background-color: color-mix(in srgb, var(--color-globus-sand) 12%, var(--color-globus-cream)) !important;
+
+            &::before {
+                color: var(--color-globus-sand) !important;
+                opacity: 0.4 !important;
+                @include adaptive(font-size, 28, 22);
+            }
+        }
+
+        .TVTourResultByRoomItemNameWrapper {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            @include adaptive(gap, 8, 4);
+            min-width: 0;
+
+            > :not(:last-child) {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        .TVTourResultByRoomItemName {
+            @include font-kudry-sans;
+            font-weight: 300;
+            @include adaptive(font-size, 24, 20);
+            line-height: 1.2;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            color: var(--color-globus-blue) !important;
+            width: auto !important;
+        }
+
+        .TVRoomInfo {
+            color: inherit !important;
+            border-bottom: max(1px, adaptive-value(1, $default-width)) dashed var(--color-globus-blue) !important;
+            text-decoration: none !important;
+            text-transform: inherit !important;
+            cursor: pointer;
+            position: relative;
+
+            @media (min-aspect-ratio: 21/9) {
+                border-bottom-width: max(1px, adaptive-value(1, $default-width, true)) !important;
+            }
+        }
+
+        .TVTourResultByRoomItemParams {
+            @include font-circe-regular;
+            font-weight: 350;
+            @include adaptive(font-size, 18, 16);
+            line-height: 1.2;
+            letter-spacing: 0;
+            color: var(--color-globus-light-blue) !important;
+        }
+
+        .TVTourResultByRoomItemPriceWrapper {
+            display: flex !important;
+            align-items: flex-end !important;
+            justify-content: flex-end !important;
+            flex: 1 1 auto !important;
+            gap: 0 !important;
+            @include adaptive(padding-top, 12, 10, !important);
+            @include adaptive(padding-bottom, 12, 10, !important);
+            @include adaptive(padding-left, 10, 8, !important);
+            @include adaptive(padding-right, 16, 12, !important);
+            white-space: nowrap;
+        }
+
+        .TVTourResultByRoomItemPrice,
+        .TVTourResultByRoomItemPriceKilo {
+            @include font-circe-regular;
+            font-weight: 400;
+            font-style: normal;
+            @include adaptive(font-size, 36, 28);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--color-globus-blue) !important;
+        }
+
+        .TVTourResultByRoomItemPriceKilo {
+            @include adaptive(margin-right, 3, 2, !important);
+
+            &:empty {
+                margin-right: 0 !important;
+            }
+        }
+
+        .TVTourResultByRoomItemPriceCurrency {
+            @include font-circe-regular;
+            font-weight: 400;
+            font-style: normal;
+            @include adaptive(font-size, 16, 14);
+            line-height: 1.6;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            vertical-align: middle;
+            align-self: flex-end !important;
+            color: var(--color-globus-blue) !important;
+            @include adaptive(margin-left, 3, 2, !important);
+            margin-top: 0 !important;
+        }
+
+        .TVTourResultByRoomItemArrow {
+            @include tv-outline-button;
+            @include flex-center;
+            @include adaptive(width, 38, 32, !important);
+            @include adaptive(height, 38, 32, !important);
+            min-width: 0 !important;
+            aspect-ratio: 1;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            align-self: center !important;
+            @include adaptive(margin-left, 8, 6, !important);
+            flex-shrink: 0;
+            background: transparent !important;
+            position: relative;
+
+            &::before {
+                color: var(--color-globus-sand) !important;
+                @include adaptive(font-size, 18, 14);
+                line-height: 1;
+                display: block;
+                transform: rotate(0deg);
+                transition: transform 0.15s linear;
+            }
+
+            &.TVActive::before {
+                transform: rotate(90deg);
+            }
+        }
+
+        .TVTourResultByRoomItemTours {
+            @include adaptive(padding-top, 12, 10, !important);
+            @include adaptive(padding-bottom, 8, 6, !important);
+        }
+
+        .TVResultToursContent {
+            box-sizing: border-box;
+
+            t-table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                border-spacing: 0 !important;
+                background-color: transparent !important;
+                margin: 0 !important;
+            }
+
+            t-thead t-tr {
+                border: none !important;
+            }
+
+            t-tr:has(.TVTourResultsHeadTh) {
+                border-top: none !important;
+                border-bottom: max(1px, adaptive-value(1, $default-width)) solid var(--color-globus-sand);
+
+                @media (min-aspect-ratio: 21/9) {
+                    border-bottom-width: max(1px, adaptive-value(1, $default-width, true));
+                }
+            }
+
+            .TVTourResultsHeadTh {
+                @include font-circe-regular;
+                font-weight: 400;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1.2;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                text-align: left;
+                color: var(--color-globus-light-blue) !important;
+                background: none !important;
+                border: none !important;
+                vertical-align: bottom;
+                @include adaptive(padding-top, 0, 0, !important);
+                @include adaptive(padding-bottom, 16, 12, !important);
+                @include adaptive(padding-left, 8, 6, !important);
+                @include adaptive(padding-right, 8, 6, !important);
+            }
+
+            .TVTourResultItem {
+                border-top: max(1px, adaptive-value(1, $default-width)) dashed var(--color-globus-sand) !important;
+                border-bottom: none !important;
+
+                @media (min-aspect-ratio: 21/9) {
+                    border-top-width: max(1px, adaptive-value(1, $default-width, true)) !important;
+                }
+
+                &:last-child {
+                    border-bottom: max(1px, adaptive-value(1, $default-width)) dashed var(--color-globus-sand) !important;
+
+                    @media (min-aspect-ratio: 21/9) {
+                        border-bottom-width: max(1px, adaptive-value(1, $default-width, true)) !important;
+                    }
+                }
+            }
+
+            .TVTourResultItemTd {
+                vertical-align: middle !important;
+                border: none !important;
+                @include adaptive(padding-top, 20, 16, !important);
+                @include adaptive(padding-bottom, 20, 16, !important);
+                @include adaptive(padding-left, 8, 6, !important);
+                @include adaptive(padding-right, 8, 6, !important);
+
+                &:first-child {
+                    padding-left: 0 !important;
+                }
+
+                &:last-child {
+                    padding-right: 0 !important;
+                }
+            }
+
+            .TVTourResultItemRegular,
+            .TVTourResultItemDate {
+                @include font-circe-regular;
+                font-weight: 400;
+                @include adaptive(font-size, 18, 16);
+                line-height: 1.2;
+                color: var(--color-globus-blue) !important;
+            }
+
+            .TVTourResultItemName,
+            .TVTourResultItemNights,
+            .TVTourResultItemMeal,
+            .TVTourResultItemTourists {
+                @include font-circe-regular;
+                font-weight: 350;
+                @include adaptive(font-size, 16, 14);
+                line-height: 1.4;
+                letter-spacing: 0;
+                color: var(--color-globus-light-blue) !important;
+                opacity: 1 !important;
+            }
+
+            .TVTourResultItemName {
+                display: block !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                text-overflow: unset !important;
+                -webkit-line-clamp: unset !important;
+                line-clamp: unset !important;
+                -webkit-box-orient: unset !important;
+                box-orient: unset !important;
+            }
+
+            .TVTourResultItemRoomWrapper {
+                color: var(--color-globus-blue) !important;
+            }
+
+            .TVTourResultItemOperator img {
+                display: block;
+                width: auto;
+                height: auto;
+                @include adaptive(max-width, 60, 50);
+            }
+
+            .TVTourResultsHeadPrice,
+            .TVTourResultItemTd:has(.TVTourResultItemPrice) {
+                @include adaptive(min-width, 180, 140);
+            }
+
+            .TVTourResultItemCart {
+                justify-content: flex-end !important;
+            }
+
+            .TVTourResultItemPrice {
+                justify-content: flex-end !important;
+                margin-left: 0 !important;
+                width: 100%;
+            }
+
+            .TVResultPriceButton {
+                @include tv-outline-button;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-sizing: border-box !important;
+                height: auto !important;
+                max-width: none !important;
+                width: 100% !important;
+                @include adaptive(min-width, 180, 140, !important);
+                border-radius: 500px !important;
+                background: transparent !important;
+                @include adaptive(padding-left, 20, 16, !important);
+                @include adaptive(padding-right, 20, 16, !important);
+                @include adaptive(padding-top, 8, 6, !important);
+                @include adaptive(padding-bottom, 6, 4, !important);
+                @include adaptive(gap, 6, 4);
+
+                &:hover {
+                    background: color-mix(in srgb, var(--color-globus-sand) 10%, transparent) !important;
+                }
+            }
+
+            .TVResultPriceButtonValueWrapper {
+                display: flex !important;
+                align-items: flex-end !important;
+                padding: 0 !important;
+                gap: 0;
+            }
+
+            .TVResultPriceButtonValue,
+            .TVResultPriceButtonKilo {
+                @include font-circe-regular;
+                font-weight: 400;
+                font-style: normal;
+                @include adaptive(font-size, 28, 22);
+                line-height: 1;
+                letter-spacing: -0.02em;
+                white-space: nowrap;
+                color: var(--color-globus-blue) !important;
+            }
+
+            .TVResultPriceButtonKilo {
+                margin-left: 0 !important;
+
+                &:empty {
+                    display: none;
+                }
+            }
+
+            .TVResultPriceButtonCurrency {
+                @include font-circe-regular;
+                font-weight: 400;
+                font-style: normal;
+                @include adaptive(font-size, 14, 12);
+                line-height: 1.6;
+                letter-spacing: 0;
+                text-transform: uppercase;
+                vertical-align: middle;
+                color: var(--color-globus-blue) !important;
+                @include adaptive(margin-left, 3, 2, !important);
+                padding-bottom: 0 !important;
+            }
+
+            .TVResultPriceButtonInstant {
+                display: flex !important;
+                align-items: center !important;
+                color: var(--color-globus-sand) !important;
+                flex-shrink: 0;
+
+                .tv-svg {
+                    @include adaptive(width, 16, 14, !important);
+                    @include adaptive(height, 20, 16, !important);
+                }
+            }
+
+            .TVResultPriceButtonInfo {
+                color: var(--color-globus-sand) !important;
+            }
+        }
+
+        .TVResultToursControl .TVResultToursFooter {
+            @include adaptive(margin-top, 20, 16, !important);
+        }
+
+        .TVResultToursFoooterControl {
+            @include adaptive(gap, 10, 8);
+
+            > :not(:first-child) {
+                margin-left: 0 !important;
+            }
+        }
+    }
+
+    .TVHelpRequestControlButton {
+        align-self: center;
+    }
+
+    .TVHelpRequestControlTitle {
+        @include font-kudry-sans;
+        font-weight: 300;
+        font-style: normal;
+        @include adaptive(font-size, 28, 24);
+        line-height: 1.2;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: var(--color-globus-cream);
+    }
+
+    .TVHelpRequestControlSubtitle {
+        @include font-circe-regular;
+        font-weight: 350;
+        font-style: normal;
+        @include adaptive(font-size, 26, 20);
+        line-height: 1.2;
+        letter-spacing: 0;
+        color: var(--color-globus-cream);
+    }
+
+    .TVSearchButton {
+        @include tv-filled-button;
+        flex: 0 0 auto !important;
+        @include adaptive(min-width, 513, 100%);
+        align-self: center;
+        width: auto !important;
+        max-width: none;
+
+        @include mobile {
+            width: 100%;
+            align-self: stretch;
+        }
+    }
+
+    // Filled CTA — Tourvisor tone-accent (e.g. «Оставить заявку»)
+    .tv-button.tv-button--tone-accent.tv-button-has-background {
+        @include tv-filled-button;
+        @include adaptive(height, 61, 64, !important);
+        width: auto !important;
+        max-width: none;
+
+        &.tv-full-width {
+            width: 100% !important;
+        }
+
+        @include mobile {
+            width: 100%;
+        }
+    }
+
+    .tv-button.tv-button-has-background {
+        box-sizing: border-box;
+        border-style: solid;
+        @include adaptive(border-width, 2, 2, !important);
+
+        &:not(.tv-button--tone-accent) {
+            @include adaptive(height, 54, 38, !important);
+        }
+
+        &:not(.tv-button-is-icon-only) {
+            width: auto;
+            min-width: 0;
+        }
+
+        .tv-svg {
+            flex-shrink: 0;
+            @include adaptive(width, 27, 18, !important);
+            @include adaptive(height, 27, 18, !important);
+        }
+    }
+
+    // Outline controls — tone-secondary tv-button
+    .tv-button.tv-button--tone-secondary.tv-button-has-background {
+        @include tv-outline-button;
+    }
+
+    // size-sm — Tourvisor padding/min-width are fixed px; height grows on 4K → looks squeezed
+    .tv-button.tv-button--size-sm.tv-button-has-background:not(.tv-button-is-icon-only) {
+        min-width: auto !important;
+        max-width: none !important;
+        width: auto !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important;
+        @include adaptive(padding-left, 12, 8, !important);
+        @include adaptive(padding-right, 12, 8, !important);
+        @include adaptive(padding-top, 6, 6, !important);
+        @include adaptive(padding-bottom, 4, 4, !important);
+    }
+
+    // size-md — same fixed padding issue (e.g. tours footer buttons)
+    .tv-button.tv-button--size-md.tv-button-has-background:not(.tv-button-is-icon-only) {
+        min-width: auto !important;
+        max-width: none !important;
+        width: auto !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important;
+        @include adaptive(padding-left, 40, 20, !important);
+        @include adaptive(padding-right, 40, 20, !important);
+        @include adaptive(padding-top, 6, 6, !important);
+        @include adaptive(padding-bottom, 4, 4, !important);
+
+        &.tv-full-width {
+            width: 100% !important;
+        }
+    }
+
+    // Legacy nav buttons — CDN selectors are more specific (font 10px, padding 11px, radius 20px)
+    a.TVResultNavButton.TVResultNavButtonLegacyStyled,
+    a.TVResultNavButton:link.TVResultNavButtonLegacyStyled,
+    .TVResultNavButton.TVResultNavButtonLegacyStyled {
+        @include tv-outline-button;
+        @include adaptive(font-size, 16, 18, !important);
+        @include adaptive(letter-spacing, 2.2, 3.6, !important);
+        @include adaptive(padding-left, 40, 20, !important);
+        @include adaptive(padding-right, 40, 20, !important);
+        @include adaptive(padding-top, 6, 6, !important);
+        @include adaptive(padding-bottom, 4, 4, !important);
+        border-radius: 500px !important;
+        border-style: solid !important;
+        font-weight: 400 !important;
+        line-height: 1.2 !important;
+
+        @include mobile {
+            width: auto !important;
+            align-self: auto !important;
+        }
+
+        &:hover {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+
+    // Legacy Tourvisor buttons — outline pill (text + icon) or circle (icon-only)
+    .TVResultItemButton {
+        @include tv-outline-button;
+        @include flex-center;
+        @include adaptive(column-gap, 12, 8);
+
+        .TVResultItemButtonIcon {
+            @include flex-center;
+            flex-shrink: 0;
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+        }
+
+        .tv-svg {
+            flex-shrink: 0;
+            display: block;
+            @include adaptive(width, 27, 18, !important);
+            @include adaptive(height, 27, 18, !important);
+        }
+    }
+
+    .TVResultItemButton.TVResultItemButtonContentMode-icon-only {
+        @include tv-icon-only-button-shape;
+        position: relative;
+        background: transparent !important;
+
+        .TVResultItemButtonContent {
+            display: none;
+        }
+
+        .TVResultItemButtonIcon {
+            width: 100%;
+            height: 100%;
+            transform: none !important;
+        }
+
+        &.TVResultItemButtonExpandedState-expanded .TVResultItemButtonIcon {
+            transform: rotate(90deg) !important;
+        }
+    }
+
+    .tv-button.tv-button-is-icon-only {
+        @include tv-icon-only-button-shape;
+
+        .tv-button-content,
+        .tv-button-main-content {
+            @include flex-center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+    }
+}
+
+// Modals may be portaled outside .tv-search-form when Tourvisor JS runs
+.tv-search-form .TVModalContainer,
+.TVModalContainer {
+    @include tv-modal-shell;
+
+    // Card shell — any direct child except close control
+    > :not(.TVClosePopUp):not(.TVClosePopUp-Default):not(.TVClosePopUp-Button):not([class*='ClosePopUp']) {
+        @include tv-modal-card;
+    }
+
+    // Close — sibling of card (e.g. timeout dialog)
+    > .TVClosePopUp-Default,
+    > .TVClosePopUp:not(.TVClosePopUp-Button) {
+        @include tv-modal-close-grid;
+    }
+
+    // Close — inside card (e.g. TVModalWindow)
+    .TVModalWindow > .TVClosePopUp-Default,
+    .TVModalWindow > .TVClosePopUp:not(.TVClosePopUp-Button),
+    [class*='Dialog'] > .TVClosePopUp-Default,
+    [class*='Dialog'] > .TVClosePopUp:not(.TVClosePopUp-Button) {
+        @include tv-modal-close-absolute;
+    }
+
+    // Titles — *DialogTitle, *ModalTitle, *PopUpTitle, *WindowTitle
+    [class*='DialogTitle'],
+    [class*='ModalTitle'],
+    [class*='PopUpTitle'],
+    [class*='WindowTitle'] {
+        @include tv-modal-title;
+    }
+
+    // Body text — *DialogMessage, *ModalMessage, subtitles
+    [class*='DialogMessage'],
+    [class*='ModalMessage'],
+    [class*='PopUpMessage'],
+    [class*='SubTitle'],
+    [class*='Subtitle'] {
+        @include tv-modal-body-text;
+    }
+
+    // CTA row — wrapper with accent button inside
+    [class*='Button']:not(.tv-button):not([class*='Close']):has(.tv-button),
+    [class*='Footer']:has(.tv-button),
+    [class*='Actions']:has(.tv-button) {
+        @include tv-modal-cta-row;
+    }
+
+    // Accent buttons anywhere in modal (outside .tv-search-form)
+    .tv-button.tv-button--tone-accent.tv-button-has-background {
+        @include tv-modal-accent-button;
+    }
+}
