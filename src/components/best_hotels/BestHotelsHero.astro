@@ -46,11 +46,10 @@ const base = import.meta.env.BASE_URL
             flex: 0;
         }
 
+        // display: contents — spans participate in .hero-content flex like the old
+        // separate h1 siblings, so wrap/padding stay correct on ultrawide (21:9).
         .hero-title {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            width: 100%;
+            display: contents;
 
             span {
                 @include adaptive(padding-right, 60, 12);
