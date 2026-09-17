@@ -18,9 +18,11 @@ const base = import.meta.env.BASE_URL
         <img src={heroDesktop.src} alt="" loading="eager" decoding="async" />
     </picture>
     <div class="hero-content">
-        <h1 class="hero-title">искусство</h1>
-        <h1 class="hero-title">открывать</h1>
-        <h1 class="hero-title">мир</h1>
+        <h1 class="hero-title">
+            <span>искусство</span>
+            <span>открывать</span>
+            <span>мир</span>
+        </h1>
         {userType === 'tourist' && (
             <a href={`${base}tourist/tourvisor`} class="button _sized" aria-label="Подобрать тур">
                 Подобрать тур
@@ -35,16 +37,16 @@ const base = import.meta.env.BASE_URL
         @include adaptive(padding-bottom, 0, 75);
 
         .hero-content {
-            .hero-title:nth-child(2) {
-                @include adaptive(padding-left, 140, 80);
-            }
+            .hero-title span {
+                display: block;
 
-            .hero-title:nth-child(3) {
-                @include adaptive(padding-left, 10, 10);
-            }
+                &:nth-child(2) {
+                    @include adaptive(padding-left, 140, 80);
+                }
 
-            .hero-title:nth-child(4) {
-                @include adaptive(padding-left, 240, 120);
+                &:nth-child(3) {
+                    @include adaptive(padding-left, 10, 10);
+                }
             }
         }
 

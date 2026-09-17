@@ -88,11 +88,18 @@ const paddingModifierClass = heroPadding ? undefined : '_no-top-padding'
 
                     h2 {
                         width: 100%;
-                        &:nth-child(even) {
-                            @include adaptive(text-align, center, left);
-                        }
-                        &:nth-child(odd) {
-                            text-align: left;
+
+                        span {
+                            display: block;
+                            width: 100%;
+
+                            &:nth-child(even) {
+                                @include adaptive(text-align, center, left);
+                            }
+
+                            &:nth-child(odd) {
+                                text-align: left;
+                            }
                         }
                     }
 

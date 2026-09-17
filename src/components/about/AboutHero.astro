@@ -23,8 +23,10 @@ const base = import.meta.env.BASE_URL
     <HeroNav items={[{ label: 'Главная', href: `${base}${userType}/` }, { label: 'О нас' }]} />
 
     <div class="hero-content">
-        <h1 class="hero-title">открываем</h1>
-        <h1 class="hero-title">мир с 1996 года</h1>
+        <h1 class="hero-title">
+            <span>открываем</span>
+            <span>мир с 1996 года</span>
+        </h1>
         <p class="hero-subtitle">мы создаём путешествия мечты, помогая тысячам туристов открывать мир с комфортом и удовольствием</p>
     </div>
 </section>
@@ -50,7 +52,10 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-title {
-            @include adaptive(padding-right, 60, 0);
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width: 100%;
             @include adaptive(font-size, 110, 60);
 
             @include desktop {
@@ -61,8 +66,12 @@ const base = import.meta.env.BASE_URL
                 line-height: 1.2;
             }
 
-            &:nth-child(2) {
-                @include adaptive(padding-left, 244, 0);
+            span {
+                @include adaptive(padding-right, 60, 0);
+
+                &:nth-child(2) {
+                    @include adaptive(padding-left, 244, 0);
+                }
             }
         }
 

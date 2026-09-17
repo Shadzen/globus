@@ -19,8 +19,10 @@ const base = import.meta.env.BASE_URL
 
     <div class="hero-content">
         <p class="hero-subtitle _small">тариф mini</p>
-        <h2 class="hero-title">Халкидики</h2>
-        <h2 class="hero-title">(через Стамбул)</h2>
+        <h2 class="hero-title">
+            <span>Халкидики</span>
+            <span>(через Стамбул)</span>
+        </h2>
     </div>
 </section>
 
@@ -34,6 +36,10 @@ const base = import.meta.env.BASE_URL
 
         .hero-title {
             text-align: center !important;
+
+            span {
+                display: block;
+            }
         }
 
         .hero-subtitle {

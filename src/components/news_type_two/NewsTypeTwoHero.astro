@@ -29,8 +29,10 @@ const base = import.meta.env.BASE_URL
     />
 
     <div class="hero-content">
-        <h2 class="hero-title">Турция приглашает</h2>
-        <h2 class="hero-title">на бархатный сезон!</h2>
+        <h2 class="hero-title">
+            <span>Турция приглашает</span>
+            <span>на бархатный сезон!</span>
+        </h2>
         <p class="hero-subtitle">
             Бархатный сезон в Турции: идеальное время для отдыха. Мягкий климат и тёплое море
             создают идеальные условия для восстановления сил перед долгой зимой, а лучшие курорты
@@ -60,9 +62,13 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-title {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width: 100%;
             text-align: left;
 
-            &:nth-child(2) {
+            span:nth-child(2) {
                 @include adaptive(padding-left, 434, 0);
             }
         }

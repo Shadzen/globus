@@ -18,10 +18,10 @@ const base = import.meta.env.BASE_URL
     />
 
     <div class="hero-content">
-        <div class="hero-title">
-            <h1>Поиск</h1>
-            <h1>Тура</h1>
-        </div>
+        <h1 class="hero-title">
+            <span>Поиск</span>
+            <span>Тура</span>
+        </h1>
     </div>
 </section>
 
@@ -32,7 +32,9 @@ const base = import.meta.env.BASE_URL
         .hero-content {
             @include flex-start-between;
 
-            h1 {
+            .hero-title span {
+                display: block;
+
                 @include desktop {
                     &:nth-child(1) {
                         @include adaptive(padding-left, 42, 80);

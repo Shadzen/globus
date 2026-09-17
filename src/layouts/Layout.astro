@@ -18,6 +18,8 @@ interface Props {
     heroTextColor?: 'light' | 'dark'
     showHeader?: boolean
     showFooter?: boolean
+    /** When false, only Tourvisor CDN CSS loads — native Tourvisor look */
+    tourvisorOverrides?: boolean
 }
 
 const {
@@ -26,6 +28,7 @@ const {
     heroTextColor = 'light',
     showHeader = true,
     showFooter = true,
+    tourvisorOverrides = true,
 } = Astro.props
 const base = import.meta.env.BASE_URL
 const TOURVISOR_CSS_BASE = 'https://tourvisor.ru/module/v6.25.0/css'
@@ -43,7 +46,9 @@ const TOURVISOR_CSS_BASE = 'https://tourvisor.ru/module/v6.25.0/css'
         <title>{title}</title>
         <link rel="stylesheet" href={`${TOURVISOR_CSS_BASE}/tourvisor.css`} />
         <link rel="stylesheet" href={`${TOURVISOR_CSS_BASE}/theme2.css`} />
-        <link rel="stylesheet" href={tourvisorOverridesHref} />
+        {tourvisorOverrides && (
+            <link id="tourvisor-overrides" rel="stylesheet" href={tourvisorOverridesHref} />
+        )}
     </head>
     <body>
         {showHeader && <Header userType={userType} heroTextColor={heroTextColor} />}

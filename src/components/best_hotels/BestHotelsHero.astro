@@ -26,9 +26,11 @@ const base = import.meta.env.BASE_URL
     ]} />
 
     <div class="hero-content">
-        <h1 class="hero-title">лучшие</h1>
-        <h1 class="hero-title">отели</h1>
-        <h1 class="hero-title">мира</h1>
+        <h1 class="hero-title">
+            <span>лучшие</span>
+            <span>отели</span>
+            <span>мира</span>
+        </h1>
         <p class="hero-subtitle">Искусство открывать мир<br />начинается с идеального отеля</p>
     </div>
 </section>
@@ -45,18 +47,25 @@ const base = import.meta.env.BASE_URL
         }
 
         .hero-title {
-            @include adaptive(padding-right, 60, 12);
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width: 100%;
 
-            @include mobile {
-                line-height: 1.2;
-            }
+            span {
+                @include adaptive(padding-right, 60, 12);
 
-            &:nth-child(2) {
-                @include adaptive(width, 60%, auto);
-            }
+                @include mobile {
+                    line-height: 1.2;
+                }
 
-            &:nth-child(3) {
-                @include adaptive(padding-left, 456, 0);
+                &:nth-child(2) {
+                    @include adaptive(width, 60%, auto);
+                }
+
+                &:nth-child(3) {
+                    @include adaptive(padding-left, 456, 0);
+                }
             }
         }
 
