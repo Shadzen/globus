@@ -9,9 +9,20 @@ function fileHash(filePath) {
     return crypto.createHash('md5').update(content).digest('hex').slice(0, 8)
 }
 
+// Kept as a separate stylesheet so it can be disabled without affecting site CSS
+const SEPARATE_CSS_FILES = new Set(['tourvisor-overrides.css'])
+
 // Match CSS hrefs: /assets/... or /globus/assets/... (GitHub Pages base)
 function matchCssHrefs(html) {
     return [...html.matchAll(/<link[^>]*href="([^"]*\/assets\/[^"]+\.css)"[^>]*\/?>/g)].map((m) => m[1])
+}
+
+function cssFileNameFromHref(href) {
+    return path.basename(href.split('?')[0])
+}
+
+function isSeparateCssHref(href) {
+    return SEPARATE_CSS_FILES.has(cssFileNameFromHref(href))
 }
 
 // Match script src: /assets/... or /_astro/... (Astro 6) or /globus/...
@@ -107,7 +118,7 @@ async function fix() {
     let agentPagesCssHash = null
     if (agentPagesExist) {
         const firstAgentHtml = fs.readFileSync(agentPagePaths[0], 'utf8')
-        const agentCssHrefs = matchCssHrefs(firstAgentHtml)
+        const agentCssHrefs = matchCssHrefs(firstAgentHtml).filter((h) => !isSeparateCssHref(h))
         if (agentCssHrefs.length > 0) {
             const mergedCss = agentCssHrefs
                 .map((href) => {
@@ -136,12 +147,13 @@ async function fix() {
     }
 
     // 2) All other pages: merge their CSS into one main.css
+    //    (except SEPARATE_CSS_FILES — kept as independent <link>s)
     const htmlFiles = await globby(`${distDir}/**/*.html`)
     const mainSiteHtmlFiles = htmlFiles.filter((f) => !isAgentPagePath(f))
     const mainCssHrefs = new Set()
     for (const file of mainSiteHtmlFiles) {
         const content = fs.readFileSync(file, 'utf8')
-        const hrefs = matchCssHrefs(content)
+        const hrefs = matchCssHrefs(content).filter((h) => !isSeparateCssHref(h))
         hrefs.forEach((h) => mainCssHrefs.add(h))
     }
     let mainCssHash = null
@@ -172,6 +184,27 @@ async function fix() {
         }
     }
 
+    // 2b) Cache-bust separate CSS links (tourvisor-overrides.css)
+    let separateCssInfo = []
+    for (const cssName of SEPARATE_CSS_FILES) {
+        const cssPath = path.join(assetsDir, cssName)
+        if (!fs.existsSync(cssPath)) continue
+        const cssHash = fileHash(cssPath)
+        separateCssInfo.push(`${cssName}?v=${cssHash}`)
+        const hashedHref = `${base}assets/${cssName}?v=${cssHash}`
+        for (const file of mainSiteHtmlFiles) {
+            let content = fs.readFileSync(file, 'utf8')
+            const next = content.replace(
+                new RegExp(
+                    `(<link[^>]*href=")([^"]*\\/assets\\/${cssName.replace('.', '\\.')})(?:\\?[^"]*)?(")`,
+                    'g'
+                ),
+                `$1${hashedHref}$3`
+            )
+            if (next !== content) fs.writeFileSync(file, next)
+        }
+    }
+
     // 3) Fix all HTML (scripts): single main.js or agent.js
     for (const file of htmlFiles) {
         let content = fs.readFileSync(file, 'utf8')
@@ -194,7 +227,8 @@ async function fix() {
         fs.writeFileSync(file, content)
     }
 
-    // Clean assets: keep only main.js, agent.js, main.css, agent.css
+    // Clean assets: keep main/agent bundles + SEPARATE_CSS_FILES
+    const keepCss = new Set(['main.css', 'agent.css', ...SEPARATE_CSS_FILES])
     if (fs.existsSync(assetsDir)) {
         fs.readdirSync(assetsDir).forEach((f) => {
             const fullPath = path.join(assetsDir, f)
@@ -204,7 +238,7 @@ async function fix() {
                 }
             } else if (f.endsWith('.js') && f !== 'main.js' && f !== 'agent.js') {
                 fs.unlinkSync(fullPath)
-            } else if (f.endsWith('.css') && f !== 'main.css' && f !== 'agent.css') {
+            } else if (f.endsWith('.css') && !keepCss.has(f)) {
                 fs.unlinkSync(fullPath)
             }
         })
@@ -219,7 +253,8 @@ async function fix() {
     console.log(
         `✅ Done: ${scriptInfo}` +
             (mainCssHash ? `, main.css?v=${mainCssHash}` : '') +
-            (agentPagesCssHash ? `, agent.css?v=${agentPagesCssHash}` : '')
+            (agentPagesCssHash ? `, agent.css?v=${agentPagesCssHash}` : '') +
+            (separateCssInfo.length ? `, ${separateCssInfo.join(', ')}` : '')
     )
 }
 

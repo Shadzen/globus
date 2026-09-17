@@ -4,8 +4,13 @@ import cssnano from 'cssnano'
 import postcss from 'postcss'
 import { fileURLToPath } from 'url'
 import path from 'path'
+import fs from 'fs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+// Windows: Vite resolves modules via realpath.native (D:\...), while Astro's default
+// root keeps process cwd casing (d:\...). That mismatch drops all page CSS in build.
+// fs.realpathSync alone does not normalize drive-letter case on Windows — use .native.
+const projectRoot = (fs.realpathSync.native || fs.realpathSync)(__dirname)
 const isDev = process.env.NODE_ENV !== 'production'
 
 // PostCSS plugin: deduplicate conditions in media queries
@@ -109,6 +114,7 @@ function singleChunkPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
+    root: projectRoot,
     devToolbar: {
         enabled: false,
     },
@@ -121,7 +127,7 @@ export default defineConfig({
         plugins: [singleChunkPlugin(), ...(!isDev ? [mergeMediaQueriesPlugin()] : [])],
         resolve: {
             alias: {
-                '@': path.resolve(__dirname, './src'),
+                '@': path.resolve(projectRoot, './src'),
             },
         },
         css: {
