@@ -55,7 +55,7 @@ const accordionSections = [
 ]
 ---
 
-<AccordionSection title="Пользовательское соглашение">
+<AccordionSection title="Пользовательское соглашение" titleAs="h1">
     <div slot="intro">
         <p>Настоящее Пользовательское соглашение (далее - Соглашение) разработано в целях:</p>
         <ul>
@@ -74,5 +74,5 @@ const accordionSections = [
         </p>
     </div>
 
-    <Accordion sections={accordionSections} />
+    <Accordion sections={accordionSections} headingLevel="h2" />
 </AccordionSection>

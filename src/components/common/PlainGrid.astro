@@ -71,7 +71,7 @@ const items = [
                             />
                         </span>
                         <span class="plain-grid-item-content">
-                            <h3 set:html={item.title} />
+                            <h2 class="_as-h3" set:html={item.title} />
                             <span class="plain-grid-item-arrow">
                                 <img src={nextAccentIcon.src} alt="" />
                             </span>
@@ -157,7 +157,7 @@ const items = [
             transition: transform 0.3s;
         }
 
-        h3 {
+        h2 {
             position: absolute;
             z-index: 2;
             left: 0;

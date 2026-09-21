@@ -71,7 +71,7 @@ const accordionSections = [
 ]
 ---
 
-<AccordionSection title="Политика конфиденциальности">
+<AccordionSection title="Политика конфиденциальности" titleAs="h1">
     <div slot="intro">
         <p>
             Политика в отношении обработки и защиты персональных данных в ООО Туристическое
@@ -79,5 +79,5 @@ const accordionSections = [
         </p>
     </div>
 
-    <Accordion sections={accordionSections} />
+    <Accordion sections={accordionSections} headingLevel="h2" />
 </AccordionSection>

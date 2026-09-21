@@ -13,9 +13,11 @@ interface Props {
     dark?: boolean
     showDivider?: boolean
     centerTitle?: boolean
+    headingLevel?: 'h2' | 'h3'
 }
 
-const { columns, dark = true, showDivider = true, centerTitle = false } = Astro.props
+const { columns, dark = true, showDivider = true, centerTitle = false, headingLevel = 'h3' } = Astro.props
+const TitleTag = headingLevel
 ---
 
 <section
@@ -29,7 +31,7 @@ const { columns, dark = true, showDivider = true, centerTitle = false } = Astro.
             {
                 columns.map((column) => (
                     <div class="column">
-                        <h3>{column.title}</h3>
+                        <TitleTag class:list={{ '_as-h3': headingLevel === 'h2' }}>{column.title}</TitleTag>
                         <ul>
                             {column.items.map((item) => (
                                 <li set:html={item.text} />
@@ -100,12 +102,12 @@ const { columns, dark = true, showDivider = true, centerTitle = false } = Astro.
             }
         }
 
-        h3 {
+        :is(h2, h3) {
             @include adaptive(font-size, 28, 26);
             color: var(--color-globus-blue);
         }
 
-        &._dark h3 {
+        &._dark :is(h2, h3) {
             color: var(--color-globus-sand);
         }
 
@@ -128,7 +130,7 @@ const { columns, dark = true, showDivider = true, centerTitle = false } = Astro.
         }
 
         &._center-title {
-            h3 {
+            :is(h2, h3) {
                 text-align: center;
             }
         }

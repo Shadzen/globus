@@ -25,7 +25,7 @@ const normalizedItems = items.map((item) =>
 
 <section class:list={['bullet-list-section', { _dark: dark }]}>
     <div class="section-container">
-        {titleSize === 'h2' ? <h2>{title}</h2> : <h3>{title}</h3>}
+        {titleSize === 'h2' ? <h2>{title}</h2> : <h2 class="_as-h3">{title}</h2>}
 
         <ul data-columns={columns} data-compact-gap={compactGap}>
             {
@@ -50,7 +50,8 @@ const normalizedItems = items.map((item) =>
             text-align: center;
         }
 
-        h3 {
+        h3,
+        h2._as-h3 {
             @include adaptive(font-size, 28, 26);
             color: var(--color-globus-blue);
         }
@@ -103,7 +104,8 @@ const normalizedItems = items.map((item) =>
         &._dark {
             @include adaptive(margin-top, 120, 60);
 
-            h3 {
+            h3,
+            h2._as-h3 {
                 color: var(--color-globus-cream);
             }
 

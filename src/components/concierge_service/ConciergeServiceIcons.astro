@@ -27,7 +27,7 @@ const services = [
                     <div class="svg-icon">
                         <img src={service.icon} alt="" />
                     </div>
-                    <h3>{service.title}</h3>
+                    <h2 class="_as-h3">{service.title}</h2>
                 </div>
             ))}
         </div>
@@ -59,7 +59,7 @@ const services = [
             }
         }
 
-        h3 {
+        h2 {
             @include font-circe-regular;
             color: var(--color-globus-sand);
             @include adaptive(font-size, 28, 18);

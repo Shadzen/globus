@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL
     <div class="footer-container">
         <div class="footer-columns">
             <div class="footer-column">
-                <h3 class="footer-title">Глобус тур</h3>
+                <p class="footer-title">Глобус тур</p>
                 <nav class="footer-nav">
                     <a href={`${base}${userType}/news`}>Глобус-News</a>
                     <a href={`${base}${userType}/about`}>О нас</a>
@@ -26,7 +26,7 @@ const base = import.meta.env.BASE_URL
             </div>
 
             <div class="footer-column">
-                <h3 class="footer-title">Путешествия</h3>
+                <p class="footer-title">Путешествия</p>
                 <nav class="footer-nav">
                     <a href="#">Семейный отдых</a>
                     <a href="#">Активный отдых</a>
@@ -44,7 +44,7 @@ const base = import.meta.env.BASE_URL
             </div>
 
             <div class="footer-column">
-                <h3 class="footer-title">Полезное</h3>
+                <p class="footer-title">Полезное</p>
                 <nav class="footer-nav">
                     {
                         userType === 'tourist' ?
@@ -178,6 +178,13 @@ const base = import.meta.env.BASE_URL
         }
 
         .footer-title {
+            @include font-kudry-sans;
+            text-transform: uppercase;
+            font-style: normal;
+            margin: 0;
+            color: var(--color-globus-sand);
+            line-height: 1.2;
+            @include adaptive(font-size, 22, 26);
             @include adaptive(margin-top, 20, 20);
         }
 

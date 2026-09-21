@@ -65,7 +65,7 @@ const categories: PriceCategory[] = [
                     <div class="pricing-category">
                         <div class="category-header">
                             <div class="category-titles">
-                                <h3>{category.title}</h3>
+                                <h2 class="_as-h3">{category.title}</h2>
                                 <p>{category.subtitle}</p>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ const categories: PriceCategory[] = [
         .category-titles {
             flex: 1;
 
-            h3 {
+            :is(h2, h3) {
                 color: var(--color-globus-blue);
                 @include adaptive(font-size, 28, 26);
                 @include adaptive(margin-bottom, 10, 5);

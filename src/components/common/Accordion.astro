@@ -12,9 +12,11 @@ interface Props {
     type?: 'docs' | string
     theme?: 'light' | 'dark'
     largeText?: boolean
+    headingLevel?: 'h2' | 'h3'
 }
 
-const { sections, type, theme = 'light', largeText = false } = Astro.props
+const { sections, type, theme = 'light', largeText = false, headingLevel = 'h3' } = Astro.props
+const TitleTag = headingLevel
 ---
 
 <div
@@ -28,7 +30,7 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
             <div class="accordion-item" data-accordion-item>
                 <div class="divider" />
                 <button class="accordion-header" data-accordion-button aria-expanded="false">
-                    <h3>{section.title}</h3>
+                    <TitleTag class:list={{ '_as-h3': headingLevel === 'h2' }}>{section.title}</TitleTag>
                     <img src={chevronDown.src} alt="" class="accordion-icon" />
                 </button>
                 <div class="accordion-content" data-accordion-content>
@@ -59,7 +61,7 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
             cursor: pointer;
             text-align: left;
 
-            h3 {
+            :is(h2, h3) {
                 color: var(--color-globus-blue);
                 @include adaptive(font-size, 28, 26);
                 flex: 1;
@@ -111,7 +113,7 @@ const { sections, type, theme = 'light', largeText = false } = Astro.props
         }
 
         &._dark {
-            .accordion-header h3 {
+            .accordion-header :is(h2, h3) {
                 color: var(--color-globus-cream);
             }
 

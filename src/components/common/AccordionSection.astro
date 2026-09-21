@@ -3,14 +3,16 @@ interface Props {
     title: string
     narrowContainer?: boolean
     dark?: boolean
+    titleAs?: 'h1' | 'h2'
 }
 
-const { title, narrowContainer = true, dark = false } = Astro.props
+const { title, narrowContainer = true, dark = false, titleAs = 'h2' } = Astro.props
+const TitleTag = titleAs
 ---
 
 <section class:list={['accordion-section', { _dark: dark }]}>
     <div class:list={['section-container', { _narrow: narrowContainer }]}>
-        <h2>{title}</h2>
+        <TitleTag class:list={{ '_as-h2': titleAs === 'h1' }}>{title}</TitleTag>
 
         {
             Astro.slots.has('intro') && (
@@ -44,7 +46,7 @@ const { title, narrowContainer = true, dark = false } = Astro.props
             }
         }
 
-        h2 {
+        :is(h1, h2) {
             @include desktop {
                 width: 90%;
                 margin: 0 auto;
@@ -93,7 +95,7 @@ const { title, narrowContainer = true, dark = false } = Astro.props
             @include adaptive(padding-bottom, 60, 30);
             @include adaptive(margin-top, 60, 30);
 
-            h2 {
+            :is(h1, h2) {
                 color: var(--color-globus-sand);
             }
         }

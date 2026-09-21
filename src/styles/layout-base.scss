@@ -175,7 +175,8 @@ h1 {
     }
 }
 
-h2 {
+h2,
+h1._as-h2 {
     color: var(--color-globus-blue);
     text-align: center;
     @include adaptive(font-size, 60, 38);
@@ -190,6 +191,12 @@ h3 {
     color: var(--color-globus-sand);
     line-height: 1.2;
     @include adaptive(font-size, 22, 26);
+}
+
+// Reset h2 layout so listing titles can be semantic h2 without looking like section titles.
+h2._as-h3 {
+    text-align: start;
+    width: auto;
 }
 
 h4 {

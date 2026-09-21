@@ -98,7 +98,7 @@ const teamMembers: TeamMember[] = [
                         <span class="card-image">
                             <Image src={card.image} alt={card.title} loading="lazy" quality={100} />
                         </span>
-                        <h3 class="card-title" set:html={card.title} />
+                        <h2 class="card-title _as-h3" set:html={card.title} />
                         {index !== 2 && <p class="card-description" set:html={card.description} />}
                     </div>
                 ))

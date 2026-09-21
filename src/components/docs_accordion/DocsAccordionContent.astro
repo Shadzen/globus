@@ -99,8 +99,8 @@ const accordionSections = docsSections.map((section) => ({
 }))
 ---
 
-<AccordionSection title="Документы" narrowContainer={false}>
-    <Accordion sections={accordionSections} type="docs" />
+<AccordionSection title="Документы" titleAs="h1" narrowContainer={false}>
+    <Accordion sections={accordionSections} type="docs" headingLevel="h2" />
 </AccordionSection>
 
 <style lang="scss" is:global>

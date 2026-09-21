@@ -10,9 +10,11 @@ export interface TourItem {
 
 interface Props {
     tours: TourItem[]
+    headingLevel?: 'h2' | 'h3'
 }
 
-const { tours } = Astro.props
+const { tours, headingLevel = 'h3' } = Astro.props
+const TitleTag = headingLevel
 ---
 
 <div class="tours-grid">
@@ -36,7 +38,9 @@ const { tours } = Astro.props
 
                 <div class="tour-info">
                     <time class="tour-date">{tour.dateRange}</time>
-                    <h3 class="tour-title">{tour.title}</h3>
+                    <TitleTag class:list={['tour-title', { '_as-h3': headingLevel === 'h2' }]}>
+                        {tour.title}
+                    </TitleTag>
                 </div>
             </a>
         ))
@@ -109,6 +113,7 @@ const { tours } = Astro.props
         .tour-title {
             @include font-circe-regular;
             @include adaptive(font-size, 20, 24);
+            color: var(--color-globus-sand);
             white-space: normal;
             width: 90%;
         }

@@ -2,7 +2,7 @@
 import AccordionSection from '@/components/common/AccordionSection.astro'
 ---
 
-<AccordionSection title="Правила оплаты и безопасность платежей">
+<AccordionSection title="Правила оплаты и безопасность платежей" titleAs="h1">
     <div slot="intro">
         <p>К оплате принимаются карты VISA, MasterCard, МИР.</p>
         <p>
@@ -60,7 +60,7 @@ import AccordionSection from '@/components/common/AccordionSection.astro'
     <div class="payment-sections">
         <div class="payment-section">
             <div class="section-header">
-                <h3>Правила возврата товара</h3>
+                <h2 class="_as-h3">Правила возврата товара</h2>
             </div>
             <div class="section-content">
                 <p>
@@ -120,7 +120,7 @@ import AccordionSection from '@/components/common/AccordionSection.astro'
 
         <div class="payment-section">
             <div class="section-header">
-                <h3>Контактная информация</h3>
+                <h2 class="_as-h3">Контактная информация</h2>
             </div>
             <div class="section-content">
                 <div class="contact-info">
@@ -170,7 +170,7 @@ import AccordionSection from '@/components/common/AccordionSection.astro'
             @include adaptive(padding-bottom, 44, 22);
             // @include adaptive(padding-left, 146, 0);
 
-            h3 {
+            h2 {
                 color: var(--color-globus-blue);
                 @include adaptive(font-size, 28, 26);
             }

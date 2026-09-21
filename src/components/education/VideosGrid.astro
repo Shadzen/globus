@@ -17,9 +17,11 @@ interface Props {
     videos: VideoItem[]
     userType?: 'tourist' | 'agent'
     textColor?: 'main' | 'alternate'
+    headingLevel?: 'h2' | 'h3'
 }
 
-const { videos, textColor = 'main' } = Astro.props
+const { videos, textColor = 'main', headingLevel = 'h3' } = Astro.props
+const TitleTag = headingLevel
 ---
 
 <div class:list={['videos-grid', { _dark: textColor === 'main' }]}>
@@ -42,7 +44,9 @@ const { videos, textColor = 'main' } = Astro.props
 
                 <div class="video-info">
                     <time class="video-date">{video.date}</time>
-                    <h3 class="video-title">{video.title}</h3>
+                    <TitleTag class:list={['video-title', { '_as-h3': headingLevel === 'h2' }]}>
+                        {video.title}
+                    </TitleTag>
 
                     {video.materials && video.materials.length > 0 && (
                         <div class="video-materials">
