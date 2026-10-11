@@ -48,10 +48,15 @@ const base = import.meta.env.BASE_URL
 
         // display: contents — spans participate in .hero-content flex like the old
         // separate h1 siblings, so wrap/padding stay correct on ultrawide (21:9).
-        .hero-title {
+        // line-height stays on the spans: Firefox bug 1600224 collapses the line
+        // box when a custom line-height is set on the display:contents element.
+        // 1.1 matches .hero-section._type-screen .hero-title.
+        &._type-screen .hero-title {
             display: contents;
+            line-height: normal;
 
             span {
+                line-height: 1.1;
                 @include adaptive(padding-right, 60, 12);
 
                 @include mobile {
