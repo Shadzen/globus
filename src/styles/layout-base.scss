@@ -987,3 +987,81 @@ ul {
     pointer-events: auto;
     background: #000;
 }
+
+// TourVisor isolation.
+// The bare-element base styles above (h1–h4, p, span, a, ul, ol, li, inputs) leak into TourVisor markup:
+// the search form and the windows TourVisor appends to <body> (tour card .TVModalContainer, popups).
+// Inside TourVisor they are reverted to browser defaults, so TourVisor's own CSS sets sizes,
+// spacing and list markers. Font family and color stay ours.
+// Specificity: "html body" + :where() is just above the base rules (including their media-query copies,
+// which the build moves to the end of the CSS) and below any TourVisor class rule.
+$tv-self: "[class^='TV'], [class*=' TV']";
+$tv-scope: ".tv-search-form, #{$tv-self}";
+
+@mixin tourvisor-isolate($elements) {
+    html body :where(#{$tv-scope}) :is(#{$elements}),
+    html body :is(#{$elements}):where(#{$tv-self}) {
+        @content;
+    }
+}
+
+@include tourvisor-isolate('h1, h2, h3, h4, p, span, a, ul, ol, li') {
+    margin: revert;
+    font-size: revert;
+    line-height: revert;
+}
+
+@include tourvisor-isolate('h1, h2, h3') {
+    font-style: revert;
+    text-transform: revert;
+    text-align: revert;
+    width: revert;
+}
+
+@include tourvisor-isolate('ul, ol') {
+    display: revert;
+    flex-direction: revert;
+    gap: revert;
+    padding: revert;
+    list-style: revert;
+}
+
+@include tourvisor-isolate('li') {
+    position: revert;
+    padding: revert;
+}
+
+html body :where(#{$tv-scope}) li::before,
+html body li:where(#{$tv-self})::before {
+    content: revert;
+    position: revert;
+    top: revert;
+    left: revert;
+    width: revert;
+    height: revert;
+    border-radius: revert;
+    background-color: revert;
+}
+
+@include tourvisor-isolate('a') {
+    white-space: revert;
+    transition: revert;
+}
+
+html body :where(#{$tv-scope}) a:hover,
+html body a:where(#{$tv-self}):hover {
+    opacity: revert;
+}
+
+html body :where(#{$tv-scope}) br {
+    display: revert;
+}
+
+@include tourvisor-isolate('label, input, textarea') {
+    padding-top: revert;
+}
+
+html body :where(#{$tv-scope}) :is(input, textarea)::placeholder,
+html body :is(input, textarea):where(#{$tv-self})::placeholder {
+    padding-top: revert;
+}
