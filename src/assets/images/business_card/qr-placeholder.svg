@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#00273F">
+    <rect width="100" height="100" fill="#FFFFFF" />
+    <path d="M6 6h26v26H6zM10 10v18h18V10zM14 14h10v10H14z" fill-rule="evenodd" />
+    <path d="M68 6h26v26H68zM72 10v18h18V10zM76 14h10v10H76z" fill-rule="evenodd" />
+    <path d="M6 68h26v26H6zM10 72v18h18V72zM14 76h10v10H14z" fill-rule="evenodd" />
+    <text x="63" y="66" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">QR</text>
+</svg>

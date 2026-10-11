@@ -1,0 +1,251 @@
+---
+// src/components/business_card/BusinessCard.astro
+// Employee e-card. data-vcard-* attributes feed the "Save contact" (.vcf) button —
+// see src/scripts/business_card/vcard.ts.
+import type { ImageMetadata } from 'astro'
+import { COMPANY_NAME } from '@/scripts/utils'
+
+interface CardButton {
+    text: string
+    href: string
+}
+
+interface Props {
+    name: string
+    position: string
+    photo: ImageMetadata
+    phones: string[]
+    email: string
+    // Messenger buttons: label and link are set per employee
+    buttons?: CardButton[]
+    // QR leading to this page
+    pageQr?: ImageMetadata
+    // QR that saves the contact to the phone
+    contactQr?: ImageMetadata
+}
+
+const { name, position, photo, phones, email, buttons = [], pageQr, contactQr } = Astro.props
+
+// +79130637740 → +7 913 063-77-40
+const formatPhone = (phone: string) =>
+    phone.replace(/^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 $1 $2-$3-$4')
+---
+
+<section class="business-card-section _dark">
+    <div class="section-container">
+        <div class="business-card" data-vcard data-vcard-org={COMPANY_NAME}>
+            <div class="business-card-photo">
+                <img src={photo.src} alt={name} />
+            </div>
+
+            <div class="business-card-info">
+                <div class="business-card-header">
+                    <h1 data-vcard-field="name">{name}</h1>
+                    <p class="business-card-position" data-vcard-field="title">{position}</p>
+                </div>
+
+                <div class="business-card-contacts">
+                    {
+                        phones.map((phone) => (
+                            <div class="business-card-contact">
+                                <span>Телефон</span>
+                                <a href={`tel:${phone}`} data-vcard-field="tel">
+                                    {formatPhone(phone)}
+                                </a>
+                            </div>
+                        ))
+                    }
+                    <div class="business-card-contact">
+                        <span>E-mail</span>
+                        <a href={`mailto:${email}`} data-vcard-field="email">{email}</a>
+                    </div>
+                </div>
+
+                <div class="business-card-buttons">
+                    <button class="button _sized" type="button" data-vcard-download>
+                        сохранить контакт
+                    </button>
+                    {
+                        buttons.map((button) => (
+                            <a
+                                href={button.href}
+                                class="button _sized _outline"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {button.text}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            {
+                (pageQr || contactQr) && (
+                    <div class="business-card-qr">
+                        {pageQr && (
+                            <figure>
+                                <div class="business-card-qr-image">
+                                    <img src={pageQr.src} alt="QR-код визитки" />
+                                </div>
+                                <figcaption>Ссылка на визитку</figcaption>
+                            </figure>
+                        )}
+                        {contactQr && (
+                            <figure>
+                                <div class="business-card-qr-image">
+                                    <img src={contactQr.src} alt="QR-код для сохранения контакта" />
+                                </div>
+                                <figcaption>Сохранить контакт</figcaption>
+                            </figure>
+                        )}
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .business-card-section {
+        @include adaptive(padding-top, 80, 40);
+        @include adaptive(padding-bottom, 80, 40);
+
+        .business-card {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            grid-template-areas: 'photo info qr';
+            align-items: start;
+            @include adaptive(column-gap, 80, 0);
+            @include adaptive(row-gap, 0, 40);
+
+            @include mobile {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-areas: 'photo' 'info' 'qr';
+            }
+        }
+
+        .business-card-photo {
+            grid-area: photo;
+            @include adaptive(width, 280, 180);
+            @include adaptive(height, 280, 180);
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .business-card-info {
+            grid-area: info;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 40, 30);
+        }
+
+        .business-card-header {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 16, 10);
+
+            h1 {
+                color: var(--color-globus-sand);
+                @include adaptive(font-size, 60, 38);
+                line-height: 1.1;
+            }
+        }
+
+        .business-card-position {
+            color: var(--color-globus-light-blue);
+        }
+
+        .business-card-contacts {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 20, 16);
+        }
+
+        .business-card-contact {
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 6, 4);
+
+            span {
+                color: var(--color-globus-light-blue);
+                @include adaptive(font-size, 16, 14);
+                @include adaptive(letter-spacing, 2.4, 2);
+                text-transform: uppercase;
+            }
+
+            a {
+                width: fit-content;
+                color: var(--color-globus-cream);
+                text-decoration: none;
+            }
+        }
+
+        .business-card-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            @include adaptive(gap, 20, 12);
+
+            @include mobile {
+                flex-direction: column;
+
+                .button {
+                    width: 100%;
+                }
+            }
+        }
+
+        .business-card-qr {
+            grid-area: qr;
+            display: flex;
+            flex-direction: column;
+            @include adaptive(gap, 30, 16);
+
+            @include mobile {
+                flex-direction: row;
+            }
+
+            figure {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                @include adaptive(gap, 12, 10);
+                margin: 0;
+
+                @include mobile {
+                    flex: 1;
+                    min-width: 0;
+                }
+            }
+
+            figcaption {
+                color: var(--color-globus-light-blue);
+                @include adaptive(font-size, 16, 14);
+                @include adaptive(letter-spacing, 2.4, 2);
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+
+        .business-card-qr-image {
+            @include adaptive(width, 200, 100%);
+            aspect-ratio: 1;
+            @include adaptive(padding, 12, 10);
+            background: #fff;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+</style>

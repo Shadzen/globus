@@ -13,6 +13,7 @@ import { initCompaniesSlider } from './mice/companiesSlider'
 import { initAccordion } from './common/accordion'
 import { initModal } from './common/modal'
 import { initDataPswpLightbox } from './common/dataPswpLightbox'
+import { initVcardDownload } from './business_card/vcard'
 
 const initAll = () => {
     initHeader()
@@ -28,6 +29,7 @@ const initAll = () => {
     initNewsSlider()
     initCompaniesSlider()
     initAccordion()
+    initVcardDownload()
 }
 
 if (document.readyState === 'loading') {

@@ -1,0 +1,34 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import BusinessCardHero from '@/components/business_card/BusinessCardHero.astro'
+import BusinessCard from '@/components/business_card/BusinessCard.astro'
+import employeePhoto from '@/assets/images/about/about-grid-small-1.jpg'
+import qrPlaceholder from '@/assets/images/business_card/qr-placeholder.svg'
+import { COMPANY_NAME } from '@/scripts/utils'
+
+const employee = {
+    name: 'Лавренчук Олеся',
+    position: 'Заместитель директора по работе с клиентами',
+    phones: ['+79130637740', '+73832000500'],
+    email: 'globus1@globus-tour.ru',
+    buttons: [
+        { text: 'Telegram', href: 'https://t.me/+79130637740' },
+        { text: 'WhatsApp', href: 'https://wa.me/79130637740' },
+        { text: 'MAX', href: '#' },
+    ],
+}
+---
+
+<Layout title={`${employee.name} - ${COMPANY_NAME}`} userType="tourist" heroTextColor="dark">
+    <BusinessCardHero name={employee.name} />
+    <BusinessCard
+        name={employee.name}
+        position={employee.position}
+        photo={employeePhoto}
+        phones={employee.phones}
+        email={employee.email}
+        buttons={employee.buttons}
+        pageQr={qrPlaceholder}
+        contactQr={qrPlaceholder}
+    />
+</Layout>
