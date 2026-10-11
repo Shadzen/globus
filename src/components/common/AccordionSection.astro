@@ -84,6 +84,17 @@ const TitleTag = titleAs
                     }
                 }
             }
+
+            // Links in running text match the surrounding p / li size
+            a {
+                font-size: inherit;
+                line-height: inherit;
+                white-space: normal;
+            }
+
+            a[href^='tel:'] {
+                white-space: nowrap;
+            }
         }
 
         .accordion-section-content {
