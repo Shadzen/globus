@@ -1,0 +1,117 @@
+---
+// src/components/common/TourSearchCta.astro
+// Standalone version of the TourInclusions bottom section: title + text + action buttons.
+
+interface CtaButton {
+    text: string
+    href?: string
+    // Opens a modal by id (data-modal-trigger) instead of following a link
+    modal?: string
+    outline?: boolean
+}
+
+interface Props {
+    title?: string
+    text?: string
+    items?: string[]
+    buttons?: CtaButton[]
+    divider?: boolean
+}
+
+const base = import.meta.env.BASE_URL
+
+const defaultButtons: CtaButton[] = [
+    { text: 'запрос на поиск', modal: 'contact-popup', outline: true },
+    { text: 'перейти в поиск туров', href: `${base}tourist/tourvisor` },
+]
+
+const {
+    title = 'Лайфхак:',
+    text,
+    items = [
+        'После оформления бронирования просто напишите вашему менеджеру. Мы направим запрос поставщику, и если необходимые услуги доступны, добавим их в заявку и сообщим стоимость.',
+    ],
+    buttons = defaultButtons,
+    divider = true,
+} = Astro.props
+---
+
+<section class="tour-search-cta">
+    <div class="section-container">
+        {divider && <div class="divider"></div>}
+
+        <div class="tour-search-cta-content">
+            {title && <h3 set:html={title} />}
+
+            {text && <p class="tour-search-cta-text" set:html={text} />}
+
+            {!text && items.length > 0 && (
+                <ul class="tour-search-cta-text">
+                    {items.map((item) => (
+                        <li set:html={item} />
+                    ))}
+                </ul>
+            )}
+
+            {buttons.length > 0 && (
+                <div class="tour-search-cta-buttons">
+                    {buttons.map((button) =>
+                        button.href ? (
+                            <a href={button.href} class:list={['button _sized', { _outline: button.outline }]}>
+                                {button.text}
+                            </a>
+                        ) : (
+                            <button
+                                type="button"
+                                class:list={['button _sized', { _outline: button.outline }]}
+                                data-modal-trigger={button.modal}
+                            >
+                                {button.text}
+                            </button>
+                        ),
+                    )}
+                </div>
+            )}
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .tour-search-cta {
+        @include adaptive(padding-top, 50, 30);
+        @include adaptive(padding-bottom, 80, 50);
+
+        .divider {
+            @include adaptive(margin-bottom, 40, 25);
+        }
+
+        .tour-search-cta-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include adaptive(gap, 30, 20);
+
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        h3 {
+            flex-shrink: 0;
+            color: var(--color-globus-blue);
+            @include adaptive(font-size, 32, 24);
+        }
+
+        .tour-search-cta-buttons {
+            display: flex;
+            @include adaptive(gap, 20, 20);
+            flex-shrink: 0;
+
+            @include mobile {
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+    }
+</style>

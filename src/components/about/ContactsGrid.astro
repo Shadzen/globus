@@ -17,6 +17,10 @@ interface Props {
     title?: string
     description?: string
     headingLevel?: 'h2' | 'h3'
+    // 4 — four cards per row, avatar above the text
+    columns?: 3 | 4
+    // Center incomplete rows (1 or 2 contacts)
+    centered?: boolean
 }
 
 const defaultPeople: ContactPerson[] = [
@@ -43,11 +47,24 @@ const defaultPeople: ContactPerson[] = [
     },
 ]
 
-const { people = defaultPeople, standalone = false, title, description, headingLevel = 'h3' } = Astro.props
+const {
+    people = defaultPeople,
+    standalone = false,
+    title,
+    description,
+    headingLevel = 'h3',
+    columns = 3,
+    centered = false,
+} = Astro.props
 const NameTag = headingLevel
 ---
 
-<section class:list={['contacts-grid _dark', { _standalone: standalone }]}>
+<section
+    class:list={[
+        'contacts-grid _dark',
+        { _standalone: standalone, '_columns-4': columns === 4, _centered: centered },
+    ]}
+>
     {title && <h2 set:html={title} />}
     {description && <p set:html={description} />}
 
@@ -110,6 +127,58 @@ const NameTag = headingLevel
         > p {
             @include adaptive(width, 50%, 100%);
             color: var(--color-globus-light-blue) !important;
+        }
+
+        // 4 per row: the avatar goes above the text so the narrow card fits
+        &._columns-4 {
+            grid-template-columns: repeat(4, 1fr);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                @include desktop {
+                    flex-direction: column;
+                }
+            }
+        }
+
+        // Cards centered in the row: one sits in the middle, two are symmetric around the center
+        &._centered {
+            --contacts-columns: 3;
+            @include adaptive(--contacts-gap, 60, 30);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--contacts-gap);
+
+            &._columns-4 {
+                --contacts-columns: 4;
+            }
+
+            // Side margins complete title / description to a full row (same widths as the grid version)
+            @include desktop {
+                > h2 {
+                    margin-inline: 5%;
+                }
+
+                > p {
+                    margin-inline: 25%;
+                }
+            }
+
+            .contact-card {
+                flex: 0 0
+                    calc(
+                        (100% - (var(--contacts-columns) - 1) * var(--contacts-gap)) /
+                            var(--contacts-columns)
+                    );
+
+                @include mobile {
+                    flex-basis: 100%;
+                }
+            }
         }
     }
 

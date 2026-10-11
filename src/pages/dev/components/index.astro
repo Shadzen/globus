@@ -14,10 +14,13 @@ import SectionGap from '@/components/common/SectionGap.astro'
 import CustomGrid from '@/components/common/CustomGrid.astro'
 import VisaDocuments from '@/components/visa/VisaDocuments.astro'
 import TourInclusions from '@/components/common/TourInclusions.astro'
+import TourSearchCta from '@/components/common/TourSearchCta.astro'
+import RichTextGrid from '@/components/common/RichTextGrid.astro'
 import PromoTourIncluded from '@/components/promo_tour/PromoTourIncluded.astro'
 import InsuranceCoverage from '@/components/insurance/InsuranceCoverage.astro'
 import AdvantagesGrid from '@/components/main/AdvantagesGrid.astro'
-import ContactsGrid from '@/components/about/ContactsGrid.astro'
+import ContactsGrid, { type ContactPerson } from '@/components/about/ContactsGrid.astro'
+import contactPhoto1 from '@/assets/images/about/contact-photo-1.jpg'
 
 import heroDesktop1 from '@/assets/images/concierge_service/hero-1.jpg'
 import heroMobile1 from '@/assets/images/concierge_service/hero-1-mobile.jpg'
@@ -203,6 +206,37 @@ const includedColumns: IncludedItem[][] = [
         { text: 'Медицинская страховка' },
     ],
 ]
+
+const contactsDemo: ContactPerson[] = [
+    {
+        name: 'Лавренчук Олеся',
+        position: 'Заместитель директора по работе с клиентами',
+        email: 'globus1@globus-tour.ru',
+        phone: '+79130637740',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Маковецкая Ульяна',
+        position: 'Менеджер по туризму',
+        email: 'globus40@globus-tour.ru',
+        phone: '+79137907620',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Курлович Снежана',
+        position: 'Менеджер по туризму',
+        email: 'globus38@globus-tour.ru',
+        phone: '+79130637754',
+        image: contactPhoto1,
+    },
+    {
+        name: 'Иванова Мария',
+        position: 'Менеджер по туризму',
+        email: 'globus41@globus-tour.ru',
+        phone: '+79130637760',
+        image: contactPhoto1,
+    },
+]
 ---
 
 <Layout title={`Component demos - ${COMPANY_NAME}`} heroTextColor="dark">
@@ -223,6 +257,102 @@ const includedColumns: IncludedItem[][] = [
             </picture>
         </div>
     </HeroCustom>
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <TourSearchCta />
+
+    <hr style="margin: 0; border-color: red;" />
+
+    <RichTextGrid>
+        <div class="rich-text-item">
+            <h3>Болезнь</h3>
+            <ul>
+                <li>Отмена, перенос начала поездки из-за стационарного лечения, травмы, смерти</li>
+                <li>Досрочное возвращение из-за госпитализации</li>
+                <li>Задержка возвращения из-за госпитализации</li>
+                <li>Досрочное возвращение для проведения плановой операции</li>
+            </ul>
+            <p><strong>Без франшизы:</strong> стоимость полиса – 1,8%</p>
+            <p><strong>Франшиза 15%:</strong> стоимость полиса – 1,5%</p>
+        </div>
+
+        <div class="rich-text-item">
+            <h3>Отказ в визе или болезнь</h3>
+            <ul>
+                <li>Первичный отказ в визе</li>
+                <li>Отказ в визе после начала поездки, несвоевременная выдача визы</li>
+                <li>Отмена, перенос начала поездки из-за стационарного лечения, травмы, смерти</li>
+                <li>Досрочное возвращение из-за госпитализации</li>
+                <li>Задержка возвращения из-за госпитализации</li>
+                <li>
+                    Отмена, перенос начала поездки из-за карантинного заболевания
+                    <strong>(COVID-19, детские инфекционные заболевания)</strong>
+                </li>
+            </ul>
+            <p><strong>Без франшизы:</strong></p>
+            <ul>
+                <li>Стоимость без Шенгена – 5,3%</li>
+                <li>Стоимость с Шенгеном – 6,3%</li>
+            </ul>
+            <p><strong>Франшиза 15%:</strong></p>
+            <ul>
+                <li>Стоимость без Шенгена – 4,5%</li>
+                <li>Стоимость с Шенгеном – 5,35%</li>
+            </ul>
+        </div>
+
+        <div class="rich-text-item _wide">
+            <h3>All inclusive (Все включено)</h3>
+            <ul class="_columns-2">
+                <li>Первичный отказ в визе</li>
+                <li>Отказ в визе после начала поездки, несвоевременная выдача визы</li>
+                <li>Отмена, перенос начала поездки из-за стационарного лечения, травмы, смерти</li>
+                <li>Досрочное возвращение из-за госпитализации</li>
+                <li>Задержка возвращения из-за госпитализации</li>
+                <li>Повреждение, утрата имущества</li>
+                <li>Вызов в суд в качестве свидетеля, эксперта, переводчика</li>
+                <li>Призыв на срочную военную службу, сборы</li>
+                <li>Хищение, утрата документов</li>
+                <li>
+                    Отмена, задержка рейса по причине механических поломок, метеоусловий,
+                    обеспечения безопасности перевозки
+                </li>
+                <li>Повторный отказ в визе</li>
+                <li>Отказ во въезде в страну назначения</li>
+                <li>Отмена, перенос начала поездки из-за амбулаторного лечения</li>
+                <li>
+                    Отмена, перенос начала поездки из-за карантинного заболевания
+                    <strong>(COVID-19, детские инфекционные заболевания)</strong>
+                </li>
+            </ul>
+            <p><strong>Без франшизы:</strong></p>
+            <ul>
+                <li>Стоимость без Шенгена – 5,5%</li>
+                <li>Стоимость с Шенгеном – 6,5%</li>
+            </ul>
+            <p><strong>Франшиза 15%:</strong></p>
+            <ul>
+                <li>Стоимость без Шенгена – 4,7%</li>
+                <li>Стоимость с Шенгеном – 5,5%</li>
+            </ul>
+        </div>
+    </RichTextGrid>
+
+    <hr style="margin: 0; border-color: red;" />
+
+    <ContactsGrid standalone columns={4} people={contactsDemo} title="4 контакта в ряд" />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <ContactsGrid standalone centered people={contactsDemo.slice(0, 1)} title="Один контакт по центру" />
+
+    <SectionGap size={80} />
+    <hr style="margin: 0; border-color: red;" />
+
+    <ContactsGrid standalone centered people={contactsDemo.slice(0, 2)} title="Два контакта по центру" />
 
     <SectionGap size={80} />
     <hr style="margin: 0; border-color: red;" />

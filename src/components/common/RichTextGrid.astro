@@ -1,0 +1,124 @@
+---
+// src/components/common/RichTextGrid.astro
+// Text block for CMS (WYSIWYG) content: h3/h4, p, strong, ul/ol, a.
+// Each .rich-text-item is a grid cell; ._wide spans the full row.
+// ul._columns-2 splits a long list into two columns (desktop only).
+
+interface Props {
+    title?: string
+    // 1 — every item takes the full width (one big text block)
+    columns?: 1 | 2
+}
+
+const { title, columns = 2 } = Astro.props
+---
+
+<section class="rich-text-grid-section">
+    <div class="section-container">
+        {title && <h2 set:html={title} />}
+
+        <div class:list={['rich-text-grid', { '_one-column': columns === 1 }]}>
+            <slot />
+        </div>
+    </div>
+</section>
+
+<style lang="scss" is:global>
+    .rich-text-grid-section {
+        @include adaptive(padding-top, 80, 50);
+        @include adaptive(padding-bottom, 80, 50);
+
+        > .section-container > h2 {
+            @include adaptive(margin-bottom, 60, 30);
+        }
+    }
+
+    .rich-text-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        @include adaptive(column-gap, 100, 0);
+        @include adaptive(row-gap, 80, 40);
+
+        &._one-column {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        @include mobile {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .rich-text-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            @include adaptive(gap, 24, 20);
+
+            &._wide {
+                grid-column: 1 / -1;
+            }
+        }
+
+        :is(h3, h4) {
+            text-align: left;
+            color: var(--color-globus-sand);
+        }
+
+        h3 {
+            @include adaptive(font-size, 28, 26);
+        }
+
+        h4 {
+            @include adaptive(font-size, 22, 20);
+        }
+
+        // p / li keep the site default size (26 / 18) from layout-base
+        ul {
+            @include adaptive(gap, 25, 20);
+        }
+
+        ol li {
+            @include adaptive(margin-bottom, 25, 20);
+        }
+
+        ul._columns-2 {
+            display: block;
+            width: 100%;
+            column-count: 2;
+            @include adaptive(column-gap, 100, 0);
+
+            @include mobile {
+                column-count: 1;
+            }
+
+            li {
+                break-inside: avoid;
+                @include adaptive(margin-bottom, 25, 20);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        // No bold face in the font set — emphasis is the accent color
+        strong,
+        b {
+            font: inherit;
+            color: var(--color-globus-sand);
+        }
+
+        a {
+            font-size: inherit;
+            line-height: inherit;
+            white-space: normal;
+            color: var(--color-globus-sand);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+
+        // CMS editors leave stray <br> between blocks
+        > .rich-text-item > br {
+            display: none;
+        }
+    }
+</style>
