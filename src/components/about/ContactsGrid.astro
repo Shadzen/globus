@@ -168,11 +168,13 @@ const NameTag = headingLevel
                 }
             }
 
+            // −1px of slack: cards and gaps add up to exactly 100%, and Firefox's subpixel rounding
+            // then pushes the last card of a row to the next line (3 columns turn into 2)
             .contact-card {
                 flex: 0 0
                     calc(
                         (100% - (var(--contacts-columns) - 1) * var(--contacts-gap)) /
-                            var(--contacts-columns)
+                            var(--contacts-columns) - 1px
                     );
 
                 @include mobile {
