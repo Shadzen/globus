@@ -157,7 +157,8 @@ const items = [
             transition: transform 0.3s;
         }
 
-        h2 {
+        // h3 — older markup still used on the live site
+        :is(h2, h3) {
             position: absolute;
             z-index: 2;
             left: 0;
@@ -165,6 +166,11 @@ const items = [
             color: var(--color-globus-cream);
             @include adaptive(font-size, 28, 28);
             white-space: normal;
+            transition: color 0.3s;
+        }
+
+        .plain-grid-item:hover :is(h2, h3) {
+            color: var(--color-globus-sand);
         }
 
         .plain-grid-item-arrow {
