@@ -793,4 +793,12 @@
     section.tourvisor-search-section .tv-search-form :is(.TVMainForm, .TVFilterForm) {
         @include side-paddings;
     }
+
+    // Results that TourVisor renders next to the form after a search. It sets an inline width equal
+    // to the container, so border-box keeps the gutters inside that width.
+    // On mobile the results open in TourVisor's own full-screen panel outside this block.
+    section.tourvisor-search-section .tv-search-form .TVSearchResults {
+        box-sizing: border-box;
+        @include side-paddings;
+    }
 </style>
